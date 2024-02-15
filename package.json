@@ -1,0 +1,18 @@
+{
+  "name": "shiven_mern",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "frontend": "cd frontend && npm start",
+    "admin": "cd admin && npm start",
+    "backend": "cd backend && npm run dev",
+    "dev": "concurrently \"npm run frontend\" \"npm run admin\" \"npm run backend\""
+  },
+  "author": "Pearl Organisation",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.7",
+    "concurrently": "^8.2.2"
+  }
+}

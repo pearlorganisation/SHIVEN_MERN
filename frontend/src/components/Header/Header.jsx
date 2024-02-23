@@ -132,15 +132,26 @@ const Header = () => {
 
   // Replace javascript:void(0) paths with your paths
   const navigation = [
+    // {
+    //   title: "Features",
+    //   path: "javascript:void(0)",
+    //   isDrapdown: true,
+    //   navs: dropdownNavs,
+    // },
+    { title: "Home", path: "javascript:void(0)", isDrapdown: false },
+    { title: "About Us", path: "javascript:void(0)", isDrapdown: false },
+    { title: "Policies", path: "javascript:void(0)", isDrapdown: false },
     {
-      title: "Features",
+      title: "Features for Financial Consultant",
       path: "javascript:void(0)",
-      isDrapdown: true,
-      navs: dropdownNavs,
+      isDrapdown: false,
     },
-    { title: "Integrations", path: "javascript:void(0)", isDrapdown: false },
-    { title: "Free Tools", path: "javascript:void(0)", isDrapdown: false },
-    { title: "Pricing", path: "javascript:void(0)", isDrapdown: false },
+    {
+      title: "PoliciesFeatures for Customer",
+      path: "javascript:void(0)",
+      isDrapdown: false,
+    },
+    { title: "Contact Us", path: "javascript:void(0)", isDrapdown: false },
   ];
 
   useEffect(() => {

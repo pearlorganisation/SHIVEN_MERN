@@ -4,7 +4,7 @@ import FinancialConsultant from "../../components/FinancialConsultant/FinancialC
 import HeroSection from "./HeroSection";
 import FeaturesCustomer from "../../components/FeaturesCustomer/FeaturesCustomer";
 import Testimonial from "../../components/Testimonials/Testimonial";
-import Faq from "../../components/FAQ/Faq";
+import Faqs from "../../components/Faqs/Faqs";
 
 const Home = () => {
   return (
@@ -17,8 +17,7 @@ const Home = () => {
       <FinancialConsultant />
 
       <Testimonial />
-
-      <Faq />
+      <Faqs />
     </div>
   );
 };

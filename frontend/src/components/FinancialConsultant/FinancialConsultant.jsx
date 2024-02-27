@@ -24,7 +24,7 @@ const FinancialConsultant = () => {
     },
     {
       avatar:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        "https://d3an9kf42ylj3p.cloudfront.net/uploads/2023/10/kf_typesofdbms_oct23.png",
       name: "Centralised Database",
       title: "Full stack engineer",
       desc: "Lorem Ipsum is simply dummy text of the printing and typesettin industry.",
@@ -34,8 +34,8 @@ const FinancialConsultant = () => {
     },
     {
       avatar:
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-      name: "Lysa sandiago",
+        "https://cronuts.digital/wp-content/uploads/2019/12/proteger-producto-amazon.jpg",
+      name: "CRM",
       title: "CRM / Enquiry / Leads",
       desc: "Lorem Ipsum is simply dummy text of the printing and typesettin industry.",
       linkedin: "javascript:void(0)",
@@ -44,7 +44,7 @@ const FinancialConsultant = () => {
     },
     {
       avatar:
-        "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        "https://s.tmimgcdn.com/scr/1200x627/260000/business-service-promotion-social-media-post-design-template-01_260077-original.jpg",
       name: "Social Media Posts",
       title: "Product designer",
       desc: "Lorem Ipsum is simply dummy text of the printing and typesettin industry.",
@@ -53,8 +53,7 @@ const FinancialConsultant = () => {
       github: "javascript:void(0)",
     },
     {
-      avatar:
-        "https://images.unsplash.com/photo-1540569014015-19a7be504e3a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
+      avatar: "https://www.go2market.in/assets/images/final-banner-sms.png",
       name: "Bulk Messaging",
       title: "Product manager",
       desc: "Lorem Ipsum is simply dummy text of the printing and typesettin industry.",
@@ -69,7 +68,7 @@ const FinancialConsultant = () => {
         <div className="max-w-screen-xl mx-auto px-4 md:px-8">
           <div className="w-full md:w-[80%] lg:w-[70%] mx-auto text-center">
             <h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
-              What We Provide To Our Financial Consultant
+              Features for Finincial Consultant
             </h3>
             <p className="text-gray-600 mt-3">
               Lorem Ipsum is simply dummy text of the printing and typesetting

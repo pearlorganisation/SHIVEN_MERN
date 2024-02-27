@@ -1,10 +1,9 @@
 import React from "react";
-import { FaShieldAlt } from "react-icons/fa";
 import { AiOutlineMedicineBox } from "react-icons/ai";
 import { RiUmbrellaFill } from "react-icons/ri";
 import { IoMdCar } from "react-icons/io";
 import { FiArrowUpCircle } from "react-icons/fi";
-import { FaHandshake } from "react-icons/fa";
+import { FaHandshake, FaShieldAlt } from "react-icons/fa";
 
 const Policies = () => {
   const faqsList = [

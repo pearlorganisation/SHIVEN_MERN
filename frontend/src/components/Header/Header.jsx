@@ -141,7 +141,7 @@ const Header = () => {
     //   isDrapdown: true,
     //   navs: dropdownNavs,
     // },
-    { title: "Home", path: "javascript:void(0)", isDrapdown: false },
+    { title: "Home", path: "/", isDrapdown: false },
     { title: "About Us", path: "javascript:void(0)", isDrapdown: false },
     { title: "Policies", path: "javascript:void(0)", isDrapdown: false },
     {
@@ -173,12 +173,13 @@ const Header = () => {
       >
         <div className="items-center gap-x-14 px-4 max-w-screen-xl mx-auto md:flex md:px-8">
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            <a
+            <Link
+              to='/'
               className="text-3xl font-semibold text-indigo-500 font-mono"
               href="javascript:void(0)"
             >
               <img className="h-[4rem] w-[6rem]" src={Logo} alt="" />
-            </a>
+            </Link>
             <div className="md:hidden">
               <button
                 className="text-gray-500 hover:text-gray-800"
@@ -221,7 +222,7 @@ const Header = () => {
             <ul className="items-center space-y-6 md:flex md:space-x-6 md:space-y-0">
               {navigation.map((item, idx) => {
                 return (
-                  <li key={idx}>
+                  <Link to={item?.path} key={idx}>
                     {item.isDrapdown ? (
                       <button
                         className="w-full flex items-center justify-between gap-1 text-gray-700 hover:text-indigo-600"
@@ -308,7 +309,7 @@ const Header = () => {
                     ) : (
                       ""
                     )}
-                  </li>
+                  </Link>
                 );
               })}
               <div className="flex-1 items-center justify-end gap-x-6 space-y-3 md:flex md:space-y-0">

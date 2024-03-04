@@ -30,7 +30,7 @@ const SignUp = () => {
                 </div>
 
 
-                <div class="checkbox">
+                <div class="checkbox flex justify-start items-center gap-2">
                     <input type="checkbox" id="chekcbox1" checked="" />
                     <label for="checkbox1">I agree to the <a href="#" target="_blank" class="text-blue-600"> Terms and Conditions </a> </label>
                 </div>

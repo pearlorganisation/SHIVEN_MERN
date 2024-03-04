@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Logo from '../../assets/ShivenLogo.png'
+
 
 const dropdownNavs = [
   {
@@ -165,9 +168,8 @@ const Header = () => {
   return (
     <>
       <nav
-        className={`relative z-20 bg-white w-full md:static md:text-sm md:border-none ${
-          state ? "shadow-lg rounded-b-xl md:shadow-none" : ""
-        }`}
+        className={`relative z-20 bg-white w-full md:static md:text-sm md:border-none ${state ? "shadow-lg rounded-b-xl md:shadow-none" : ""
+          }`}
       >
         <div className="items-center gap-x-14 px-4 max-w-screen-xl mx-auto md:flex md:px-8">
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
@@ -175,7 +177,7 @@ const Header = () => {
               className="text-3xl font-semibold text-indigo-500 font-mono"
               href="javascript:void(0)"
             >
-              SHIVEN
+              <img className="h-[4rem] w-[6rem]" src={Logo} alt="" />
             </a>
             <div className="md:hidden">
               <button
@@ -213,9 +215,8 @@ const Header = () => {
             </div>
           </div>
           <div
-            className={`nav-menu flex-1 pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
-              state ? "block" : "hidden"
-            }`}
+            className={`nav-menu flex-1 pb-3 mt-8 md:block md:pb-0 md:mt-0 ${state ? "block" : "hidden"
+              }`}
           >
             <ul className="items-center space-y-6 md:flex md:space-x-6 md:space-y-0">
               {navigation.map((item, idx) => {
@@ -269,8 +270,8 @@ const Header = () => {
                       </a>
                     )}
                     {item.isDrapdown &&
-                    drapdownState.idx == idx &&
-                    drapdownState.isActive ? (
+                      drapdownState.idx == idx &&
+                      drapdownState.isActive ? (
                       <div className="mt-6 inset-x-0 top-20 w-full md:absolute md:border-y md:shadow-md md:mt-0">
                         <ul className="max-w-screen-xl mx-auto grid items-center gap-6 md:p-8 md:grid-cols-2 lg:grid-cols-3">
                           {item?.navs.map((dropdownItem, idx) => (
@@ -312,20 +313,21 @@ const Header = () => {
               })}
               <div className="flex-1 items-center justify-end gap-x-6 space-y-3 md:flex md:space-y-0">
                 <li>
-                  <a
+                  <Link
+                    to='/login'
                     href="javascript:void(0)"
                     className="block py-3 text-center text-gray-700 hover:text-indigo-600 border rounded-lg md:border-none"
                   >
                     Log in
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="javascript:void(0)"
+                  <Link
+                    to='/signUp'
                     className="block py-3 px-4 font-medium text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow md:inline"
                   >
                     Sign in
-                  </a>
+                  </Link>
                 </li>
               </div>
             </ul>

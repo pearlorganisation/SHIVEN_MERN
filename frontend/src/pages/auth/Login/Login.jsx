@@ -1,7 +1,6 @@
 import React from 'react'
-import Logo from '../../../assets/ShivenLogo.png'
 
-const SignUp = () => {
+const Login = () => {
     return (
         <div className='grid place-items-center h-[90vh]'>
             <main className="w-full grid grid-cols-2 p-8 h-full ">
@@ -27,9 +26,7 @@ const SignUp = () => {
                     </div>
                     <div
                         className="absolute inset-0 my-auto h-[500px]"
-                    // style={{
-                    //     background: "linear-gradient(152.92deg, rgba(192, 132, 252, 0.2) 4.54%, rgba(232, 121, 249, 0.26) 34.2%, rgba(192, 132, 252, 0.1) 77.55%)", filter: "blur(118px)"
-                    // }}
+
                     >
 
                     </div>
@@ -39,8 +36,8 @@ const SignUp = () => {
                         <div className="">
                             <img src="https://floatui.com/logo.svg" width={150} className="lg:hidden" />
                             <div className="mt-5 space-y-2">
-                                <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">Sign up</h3>
-                                <p className="">Already have an account? <a href="javascript:void(0)" className="font-medium text-indigo-600 hover:text-indigo-500">Log in</a></p>
+                                <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">Login</h3>
+                                <p className="">Already have an account? <a href="javascript:void(0)" className="font-medium text-indigo-600 hover:text-indigo-500">Sig nUp</a></p>
                             </div>
                         </div>
                         <div className="grid grid-cols-3 gap-x-3">
@@ -125,7 +122,7 @@ const SignUp = () => {
                             <button
                                 className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150"
                             >
-                                Create account
+                                Login
                             </button>
                         </form>
                     </div>
@@ -135,4 +132,4 @@ const SignUp = () => {
     )
 }
 
-export default SignUp
+export default Login

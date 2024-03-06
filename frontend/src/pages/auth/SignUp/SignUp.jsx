@@ -3,6 +3,7 @@ import Logo from '../../../assets/ShivenLogo.png'
 
 const SignUp = () => {
     return (
+        <>
         <div className='grid place-items-center h-[90vh]'>
             <main className="w-full grid grid-cols-2 p-8 h-full ">
                 <div className="relative h-full hidden items-center justify-center bg-blue-500 lg:flex rounded-lg">
@@ -27,9 +28,7 @@ const SignUp = () => {
                     </div>
                     <div
                         className="absolute inset-0 my-auto h-[500px]"
-                    // style={{
-                    //     background: "linear-gradient(152.92deg, rgba(192, 132, 252, 0.2) 4.54%, rgba(232, 121, 249, 0.26) 34.2%, rgba(192, 132, 252, 0.1) 77.55%)", filter: "blur(118px)"
-                    // }}
+                    
                     >
 
                     </div>
@@ -132,6 +131,7 @@ const SignUp = () => {
                 </div>
             </main>
         </div>
+        </>
     )
 }
 

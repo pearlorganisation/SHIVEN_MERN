@@ -1,9 +1,8 @@
 import React from 'react'
-import Logo from '../../../assets/ShivenLogo.png'
+import { Link } from 'react-router-dom'
 
-const SignUp = () => {
+const Login = () => {
     return (
-        <>
         <div className='grid place-items-center h-[90vh]'>
             <main className="w-full grid grid-cols-2 p-8 h-full ">
                 <div className="relative h-full hidden items-center justify-center bg-blue-500 lg:flex rounded-lg">
@@ -28,7 +27,7 @@ const SignUp = () => {
                     </div>
                     <div
                         className="absolute inset-0 my-auto h-[500px]"
-                    
+
                     >
 
                     </div>
@@ -38,8 +37,8 @@ const SignUp = () => {
                         <div className="">
                             <img src="https://floatui.com/logo.svg" width={150} className="lg:hidden" />
                             <div className="mt-5 space-y-2">
-                                <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">Sign up</h3>
-                                <p className="">Already have an account? <a href="javascript:void(0)" className="font-medium text-indigo-600 hover:text-indigo-500">Log in</a></p>
+                                <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">Login</h3>
+                                <p className="">Already have an account? <a href="javascript:void(0)" className="font-medium text-indigo-600 hover:text-indigo-500">Sig nUp</a></p>
                             </div>
                         </div>
                         <div className="grid grid-cols-3 gap-x-3">
@@ -120,19 +119,21 @@ const SignUp = () => {
                                     required
                                     className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                                 />
+                                 <a href="/GetOtp" className="text-sm text-indigo-600 hover:underline focus:outline-none">
+                                 Forgot Password?
+                               </a>
                             </div>
                             <button
                                 className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150"
                             >
-                                Create account
+                                Login
                             </button>
                         </form>
                     </div>
                 </div>
             </main>
         </div>
-        </>
     )
 }
 
-export default SignUp
+export default Login

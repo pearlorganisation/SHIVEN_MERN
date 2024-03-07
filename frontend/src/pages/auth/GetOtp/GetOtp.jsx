@@ -45,8 +45,7 @@ const GetOtp = () => {
           </label>
 
           <button
-          onClick={onSubmit}
-            className="w-full py-3 font-medium rounded-lg text-white bg-[#1D4ED8] hover:shadow inline-flex space-x-2 items-center justify-center"
+            className="w-full py-3 font-medium rounded-lg text-white bg-[#4F46E5] hover:shadow inline-flex space-x-2 items-center justify-center"
             type="submit"
           >
             <svg
@@ -69,7 +68,7 @@ const GetOtp = () => {
             Not registered yet?{" "}
             <a
               href="/signup"
-              className="text-[#1D4ED8] font-medium inline-flex space-x-1 items-center"
+              className="text-[#4F46E5] font-medium inline-flex space-x-1 items-center"
             >
               <span>Register now </span>
               <span>

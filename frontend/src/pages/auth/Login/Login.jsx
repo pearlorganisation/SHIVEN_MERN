@@ -1,9 +1,18 @@
 import React from 'react'
+import { useForm } from "react-hook-form"
 
 const Login = () => {
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm()
+
+    const onSubmit = (data) => console.log(data)
     return (
         <div className='grid place-items-center h-[90vh]'>
-            <main className="w-full grid grid-cols-2 p-8 h-full ">
+            <main className="w-full grid md:grid-cols-2 p-8 h-full ">
                 <div className="relative h-full hidden items-center justify-center bg-blue-500 lg:flex rounded-lg">
                     <div className="relative z-10 w-full max-w-md">
 
@@ -31,7 +40,7 @@ const Login = () => {
 
                     </div>
                 </div>
-                <div className="flex-1 flex items-center justify-center">
+                <div className="flex-1 flex items-center justify-center w-full">
                     <div className="w-full max-w-md space-y-8 px-4 bg-white text-gray-600 sm:px-0">
                         <div className="">
                             <img src="https://floatui.com/logo.svg" width={150} className="lg:hidden" />
@@ -86,28 +95,20 @@ const Login = () => {
                             <p className="inline-block w-fit text-sm bg-white px-2 absolute -top-2 inset-x-0 mx-auto">Or continue with</p>
                         </div>
                         <form
-                            onSubmit={(e) => e.preventDefault()}
+                            onSubmit={handleSubmit(onSubmit)}
                             className="space-y-5"
                         >
-                            <div>
-                                <label className="font-medium">
-                                    Name
-                                </label>
-                                <input
-                                    type="text"
-                                    required
-                                    className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
-                                />
-                            </div>
+
                             <div>
                                 <label className="font-medium">
                                     Email
                                 </label>
                                 <input
                                     type="email"
-                                    required
+                                    {...register("email", { required: true })}
                                     className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                                 />
+                                {errors.email && <span className='text-red-500'>Email is required</span>}
                             </div>
                             <div>
                                 <label className="font-medium">
@@ -115,11 +116,13 @@ const Login = () => {
                                 </label>
                                 <input
                                     type="password"
-                                    required
+                                    {...register("password", { required: true })}
                                     className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                                 />
+                                {errors.password && <span className='text-red-500'>Password is required</span>}
                             </div>
                             <button
+                                type='submit'
                                 className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150"
                             >
                                 Login

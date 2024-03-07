@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Logo from '../../assets/ShivenLogo.png'
 
 
@@ -213,7 +213,7 @@ const Header = () => {
             <ul className="items-center space-y-6 md:flex md:space-x-6 md:space-y-0">
               {navigation.map((item, idx) => {
                 return (
-                  <Link className="relative" to={item?.path} key={idx}>
+                  <NavLink className={({ isActive }) => isActive ? 'text-indigo-600 font-medium' : 'text-gray-700'} to={item?.path} key={idx}>
                     {item.isDrapdown ? (
                       <button
                         className="w-full flex items-center bg-white justify-between gap-1 text-gray-700 hover:text-indigo-600"
@@ -256,7 +256,7 @@ const Header = () => {
                     ) : (
                       <a
                         href={item.path}
-                        className="block text-gray-700 hover:text-indigo-600"
+                        className="block  hover:text-indigo-600"
                       >
                         {item.title}
                       </a>
@@ -279,26 +279,26 @@ const Header = () => {
                     ) : (
                       ""
                     )}
-                  </Link>
+                  </NavLink>
                 );
               })}
               <div className="flex-1 items-center justify-end gap-x-6 space-y-3 md:flex md:space-y-0">
                 <li>
-                  <Link
+                  <NavLink
                     to='/login'
                     href="javascript:void(0)"
-                    className="block py-3 text-center text-gray-700 hover:text-indigo-600 border rounded-lg md:border-none"
+                    className={({ isActive }) => isActive ? "block py-3 px-4 font-medium text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow md:inline" : "block py-3 text-center text-gray-700 hover:text-indigo-600 border rounded-lg md:border-none"}
                   >
                     Log in
-                  </Link>
+                  </NavLink>
                 </li>
                 <li>
-                  <Link
+                  <NavLink
                     to='/signUp'
-                    className="block py-3 px-4 font-medium text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow md:inline"
+                    className={({ isActive }) => isActive ? "block py-3 px-4 font-medium text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow md:inline" : "block  py-3 text-center text-gray-700 hover:text-indigo-600 border rounded-lg md:border-none"}
                   >
                     Sign in
-                  </Link>
+                  </NavLink>
                 </li>
               </div>
             </ul>

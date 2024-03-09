@@ -8,6 +8,7 @@ import Login from "./pages/auth/Login/Login";
 import GetOtp from "./pages/auth/GetOtp/GetOtp";
 import Verification from "./pages/auth/verification/Verification";
 import NewPassword from "./pages/NewPassword/NewPassword";
+import Life_insurance from "./components/insurance/Life_insurance/Life_insurance";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -23,6 +24,7 @@ function App() {
         <Route path="/getotp" element={<GetOtp/>} />
         <Route path="/verification" element={<Verification/>} />
         <Route path="/newpassword" element={<NewPassword/>} />
+        <Route path="/lifeinsurance" element={<Life_insurance/>} />
 
       </Routes>
       <Footer />

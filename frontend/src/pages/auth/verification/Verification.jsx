@@ -34,6 +34,7 @@ const OtpVarfication = () => {
               <div className="flex flex-row items-center justify-between mx-auto w-full max-w-xs">
                 {[1, 2, 3, 4].map((index) => (
                   <div key={index} className="w-16 h-16">
+                    
                     <input
                       {...register(`otp${index}`, {
                         required: true,
@@ -48,6 +49,8 @@ const OtpVarfication = () => {
                       placeholder="*"
                       maxLength={1}
                     />
+                    
+
                   </div>
                 ))}
               </div>

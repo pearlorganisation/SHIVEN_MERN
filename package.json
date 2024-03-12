@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "frontend": "cd frontend && npm run dev",
-    "admin": "cd admin && npm start",
     "backend": "cd backend && npm run dev",
-    "dev": "concurrently \"npm run frontend\" \"npm run admin\" \"npm run backend\""
+    "dev": "concurrently \"npm run frontend\" \"npm run backend\""
   },
   "author": "Pearl Organisation",
   "license": "ISC",

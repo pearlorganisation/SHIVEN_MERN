@@ -1,18 +1,36 @@
+// -----------------------------------------------Imports-------------------------------------------------------
 import express from "express";
-import chalk from "chalk";
-import cors from "cors";
 import dotenv from "dotenv";
-
-const app = express();
-const PORT = process.env.PORT || 7003;
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import { developmentWhiteListedIpAddresses, productionWhiteListedIpAddresses } from "./src/Utils/index.js";
+// -------------------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------
 dotenv.config();
 
-//CORS
-app.use(cors());
+const app = express();
+const PORT = process.env.PORT || 8000;
+// -------------------------------------------------------------------------------------------------------------
 
-//
+// ----------------------------------------------Cors Handling--------------------------------------------------
+app.use(
+  cors({
+    origin:
+      process.env.NODE_WORKING_ENV === "development"
+        ? developmentWhiteListedIpAddresses
+        : productionWhiteListedIpAddresses,
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token"],
+    methods: ["GET", "PUT", "POST", "PATCH", "DELETE"],
+    exposedHeaders: ["*", "Authorization"],
+  })
+);
+// -------------------------------------------------------------------------------------------------------------
+// ----------------------------------------------Middlewares----------------------------------------------------
+
+// -------------------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------
 app.listen(PORT, () => {
-  console.log(
-    chalk.bold.bgMagentaBright(`Server Started and Running at PORT ${PORT}`)
-  );
+  console.log(`Server Running at port ${PORT}`);
 });
+// -------------------------------------------------------------------------------------------------------------

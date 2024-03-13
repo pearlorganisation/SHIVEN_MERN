@@ -7,6 +7,7 @@ import {
   developmentWhiteListedIpAddresses,
   productionWhiteListedIpAddresses,
 } from "./src/Utils/index.js";
+import { CustomError } from "./src/Utils/Error/CustomError.js";
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
 dotenv.config();
@@ -43,8 +44,7 @@ app.all(["/", "/api", "/api/v1"], (req, res, next) => {
 
 // ------------------------------------------Global Error Handling----------------------------------------------
 app.all("*", (req, res, next) => {
-  const err = new Error(`No such ${req.originalUrl} url exists`);
-  err.statusCode = 404;
+  const err = new CustomError(`No such ${req.originalUrl} url exists`, 404);
   next(err);
 });
 

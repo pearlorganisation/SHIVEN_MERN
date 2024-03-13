@@ -1,110 +1,106 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from '../../assets/ShivenLogo.png'
-
+import Logo from "../../assets/ShivenLogo.png";
 
 const policiesNavs = [
   {
     label: "Life Insurance",
-    path: '/lifeInsurance'
+    path: "/lifeinsurance",
   },
   {
     label: "General Insurance",
-    path: '/generalInsurance'
+    path: "/generalInsurance",
   },
   {
     label: "Motor Insurance",
-    path: '/motorInsurance'
+    path: "/motorInsurance",
   },
   {
     label: "Mutual Funds",
-    path: '/mutualFunds'
+    path: "/mutualFunds",
   },
   {
     label: "Loans",
-    path: '/loans'
+    path: "/loans",
   },
-
-
 ];
 
 const financialConsultantNavs = [
   {
     label: "Dashboard",
-    path: '/dashboard'
+    path: "/dashboard",
   },
   {
     label: "Customised Forms",
-    path: '/customisedForms'
+    path: "/customisedForms",
   },
   {
     label: "Centralised Database",
-    path: '/centralisedDatabase'
+    path: "/centralisedDatabase",
   },
   {
     label: "CRM / Enquiry / Leads Management",
-    path: '/crmEnquireLeadsManagement'
+    path: "/crmEnquireLeadsManagement",
   },
   {
     label: "Quotation / Invoices Management",
-    path: '/quotationInvoicesManagement'
+    path: "/quotationInvoicesManagement",
   },
   {
     label: "Social Media Posts",
-    path: '/socialMediaPosts'
+    path: "/socialMediaPosts",
   },
   {
     label: "Contact Management",
-    path: '/contactManagement'
+    path: "/contactManagement",
   },
   {
     label: "Bulk Messaging",
-    path: '/bulkMessaging'
+    path: "/bulkMessaging",
   },
   {
     label: "Analytics & Reports",
-    path: '/analyticsReports'
+    path: "/analyticsReports",
   },
   {
     label: "Team Management",
-    path: '/teamManagement'
+    path: "/teamManagement",
   },
   {
     label: "Accounting",
-    path: '/accounting'
+    path: "/accounting",
   },
-]
+];
 
 const featureForCustomer = [
   {
     label: "Dashboard",
-    path: '/lifeInsurance'
+    path: "/lifeInsurance",
   },
   {
     label: "Investment Valuation",
-    path: '/generalInsurance'
+    path: "/generalInsurance",
   },
   {
     label: "Files / Folder Management",
-    path: '/motorInsurance'
+    path: "/motorInsurance",
   },
   {
     label: "Customer / Family Profile ",
-    path: '/mutualFunds'
+    path: "/mutualFunds",
   },
   {
     label: "Schedule Management",
-    path: '/loans'
+    path: "/loans",
   },
   {
     label: "Purchase / Renewal / Invoices",
-    path: '/purchaseRenewalInvoices'
-  }, {
-    label: "Calculator Funds / Interest / Premium",
-    path: '/calculatorInterestPremium'
+    path: "/purchaseRenewalInvoices",
   },
-
-
+  {
+    label: "Calculator Funds / Interest / Premium",
+    path: "/calculatorInterestPremium",
+  },
 ];
 
 const Header = () => {
@@ -116,34 +112,33 @@ const Header = () => {
 
   // Replace javascript:void(0) paths with your paths
   const navigation = [
-
     {
       title: "Home",
       path: "/",
-      isDrapdown: false
+      isDrapdown: false,
     },
     {
       title: "About Us",
       path: "javascript:void(0)",
-      isDrapdown: false
+      isDrapdown: false,
     },
     {
       title: "Policies",
       path: "javascript:void(0)",
       isDrapdown: true,
-      navs: policiesNavs
+      navs: policiesNavs,
     },
     {
       title: "Features for Financial Consultant",
       path: "javascript:void(0)",
       isDrapdown: true,
-      navs: financialConsultantNavs
+      navs: financialConsultantNavs,
     },
     {
       title: "Features for Customer",
       path: "javascript:void(0)",
       isDrapdown: true,
-      navs: featureForCustomer
+      navs: featureForCustomer,
     },
     { title: "Contact Us", path: "javascript:void(0)", isDrapdown: false },
   ];
@@ -159,13 +154,14 @@ const Header = () => {
   return (
     <>
       <nav
-        className={`relative z-20 bg-white shadow-lg w-full md:static md:text-sm md:border-none ${state ? "shadow-lg rounded-b-xl md:shadow-none" : ""
-          }`}
+        className={`relative z-20 bg-white shadow-lg w-full md:static md:text-sm md:border-none ${
+          state ? "shadow-lg rounded-b-xl md:shadow-none" : ""
+        }`}
       >
         <div className="items-center gap-x-14 px-4 max-w-screen-xl mx-auto md:flex md:px-8">
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
             <Link
-              to='/'
+              to="/"
               className="text-3xl font-semibold text-indigo-500 font-mono"
               href="javascript:void(0)"
             >
@@ -206,9 +202,11 @@ const Header = () => {
               </button>
             </div>
           </div>
+
           <div
-            className={`nav-menu flex-1 pb-3 mt-8 md:block md:pb-0 md:mt-0 ${state ? "block" : "hidden"
-              }`}
+            className={`nav-menu flex-1 pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
+              state ? "block" : "hidden"
+            }`}
           >
             <ul className="items-center space-y-6 md:flex md:space-x-6 md:space-y-0">
               {navigation.map((item, idx) => {
@@ -262,16 +260,18 @@ const Header = () => {
                       </a>
                     )}
                     {item.isDrapdown &&
-                      drapdownState.idx == idx &&
-                      drapdownState.isActive ? (
+                    drapdownState.idx == idx &&
+                    drapdownState.isActive ? (
                       <div className="top-20 min-w-[16rem] md:absolute md:top-[4rem] md:border-y md:shadow-md md:mt-0 bg-white z-10 border-2">
                         <ul className="">
                           {item?.navs.map((dropdownItem, idx) => (
-                            <li className="px-4 font-medium py-2 hover:bg-indigo-100" key={idx}>
+                            <li
+                              className="px-4 font-medium py-2 hover:bg-indigo-100"
+                              key={idx}
+                            >
                               <p className="text-indigo-600 text-sm">
                                 {dropdownItem.label}
                               </p>
-
                             </li>
                           ))}
                         </ul>
@@ -285,7 +285,7 @@ const Header = () => {
               <div className="flex-1 items-center justify-end gap-x-6 space-y-3 md:flex md:space-y-0">
                 <li>
                   <Link
-                    to='/login'
+                    to="/login"
                     href="javascript:void(0)"
                     className="block py-3 text-center text-gray-700 hover:text-indigo-600 border rounded-lg md:border-none"
                   >
@@ -294,7 +294,7 @@ const Header = () => {
                 </li>
                 <li>
                   <Link
-                    to='/signUp'
+                    to="/signUp"
                     className="block py-3 px-4 font-medium text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow md:inline"
                   >
                     Sign in

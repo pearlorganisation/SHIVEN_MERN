@@ -10,3 +10,6 @@ export const productionWhiteListedIpAddresses = [
   "https://crm-mern-app-admin.vercel.app",
 ];
 // ------------------------------------------------------------------------------------------------------------
+
+// ---------------------------------------------Roles-----------------------------------------------------------
+export const availableRoles = ["OWNER", "ADMIN", "CONSULTANT", "CLIENT"];

@@ -19,6 +19,11 @@ const userSchema = new mongoose.Schema({
     required: [true, "Name is a required field"],
     trim: true,
   },
+  role: {
+    type: String,
+    enum: ["0", "1", "2"],
+    default: "2",
+  },
 });
 
 userSchema.pre("save", async function (next) {

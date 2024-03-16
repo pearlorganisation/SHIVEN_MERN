@@ -8,12 +8,16 @@ import {
   productionWhiteListedIpAddresses,
 } from "./src/Utils/index.js";
 import { CustomError } from "./src/Utils/Error/CustomError.js";
+import { mongoConnect } from "./src/Configs/DB/mongo.js";
+import { userRouter } from "./src/Routes/Auth/User/userRoutes.js";
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 8000;
+
+mongoConnect();
 // -------------------------------------------------------------------------------------------------------------
 
 // ----------------------------------------------Cors Handling--------------------------------------------------
@@ -35,6 +39,16 @@ app.use(
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------Routes----------------------------------------------------
+
+const versionOne = (url) => {
+  return `api/v1/${url}`;
+};
+
+// Router Imports
+
+// Route Middlewares
+app.use(versionOne("auth/user"), userRouter);
+
 app.all(["/", "/api", "/api/v1"], (req, res, next) => {
   return res.status(200).json({
     message: "Welcome to Shiven",

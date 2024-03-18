@@ -11,7 +11,7 @@ const Policies = () => {
       q: "Life Insurance",
       icon: <FaShieldAlt size={40} className="text-red-400 px-2" />,
       a: "That's exactly the reason we created this random question generator. There are hundreds of random questions to choose from so you're able to find the perfect random question.",
-      href: "javascript:void(0)",
+      href: "/lifeinsurance",
     },
     {
       q: "Health Insurance",
@@ -46,7 +46,7 @@ const Policies = () => {
   ];
   return (
     <section className="py-14">
-      <div className="max-w-screen-xl mx-auto px-4 md:px-8">
+      <div className="max-w-screen-3xl mx-auto px-4 md:px-8">
         <div className="space-y-5 sm:text-center sm:max-w-md sm:mx-auto">
           <h3 className="text-gray-800 text-3xl font-extrabold sm:text-4xl">
             Services We Provide

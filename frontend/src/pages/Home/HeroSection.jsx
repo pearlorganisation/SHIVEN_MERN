@@ -59,7 +59,7 @@ const HeroSection = () => {
 
   return (
     <section>
-      <div className="max-w-screen-xl mx-auto px-4 py-8 gap-12 text-gray-600 md:px-8 xl:flex">
+      <div className="max-w-screen-2xl mx-auto px-4 py-8 gap-12 text-gray-600 md:px-8 xl:flex">
         <div className="space-y-5 mx-auto text-center ">
           <div className="flex flex-wrap items-center justify-center gap-6">
             {features.map((item, idx) => (

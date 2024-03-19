@@ -4,14 +4,14 @@ import { CustomError } from "../../../Utils/Error/CustomError.js";
 import { asyncErrorHandler } from "../../../Utils/Error/asyncErrorHandler.js";
 import { pick } from "lodash-es";
 import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 // ------------------------------------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------------------------------------
-const { ObjectId } = mongoose.Types;
 // ------------------------------------------------------------------------------------------------------
 
 // @desc - createUser
-//@method- POST
+// @method- POST
 // @url - auth/user
 export const createUser = asyncErrorHandler(async (req, res, next) => {
   const { name, email, password, role } = req?.body?.payload;
@@ -62,7 +62,13 @@ export const updateUser = asyncErrorHandler(async (req, res, next) => {
     return next(error);
   }
 
-  const payload = req?.body?.payload || {};
+  let payload = req?.body?.payload || {};
+
+  if (payload && payload?.password) {
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(payload?.password, salt);
+    payload.password = hash;
+  }
 
   const user = await userModel.findOneAndUpdate(
     { _id: userId },

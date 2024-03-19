@@ -9,7 +9,6 @@ import {
 } from "./src/Utils/index.js";
 import { CustomError } from "./src/Utils/Error/CustomError.js";
 import { mongoConnect } from "./src/Configs/DB/mongo.js";
-import { userRouter } from "./src/Routes/Auth/User/userRoutes.js";
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
 dotenv.config();
@@ -35,7 +34,7 @@ app.use(
 );
 // -------------------------------------------------------------------------------------------------------------
 // ----------------------------------------------Middlewares----------------------------------------------------
-// express.json() -- middleware to parse the json data coming from the http request 
+// express.json() -- middleware to parse the json data coming from the http request
 app.use(express.json());
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
@@ -46,9 +45,12 @@ const versionOne = (url) => {
 };
 
 // Router Imports
+import { userRouter } from "./src/Routes/Auth/User/userRoutes.js";
+import { authRouter } from "./src/Routes/Auth/authRoutes.js";
 
 // Route Middlewares
 app.use(versionOne("auth/user"), userRouter);
+app.use(versionOne("auth/login"), authRouter);
 
 app.all(["/", "/api", "/api/v1"], (req, res, next) => {
   return res.status(200).json({

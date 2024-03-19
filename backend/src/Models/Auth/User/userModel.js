@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Name is a required field"],
     trim: true,
+    unique: true,
   },
   password: {
     type: String,
@@ -21,7 +22,7 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ["1", "2","3"],
+    enum: ["1", "2", "3"],
     default: "2",
   },
 });

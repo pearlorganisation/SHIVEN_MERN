@@ -81,3 +81,50 @@ export const updateUser = asyncErrorHandler(async (req, res, next) => {
     user,
   });
 });
+
+// @desc - deleteUser
+// @method - DELETE
+// @url - auth/user/:userId
+export const deleteUser = asyncErrorHandler(async (req, res, next) => {
+  const { userId } = req?.params;
+
+  if (!userId) {
+    const error = new CustomError("User Id must be provided", 400);
+    return next(error);
+  }
+
+  const user = await userModel.findOneAndDelete({ _id: userId }, { new: true });
+
+  return res.status(200).json({
+    success: true,
+    message: "User Deleted Successfully",
+  });
+});
+
+// @desc - getIndividualUser
+// @method - DELETE
+// @url - auth/user/:userId
+export const getIndividualUser = asyncErrorHandler(async (req, res, next) => {
+  const { userId } = req?.params;
+
+  if (!userId) {
+    const error = new CustomError("User Id must be provided", 400);
+    return next(error);
+  }
+
+  let pipeline = [
+    {
+      $match: {
+        _id: mongoose.Types.ObjectId.createFromHexString(userId),
+      },
+    },
+  ];
+
+  const [user] = await userModel.aggregate(pipeline);
+
+  return res.status(200).json({
+    success: true,
+    message: "User Found Successfully",
+    user,
+  });
+});

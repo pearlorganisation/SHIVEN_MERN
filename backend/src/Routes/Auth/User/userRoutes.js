@@ -2,6 +2,8 @@
 import { Router } from "express";
 import {
   createUser,
+  deleteUser,
+  getIndividualUser,
   getUser,
   updateUser,
 } from "../../../Controllers/Auth/User/userController.js";
@@ -20,7 +22,7 @@ userRouter.route("/").get(getUser);
 userRouter.route("/:userId").patch(updateUser);
 
 // deleteUser
-userRouter.route("/:userId").delete();
+userRouter.route("/:userId").delete(deleteUser);
 
 // getIndividualUser
-userRouter.route("/:userId").get();
+userRouter.route("/:userId").get(getIndividualUser);

@@ -62,3 +62,48 @@ export const login = asyncErrorHandler(async (req, res, next) => {
     message: "Otp for mail verification sent successfully",
   });
 });
+
+// @desc - login otp verification
+//@method- POST
+// @url - auth/login/verify
+export const verifyLoginOtp = asyncErrorHandler(async (req, res, next) => {
+  const { email, otp } = req?.body?.payload;
+
+  if (!email || !otp) {
+    const error = new CustomError(
+      "Please Provide Email/Otp for logging in",
+      400
+    );
+    return next(error);
+  }
+
+  const otpDoc = await loginOtpModel.findOne({ email });
+
+  if (!otpDoc) {
+    const error = new CustomError("No such Email exists");
+    next(error);
+  }
+
+  let currentDate = moment();
+  let expiresAt = moment(otpDoc.expiresAt);
+
+  if (currentDate.isBefore(expiresAt)) {
+    // response -- generic response for the login success or failure
+    let response = (statusCode, succ, msg) => {
+      return res.status(statusCode).json({
+        success: succ,
+        message: msg,
+      });
+    };
+
+    // comparing the otp with the stored otp
+    if (otp === otpDoc.otp) {
+      response(200, true, "Login Successful");
+    } else {
+      response(400, false, "Invalid Otp");
+    }
+  } else {
+    const error = new CustomError("Otp Expired! Resend Otp");
+    next(error);
+  }
+});

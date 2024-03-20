@@ -41,7 +41,7 @@ export const createUser = asyncErrorHandler(async (req, res, next) => {
 // @desc - getUser
 // @method- GET
 // @url - auth/user
-export const getUser = asyncErrorHandler(async (req, res, next) => {
+export const getUsers = asyncErrorHandler(async (req, res, next) => {
   const users = await userModel.find();
 
   return res.status(200).json({

@@ -4,7 +4,7 @@ import {
   createUser,
   deleteUser,
   getIndividualUser,
-  getUser,
+  getUsers,
   updateUser,
 } from "../../../Controllers/Auth/User/userController.js";
 // ------------------------------------------------------------------------------------------------------
@@ -16,7 +16,7 @@ export const userRouter = Router();
 userRouter.route("/").post(createUser);
 
 // getUsers
-userRouter.route("/").get(getUser);
+userRouter.route("/").get(getUsers);
 
 // updateUser
 userRouter.route("/:userId").patch(updateUser);

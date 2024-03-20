@@ -8,6 +8,8 @@ import { CustomError } from "../../Utils/Error/CustomError.js";
 import { sendLoginOtp } from "../../Utils/Mail/Otp/sendLoginOtp.js";
 import { loginOtpModel } from "../../Models/Otp/loginOtpModel.js";
 import moment from "moment";
+import jsonwebtoken from "jsonwebtoken";
+import { saveAccessTokenToCookie } from "../../Utils/index.js";
 // ------------------------------------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------------------------------------
@@ -98,6 +100,22 @@ export const verifyLoginOtp = asyncErrorHandler(async (req, res, next) => {
 
     // comparing the otp with the stored otp
     if (otp === otpDoc.otp) {
+      const jwt = jsonwebtoken;
+
+      const userDoc = await userModel.findOne({ email });
+
+      const token = jwt.sign(
+        {
+          userId: userDoc?._id,
+        },
+        process.env.JWT_SECRET,
+        {
+          expiresIn: process.env.ACCESS_TOKEN_VALIDITY,
+        }
+      );
+
+      saveAccessTokenToCookie(res, token);
+
       response(200, true, "Login Successful");
     } else {
       response(400, false, "Invalid Otp");

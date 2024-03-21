@@ -1,233 +1,73 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import {
-  PieChart,
-  Pie,
-  Sector,
-  Cell,
-  ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
   Tooltip,
+  Legend,
+  ResponsiveContainer,
+  Rectangle,
 } from "recharts";
 import { RxCross2 } from "react-icons/rx";
 
 const data = [
-  { name: "Group A", value: 400 },
-  { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-  { name: "Group D", value: 200 },
+  { name: "Page A", uv: 4000, amt: 2400 },
+  { name: "Page B", uv: 3000, amt: 2210 },
+  { name: "Page C", uv: 2000, amt: 2290 },
+  { name: "Page D", uv: 2780, amt: 2000 },
+  { name: "Page E", uv: 1890, amt: 2181 },
+  { name: "Page F", uv: 2390, amt: 2500 },
+  { name: "Page G", uv: 3490, amt: 2100 },
 ];
-
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
-
-const RADIAN = Math.PI / 180;
-const renderCustomizedLabel = ({
-  cx,
-  cy,
-  midAngle,
-  innerRadius,
-  outerRadius,
-  percent,
-  index,
-}) => {
-  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-  const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-  return (
-    <text
-      x={x}
-      y={y}
-      fill="white"
-      textAnchor={x > cx ? "start" : "end"}
-      dominantBaseline="central"
-    >
-      {`${(percent * 100).toFixed(0)}%`}
-    </text>
-  );
-};
-
 const Total_Investment = () => {
+
   return (
     <>
-      <div className="min-h-screen bg-white p-5 md:p-10 ">
-        <div className="grid md:grid-cols-3 gap-0">
-          <div>
-            <h1 className="text text-2xl font-semibold ">Total Investment</h1>
-          </div>
-        </div>
+    
+      <div className="min-h-screen bg-white p-6 md:p-10 ">
+      <div><h1 className="text-2xl font-semibold mb-6">Total Investment</h1></div>
+        <section>
+          <div className="grid md:grid-cols-4 lg:grid-cols-5">
+            
+             {["Life Insurance", "General Insurance", "Motor Insurance", "Mutual Funds" ,"Loans"]
+               .map((el,i)=>{
+                return <>  <div className="">
 
-        <div className="grid md:grid-cols-3 gap-0 py-5">
-          <div className="">
-            <span className="text text-md font-medium p-2">Life Insurance</span>
-
-            <div className="flex flex-col md:flex-row">
-              <div className=" flex justify-center">
-                <PieChart width={230} height={200} className="">
-                  <Pie
+                <div className="p-10 text font-medium text-lg">{el}</div>
+                <ResponsiveContainer width="100%" height={300}>
+  
+                  <BarChart
+                    width={500}
+                    height={300}
                     data={data}
-                    cx={100}
-                    cy={100}
-                    labelLine={false}
-                    label={renderCustomizedLabel}
-                    outerRadius={80}
-                    fill="#8884d8"
-                    dataKey="value"
+                    margin={{
+                      top: 5,
+                      right: 30,
+                      left: 20,
+                      bottom: 5,
+                    }}
                   >
-                    {data.map((entry, index) => (
-                      <Cell
-                        key={`cell-${index}`}
-                        fill={COLORS[index % COLORS.length]}
-                      />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                </PieChart>
-              </div>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+  
+                    <Bar dataKey="uv" fill="#25f5ee" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div></>
+               })
+             }
+          
+           
 
-              <div className=" p-5">
-                <div className=" flex flex-col items-center">
-                  <div class="flex flex-col space-y-2">
-                    <div class="flex items-center space-x-2">
-                      <div class="h-4 w-4 rounded-full bg-[#FDBA74]"></div>
-                      <div>Quant Infrastructure Fund</div>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                      <div class="h-4 w-4 rounded-full bg-[#818CF8]"></div>
-                      <div>Quant Infrastructure Fund</div>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                      <div class="h-4 w-4 rounded-full bg-[#6EE7B7]"></div>
-                      <div>Quant Infrastructure Fund</div>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                      <div class="h-4 w-4 rounded-full bg-[#F472B6]"></div>
-                      <div>Quant Infrastructure Fund</div>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                      <div class="h-4 w-4 rounded-full bg-[#A78BFA]"></div>
-                      <div>Quant Infrastructure Fund</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+           
           </div>
+        </section>
 
-          <div>
-            <span className="text text-md font-medium p-2">
-              Gernal Insurance
-            </span>
-
-            <div className="flex flex-col md:flex-row">
-              <div className=" flex justify-center">
-                <PieChart width={250} height={200} className="">
-                  <Pie
-                    data={data}
-                    cx={100}
-                    cy={100}
-                    labelLine={false}
-                    label={renderCustomizedLabel}
-                    outerRadius={80}
-                    fill="#8884d8"
-                    dataKey="value"
-                  >
-                    {data.map((entry, index) => (
-                      <Cell
-                        key={`cell-${index}`}
-                        fill={COLORS[index % COLORS.length]}
-                      />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                </PieChart>
-              </div>
-
-              <div className="">
-                <div className=" flex flex-col items-center">
-                  <div class="flex flex-col space-y-2">
-                    <div class="flex items-center space-x-2">
-                      <div class="h-4 w-4 rounded-full bg-[#FDBA74]"></div>
-                      <div>Quant Infrastructure Fund</div>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                      <div class="h-4 w-4 rounded-full bg-[#818CF8]"></div>
-                      <div>Quant Infrastructure Fund</div>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                      <div class="h-4 w-4 rounded-full bg-[#6EE7B7]"></div>
-                      <div>Quant Infrastructure Fund</div>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                      <div class="h-4 w-4 rounded-full bg-[#F472B6]"></div>
-                      <div>Quant Infrastructure Fund</div>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                      <div class="h-4 w-4 rounded-full bg-[#A78BFA]"></div>
-                      <div>Quant Infrastructure Fund</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <span className="text text-md font-medium p-2">
-              Motor Insurance
-            </span>
-
-            <div className="flex flex-col md:flex-row">
-              <div className=" flex justify-center">
-                <PieChart width={250} height={200} className="">
-                  <Pie
-                    data={data}
-                    cx={100}
-                    cy={100}
-                    labelLine={false}
-                    label={renderCustomizedLabel}
-                    outerRadius={80}
-                    fill="#8884d8"
-                    dataKey="value"
-                  >
-                    {data.map((entry, index) => (
-                      <Cell
-                        key={`cell-${index}`}
-                        fill={COLORS[index % COLORS.length]}
-                      />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                </PieChart>
-              </div>
-
-              <div className="">
-                <div className=" flex flex-col items-center">
-                  <div class="flex flex-col space-y-2">
-                    <div class="flex items-center space-x-2">
-                      <div class="h-4 w-4 rounded-full bg-[#FDBA74]"></div>
-                      <div>Quant Infrastructure Fund</div>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                      <div class="h-4 w-4 rounded-full bg-[#818CF8]"></div>
-                      <div>Quant Infrastructure Fund</div>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                      <div class="h-4 w-4 rounded-full bg-[#6EE7B7]"></div>
-                      <div>Quant Infrastructure Fund</div>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                      <div class="h-4 w-4 rounded-full bg-[#F472B6]"></div>
-                      <div>Quant Infrastructure Fund</div>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                      <div class="h-4 w-4 rounded-full bg-[#A78BFA]"></div>
-                      <div>Quant Infrastructure Fund</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         <section>
           <div className="bg-white p-6">
             <h1 className="text-2xl font-semibold mb-6">Purchases</h1>
@@ -243,24 +83,19 @@ const Total_Investment = () => {
                 </div>
                 <div className="p-6">
                   <div className="flex flex-col  md:flex-row items-center">
-
                     <div>
                       <p>Policy Number - P/012345/01/0123/012345</p>
                     </div>
-                    <div> 
+                    <div>
                       <img
-                      src="https://healthstatic.insurancedekho.com/prod/oem_image/1589437596.jpg"
-                      alt="Insurance Image"
-                      width="100"
-                      height="100"
-                      className="ml-4 object-cover rounded-lg"
-                      style={{ aspectRatio: "100 / 100", objectFit: "cover" }}
-                    />
+                        src="https://healthstatic.insurancedekho.com/prod/oem_image/1589437596.jpg"
+                        alt="Insurance Image"
+                        width="100"
+                        height="100"
+                        className="ml-4 object-cover rounded-lg"
+                        style={{ aspectRatio: "100 / 100", objectFit: "cover" }}
+                      />
                     </div>
-                    
-                    
-                  
-
                   </div>
                   <p>Created Date - 05 March 2024</p>
                   <p>Expiry Date - 04 March 2025</p>
@@ -268,7 +103,6 @@ const Total_Investment = () => {
                 </div>
 
                 <div className="items-center flex flex-col lg:flex-row justify-around ">
-                  
                   <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -288,7 +122,7 @@ const Total_Investment = () => {
                     </svg>{" "}
                     Policy Download
                   </button>
-                 
+
                   <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -309,7 +143,7 @@ const Total_Investment = () => {
                     </svg>{" "}
                     Renew Now
                   </button>
-                  
+
                   <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -329,9 +163,9 @@ const Total_Investment = () => {
                     </svg>{" "}
                     Receipt Download
                   </button>
-                
                 </div>
               </div>
+
               <div className="rounded-lg border bg-card text-card-foreground shadow-sm w-full">
                 <div className="flex flex-col space-y-1.5 p-6">
                   <h3 className="text-2xl font-semibold whitespace-nowrap leading-none tracking-tight">
@@ -343,27 +177,33 @@ const Total_Investment = () => {
                 </div>
                 <div className="p-6">
                   <div className="flex items-center flex-col  md:flex-row">
-                     <div> <p>Policy Number - P/012345/01/0123/012345</p></div> 
-                     <div> <img
-                      src="/https://healthstatic.insurancedekho.com/prod/oem_image/1589358566.jpg"
-                      alt="Insurance Image"
-                      width="100"
-                      height="100"
-                      className="ml-4 object-cover rounded-lg"
-                      style={{ aspectRatio: "100 / 100", objectFit: "cover" }}
-                    /></div>
-                   
+                    <div>
+                      {" "}
+                      <p>Policy Number - P/012345/01/0123/012345</p>
+                    </div>
+                    <div>
+                      {" "}
+                      <img
+                        src="/https://healthstatic.insurancedekho.com/prod/oem_image/1589358566.jpg"
+                        alt="Insurance Image"
+                        width="100"
+                        height="100"
+                        className="ml-4 object-cover rounded-lg"
+                        style={{ aspectRatio: "100 / 100", objectFit: "cover" }}
+                      />
+                    </div>
                   </div>
                   <p>Created Date - 05 March 2024</p>
                   <p>Expiry Date - 04 March 2025</p>
                   <p>Mr. GAURAV NEGI</p>
                 </div>
+
+
                 <div className="items-center flex flex-col lg:flex-row  justify-around">
-                  
                   <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      width="24" 
+                      width="24"
                       height="24"
                       viewBox="0 0 24 24"
                       fill="none"
@@ -432,16 +272,19 @@ const Total_Investment = () => {
                 </div>
                 <div className="p-6">
                   <div className="flex items-center flex-col  md:flex-row">
-                    <div><p>Policy Number - P/012345/01/0123/012345</p></div>
-                     <div><img
-                      src="https://healthstatic.insurancedekho.com/prod/oem_image/1598957797.jpg"
-                      alt="Insurance Image"
-                      width="100"
-                      height="100"
-                      className="ml-4 object-cover rounded-lg"
-                      style={{ aspectRatio: "100 / 100", objectFit: "cover" }}
-                    /></div>
-                    
+                    <div>
+                      <p>Policy Number - P/012345/01/0123/012345</p>
+                    </div>
+                    <div>
+                      <img
+                        src="https://healthstatic.insurancedekho.com/prod/oem_image/1598957797.jpg"
+                        alt="Insurance Image"
+                        width="100"
+                        height="100"
+                        className="ml-4 object-cover rounded-lg"
+                        style={{ aspectRatio: "100 / 100", objectFit: "cover" }}
+                      />
+                    </div>
                   </div>
                   <p>Created Date - 05 March 2024</p>
                   <p>Expiry Date - 04 March 2025</p>

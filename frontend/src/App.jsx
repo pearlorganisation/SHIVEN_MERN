@@ -14,6 +14,7 @@ import Single_HealthPage from "./components/insurance/Health_insurance/Single_He
 import Total_Investment from "./components/Dashboard/Total_Investment";
 import SideBar from "./layout/SideBar/SideBar";
 import Blog from "./components/Dashboard/Blog";
+import Invoice from "./components/Dashboard/Invoice";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -35,10 +36,11 @@ function App() {
         <Route path="/single_healthinsurance" element={<Single_HealthPage/>}/>
         <Route path="/totalinvestment" element={<Total_Investment/>}/>
         <Route path="/sidebar" element={<SideBar/>}/>
-        <Route path="/blog" element={<Blog/>}>
-          <Route path="d"/>
+        <Route path="/blog" element={<Blog/>}/>
+        <Route path="/invoice" element={<Invoice/>}/>
+        
           
-          </Route>  
+          
       </Routes>
       <Footer />
     </div>

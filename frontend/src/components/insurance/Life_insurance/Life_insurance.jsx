@@ -24,7 +24,7 @@ import ViewPlan from "./ViewPlan";
 const Life_insurance = () => {
   return (
     <>
-      <div className="container md:w-[1400px] mx-auto p-10 md:p-20 ">
+      <div className="container  mx-auto p-10 md:p-20 max-w-[80%] ">
         <div>
           <h1 className="text-xl md:text-2xl font-medium">Life Insurance</h1>
         </div>

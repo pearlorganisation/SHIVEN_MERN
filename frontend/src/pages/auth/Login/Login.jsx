@@ -1,5 +1,5 @@
 // -----------------------------------------------Imports---------------------------------------------------
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +15,8 @@ const Login = () => {
     email: yup.string().email().required(),
     password: yup.string().min(6).required(),
   });
+
+  const [userEmail, setUserEmail] = useState("");
 
   // ---------------------------------------------------------------------------------------------------------
   // -----------------------------------------------------Hooks----------------------------------------------
@@ -35,6 +37,7 @@ const Login = () => {
   // ---------------------------------------------------Functions---------------------------------------------
   // loginHandler -- handler to log in the user
   const loginHandler = (data) => {
+    setUserEmail(data?.email);
     const { email, password } = data;
     let payload = { email, password };
     dispatch(login(payload));
@@ -44,7 +47,7 @@ const Login = () => {
   // ---------------------------------------------------useEffect----------------------------------------------
   useEffect(() => {
     if (isLoginOtpSent) {
-      navigate("/verification");
+      navigate("/verification", { state: { email: userEmail } });
       dispatch(resetLoginState(false));
     }
   }, [isLoginOtpSent]);

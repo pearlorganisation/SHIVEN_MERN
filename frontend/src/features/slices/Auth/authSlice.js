@@ -1,6 +1,6 @@
 // ----------------------------------------------Imports-----------------------------------------------------
 import { createSlice } from "@reduxjs/toolkit";
-import { login } from "../../actions/Auth/authActions";
+import { login, verifyLoginOtp } from "../../actions/Auth/authActions";
 import { toast } from "sonner";
 //------------------------------------------------------------------------------------------------------------
 
@@ -26,25 +26,39 @@ const authSlice = createSlice({
       .addCase(login.pending, (state, action) => {
         state.isLoading = true;
         state.errorMessage = "";
-        state.loggedInUserData = {};
-        state.isUserLoggedIn = false;
         state.isLoginOtpSent = false;
       })
       .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
         state.errorMessage = "";
-        state.loggedInUserData = action?.payload;
-        state.isUserLoggedIn = true;
         state.isLoginOtpSent = true;
         toast.success("OTP for verification sent successfully");
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
         state.errorMessage = action?.payload;
-        state.loggedInUserData = {};
-        state.isUserLoggedIn = false;
         state.isLoginOtpSent = false;
         toast.error(action.payload.message);
+      })
+      // verifyLoginOtp lifecycle actions
+      .addCase(verifyLoginOtp.pending, (state, action) => {
+        state.isLoading = true;
+        state.errorMessage = "";
+        state.isUserLoggedIn = false;
+      })
+      .addCase(verifyLoginOtp.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = "";
+        state.loggedInUserData = action?.payload;
+        state.isUserLoggedIn = true;
+        toast.success("Logged In successfully");
+      })
+      .addCase(verifyLoginOtp.rejected, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = action?.payload;
+        state.loggedInUserData = {};
+        state.isUserLoggedIn = false;
+        toast.error(action?.payload?.response?.data?.message || "Error!");
       });
   },
 });

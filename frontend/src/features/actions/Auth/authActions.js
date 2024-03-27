@@ -16,3 +16,17 @@ export const login = createAsyncThunk(
     }
   }
 );
+
+// verifyLoginOtp -- action to call the login api
+export const verifyLoginOtp = createAsyncThunk(
+  "auth/verifyLoginOtp",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await instance.post("/auth/login/verify", { payload });
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);

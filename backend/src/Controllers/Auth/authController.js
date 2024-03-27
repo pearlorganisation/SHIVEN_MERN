@@ -45,9 +45,9 @@ export const login = asyncErrorHandler(async (req, res, next) => {
 
   const mailExistence = await loginOtpModel.findOneAndDelete({ email }); // replacing the previous otp
 
-  let otp = ""; // creating a 6 digit otp
+  let otp = ""; // creating a 4 digit otp
 
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 4; i++) {
     otp += Math.floor(Math.random() * 10);
   }
 

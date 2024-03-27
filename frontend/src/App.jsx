@@ -15,6 +15,8 @@ import Total_Investment from "./components/Dashboard/Total_Investment";
 import SideBar from "./layout/SideBar/SideBar";
 import Blog from "./components/Dashboard/Blog";
 import Invoice from "./components/Dashboard/Invoice";
+import Notifications from "./components/Dashboard/Notifications";
+
 
 function App() {
   const [count, setCount] = useState(0);
@@ -38,6 +40,7 @@ function App() {
         <Route path="/sidebar" element={<SideBar/>}/>
         <Route path="/blog" element={<Blog/>}/>
         <Route path="/invoice" element={<Invoice/>}/>
+        <Route path="/notification" element={<Notifications/>}/>
         
           
           

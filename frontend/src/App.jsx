@@ -13,9 +13,16 @@ import Healthinsurance from "./components/insurance/Health_insurance/Healthinsur
 import Single_HealthPage from "./components/insurance/Health_insurance/Single_HealthPage";
 import Total_Investment from "./components/Dashboard/Total_Investment";
 import SideBar from "./layout/SideBar/SideBar";
-import Blog from "./components/Dashboard/Blog";
+
+
+
 import Invoice from "./components/Dashboard/Invoice";
 import Notifications from "./components/Dashboard/Notifications";
+import Plans from "./components/Dashboard/Plans";
+
+
+import Blog from "./components/Dashboard/Blog/Blog";
+import BlogDetails from "./components/Dashboard/Blog/BlogDetails";
 
 
 function App() {
@@ -39,8 +46,10 @@ function App() {
         <Route path="/totalinvestment" element={<Total_Investment/>}/>
         <Route path="/sidebar" element={<SideBar/>}/>
         <Route path="/blog" element={<Blog/>}/>
+        <Route path="/blogDetails" element={<BlogDetails/>}/>
         <Route path="/invoice" element={<Invoice/>}/>
         <Route path="/notification" element={<Notifications/>}/>
+        <Route path="/plan" element={<Plans/>}/>
         
           
           

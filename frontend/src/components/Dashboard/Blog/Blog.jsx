@@ -4,9 +4,16 @@ const Blog = () => {
   return (
     <>
       <div className=" container mx-auto">
-        <div>
-          <h1 className="text text-2xl text-center font-normal p-10">Blog</h1>
+        <div className="container mx-auto ">
+          <div className="text-center p-5">
+            <span className="text-xs font-semibold text-gray-500 uppercase">
+              Our Blog
+            </span>
+            <h1 className="mt-2 text-4xl font-bold">News & Articles</h1>
+          </div>
+          <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"></div>
         </div>
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6 md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
@@ -403,7 +410,7 @@ const Blog = () => {
               <div className="px-4 py-4 sm:px-6">
                 <div className="flex items-center">
                   <span className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
-                    <span className="flex h-full w-full items-center justify-center rounded-full bg-muted">
+                    <span className="flex h-full w-full items-center justify-center rounded-full bg-muted ">
                       CN
                     </span>
                   </span>

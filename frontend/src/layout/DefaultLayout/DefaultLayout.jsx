@@ -1,0 +1,32 @@
+// -------------------------------------------Imports----------------------------------------------------
+import React from "react";
+import { Navigate, Outlet } from "react-router-dom";
+import Footer from "../../components/Footer/Footer";
+import Header from "../../components/Header/Header";
+import { useSelector } from "react-redux";
+import SideBar from "../SideBar/SideBar";
+// ------------------------------------------------------------------------------------------------------
+
+const DefaultLayout = () => {
+  // ------------------------------------------Hooks------------------------------------------------------
+  const { loggedInUserData, isUserLoggedIn } = useSelector(
+    (state) => state?.auth
+  );
+  // ------------------------------------------------------------------------------------------------------
+  return isUserLoggedIn ? (
+    <div>
+      <Header />
+      <SideBar />
+      <Outlet />
+      <Footer />
+    </div>
+  ) : (
+    <>
+      <Header />
+      <Outlet />
+      <Footer />
+    </>
+  );
+};
+
+export default DefaultLayout;

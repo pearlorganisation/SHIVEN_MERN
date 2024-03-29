@@ -1,7 +1,57 @@
-import React from "react";
-import { Link } from "react-router-dom";
+// -----------------------------------------------Imports---------------------------------------------------
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { login } from "../../../features/actions/Auth/authActions";
+import { resetLoginState } from "../../../features/slices/Auth/authSlice";
+// ----------------------------------------------------------------------------------------------------------
 
 const Login = () => {
+  // -----------------------------------------------------States----------------------------------------------
+  const loginSchema = yup.object().shape({
+    email: yup.string().email().required(),
+    password: yup.string().min(6).required(),
+  });
+
+  const [userEmail, setUserEmail] = useState("");
+
+  // ---------------------------------------------------------------------------------------------------------
+  // -----------------------------------------------------Hooks----------------------------------------------
+  const {
+    register,
+    reset,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    resolver: yupResolver(loginSchema),
+  });
+
+  const { isLoginOtpSent } = useSelector((state) => state?.auth);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  // ---------------------------------------------------------------------------------------------------------
+  // ---------------------------------------------------Functions---------------------------------------------
+  // loginHandler -- handler to log in the user
+  const loginHandler = (data) => {
+    setUserEmail(data?.email);
+    const { email, password } = data;
+    let payload = { email, password };
+    dispatch(login(payload));
+  };
+
+  // ---------------------------------------------------------------------------------------------------------
+  // ---------------------------------------------------useEffect----------------------------------------------
+  useEffect(() => {
+    if (isLoginOtpSent) {
+      navigate("/verification", { state: { email: userEmail } });
+      dispatch(resetLoginState(false));
+    }
+  }, [isLoginOtpSent]);
+  // ---------------------------------------------------------------------------------------------------------
   return (
     <div className="grid place-items-center h-[90vh]">
       <main className="w-full grid grid-cols-2 p-8 h-full ">
@@ -56,15 +106,6 @@ const Login = () => {
                 <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">
                   Login
                 </h3>
-                <p className="">
-                  Already have an account?{" "}
-                  <a
-                    href="javascript:void(0)"
-                    className="font-medium text-indigo-600 hover:text-indigo-500"
-                  >
-                    Sig nUp
-                  </a>
-                </p>
               </div>
             </div>
             <div className="grid grid-cols-3 gap-x-3">
@@ -170,30 +211,30 @@ const Login = () => {
                 Or continue with
               </p>
             </div>
-            <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
-              <div>
-                <label className="font-medium">Name</label>
-                <input
-                  type="text"
-                  required
-                  className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
-                />
-              </div>
+            <form onSubmit={handleSubmit(loginHandler)} className="space-y-5">
               <div>
                 <label className="font-medium">Email</label>
                 <input
                   type="email"
-                  required
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                  {...register("email")}
                 />
+                {errors.email && (
+                  <span className="text-red-600">{errors.email.message}</span>
+                )}
               </div>
               <div>
                 <label className="font-medium">Password</label>
                 <input
                   type="password"
-                  required
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                  {...register("password")}
                 />
+                {errors.password && (
+                  <div className="text-red-600 mb-3">
+                    {errors.password.message}
+                  </div>
+                )}
                 <a
                   href="/GetOtp"
                   className="text-sm text-indigo-600 hover:underline focus:outline-none"
@@ -201,7 +242,10 @@ const Login = () => {
                   Forgot Password?
                 </a>
               </div>
-              <button className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150">
+              <button
+                className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150"
+                type="submit"
+              >
                 Login
               </button>
             </form>

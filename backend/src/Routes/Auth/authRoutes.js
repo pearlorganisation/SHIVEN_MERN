@@ -11,7 +11,7 @@ export const authRouter = Router();
 // -------------------------------------------------------------------------------------------------------
 
 // login
-authRouter.route("/").post(login);
+authRouter.route("/login").post(login);
 
 // verifyLoginOtp
-authRouter.route("/verify").post(verifyLoginOtp);
+authRouter.route("/login/verify").post(verifyLoginOtp);

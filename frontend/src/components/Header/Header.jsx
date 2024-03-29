@@ -292,14 +292,6 @@ const Header = () => {
                     Log in
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    to="/signUp"
-                    className="block py-3 px-4 font-medium text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow md:inline"
-                  >
-                    Sign in
-                  </Link>
-                </li>
               </div>
             </ul>
           </div>

@@ -50,7 +50,7 @@ import { authRouter } from "./src/Routes/Auth/authRoutes.js";
 
 // Route Middlewares
 app.use(versionOne("auth/user"), userRouter);
-app.use(versionOne("auth/login"), authRouter);
+app.use(versionOne("auth"), authRouter);
 
 app.all(["/", "/api", "/api/v1"], (req, res, next) => {
   return res.status(200).json({

@@ -1,8 +1,16 @@
-import React from "react";
+// ----------------------------------------------Imports-----------------------------------------------
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { verifyLoginOtp } from "../../../features/actions/Auth/authActions";
+import { toast } from "sonner";
+import { useDispatch, useSelector } from "react-redux";
+// ----------------------------------------------------------------------------------------------------
 
 const OtpVarfication = () => {
+  // ---------------------------------------------States------------------------------------------------
+  // ----------------------------------------------------------------------------------------------------
+  // ---------------------------------------------Hooks------------------------------------------------
   const {
     register,
     handleSubmit,
@@ -10,11 +18,32 @@ const OtpVarfication = () => {
   } = useForm();
 
   const navigate = useNavigate();
-
+  const location = useLocation();
+  const email = location?.state?.email || "";
+  const dispatch = useDispatch();
+  const {isUserLoggedIn} = useSelector((state)=>state?.auth)
+  // ----------------------------------------------------------------------------------------------------
+  // --------------------------------------------Functions------------------------------------------------
   const onSubmit = (data) => {
-    console.log(data); // You can handle OTP verification here
-    navigate("/newpassword"); // Navigate to the new password page after successful form submission
+    let otp = "";
+    for (let i in data) {
+      otp += data[i];
+    } // You can handle OTP verification here
+
+    if (!email) {
+      toast.error("Email is required");
+    } else {
+      dispatch(verifyLoginOtp({ email, otp }));
+    }
   };
+  // ----------------------------------------------------------------------------------------------------
+  // --------------------------------------------useEffect------------------------------------------------
+  useEffect(()=>{
+    if(isUserLoggedIn){
+      navigate("/")
+    }
+  },[isUserLoggedIn])
+  // ----------------------------------------------------------------------------------------------------
 
   return (
     <div className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-12">
@@ -34,7 +63,6 @@ const OtpVarfication = () => {
               <div className="flex flex-row items-center justify-between mx-auto w-full max-w-xs">
                 {[1, 2, 3, 4].map((index) => (
                   <div key={index} className="w-16 h-16">
-                    
                     <input
                       {...register(`otp${index}`, {
                         required: true,
@@ -49,8 +77,6 @@ const OtpVarfication = () => {
                       placeholder="*"
                       maxLength={1}
                     />
-                    
-
                   </div>
                 ))}
               </div>

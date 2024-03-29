@@ -222,7 +222,7 @@ const Healthinsurance = () => {
         <section>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <h2 className="text-4xl font-semibold text-center mb-10">
-             Choose your plans 
+              Choose your plans
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-white p-4 shadow rounded-lg flex flex-col">
@@ -417,7 +417,7 @@ const Healthinsurance = () => {
                   type="button"
                   className="bg-red-500 p-3 rounded-md text-white"
                 >
-                  Check Premium
+                  Check Premium   
                 </button>
               </div>
 
@@ -434,7 +434,7 @@ const Healthinsurance = () => {
                     }}
                     width="40"
                   />
-                  <div>
+                  <div> 
                     <h3 className="text-lg font-semibold">Health Gain Plus</h3>
                     <p className="text-sm text-gray-600">
                       No room rent limit | 33% no claim bonus | 100% restoration
@@ -461,11 +461,11 @@ const Healthinsurance = () => {
               </div>
             </div>
             <div>
-            <div class="flex justify-center mt-6">
-              <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 bg-blue-600 text-white">
-                See More Plans
-              </button>
-            </div>
+              <div class="flex justify-center mt-6">
+                <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 bg-blue-600 text-white">
+                  See More Plans
+                </button>
+              </div>
             </div>
           </div>
         </section>

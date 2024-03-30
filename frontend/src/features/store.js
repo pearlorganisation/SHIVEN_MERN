@@ -5,6 +5,7 @@ import storage from "redux-persist/lib/storage";
 import { encryptTransform } from "redux-persist-transform-encrypt";
 import { persistReducer } from "redux-persist";
 import { authReducer } from "./slices/Auth/authSlice";
+import { toast } from "sonner";
 
 // ------------------------------------------------------------------------------------------------------------
 
@@ -29,7 +30,11 @@ const reducers = combineReducers({
 });
 
 const rootReducer = (state, action) => {
-  if (action.type === "clearReduxStoreData") {
+  if (action.type === "auth/clearReduxStoreData") {
+    state = undefined;
+    localStorage.clear();
+    sessionStorage.clear();
+    toast.success("Logged Out Successfully");
   }
   return reducers(state, action);
 };

@@ -22,49 +22,50 @@ const data = [
   { name: "Page G", uv: 3490, amt: 2100 },
 ];
 const Total_Investment = () => {
-
   return (
     <>
-    
-      <div className="min-h-screen bg-white p-6 md:p-10 ">
-      <div><h1 className="text-2xl font-semibold mb-6">Total Investment</h1></div>
+      <div className="min-h-screen bg-white p-6 md:p-10 overflow-hidden w-[100%]">
+        <div>
+          <h1 className="text-2xl font-semibold mb-6">Total Investment</h1>
+        </div>
         <section>
           <div className="grid md:grid-cols-4 lg:grid-cols-5">
-            
-             {["Life Insurance", "General Insurance", "Motor Insurance", "Mutual Funds" ,"Loans"]
-               .map((el,i)=>{
-                return <>  <div className="">
+            {[
+              "Life Insurance",
+              "General Insurance",
+              "Motor Insurance",
+              "Mutual Funds",
+              "Loans",
+            ].map((el, i) => {
+              return (
+                <>
+                  <div className="">
+                    <div className="p-10 text font-medium text-lg">{el}</div>
+                    <ResponsiveContainer width="100%" height={300}>
+                      <BarChart
+                        width={500}
+                        height={300}
+                        data={data}
+                        margin={{
+                          top: 5,
+                          right: 30,
+                          left: 20,
+                          bottom: 5,
+                        }}
+                      >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
 
-                <div className="p-10 text font-medium text-lg">{el}</div>
-                <ResponsiveContainer width="100%" height={300}>
-  
-                  <BarChart
-                    width={500}
-                    height={300}
-                    data={data}
-                    margin={{
-                      top: 5,
-                      right: 30,
-                      left: 20,
-                      bottom: 5,
-                    }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-  
-                    <Bar dataKey="uv" fill="#25f5ee" />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div></>
-               })
-             }
-          
-           
-
-           
+                        <Bar dataKey="uv" fill="#25f5ee" />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                </>
+              );
+            })}
           </div>
         </section>
 
@@ -72,7 +73,7 @@ const Total_Investment = () => {
           <div className="bg-white p-6">
             <h1 className="text-2xl font-semibold mb-6">Purchases</h1>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
-              <div className="rounded-lg border bg-card text-card-foreground shadow-sm w-full">
+              <div className="rounded-lg border bg-card text-card-foreground shadow-sm w-full overflow-hidden ">
                 <div className="flex flex-col space-y-1.5 p-6">
                   <h3 className="text-2xl font-semibold whitespace-nowrap leading-none tracking-tight">
                     Motor Plan
@@ -166,7 +167,7 @@ const Total_Investment = () => {
                 </div>
               </div>
 
-              <div className="rounded-lg border bg-card text-card-foreground shadow-sm w-full">
+              <div className="rounded-lg border bg-card text-card-foreground shadow-sm w-full overflow-hidden">
                 <div className="flex flex-col space-y-1.5 p-6">
                   <h3 className="text-2xl font-semibold whitespace-nowrap leading-none tracking-tight">
                     Life Plan
@@ -197,7 +198,6 @@ const Total_Investment = () => {
                   <p>Expiry Date - 04 March 2025</p>
                   <p>Mr. GAURAV NEGI</p>
                 </div>
-
 
                 <div className="items-center flex flex-col lg:flex-row  justify-around">
                   <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
@@ -261,7 +261,7 @@ const Total_Investment = () => {
                   </button>
                 </div>
               </div>
-              <div className="rounded-lg border bg-card text-card-foreground shadow-sm w-full">
+              <div className="rounded-lg border bg-card text-card-foreground shadow-sm w-full overflow-hidden">
                 <div className="flex flex-col space-y-1.5 p-6">
                   <h3 className="text-2xl font-semibold whitespace-nowrap leading-none tracking-tight">
                     Health Plan

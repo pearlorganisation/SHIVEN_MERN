@@ -1,6 +1,10 @@
+// -------------------------------------------Imports------------------------------------------------
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/ShivenLogo.png";
+import { useDispatch, useSelector } from "react-redux";
+import { clearReduxStoreData } from "../../features/slices/Auth/authSlice";
+//---------------------------------------------------------------------------------------------------
 
 const policiesNavs = [
   {
@@ -104,6 +108,14 @@ const featureForCustomer = [
 ];
 
 const Header = () => {
+  // -------------------------------------------States------------------------------------------------
+  //  -------------------------------------------------------------------------------------------------
+  // -------------------------------------------Hooks------------------------------------------------
+  const { isUserLoggedIn } = useSelector((state) => state?.auth);
+  const dispatch = useDispatch();
+  //  -------------------------------------------------------------------------------------------------
+  // -------------------------------------------Functions------------------------------------------------
+  //  -------------------------------------------------------------------------------------------------
   const [state, setState] = useState(false);
   const [drapdownState, setDrapdownState] = useState({
     isActive: false,
@@ -284,13 +296,24 @@ const Header = () => {
               })}
               <div className="flex-1 items-center justify-end gap-x-6 space-y-3 md:flex md:space-y-0">
                 <li>
-                  <Link
-                    to="/login"
-                    href="javascript:void(0)"
-                    className="block py-3 text-center text-gray-700 hover:text-indigo-600 border rounded-lg md:border-none"
-                  >
-                    Log in
-                  </Link>
+                  {isUserLoggedIn ? (
+                    <button
+                      onClick={() => {
+                        dispatch(clearReduxStoreData());
+                      }}
+                      className="block py-3 text-center text-gray-700 hover:text-indigo-600 border rounded-lg md:border-none"
+                    >
+                      Logout
+                    </button>
+                  ) : (
+                    <Link
+                      to="/login"
+                      href="javascript:void(0)"
+                      className="block py-3 text-center text-gray-700 hover:text-indigo-600 border rounded-lg md:border-none"
+                    >
+                      Log in
+                    </Link>
+                  )}
                 </li>
               </div>
             </ul>

@@ -39,7 +39,6 @@ const Total_Investment = () => {
             ].map((el, i) => {
               return (
                 <>
-                  {" "}
                   <div className="">
                     <div className="p-10 text font-medium text-lg">{el}</div>
                     <ResponsiveContainer width="100%" height={300}>

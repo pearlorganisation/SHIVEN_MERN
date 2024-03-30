@@ -154,7 +154,7 @@ const Header = () => {
   return (
     <>
       <nav
-        className={`relative z-20 bg-white shadow-lg w-full md:static md:text-sm md:border-none ${
+        className={`relative z-20 bg-white shadow-lg w-[100%] md:static md:text-sm md:border-none ${
           state ? "shadow-lg rounded-b-xl md:shadow-none" : ""
         }`}
       >

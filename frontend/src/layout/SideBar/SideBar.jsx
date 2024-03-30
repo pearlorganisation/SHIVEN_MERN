@@ -1,5 +1,4 @@
-
-import React, { useState } from "react"
+import React, { useState } from "react";
 import { FaWpforms } from "react-icons/fa6";
 import { FaBookOpen } from "react-icons/fa6";
 import { GoTag } from "react-icons/go";
@@ -12,13 +11,10 @@ import { FaCalculator } from "react-icons/fa";
 import { IoMdNotifications } from "react-icons/io";
 import { FaRegMessage } from "react-icons/fa6";
 const SideBar = () => {
-   
-    const [isSideNavOpen, setIsSideNavOpen] = useState(false)
-
+  const [isSideNavOpen, setIsSideNavOpen] = useState(false);
 
   return (
     <>
-     
       <button
         title="Side navigation"
         type="button"
@@ -49,11 +45,10 @@ const SideBar = () => {
         </div>
       </button>
 
-      
       <aside
         id="nav-menu-2"
         aria-label="Side navigation"
-        className={`fixed top-0 bottom-0 left-0 z-40 flex w-72 flex-col border-r border-r-slate-200 bg-white transition-transform lg:translate-x-0 ${
+        className={`fixed top-0 bottom-0 left-0 z-40 flex w-[full] h-screen flex-col border-r border-r-slate-200 bg-white transition-transform lg:translate-x-0 ${
           isSideNavOpen ? "translate-x-0" : " -translate-x-full"
         }`}
       >
@@ -93,12 +88,10 @@ const SideBar = () => {
           <div>
             <ul className="flex flex-1 flex-col gap-1 py-3">
               <li className="px-3">
-
                 <a
                   href="#"
                   className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-[#60A5FA] hover:text-[#60A5FA] focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
                 >
-
                   <div className="flex items-center self-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -162,10 +155,10 @@ const SideBar = () => {
                   className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
                 >
                   <div className="flex items-center self-center ">
-                  <GoTag />
+                    <GoTag />
                   </div>
                   <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                      Accounting
+                    Accounting
                   </div>
                 </a>
               </li>
@@ -175,7 +168,7 @@ const SideBar = () => {
                   className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
                 >
                   <div className="flex items-center self-center ">
-                  <GoTag />
+                    <GoTag />
                   </div>
                   <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
                     Crm
@@ -191,7 +184,7 @@ const SideBar = () => {
                   className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
                 >
                   <div className="flex items-center self-center ">
-                  <GoTag />
+                    <GoTag />
                   </div>
                   <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
                     Meeting
@@ -208,11 +201,10 @@ const SideBar = () => {
                   className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
                 >
                   <div className="flex items-center self-center">
-                  <GoTag />
+                    <GoTag />
                   </div>
                   <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                  Quotation / Invoices
-
+                    Quotation / Invoices
                   </div>
                 </a>
               </li>
@@ -222,11 +214,10 @@ const SideBar = () => {
                   className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
                 >
                   <div className="flex items-center self-center ">
-                  <GoTag />
+                    <GoTag />
                   </div>
                   <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                   Reports
-
+                    Reports
                   </div>
                 </a>
               </li>
@@ -236,12 +227,10 @@ const SideBar = () => {
                   className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
                 >
                   <div className="flex items-center self-center ">
-                  <FiEdit />
+                    <FiEdit />
                   </div>
                   <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                  Client Centralised Database
-
-
+                    Client Centralised Database
                   </div>
                 </a>
               </li>
@@ -251,12 +240,10 @@ const SideBar = () => {
                   className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
                 >
                   <div className="flex items-center self-center ">
-                  <FaWpforms />
+                    <FaWpforms />
                   </div>
                   <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                  Customised  Forms
-
-
+                    Customised Forms
                   </div>
                 </a>
               </li>
@@ -266,12 +253,10 @@ const SideBar = () => {
                   className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
                 >
                   <div className="flex items-center self-center ">
-                  <GoTag />
+                    <GoTag />
                   </div>
                   <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                  Review
-
-
+                    Review
                   </div>
                 </a>
               </li>
@@ -281,11 +266,10 @@ const SideBar = () => {
                   className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
                 >
                   <div className="flex items-center self-center ">
-                  <FaBookOpen />                  </div>
+                    <FaBookOpen />{" "}
+                  </div>
                   <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                 File & Folder
-
-
+                    File & Folder
                   </div>
                 </a>
               </li>
@@ -295,12 +279,10 @@ const SideBar = () => {
                   className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
                 >
                   <div className="flex items-center self-center ">
-                  <SlCalender />
+                    <SlCalender />
                   </div>
                   <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                  Important Dates
-
-
+                    Important Dates
                   </div>
                 </a>
               </li>
@@ -310,12 +292,10 @@ const SideBar = () => {
                   className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
                 >
                   <div className="flex items-center self-center ">
-                  <FiEdit />
+                    <FiEdit />
                   </div>
                   <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                  Services Request
-
-
+                    Services Request
                   </div>
                 </a>
               </li>
@@ -326,56 +306,11 @@ const SideBar = () => {
                   className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
                 >
                   <div className="flex items-center self-center ">
-                  <CgProfile />
+                    <CgProfile />
                   </div>
                   <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                  Profile
-
-
+                    Profile
                   </div>
-                </a>
-              </li>
-              
-              <li className="px-3">
-                <a
-                  href="#"
-                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
-                >
-                  <div className="flex items-center self-center ">
-                  <ImNewspaper />
-                  </div>
-                  <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                  Blogs
-
-
-                  </div>
-                </a>
-              </li>
-              
-              <li className="px-3">
-                <a
-                  href="#"
-                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
-                >
-                  <div className="flex items-center self-center ">
-                  <GrAnnounce />
-                  </div>
-                  <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                  Announcement
-                </div>
-                </a>
-              </li>
-              <li className="px-3">
-                <a
-                  href="#"
-                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
-                >
-                  <div className="flex items-center self-center ">
-                  <GoTag/>
-                  </div>
-                  <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                 Contact Management
-                </div>
                 </a>
               </li>
 
@@ -385,11 +320,52 @@ const SideBar = () => {
                   className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
                 >
                   <div className="flex items-center self-center ">
-                  <FaCalculator/>
+                    <ImNewspaper />
+                  </div>
+                  <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
+                    Blogs
+                  </div>
+                </a>
+              </li>
+
+              <li className="px-3">
+                <a
+                  href="#"
+                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
+                >
+                  <div className="flex items-center self-center ">
+                    <GrAnnounce />
+                  </div>
+                  <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
+                    Announcement
+                  </div>
+                </a>
+              </li>
+              <li className="px-3">
+                <a
+                  href="#"
+                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
+                >
+                  <div className="flex items-center self-center ">
+                    <GoTag />
+                  </div>
+                  <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
+                    Contact Management
+                  </div>
+                </a>
+              </li>
+
+              <li className="px-3">
+                <a
+                  href="#"
+                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
+                >
+                  <div className="flex items-center self-center ">
+                    <FaCalculator />
                   </div>
                   <div className="flex  w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                  Calculater
-                </div>
+                    Calculater
+                  </div>
                 </a>
               </li>
               <li className="px-3">
@@ -398,11 +374,11 @@ const SideBar = () => {
                   className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
                 >
                   <div className="flex items-center self-center ">
-                  <GoTag />
+                    <GoTag />
                   </div>
                   <div className="flex  w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                  Enquiry
-                </div>
+                    Enquiry
+                  </div>
                 </a>
               </li>
               <li className="px-3">
@@ -411,11 +387,11 @@ const SideBar = () => {
                   className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
                 >
                   <div className="flex items-center self-center ">
-                  <IoMdNotifications />
+                    <IoMdNotifications />
                   </div>
                   <div className="flex  w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                  Notification
-                </div>
+                    Notification
+                  </div>
                 </a>
               </li>
               <li className="px-3">
@@ -424,11 +400,11 @@ const SideBar = () => {
                   className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
                 >
                   <div className="flex items-center self-center ">
-                  <GoTag />
+                    <GoTag />
                   </div>
                   <div className="flex  w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                   Social Media
-                </div>
+                    Social Media
+                  </div>
                 </a>
               </li>
               <li className="px-3">
@@ -437,11 +413,11 @@ const SideBar = () => {
                   className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
                 >
                   <div className="flex items-center self-center ">
-                  <FaRegMessage />
+                    <FaRegMessage />
                   </div>
                   <div className="flex  w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                  SMS/Email/Whatsapp
-                </div>
+                    SMS/Email/Whatsapp
+                  </div>
                 </a>
               </li>
             </ul>
@@ -453,27 +429,20 @@ const SideBar = () => {
             href="#"
             className="flex items-center gap-3 rounded p-3 text-slate-900 transition-colors hover:text-emerald-500 "
           >
-            <div className="flex items-center self-center ">
-            
-            </div>
-            <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm font-medium">
-           
-            </div>
+            <div className="flex items-center self-center "></div>
+            <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm font-medium"></div>
           </a>
         </footer>
       </aside>
 
-   
       <div
         className={`fixed top-0 bottom-0 left-0 right-0 z-30 bg-slate-900/20 transition-colors sm:hidden ${
           isSideNavOpen ? "block" : "hidden"
         }`}
         onClick={() => setIsSideNavOpen(false)}
       ></div>
-     
     </>
-  )
-}
+  );
+};
 
-
-export default SideBar
+export default SideBar;

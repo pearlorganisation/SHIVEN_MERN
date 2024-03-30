@@ -29,7 +29,10 @@ const reducers = combineReducers({
 });
 
 const rootReducer = (state, action) => {
-  if (action.type === "clearReduxStoreData") {
+  if (action.type === "auth/clearReduxStoreData") {
+    localStorage.clear();
+    sessionStorage.clear();
+    
   }
   return reducers(state, action);
 };

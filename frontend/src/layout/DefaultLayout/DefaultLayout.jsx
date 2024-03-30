@@ -14,12 +14,18 @@ const DefaultLayout = () => {
   );
   // ------------------------------------------------------------------------------------------------------
   return isUserLoggedIn ? (
-    <div>
-      <Header />
-      <SideBar />
-      <Outlet />
-      <Footer />
-    </div>
+    <>
+      <div className="flex w-[100vw]">
+        <div className="w-[20%]">
+          <SideBar />
+        </div>
+        <div className="w-[80%]">
+          <Header />
+          <Outlet />
+          <Footer />
+        </div>
+      </div>
+    </>
   ) : (
     <>
       <Header />

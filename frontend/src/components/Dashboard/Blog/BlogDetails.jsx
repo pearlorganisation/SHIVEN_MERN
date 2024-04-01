@@ -7,7 +7,7 @@ const BlogDetails = () => {
         <img loading="lazy" src={blogimg} className="w-full rounded-t-md" />
         <div className="space-y-2 py-3 flex flex-col justify-center gap-1 items-start p-1">
           <div className=" rounded-2xl text-slate-950 bg-white w-fit font-medium flex gap-3">
-            <div className="px-3 py-2 rounded-3xl border-2 border-yellow-400 bg-yellow-400/30 " >
+            <div className="px-3 py-2 rounded-3xl border-2 border-yellow-400 bg-yellow-400/30 ">
               #Technology
             </div>{" "}
             <div className="px-3 py-2 rounded-3xl border-2 border-blue-400 bg-blue-400/30">
@@ -23,7 +23,7 @@ const BlogDetails = () => {
                 alt=""
               />{" "}
               <div>
-                <span class="text-white text-sm">Abhishek Bahuguna</span>
+                <span class="text-white text-sm">Abhishek Bahuguna </span>
                 <span class="block text-white text-xs">
                   abhishek@pearloraganisation
                 </span>

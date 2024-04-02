@@ -15,9 +15,9 @@ const DefaultLayout = () => {
   // ------------------------------------------------------------------------------------------------------
   return isUserLoggedIn ? (
     <>
-      <div className="flex w-[100vw]">
-        <div className="w-[20%]">
-          <SideBar />
+      <div className="flex">
+        <div className="w-[20%] ">
+           <SideBar />
         </div>
         <div className="w-[80%]">
           <Header />

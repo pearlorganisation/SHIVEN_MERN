@@ -46,7 +46,6 @@ function App() {
           <Route path="/verification" element={<Verification />} />
           <Route path="/newpassword" element={<NewPassword />} />
           <Route path="/lifeinsurance" element={<Life_insurance />} />
-          <Route path="/lifeinsurance" element={<Life_insurance />} />
           <Route path="/Healthinsurance" element={<Healthinsurance />} />
           <Route
             path="/single_healthinsurance"

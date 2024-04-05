@@ -301,7 +301,7 @@ const Header = () => {
                       onClick={() => {
                         dispatch(clearReduxStoreData());
                       }}
-                      className="block py-3 text-center text-gray-700 hover:text-indigo-600 border rounded-lg md:border-none"
+                      className="block py-3 text-center text-white p-4 hover:text-indigo-600 border rounded-lg bg-indigo-700 font-bold text-lg"
                     >
                       Logout
                     </button>

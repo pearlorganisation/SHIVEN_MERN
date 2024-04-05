@@ -4,6 +4,10 @@ import { lazy } from "react";
 const Dashboard = lazy(() => {
   return import("../components/Dashboard/Dashboard");
 });
+
+const User = lazy(() => {
+  return import("../pages/auth/User/User");
+});
 // -----------------------------------------------------------------------------------------------------------
 {
   /* <Route path="/" index element={<Home />} />
@@ -31,5 +35,10 @@ export const routes = [
     title: "Dashboard",
     component: Dashboard,
     path: "/dashboard",
+  },
+  {
+    title: "Users",
+    component: User,
+    path: "/users",
   },
 ];

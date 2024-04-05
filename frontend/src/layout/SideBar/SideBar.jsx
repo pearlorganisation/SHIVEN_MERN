@@ -1,3 +1,4 @@
+// -----------------------------------------------Imports---------------------------------------------------
 import React, { useState } from "react";
 import { FaWpforms } from "react-icons/fa6";
 import { FaBookOpen } from "react-icons/fa6";
@@ -10,8 +11,28 @@ import { GrAnnounce } from "react-icons/gr";
 import { FaCalculator } from "react-icons/fa";
 import { IoMdNotifications } from "react-icons/io";
 import { FaRegMessage } from "react-icons/fa6";
+// ----------------------------------------------------------------------------------------------------------
 const SideBar = () => {
+  // -----------------------------------------------States-----------------------------------------------------
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
+  // ----------------------------------------------------------------------------------------------------------
+  // -----------------------------------------------Hooks-----------------------------------------------------
+  // ----------------------------------------------------------------------------------------------------------
+  // --------------------------------------------Functions-----------------------------------------------------
+  // ----------------------------------------------------------------------------------------------------------
+  // --------------------------------------------useEffect-----------------------------------------------------
+  // ----------------------------------------------------------------------------------------------------------
+  // ----------------------------------------------------------------------------------------------------------
+
+  const sidebarOptions = [
+    {
+      title: "Dashboard",
+    },
+    {
+      title: "Users",
+    },
+  ];
+  // ----------------------------------------------------------------------------------------------------------
 
   return (
     <>
@@ -48,7 +69,7 @@ const SideBar = () => {
       <aside
         id="nav-menu-2"
         aria-label="Side navigation"
-        className={`fixed top-0 bottom-0 left-0 z-40 flex w-[full] h-screen flex-col border-r border-r-slate-200 bg-white transition-transform lg:translate-x-0 ${
+        className={`fixed  top-0 bottom-0 left-0 z-40 flex w-[full] h-screen flex-col border-r border-r-slate-200 bg-white transition-transform lg:translate-x-0 ${
           isSideNavOpen ? "translate-x-0" : " -translate-x-full"
         }`}
       >
@@ -84,9 +105,44 @@ const SideBar = () => {
         <nav
           aria-label="side navigation"
           className="flex-1 divide-y divide-slate-100 overflow-auto"
+          style={{
+            scrollbarWidth: "none",
+          }}
         >
           <div>
             <ul className="flex flex-1 flex-col gap-1 py-3">
+              {sidebarOptions.map((option) => {
+                return (
+                  <li className="px-3">
+                    <a
+                      href="#"
+                      className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-[#60A5FA] hover:text-[#60A5FA] focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
+                    >
+                      <div className="flex items-center self-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth="1.5"
+                          stroke="currentColor"
+                          className="h-6 w-6"
+                          aria-label="Dashboard icon"
+                          role="graphics-symbol"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+                          />
+                        </svg>
+                      </div>
+                      <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
+                        {option.title}
+                      </div>
+                    </a>
+                  </li>
+                );
+              })}
               <li className="px-3">
                 <a
                   href="#"

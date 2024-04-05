@@ -16,10 +16,10 @@ const DefaultLayout = () => {
   return isUserLoggedIn ? (
     <>
       <div className="flex">
-        <div className="w-[20%] ">
+        <div className="w-[18%] ">
            <SideBar />
         </div>
-        <div className="w-[80%]">
+        <div className="w-[82%]">
           <Header />
           <Outlet />
           <Footer />

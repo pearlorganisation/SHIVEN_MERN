@@ -170,7 +170,7 @@ const SideBar = () => {
                   </div>
                 </a>
                 {isOpen && (
-                  <ul className="dropdown-content absolute bg-white shadow-lg rounded mt-2 py-1 w-full z-10">
+                  <ul className="dropdown-content  bg-white shadow-lg rounded mt-2 py-1 w-full ">
                     <li>
                       <a
                         href="#"
@@ -273,7 +273,7 @@ const SideBar = () => {
               </li>
               <li className="px-3">
                 <a
-                  href="#"
+                  href="/file&folder"
                   className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
                 >
                   <div className="flex items-center self-center ">
@@ -328,7 +328,7 @@ const SideBar = () => {
 
               <li className="px-3">
                 <a
-                  href="#"
+                  href="/blog"
                   className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
                 >
                   <div className="flex items-center self-center ">
@@ -348,6 +348,7 @@ const SideBar = () => {
                   <div className="flex items-center self-center ">
                     <GrAnnounce />
                   </div>
+
                   <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
                     Announcement
                   </div>
@@ -380,6 +381,7 @@ const SideBar = () => {
                   </div>
                 </a>
               </li>
+
               <li className="px-3">
                 <a
                   href="#"
@@ -393,9 +395,10 @@ const SideBar = () => {
                   </div>
                 </a>
               </li>
+
               <li className="px-3">
                 <a
-                  href="#"
+                  href="/notification"
                   className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
                 >
                   <div className="flex items-center self-center ">
@@ -406,6 +409,7 @@ const SideBar = () => {
                   </div>
                 </a>
               </li>
+
               <li className="px-3">
                 <a
                   href="#"

@@ -24,6 +24,7 @@ import DefaultLayout from "./layout/DefaultLayout/DefaultLayout";
 import ProtectedRoutesHandler from "./layout/ProtectedRoutesHandler/ProtectedRoutesHandler";
 import { routes } from "./routes/routes";
 import { useSelector } from "react-redux";
+import FileFolder from "./components/Dashboard/FileFolder";
 // -------------------------------------------------------------------------------------------------------------
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
           <Route path="/invoice" element={<Invoice />} />
           <Route path="/notification" element={<Notifications />} />
           <Route path="/plan" element={<Plans />} />
+          <Route path="/file&folder" element={<FileFolder/>} />
           {/* Protected Routes */}
           {routes.map((route) => {
             const { component: Component, path } = route;

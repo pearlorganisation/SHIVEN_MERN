@@ -19,7 +19,7 @@ const ViewPlan = () => {
         }
       `}</style>
       <div className="container  bg-[#F3F4F6] ">
-        <div className=" ">
+        <div className="">
           <div className="text text-center font-medium text-lg md:text-xl py-5 pb-0">
             <h1>Check Life Insurance Plan</h1>
           </div>
@@ -79,6 +79,7 @@ const ViewPlan = () => {
                     placeholder="Enter your email"
                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                   />
+
                   {errors.email && (
                     <span className="text-red-500">This field is required</span>
                   )}

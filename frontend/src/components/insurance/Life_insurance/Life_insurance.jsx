@@ -57,6 +57,7 @@ const Life_insurance = () => {
 
         <div>
           <p className="py-2">
+
             There are various types of life insurance plans namely term plans,
             child plans, retirment plans, money-back plans, and Unit-Linked
             Insurance Plans (ULIPs). Besides the term plans which are pure
@@ -66,12 +67,13 @@ const Life_insurance = () => {
             plans depends on a number of factors such as policyholder’s age,
             lifestyle, gender, and more. You must also check the inclusions and
             exclusions before actually buying this policy.
+
           </p>
         </div>
 
         <div>
           <h2 className="text-lg  font-medium">
-            Different Types of Life Insurance
+            Different Types of Life Insurance 
           </h2>
         </div>
 

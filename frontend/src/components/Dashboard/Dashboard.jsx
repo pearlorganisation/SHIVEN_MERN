@@ -11,6 +11,9 @@ import {
   Rectangle,
 } from "recharts";
 import { RxCross2 } from "react-icons/rx";
+import { GrDocumentText } from "react-icons/gr";
+import { MdOutlineAutorenew } from "react-icons/md";
+import { CiReceipt } from "react-icons/ci";
 
 const data = [
   { name: "Page A", uv: 4000, amt: 2400 },
@@ -73,7 +76,115 @@ const Total_Investment = () => {
           <div className="bg-white p-6">
             <h1 className="text-2xl font-semibold mb-6">Purchases</h1>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
-              <div className="rounded-lg border bg-card text-card-foreground shadow-sm w-full overflow-hidden ">
+              <div>
+                <div className="max-w-[350px] shadow-2xl p-2 py-5 rounded-md pl-4">
+                  <div className=" ">
+                    <div className="flex justify-between">
+                      <div>
+                        <h4 className="text-xs">Health Plan</h4>
+                        <h1 className=".roboto-regular font-semibold">Star Health Insurance</h1>
+                      </div>
+                      <img src="https://healthstatic.insurancedekho.com/prod/oem_image/1589437596.jpg" alt="insurance iamge" />
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="text-xs">Policy Number - </h4>
+                    <h1 className=".roboto-regular font-semibold">P/012345/01/0123/012345</h1>
+                  </div>
+                  <div>
+                    <div className="flex gap-3 my-2">
+                      <div>
+                        <h4 className="text-xs">Created Date - </h4>
+                        <h1 className=".roboto-regular font-semibold">05 March 2024</h1>
+                      </div>
+                      <div>
+                        <h4 className="text-xs">Expiry Date - </h4>
+                        <h1 className=".roboto-regular font-semibold">04 March 2025</h1>
+                      </div>
+                    </div>
+                    <h1 className=".roboto-regular font-semibold">Mr Gaurav Negi</h1>
+
+                  </div>
+                </div>
+                <div className="flex gap-5 p-2">
+                  <div className="flex flex-col justify-center items-center"><div className="bg-blue-500 h-12 w-12 rounded-full flex justify-center items-center"><GrDocumentText size={25} color="white" /></div><p className="text-xs text-center"> Policy <br />Download</p></div>
+                  <div className="flex flex-col justify-center items-center"><div className="bg-blue-500 h-12 w-12 rounded-full flex justify-center items-center"><MdOutlineAutorenew size={25} color="white" /></div><p className="text-xs text-center"> Renew <br />Now</p></div>
+                  <div className="flex flex-col justify-center items-center"><div className="bg-blue-500 h-12 w-12 rounded-full flex justify-center items-center"><CiReceipt size={25} color="white" /></div><p className="text-xs text-center"> Receipt <br />Download</p></div>
+                </div>
+              </div>
+              <div>
+                <div className="max-w-[350px] shadow-2xl p-2 py-5 rounded-md pl-4">
+                  <div className=" ">
+                    <div className="flex justify-between">
+                      <div>
+                        <h4 className="text-xs">Health Plan</h4>
+                        <h1 className=".roboto-regular font-semibold">Star Health Insurance</h1>
+                      </div>
+                      <img src="https://healthstatic.insurancedekho.com/prod/oem_image/1589437596.jpg" alt="insurance iamge" />
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="text-xs">Policy Number - </h4>
+                    <h1 className=".roboto-regular font-semibold">P/012345/01/0123/012345</h1>
+                  </div>
+                  <div>
+                    <div className="flex gap-3 my-2">
+                      <div>
+                        <h4 className="text-xs">Created Date - </h4>
+                        <h1 className=".roboto-regular font-semibold">05 March 2024</h1>
+                      </div>
+                      <div>
+                        <h4 className="text-xs">Expiry Date - </h4>
+                        <h1 className=".roboto-regular font-semibold">04 March 2025</h1>
+                      </div>
+                    </div>
+                    <h1 className=".roboto-regular font-semibold">Mr Gaurav Negi</h1>
+
+                  </div>
+                </div>
+                <div className="flex gap-5 p-2">
+                  <div className="flex flex-col justify-center items-center"><div className="bg-blue-500 h-12 w-12 rounded-full flex justify-center items-center"><GrDocumentText size={25} color="white" /></div><p className="text-xs text-center"> Policy <br />Download</p></div>
+                  <div className="flex flex-col justify-center items-center"><div className="bg-blue-500 h-12 w-12 rounded-full flex justify-center items-center"><MdOutlineAutorenew size={25} color="white" /></div><p className="text-xs text-center"> Renew <br />Now</p></div>
+                  <div className="flex flex-col justify-center items-center"><div className="bg-blue-500 h-12 w-12 rounded-full flex justify-center items-center"><CiReceipt size={25} color="white" /></div><p className="text-xs text-center"> Receipt <br />Download</p></div>
+                </div>
+              </div>
+              <div>
+                <div className="max-w-[350px] shadow-2xl p-2 py-5 rounded-md pl-4">
+                  <div className=" ">
+                    <div className="flex justify-between">
+                      <div>
+                        <h4 className="text-xs">Health Plan</h4>
+                        <h1 className=".roboto-regular font-semibold">Star Health Insurance</h1>
+                      </div>
+                      <img src="https://healthstatic.insurancedekho.com/prod/oem_image/1589437596.jpg" alt="insurance iamge" />
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="text-xs">Policy Number - </h4>
+                    <h1 className=".roboto-regular font-semibold">P/012345/01/0123/012345</h1>
+                  </div>
+                  <div>
+                    <div className="flex gap-3 my-2">
+                      <div>
+                        <h4 className="text-xs">Created Date - </h4>
+                        <h1 className=".roboto-regular font-semibold">05 March 2024</h1>
+                      </div>
+                      <div>
+                        <h4 className="text-xs">Expiry Date - </h4>
+                        <h1 className=".roboto-regular font-semibold">04 March 2025</h1>
+                      </div>
+                    </div>
+                    <h1 className=".roboto-regular font-semibold">Mr Gaurav Negi</h1>
+
+                  </div>
+                </div>
+                <div className="flex gap-5 p-2">
+                  <div className="flex flex-col justify-center items-center"><div className="bg-blue-500 h-12 w-12 rounded-full flex justify-center items-center"><GrDocumentText size={25} color="white" /></div><p className="text-xs text-center"> Policy <br />Download</p></div>
+                  <div className="flex flex-col justify-center items-center"><div className="bg-blue-500 h-12 w-12 rounded-full flex justify-center items-center"><MdOutlineAutorenew size={25} color="white" /></div><p className="text-xs text-center"> Renew <br />Now</p></div>
+                  <div className="flex flex-col justify-center items-center"><div className="bg-blue-500 h-12 w-12 rounded-full flex justify-center items-center"><CiReceipt size={25} color="white" /></div><p className="text-xs text-center"> Receipt <br />Download</p></div>
+                </div>
+              </div>
+              {/* <div className="rounded-lg border bg-card text-card-foreground shadow-sm w-full overflow-hidden ">
                 <div className="flex flex-col space-y-1.5 p-6">
                   <h3 className="text-2xl font-semibold whitespace-nowrap leading-none tracking-tight">
                     Motor Plan
@@ -103,7 +214,7 @@ const Total_Investment = () => {
                   <p>Mr. GAURAV NEGI</p>
                 </div>
 
-                <div className="items-center flex flex-col lg:flex-row justify-around ">
+                <div className="items-center flex flex-col  justify-around ">
                   <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -165,9 +276,9 @@ const Total_Investment = () => {
                     Receipt Download
                   </button>
                 </div>
-              </div>
+              </div> */}
 
-              <div className="rounded-lg border bg-card text-card-foreground shadow-sm w-full overflow-hidden">
+              {/* <div className="rounded-lg border bg-card text-card-foreground shadow-sm w-full overflow-hidden">
                 <div className="flex flex-col space-y-1.5 p-6">
                   <h3 className="text-2xl font-semibold whitespace-nowrap leading-none tracking-tight">
                     Life Plan
@@ -260,8 +371,8 @@ const Total_Investment = () => {
                     Receipt Download
                   </button>
                 </div>
-              </div>
-              <div className="rounded-lg border bg-card text-card-foreground shadow-sm w-full overflow-hidden">
+              </div> */}
+              {/* <div className="rounded-lg border bg-card text-card-foreground shadow-sm w-full overflow-hidden">
                 <div className="flex flex-col space-y-1.5 p-6">
                   <h3 className="text-2xl font-semibold whitespace-nowrap leading-none tracking-tight">
                     Health Plan
@@ -350,7 +461,7 @@ const Total_Investment = () => {
                     Receipt Download
                   </button>
                 </div>
-              </div>
+              </div> */}
               {/* Repeat similar structure for other cards */}
             </div>
           </div>
@@ -359,19 +470,19 @@ const Total_Investment = () => {
         <h2 className="text-xl font-semibold mb-5 p-5">Notification</h2>
         <div className="grid grid-cols-1 gap-5">
           <div className="flex items-center justify-between bg-blue-100 p-4 rounded-md">
-            <p className="text-sm">Payment of ₹5000 has been processed</p>
+            <p className="text-xs">Payment of ₹5000 has been processed</p>
             <p className="text-xs">15 March 2024</p>
             <RxCross2 />
           </div>
           <div className="flex items-center justify-between bg-yellow-100 p-4 rounded-md">
-            <p className="text-sm">
+            <p className="text-xs">
               We were unable to process payment for your recurring subscription
             </p>
             <p className="text-xs">14 March 2024</p>
             <RxCross2 />
           </div>
           <div className="flex items-center justify-between bg-red-100 p-4 rounded-md">
-            <p className="text-sm">
+            <p className="text-xs">
               Your Policy will be expiring on 15th March 2024
             </p>
             <p className="text-xs">10 March 2024</p>

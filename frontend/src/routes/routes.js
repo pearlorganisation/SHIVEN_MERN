@@ -8,6 +8,9 @@ const Dashboard = lazy(() => {
 const User = lazy(() => {
   return import("../pages/auth/User/User");
 });
+const CreateUser = lazy(() => {
+  return import("../pages/auth/User/CreateUser");
+});
 // -----------------------------------------------------------------------------------------------------------
 {
   /* <Route path="/" index element={<Home />} />
@@ -40,5 +43,10 @@ export const routes = [
     title: "Users",
     component: User,
     path: "/users",
+  },
+  {
+    title: "Create User",
+    component: CreateUser,
+    path: "/users/create-user",
   },
 ];

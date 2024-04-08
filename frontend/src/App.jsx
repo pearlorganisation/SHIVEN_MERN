@@ -50,7 +50,7 @@ function App() {
           <Route path="/lifeinsurance" element={<Life_insurance />} />
           <Route path="/Healthinsurance" element={<Healthinsurance />} />
           <Route
-            path="/single_healthinsurance"
+            path="/single_healthinsurance" 
             element={<Single_HealthPage />}
           />
           <Route path="/sidebar" element={<SideBar />} />

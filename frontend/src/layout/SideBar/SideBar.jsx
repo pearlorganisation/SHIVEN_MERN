@@ -166,6 +166,7 @@ const SideBar = () => {
                     </svg>
                   </div>
                   <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
+                    <a href="/plan"></a>
                     Plans
                   </div>
                 </a>

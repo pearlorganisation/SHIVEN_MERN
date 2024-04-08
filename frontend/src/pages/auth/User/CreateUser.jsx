@@ -5,6 +5,22 @@ import Select from "react-select";
 // -------------------------------------------------------------------------------------------------
 
 const CreateUser = () => {
+  // --------------------------------------------------States----------------------------------------
+  const roleOptions = [
+    {
+      label: "Consultant",
+      value: "CONSULTANT",
+    },
+    {
+      label: "Customer",
+      value: "CUSTOMER",
+    },
+  ];
+  // -------------------------------------------------------------------------------------------------
+  // --------------------------------------------------Hooks----------------------------------------
+  // -------------------------------------------------------------------------------------------------
+  // ------------------------------------------------Functions----------------------------------------
+  // -------------------------------------------------------------------------------------------------
   return (
     <div>
       <div class="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
@@ -34,7 +50,7 @@ const CreateUser = () => {
                     placeholder="Password"
                   />
                   <div class="w-full rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5">
-                    <Select />
+                    <Select options={roleOptions} />
                   </div>
                   <button class="mt-5 tracking-wide font-semibold bg-green-400 text-white-500 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                     <svg

@@ -224,7 +224,7 @@ const Header = () => {
               {navigation.map((item, idx) => {
                 return (
                   <Link className="relative" to={item?.path} key={idx}>
-                    {item.isDrapdown ? (
+                    {item.isDrapdown ? ( 
                       <button
                         className="w-full flex items-center bg-white justify-between gap-1 text-gray-700 hover:text-indigo-600"
                         onClick={() =>
@@ -234,7 +234,7 @@ const Header = () => {
                           })
                         }
                       >
-                        {item.title}
+                        {item.title} 
                         {drapdownState.idx == idx && drapdownState.isActive ? (
                           <svg
                             xmlns="http://www.w3.org/2000/svg"

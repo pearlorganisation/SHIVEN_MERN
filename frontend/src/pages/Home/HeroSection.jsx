@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const HeroSection = () => {
+  
   const features = [
     {
       name: "Trusted",
@@ -58,10 +59,10 @@ const HeroSection = () => {
   const [isVideoPoppedUp, setVideoPopUp] = useState(false);
 
   return (
-    <section>
-      <div className="max-w-screen-2xl mx-auto px-4 py-8 gap-12 text-gray-600 md:px-8 xl:flex">
-        <div className="space-y-5 mx-auto text-center ">
-          <div className="flex flex-wrap items-center justify-center gap-6">
+    <section className="w-full">
+      <div className=" mx-auto px-4 py-8 gap-12 text-gray-600 md:px-8 xl:flex">
+        <div className="space-y-5 mx-auto text-center  w-full">
+          {/* <div className="flex flex-wrap items-center justify-center gap-6">
             {features.map((item, idx) => (
               <div
                 key={idx}
@@ -74,12 +75,12 @@ const HeroSection = () => {
           </div>
           <h1 className="text-4xl text-gray-800 font-extrabold mx-auto md:text-5xl">
             Explore in-demand careers and develop cutting edge skills
-          </h1>
-          <div className="mx-auto mt-14 xl:mt-0  grid place-items-center">
-            <div className="relative">
+          </h1> */}
+          <div className="mx-auto w-full mt-14 xl:mt-0  grid place-items-center">
+            <div className="relative w-full">
               <img
                 src="https://images.unsplash.com/photo-1513258496099-48168024aec0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-                className="rounded-lg"
+                className="rounded-lg w-full h-[80dvh] object-cover"
                 alt=""
               />
               <button

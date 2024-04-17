@@ -28,11 +28,13 @@ const Total_Investment = () => {
   return (
     <>
       <div className="min-h-screen bg-white p-6 md:p-10 overflow-hidden w-[100%]">
+        
         <div>
           <h1 className="text-2xl font-semibold mb-6">Total Investment</h1>
         </div>
+
         <section>
-          <div className="grid md:grid-cols-4 lg:grid-cols-5">
+          <div className="grid md:grid-cols-4 lg:grid-cols-5 ">
             {[
               "Life Insurance",
               "General Insurance",
@@ -43,7 +45,7 @@ const Total_Investment = () => {
               return (
                 <>
                   <div className="">
-                    <div className="p-10 text font-medium text-lg">{el}</div>
+                    <div className="p-10 text font-medium text-sm">{el}</div>
                     <ResponsiveContainer width="100%" height={300}>
                       <BarChart
                         width={500}
@@ -74,7 +76,7 @@ const Total_Investment = () => {
 
         <section>
           <div className="bg-white p-6">
-            <h1 className="text-2xl font-semibold mb-6">Purchases</h1>
+            <h1 className="text-xl font-medium mb-6">Purchases</h1>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
               <div>
                 <div className="max-w-[350px] shadow-2xl p-2 py-5 rounded-md pl-4">
@@ -82,7 +84,7 @@ const Total_Investment = () => {
                     <div className="flex justify-between">
                       <div>
                         <h4 className="text-xs">Health Plan</h4>
-                        <h1 className=".roboto-regular font-semibold">Star Health Insurance</h1>
+                        <h1 className=".roboto-regular font-medium">Star Health Insurance</h1>
                       </div>
                       <img src="https://healthstatic.insurancedekho.com/prod/oem_image/1589437596.jpg" alt="insurance iamge" />
                     </div>
@@ -95,14 +97,14 @@ const Total_Investment = () => {
                     <div className="flex gap-3 my-2">
                       <div>
                         <h4 className="text-xs">Created Date - </h4>
-                        <h1 className=".roboto-regular font-semibold">05 March 2024</h1>
+                        <h1 className=".roboto-regular font-medium">05 March 2024</h1>
                       </div>
                       <div>
                         <h4 className="text-xs">Expiry Date - </h4>
-                        <h1 className=".roboto-regular font-semibold">04 March 2025</h1>
+                        <h1 className=".roboto-regular font-medium ">04 March 2025</h1>
                       </div>
                     </div>
-                    <h1 className=".roboto-regular font-semibold">Mr Gaurav Negi</h1>
+                    <h1 className=".roboto-regular font-medium">Mr Gaurav Negi</h1>
 
                   </div>
                 </div>
@@ -118,27 +120,27 @@ const Total_Investment = () => {
                     <div className="flex justify-between">
                       <div>
                         <h4 className="text-xs">Health Plan</h4>
-                        <h1 className=".roboto-regular font-semibold">Star Health Insurance</h1>
+                        <h1 className=".roboto-regular font-medium">Star Health Insurance</h1>
                       </div>
                       <img src="https://healthstatic.insurancedekho.com/prod/oem_image/1589437596.jpg" alt="insurance iamge" />
                     </div>
                   </div>
                   <div>
                     <h4 className="text-xs">Policy Number - </h4>
-                    <h1 className=".roboto-regular font-semibold">P/012345/01/0123/012345</h1>
+                    <h1 className=".roboto-regular font-medium">P/012345/01/0123/012345</h1>
                   </div>
                   <div>
                     <div className="flex gap-3 my-2">
                       <div>
                         <h4 className="text-xs">Created Date - </h4>
-                        <h1 className=".roboto-regular font-semibold">05 March 2024</h1>
+                        <h1 className=".roboto-regular font-medium">05 March 2024</h1>
                       </div>
                       <div>
                         <h4 className="text-xs">Expiry Date - </h4>
-                        <h1 className=".roboto-regular font-semibold">04 March 2025</h1>
+                        <h1 className=".roboto-regular font-medium">04 March 2025</h1>
                       </div>
                     </div>
-                    <h1 className=".roboto-regular font-semibold">Mr Gaurav Negi</h1>
+                    <h1 className=".roboto-regular font-medium">Mr Gaurav Negi</h1>
 
                   </div>
                 </div>
@@ -154,27 +156,27 @@ const Total_Investment = () => {
                     <div className="flex justify-between">
                       <div>
                         <h4 className="text-xs">Health Plan</h4>
-                        <h1 className=".roboto-regular font-semibold">Star Health Insurance</h1>
+                        <h1 className=".roboto-regular font-medium">Star Health Insurance</h1>
                       </div>
                       <img src="https://healthstatic.insurancedekho.com/prod/oem_image/1589437596.jpg" alt="insurance iamge" />
                     </div>
                   </div>
                   <div>
                     <h4 className="text-xs">Policy Number - </h4>
-                    <h1 className=".roboto-regular font-semibold">P/012345/01/0123/012345</h1>
+                    <h1 className=".roboto-regular font-medium">P/012345/01/0123/012345</h1>
                   </div>
                   <div>
                     <div className="flex gap-3 my-2">
                       <div>
                         <h4 className="text-xs">Created Date - </h4>
-                        <h1 className=".roboto-regular font-semibold">05 March 2024</h1>
+                        <h1 className=".roboto-regular font-medium">05 March 2024</h1>
                       </div>
                       <div>
                         <h4 className="text-xs">Expiry Date - </h4>
-                        <h1 className=".roboto-regular font-semibold">04 March 2025</h1>
+                        <h1 className=".roboto-regular font-medium">04 March 2025</h1>
                       </div>
                     </div>
-                    <h1 className=".roboto-regular font-semibold">Mr Gaurav Negi</h1>
+                    <h1 className=".roboto-regular font-medium">Mr Gaurav Negi</h1>
 
                   </div>
                 </div>
@@ -467,7 +469,7 @@ const Total_Investment = () => {
           </div>
         </section>
 
-        <h2 className="text-xl font-semibold mb-5 p-5">Notification</h2>
+        <h2 className="text-xl font-medium mb-5 p-5">Notification</h2>
         <div className="grid grid-cols-1 gap-5">
           <div className="flex items-center justify-between bg-blue-100 p-4 rounded-md">
             <p className="text-xs">Payment of ₹5000 has been processed</p>

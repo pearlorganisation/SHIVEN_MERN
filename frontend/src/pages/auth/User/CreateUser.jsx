@@ -1,14 +1,19 @@
 // --------------------------------------------------Imports----------------------------------------
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import userBg from "../../../assets/Images/userBg.jpg";
 import Select from "react-select";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { createUser } from "../../../features/actions/Auth/userActions";
+import {
+  createUser,
+  getUsers,
+} from "../../../features/actions/Auth/userActions";
 import { useDispatch } from "react-redux";
 import CircleLoader from "../../../components/Loader/ButtonLoaders/CircleLoader";
 import { useSelector } from "react-redux";
+import { roleChecker } from "../../../utils";
+import { resetUserState } from "../../../features/slices/Auth/userSlice";
 // -------------------------------------------------------------------------------------------------
 
 const CreateUser = () => {
@@ -16,11 +21,11 @@ const CreateUser = () => {
   const roleOptions = [
     {
       label: "Consultant",
-      value: "CONSULTANT",
+      value: roleChecker("CONSULTANT"),
     },
     {
       label: "Customer",
-      value: "CUSTOMER",
+      value: roleChecker("CUSTOMER"),
     },
   ];
 
@@ -29,12 +34,13 @@ const CreateUser = () => {
   // --------------------------------------------------Hooks----------------------------------------
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isUserLoading } = useSelector((state) => state?.user);
+  const { isUserLoading, isUserCreated } = useSelector((state) => state?.user);
 
   const {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm();
   // -------------------------------------------------------------------------------------------------
   // ------------------------------------------------Functions----------------------------------------
@@ -42,7 +48,7 @@ const CreateUser = () => {
   const createUserHandler = (data) => {
     try {
       const { userName, fullName, email, password } = data;
-      const payload = { userName, fullName, email, password };
+      const payload = { userName, fullName, email, password, role };
       if (userName && fullName && email && password) {
         if (!role) {
           toast.error("Please Choose a role for the user");
@@ -63,12 +69,26 @@ const CreateUser = () => {
       toast.error(error.message);
     }
   };
+
+  // ------------------------------------------------useEffect----------------------------------------
+  useEffect(() => {
+    if (isUserCreated) {
+      dispatch(resetUserState(false));
+      reset();
+      setRole("");
+      dispatch(getUsers());
+    }
+  }, [isUserCreated]);
+
   // -------------------------------------------------------------------------------------------------
   return (
     <div>
       <div class="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
         <div class="max-w-screen-xl m-0 sm:m-5 bg-white shadow sm:rounded-lg flex justify-center flex-1">
           <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
+            <h1 className="text-center font-bold text-blue-600 text-sm sm:text-lg md:text-xl">
+              Create User
+            </h1>
             <div class="mt-12 flex flex-col items-center">
               <div class="w-full flex-1 mt-8">
                 <form
@@ -173,14 +193,7 @@ const CreateUser = () => {
                     </button>
                   )}
                   <p class="mt-6 text-xs text-gray-600 text-center">
-                    I agree to abide by Cartesian Kinetics
-                    <a href="#" class="border-b border-gray-500 border-dotted">
-                      Terms of Service
-                    </a>
-                    and its
-                    <a href="#" class="border-b border-gray-500 border-dotted">
-                      Privacy Policy
-                    </a>
+                    Shiven Consultancy <br />
                   </p>
                 </form>
               </div>

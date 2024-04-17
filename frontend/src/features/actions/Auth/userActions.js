@@ -16,3 +16,17 @@ export const createUser = createAsyncThunk(
     }
   }
 );
+
+// getUsers -- action to call the getUsers api
+export const getUsers = createAsyncThunk(
+  "auth/user/getUsers",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await instance.get("/auth/user");
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);

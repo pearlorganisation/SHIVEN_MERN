@@ -20,8 +20,10 @@ const DefaultLayout = () => {
            <SideBar />
         </div>
         <div className="w-[82%]">
-          <Header />
+          {/* <Header /> */}
+          <div className="h-dvh border-2">
           <Outlet />
+          </div>
           <Footer />
         </div>
       </div>

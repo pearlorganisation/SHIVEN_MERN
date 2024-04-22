@@ -1,3 +1,4 @@
+// -----------------------------------------------Imports---------------------------------------------------
 import React, { useState } from "react";
 import { FaWpforms } from "react-icons/fa6";
 import { FaBookOpen } from "react-icons/fa6";
@@ -10,9 +11,39 @@ import { GrAnnounce } from "react-icons/gr";
 import { FaCalculator } from "react-icons/fa";
 import { IoMdNotifications } from "react-icons/io";
 import { FaRegMessage } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
+// ----------------------------------------------------------------------------------------------------------
 const SideBar = () => {
+  // -----------------------------------------------States-----------------------------------------------------
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
+  // ----------------------------------------------------------------------------------------------------------
+  // -----------------------------------------------Hooks-----------------------------------------------------
+  const navigate = useNavigate();
+  // ----------------------------------------------------------------------------------------------------------
+  // --------------------------------------------Functions-----------------------------------------------------
+  // ----------------------------------------------------------------------------------------------------------
+  // --------------------------------------------useEffect-----------------------------------------------------
+  // ----------------------------------------------------------------------------------------------------------
+  // ----------------------------------------------------------------------------------------------------------
+
+  const sidebarOptions = [
+    {
+      title: "Dashboard",
+      subMenu: false,
+      path: "/dashboard",
+    },
+    {
+      title: "Users",
+      subMenu: true,
+      subMenuArray: [
+        { title: "Users", path: "/users" },
+        { title: "Create User", path: "/users/create-user" },
+      ],
+    },
+  ];
+  // ----------------------------------------------------------------------------------------------------------
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -67,146 +98,79 @@ const SideBar = () => {
         <nav
           aria-label="side navigation"
           className="flex-1 divide-y divide-slate-100 overflow-auto"
+          style={{
+            scrollbarWidth: "none",
+          }}
         >
-          {/* <div>
-  <ul class="flex flex-1 flex-col gap-1 py-3">
-    <li class="px-3">
-      <a href="#" class="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-[#60A5FA] hover:text-[#60A5FA] focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500">
-        <div class="flex items-center self-center">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6" aria-label="Dashboard icon">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
-          </svg>
-        </div>
-        <div class="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-          Dashboard
-        </div>
-      </a>
-    </li>
-    <li class="px-3 dropdown relative">
-      <a href="#" class="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-[#60A5FA] hover:text-[#60A5FA] focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500">
-        <div class="flex items-center self-center">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6" aria-label="Dropdown icon">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
-          </svg>
-        </div>
-        <div class="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-          Group
-        </div>
-      </a>
-      <ul class="dropdown-content hidden absolute bg-white shadow-lg rounded mt-2 py-1 w-32 z-10">
-        <li>
-          <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Accounting</a>
-        </li>
-        <li>
-          <a href="/invoice" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Crm
-            <span class="inline-flex items-center justify-center rounded-full bg-emerald-100 px-2 text-xs text-emerald-500">
-              2
-              <span class="sr-only"> new notifications</span>
-            </span>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Meeting</a>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</div>  */}
-
           <div>
             <ul className="flex flex-1 flex-col gap-1 py-3">
-              <li className="px-3">
-                <a
-                  href="#"
-                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-[#60A5FA] hover:text-[#60A5FA] focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500"
-                >
-                  <div className="flex items-center self-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      className="h-6 w-6"
-                      aria-label="Dashboard icon"
+              {sidebarOptions.map((option) => {
+                return option?.subMenu ? (
+                  <li className="px-3 dropdown relative">
+                    <div
+                      onClick={toggleDropdown}
+                      className="flex items-center gap-3 rounded p-3 text-slate-700 hover:bg-[#60A5FA] hover:text-white focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 cursor-pointer transition-colors"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
-                      />
-                    </svg>
-                  </div>
-                  <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                    Dashboard 
-                  </div>
-                </a>
-              </li>
-              <li className="px-3 dropdown relative">
-                <a
-                  href="#"
-                  onClick={toggleDropdown}
-                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-[#60A5FA] hover:text-[#60A5FA] focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500"
-                >
-                  <div className="flex items-center self-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      className="h-6 w-6"
-                      aria-label="Dropdown icon"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M19 9l-7 7-7-7"
-                      ></path>
-                    </svg>
-                  </div>
-                  <a href="/plan">
-                    <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                      Plans
+                      <div className="flex items-center self-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth="1.5"
+                          stroke="currentColor"
+                          className="h-6 w-6"
+                          aria-label="Dropdown icon"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M19 9l-7 7-7-7"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm ">
+                        {option?.title}
+                      </div>
                     </div>
-                  </a>
-                </a>
-                {isOpen && (
-                  <ul className="dropdown-content  bg-white shadow-lg rounded mt-2 py-1 w-full ">
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                      >
-                        Accounting
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/invoice"
-                        className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                      >
-                        Crm
-                        <span className="inline-flex items-center justify-center rounded-full bg-emerald-100 px-2 text-xs text-emerald-500">
-                          2<span className="sr-only"> new notifications</span>
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                      >
-                        Meeting
-                      </a>
-                    </li>
-                  </ul>
-                )}
-              </li>
+                    {isOpen && (
+                      <ul className="dropdown-content  bg-white shadow-lg rounded mt-2 py-1 w-full transition-all duration-1000 ease-in-out">
+                        {option?.subMenuArray?.map((subOption) => {
+                          return (
+                            <li
+                              onClick={() => {
+                                navigate(`${subOption.path}`);
+                              }}
+                              className="cursor-pointer"
+                            >
+                              <div className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                                {subOption?.title}
+                              </div>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
+                  </li>
+                ) : (
+                  <li className="px-3">
+                    <a
+                      href="/invoice"
+                      className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
+                    >
+                      <div className="flex items-center self-center">
+                        <GoTag />
+                      </div>
+                      <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
+                        {option?.title}
+                      </div>
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
-          <div>
+          <div className="transition-all duration-1000 ease-in-out">
             <ul className="flex flex-1 flex-col gap-1 py-3">
               <li className="px-3">
                 <a

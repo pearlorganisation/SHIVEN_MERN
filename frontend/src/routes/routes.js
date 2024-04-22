@@ -4,6 +4,16 @@ import { lazy } from "react";
 const Dashboard = lazy(() => {
   return import("../components/Dashboard/Dashboard");
 });
+
+const User = lazy(() => {
+  return import("../pages/auth/User/User");
+});
+const CreateUser = lazy(() => {
+  return import("../pages/auth/User/CreateUser");
+});
+const UpdateUser = lazy(() => {
+  return import("../pages/auth/User/UpdateUser");
+});
 // -----------------------------------------------------------------------------------------------------------
 {
   /* <Route path="/" index element={<Home />} />
@@ -31,5 +41,20 @@ export const routes = [
     title: "Dashboard",
     component: Dashboard,
     path: "/dashboard",
+  },
+  {
+    title: "Users",
+    component: User,
+    path: "/users",
+  },
+  {
+    title: "Create User",
+    component: CreateUser,
+    path: "/users/create-user",
+  },
+  {
+    title: "Update User",
+    component: UpdateUser,
+    path: "/users/update-user",
   },
 ];

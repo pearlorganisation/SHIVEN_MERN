@@ -166,8 +166,8 @@ const Header = () => {
   return (
     <>
       <nav
-        className={`relative z-20 bg-white shadow-lg w-[100%] md:static md:text-sm md:border-none ${
-          state ? "shadow-lg rounded-b-xl md:shadow-none" : ""
+        className={`relative z-20 bg-white w-[100%] md:static md:text-sm md:border border-b-gray-300 border-l-neutral-50 ${
+          state ? " rounded-b-xl md:shadow-none" : ""
         }`}
       >
         <div className="items-center gap-x-14 px-4 max-w-screen-xl mx-auto md:flex md:px-8">
@@ -301,7 +301,7 @@ const Header = () => {
                       onClick={() => {
                         dispatch(clearReduxStoreData());
                       }}
-                      className="block py-3 text-center text-gray-700 hover:text-indigo-600 border rounded-lg md:border-none"
+                      className="block py-3 text-center text-white p-4 hover:text-indigo-600 border rounded-lg bg-indigo-700 font-bold text-lg"
                     >
                       Logout
                     </button>

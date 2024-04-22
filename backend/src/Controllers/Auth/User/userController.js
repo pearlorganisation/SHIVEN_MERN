@@ -14,19 +14,22 @@ import bcrypt from "bcrypt";
 // @method- POST
 // @url - auth/user
 export const createUser = asyncErrorHandler(async (req, res, next) => {
-  const { name, email, password, role } = req?.body?.payload;
+  const { userName, fullName, email, password, role } = req?.body?.payload;
 
-  if (!name || !email || !password || !role) {
+  if (!userName && !fullName && !email && !password && !role) {
     const error = new CustomError("Please Fill Complete Details", 400);
     return next(error);
   }
 
   const payload = pick(req?.body?.payload, [
-    "name",
+    "userName",
+    "fullName",
     "email",
     "password",
     "role",
   ]);
+
+  console.log(payload);
 
   const userDoc = new userModel(payload);
 

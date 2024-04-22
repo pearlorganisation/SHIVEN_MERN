@@ -9,7 +9,7 @@ const DesiredPlan = () => {
             Choose your plans
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 ">
             <div className="bg-white p-4 shadow rounded-lg flex flex-col">
               <div className="flex items-center space-x-2 mb-4">
                 <img
@@ -152,11 +152,11 @@ const DesiredPlan = () => {
               <div className="flex justify-between items-center mb-4">
                 <div>
                   <p className="text-sm text-gray-600">Cover</p>
-                  <p className="font-semibold">₹ 5 L</p>
+                  <p className="font-semibold">₹5L</p>
                 </div>
                 <div>
                   <p className="text-sm text-gray-600">Starting at</p>
-                  <p className="font-semibold">₹ 447/month*</p>
+                  <p className="font-semibold">₹447/month*</p>
                 </div>
               </div>
               <button

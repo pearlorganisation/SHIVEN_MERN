@@ -4,7 +4,6 @@ const Blog = () => {
   return (
     <>
       <div className=" container mx-auto">
-        
         <div className="container mx-auto ">
           <div className="text-center p-5">
             <span className="text-xs font-semibold text-gray-500 uppercase">
@@ -19,7 +18,7 @@ const Blog = () => {
           <div className="flex justify-between items-center py-6 md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
               <a
-                href="#"
+                href="/blogDeatils"
                 className="text-base font-medium text-gray-500 hover:text-gray-900"
               >
                 1-50

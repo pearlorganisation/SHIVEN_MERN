@@ -6,6 +6,7 @@ import { encryptTransform } from "redux-persist-transform-encrypt";
 import { persistReducer } from "redux-persist";
 import { authReducer } from "./slices/Auth/authSlice";
 import { toast } from "sonner";
+import { userReducer } from "./slices/Auth/userSlice";
 
 // ------------------------------------------------------------------------------------------------------------
 
@@ -27,6 +28,7 @@ const persistConfig = {
 
 const reducers = combineReducers({
   auth: authReducer,
+  user: userReducer,
 });
 
 const rootReducer = (state, action) => {

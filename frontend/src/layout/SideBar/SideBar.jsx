@@ -11,7 +11,7 @@ import { GrAnnounce } from "react-icons/gr";
 import { FaCalculator } from "react-icons/fa";
 import { IoMdNotifications } from "react-icons/io";
 import { FaRegMessage } from "react-icons/fa6";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // ----------------------------------------------------------------------------------------------------------
 const SideBar = () => {
   // -----------------------------------------------States-----------------------------------------------------
@@ -83,13 +83,13 @@ const SideBar = () => {
       <aside
         id="nav-menu-2"
         aria-label="Side navigation"
-        className={`fixed top-0 bottom-0 left-0 z-40 flex  h-screen flex-col border-r border-r-slate-200 bg-white transition-transform lg:translate-x-0 ${
+        className={`fixed top-0 bottom-0 left-0 z-40 flex  h-screen flex-col border-r border-r-slate-200 bg-slate-800 transition-transform lg:translate-x-0 ${
           isSideNavOpen ? "translate-x-0" : " -translate-x-full"
         }`}
       >
         <a
           aria-label="WindUI logo"
-          className="flex items-center gap-2 whitespace-nowrap p-6 text-xl font-medium focus:outline-none"
+          className="flex items-center gap-2 whitespace-nowrap p-6 text-3xl font-medium focus:outline-none text-white italic "
           href="javascript:void(0)"
         >
           Shiven
@@ -97,7 +97,7 @@ const SideBar = () => {
 
         <nav
           aria-label="side navigation"
-          className="flex-1 divide-y divide-slate-100 overflow-auto"
+          className="flex-1  overflow-auto"
           style={{
             scrollbarWidth: "none",
           }}
@@ -109,7 +109,7 @@ const SideBar = () => {
                   <li className="px-3 dropdown relative">
                     <div
                       onClick={toggleDropdown}
-                      className="flex items-center gap-3 rounded p-3 text-slate-700 hover:bg-[#60A5FA] hover:text-white focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 cursor-pointer transition-colors"
+                      className="flex items-center gap-3 rounded p-3 text-white hover:bg-[#60A5FA] hover:text-white focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 cursor-pointer transition-colors"
                     >
                       <div className="flex items-center self-center">
                         <svg
@@ -133,7 +133,7 @@ const SideBar = () => {
                       </div>
                     </div>
                     {isOpen && (
-                      <ul className="dropdown-content  bg-white shadow-lg rounded mt-2 py-1 w-full transition-all duration-1000 ease-in-out">
+                      <ul className="dropdown-content  bg-white  rounded mt-2 py-1 w-full transition-all duration-1000 ease-in-out">
                         {option?.subMenuArray?.map((subOption) => {
                           return (
                             <li
@@ -153,9 +153,9 @@ const SideBar = () => {
                   </li>
                 ) : (
                   <li className="px-3">
-                    <a
-                      href="/invoice"
-                      className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
+                    <Link
+                      to={`${option?.path}`}
+                      className="flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
                     >
                       <div className="flex items-center self-center">
                         <GoTag />
@@ -163,7 +163,7 @@ const SideBar = () => {
                       <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
                         {option?.title}
                       </div>
-                    </a>
+                    </Link>
                   </li>
                 );
               })}
@@ -171,11 +171,11 @@ const SideBar = () => {
           </div>
 
           <div className="transition-all duration-1000 ease-in-out">
-            <ul className="flex flex-1 flex-col gap-1 py-3">
-              <li className="px-3">
+            <ul className="flex flex-1 flex-col gap-1 py-3 ">
+              <li className="px-3 text-white">
                 <a
                   href="/invoice"
-                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
+                  className="flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
                 >
                   <div className="flex items-center self-center">
                     <GoTag />
@@ -185,228 +185,11 @@ const SideBar = () => {
                   </div>
                 </a>
               </li>
-              <li className="px-3">
-                <a
-                  href="#"
-                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
-                >
-                  <div className="flex items-center self-center ">
-                    <GoTag />
-                  </div>
-                  <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                    Reports
-                  </div>
-                </a>
-              </li>
-              <li className="px-3">
-                <a
-                  href="#"
-                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
-                >
-                  <div className="flex items-center self-center ">
-                    <FiEdit />
-                  </div>
-                  <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                    Client Centralised Database
-                  </div>
-                </a>
-              </li>
-              <li className="px-3">
-                <a
-                  href="#"
-                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
-                >
-                  <div className="flex items-center self-center ">
-                    <FaWpforms />
-                  </div>
-                  <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                    Customised Forms
-                  </div>
-                </a>
-              </li>
-              <li className="px-3">
-                <a
-                  href="#"
-                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
-                >
-                  <div className="flex items-center self-center ">
-                    <GoTag />
-                  </div>
-                  <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                    Review
-                  </div>
-                </a>
-              </li>
-              <li className="px-3">
-                <a
-                  href="/file&folder"
-                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
-                >
-                  <div className="flex items-center self-center ">
-                    <FaBookOpen />{" "}
-                  </div>
-                  <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                    File & Folder
-                  </div>
-                </a>
-              </li>
-              <li className="px-3">
-                <a
-                  href="#"
-                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
-                >
-                  <div className="flex items-center self-center ">
-                    <SlCalender />
-                  </div>
-                  <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                    Important Dates
-                  </div>
-                </a>
-              </li>
-
-              <li className="px-3">
-                <a
-                  href="#"
-                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
-                >
-                  <div className="flex items-center self-center ">
-                    <FiEdit />
-                  </div>
-                  <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                    Services Request
-                  </div>
-                </a>
-              </li>
-
-              <li className="px-3">
-                <a
-                  href="#"
-                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
-                >
-                  <div className="flex items-center self-center ">
-                    <CgProfile />
-                  </div>
-                  <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                    Profile
-                  </div>
-                </a>
-              </li>
-
-              <li className="px-3">
-                <a
-                  href="/blog"
-                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
-                >
-                  <div className="flex items-center self-center ">
-                    <ImNewspaper />
-                  </div>
-                  <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                    Blogs
-                  </div>
-                </a>
-              </li>
-
-              <li className="px-3">
-                <a
-                  href="#"
-                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
-                >
-                  <div className="flex items-center self-center ">
-                    <GrAnnounce />
-                  </div>
-
-                  <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                    Announcement
-                  </div>
-                </a>
-              </li>
-              <li className="px-3">
-                <a
-                  href="#"
-                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
-                >
-                  <div className="flex items-center self-center ">
-                    <GoTag />
-                  </div>
-                  <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                    Contact Management
-                  </div>
-                </a>
-              </li>
-
-              <li className="px-3">
-                <a
-                  href="#"
-                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
-                >
-                  <div className="flex items-center self-center ">
-                    <FaCalculator />
-                  </div>
-                  <div className="flex  w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                    Calculater
-                  </div>
-                </a>
-              </li>
-
-              <li className="px-3">
-                <a
-                  href="#"
-                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
-                >
-                  <div className="flex items-center self-center ">
-                    <GoTag />
-                  </div>
-                  <div className="flex  w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                    Enquiry
-                  </div>
-                </a>
-              </li>
-
-              <li className="px-3">
-                <a
-                  href="/notification"
-                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
-                >
-                  <div className="flex items-center self-center ">
-                    <IoMdNotifications />
-                  </div>
-                  <div className="flex  w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                    Notification
-                  </div>
-                </a>
-              </li>
-
-              <li className="px-3">
-                <a
-                  href="#"
-                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
-                >
-                  <div className="flex items-center self-center ">
-                    <GoTag />
-                  </div>
-                  <div className="flex  w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                    Social Media
-                  </div>
-                </a>
-              </li>
-              <li className="px-3">
-                <a
-                  href="#"
-                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
-                >
-                  <div className="flex items-center self-center ">
-                    <FaRegMessage />
-                  </div>
-                  <div className="flex  w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                    SMS/Email/Whatsapp
-                  </div>
-                </a>
-              </li>
             </ul>
           </div>
         </nav>
 
-        <footer className="border-t border-slate-200 p-3">
+        <footer className="  p-3">
           <a
             href="#"
             className="flex items-center gap-3 rounded p-3 text-slate-900 transition-colors hover:text-emerald-500 "

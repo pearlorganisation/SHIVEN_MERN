@@ -17,6 +17,22 @@ export const createUser = createAsyncThunk(
   }
 );
 
+// updateUser -- action to call the updateUser api
+export const updateUser = createAsyncThunk(
+  "auth/user/updateUser",
+  async ({ payload, userId }, { rejectWithValue }) => {
+    try {
+      const response = await instance.patch(`/auth/user/${userId}`, {
+        payload,
+      });
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
 // getUsers -- action to call the getUsers api
 export const getUsers = createAsyncThunk(
   "auth/user/getUsers",

@@ -25,6 +25,10 @@ import ProtectedRoutesHandler from "./layout/ProtectedRoutesHandler/ProtectedRou
 import { routes } from "./routes/routes";
 import { useSelector } from "react-redux";
 import FileFolder from "./components/Dashboard/FileFolder";
+import ConsultantDashboard from "./components/Dashboard/ConsultantDashboard";
+import DesiredPlan from "./components/Dashboard/DesiredPlan";
+import ScheduleMeeting from "./components/Dashboard/ScheduleMeeting";
+
 // -------------------------------------------------------------------------------------------------------------
 
 function App() {
@@ -59,6 +63,9 @@ function App() {
           <Route path="/notification" element={<Notifications />} />
           <Route path="/plan" element={<Plans />} />
           <Route path="/file&folder" element={<FileFolder/>} />
+          <Route path="/consultdashboard" element={<ConsultantDashboard/>} />
+          <Route path="/desiredplan" element={<DesiredPlan/>} />
+          <Route path="/schedulemeeting" element={<ScheduleMeeting/>} />
           {/* Protected Routes */}
           {routes.map((route) => {
             const { component: Component, path } = route;

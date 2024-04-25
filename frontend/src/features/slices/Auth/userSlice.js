@@ -2,7 +2,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { login, verifyLoginOtp } from "../../actions/Auth/authActions";
 import { toast } from "sonner";
-import { createUser, getUsers } from "../../actions/Auth/userActions";
+import {
+  createUser,
+  getUsers,
+  updateUser,
+} from "../../actions/Auth/userActions";
 //------------------------------------------------------------------------------------------------------------
 
 const initialState = {
@@ -38,6 +42,26 @@ const userSlice = createSlice({
         toast.success("User Created Successfully");
       })
       .addCase(createUser.rejected, (state, action) => {
+        state.isUserLoading = false;
+        state.errorMessage = action?.payload;
+        state.isUserCreated = false;
+        toast.error(action.payload.message);
+      })
+      // updateUser lifecycle actions
+      .addCase(updateUser.pending, (state, action) => {
+        state.isUserLoading = true;
+        state.errorMessage = "";
+        state.isLoginOtpSent = false;
+        state.isUserCreated = false;
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.isUserLoading = false;
+        state.errorMessage = "";
+        state.isLoginOtpSent = true;
+        state.isUserCreated = true;
+        toast.success("User Updated Successfully");
+      })
+      .addCase(updateUser.rejected, (state, action) => {
         state.isUserLoading = false;
         state.errorMessage = action?.payload;
         state.isUserCreated = false;

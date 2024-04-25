@@ -1,5 +1,5 @@
 // -------------------------------------------------Imports---------------------------------------------
-import React, { memo, useEffect } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getUsers } from "../../../features/actions/Auth/userActions";
 import { useSelector } from "react-redux";
@@ -16,17 +16,18 @@ const UsersTable = () => {
   const navigate = useNavigate();
 
   const { usersData } = useSelector((state) => state?.user);
-  const [userData, setUserData] = useState({});
+  // const [userData, setUserData] = useState({});
   // -----------------------------------------------------------------------------------------------------
   // -----------------------------------------------Functions---------------------------------------------
-  const editHandler = () => {
-    navigate("/users/update-user", { state: userData });
+  const editHandler = (userData) => {
+    navigate("/users/update-user", { state: { userData } });
   };
   // -----------------------------------------------------------------------------------------------------
   // -----------------------------------------------useEffect---------------------------------------------
   useEffect(() => {
     dispatch(getUsers());
   }, []);
+
   // -----------------------------------------------------------------------------------------------------
   const actionBtnIconSize = 25;
   const actionButtons = [
@@ -34,7 +35,9 @@ const UsersTable = () => {
       icon: () => {
         return <CiEdit style={{ color: "black" }} size={actionBtnIconSize} />;
       },
-      actionButtonClickHandler: editHandler,
+      actionButtonClickHandler: (data) => {
+        editHandler(data);
+      },
     },
   ];
   // -----------------------------------------------------------------------------------------------------
@@ -84,8 +87,7 @@ const UsersTable = () => {
                           return (
                             <button
                               onClick={() => {
-                                setUserData(user);
-                                btn.actionButtonClickHandler();
+                                btn.actionButtonClickHandler(user);
                               }}
                             >
                               {btn.icon()}

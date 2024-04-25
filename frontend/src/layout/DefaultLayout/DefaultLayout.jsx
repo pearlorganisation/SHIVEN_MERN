@@ -15,11 +15,11 @@ const DefaultLayout = () => {
   // ------------------------------------------------------------------------------------------------------
   return isUserLoggedIn ? (
     <>
-      <div className="flex">
-        <div className="w-[18%] ">
+      <div className="flex w-[100vw]">
+        <div className="w-[20%] min-w-[10px] bg-slate-800">
            <SideBar />
         </div>
-        <div className="w-[82%]">
+        <div className="w-[80%]">
           {/* <Header /> */}
           <div className="min-h-dvh border-2">
           <Outlet />

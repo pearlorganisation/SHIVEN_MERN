@@ -28,6 +28,9 @@ import FileFolder from "./components/Dashboard/FileFolder";
 import ConsultantDashboard from "./components/Dashboard/ConsultantDashboard";
 import DesiredPlan from "./components/Dashboard/DesiredPlan";
 import ScheduleMeeting from "./components/Dashboard/ScheduleMeeting";
+import Accounting from "./components/Dashboard/Accounting";
+import FillForm from "./components/Dashboard/FillForm";
+import ProposalForm from "./components/Dashboard/ProposalForm";
 
 // -------------------------------------------------------------------------------------------------------------
 
@@ -66,6 +69,10 @@ function App() {
           <Route path="/consultdashboard" element={<ConsultantDashboard/>} />
           <Route path="/desiredplan" element={<DesiredPlan/>} />
           <Route path="/schedulemeeting" element={<ScheduleMeeting/>} />
+          <Route path="/accounting" element={<Accounting/>} />
+          <Route path="/fillform" element={<FillForm/>} />
+          <Route path="/proposalForm" element={<ProposalForm/>} />
+
           {/* Protected Routes */}
           {routes.map((route) => {
             const { component: Component, path } = route;

@@ -47,3 +47,10 @@ h1 {
   font-weight: 700;
   font-style: normal;
 }
+
+body{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}

@@ -28,15 +28,14 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="text-gray-500 bg-white w-[100%] mx-auto md:px-8 border-t">
+    <footer className="text-gray-500 bg-white w-[100%] mx-auto md:px-8 border-t p-6">
       <div className="max-w-lg sm:mx-auto sm:text-center">
-        <div className="flex items-center justify-between py-3 md:py-5 md:block">
-          <a
-            className="text-3xl font-semibold text-indigo-500 font-mono"
-            href="javascript:void(0)"
+        <div className="flex items-center justify-between py-3 md:py-5 md:block ">
+          <p
+            className="text-3xl font-semibold text-indigo-500 font-mono flex justify-center"
           >
             SHIVEN
-          </a>
+          </p>
         </div>
         <p className="leading-relaxed mt-2 text-[15px]">
           Lorem Ipsum has been the industry's standard dummy text ever since the

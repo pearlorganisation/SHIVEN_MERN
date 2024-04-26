@@ -14,6 +14,14 @@ const CreateUser = lazy(() => {
 const UpdateUser = lazy(() => {
   return import("../pages/auth/User/UpdateUser");
 });
+
+const Plans = lazy(() => {
+  return import("../components/Dashboard/Plans");
+});
+
+const ProposalForm = lazy(() => {
+  return import("../components/Dashboard/ProposalForm");
+});
 // -----------------------------------------------------------------------------------------------------------
 {
   /* <Route path="/" index element={<Home />} />
@@ -56,5 +64,15 @@ export const routes = [
     title: "Update User",
     component: UpdateUser,
     path: "/users/update-user",
+  },
+  {
+    title: "Plans",
+    component: Plans,
+    path: "/plans",
+  },
+  {
+    title: "Proposal Form",
+    component: ProposalForm,
+    path: "/proposalForm/:plan",
   },
 ];

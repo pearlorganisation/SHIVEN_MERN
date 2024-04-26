@@ -17,6 +17,7 @@ const SideBar = () => {
   // -----------------------------------------------States-----------------------------------------------------
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [subMenuIndex, setSubMenuIndex] = useState([]);
 
   // ----------------------------------------------------------------------------------------------------------
   // -----------------------------------------------Hooks-----------------------------------------------------
@@ -34,6 +35,7 @@ const SideBar = () => {
       subMenu: false,
       path: "/dashboard",
     },
+
     {
       title: "Users",
       subMenu: true,
@@ -42,11 +44,26 @@ const SideBar = () => {
         { title: "Create User", path: "/users/create-user" },
       ],
     },
+    {
+      title: "Plans",
+      subMenu: false,
+      path: "/plans",
+    },
   ];
   // ----------------------------------------------------------------------------------------------------------
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+  const toggleDropdown = (index) => {
+    // setIsOpen(!isOpen);
+    if (subMenuIndex?.includes(index)) {
+      let copy = [...subMenuIndex];
+      let newSubMenu = copy.filter((idx) => {
+        return idx != index;
+      });
+
+      setSubMenuIndex(newSubMenu);
+    } else {
+      setSubMenuIndex([...subMenuIndex, index]);
+    }
   };
   return (
     <>
@@ -88,7 +105,7 @@ const SideBar = () => {
         <aside
           id="nav-menu-2"
           aria-label="Side navigation"
-          className={`w-[20%] min-w-[250px] fixed top-0 bottom-0 left-0 z-40 flex  h-screen flex-col border-r border-r-slate-200 bg-slate-800 transition-transform lg:translate-x-0 ${
+          className={`w-[20%] min-w-[250px] fixed top-0 bottom-0 left-0 z-40 flex  h-screen flex-col   bg-slate-800 transition-transform lg:translate-x-0 ${
             isSideNavOpen ? "translate-x-0" : " -translate-x-full"
           }`}
         >
@@ -116,11 +133,13 @@ const SideBar = () => {
           >
             <div>
               <ul className="flex flex-1 flex-col gap-1 py-3">
-                {sidebarOptions.map((option) => {
+                {sidebarOptions.map((option, index) => {
                   return option?.subMenu ? (
                     <li className="px-3 dropdown relative">
                       <div
-                        onClick={toggleDropdown}
+                        onClick={() => {
+                          toggleDropdown(index);
+                        }}
                         className="flex items-center gap-3 rounded p-3 text-white hover:bg-[#60A5FA] hover:text-white focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 cursor-pointer transition-colors"
                       >
                         <div className="flex items-center self-center">
@@ -144,7 +163,7 @@ const SideBar = () => {
                           {option?.title}
                         </div>
                       </div>
-                      {isOpen && (
+                      {subMenuIndex.includes(index) && (
                         <ul className="dropdown-content  bg-slate-800  rounded mt-2 py-1 w-full transition-all duration-1000 ease-in-out border border-white">
                           {option?.subMenuArray?.map((subOption) => {
                             return (
@@ -167,7 +186,7 @@ const SideBar = () => {
                     <li className="px-3">
                       <Link
                         to={`${option?.path}`}
-                        className="flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
+                        className="flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-red-500 aria-[current=page]:bg-emerald-500 aria-[current=page]:text-emerald-500 "
                       >
                         <div className="flex items-center self-center">
                           <GoTag />

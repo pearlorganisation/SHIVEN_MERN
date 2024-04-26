@@ -21,7 +21,7 @@ const DefaultLayout = () => {
         </div>
         <div className="w-[80%]">
           {/* <Header /> */}
-          <div className="min-h-dvh border-2">
+          <div className="">
           <Outlet />
           </div>
           <Footer />

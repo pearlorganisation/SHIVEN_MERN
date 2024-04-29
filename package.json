@@ -11,6 +11,7 @@
   "author": "Pearl Organisation",
   "license": "ISC",
   "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
     "axios": "^1.6.7",
     "concurrently": "^8.2.2",
     "react-hook-form": "^7.51.0",
@@ -18,6 +19,7 @@
     "react-redux": "^9.1.0",
     "react-router-dom": "^6.22.2",
     "recharts": "^2.12.3",
-    "swiper": "^11.0.7"
+    "swiper": "^11.0.7",
+    "yup": "^1.4.0"
   }
 }

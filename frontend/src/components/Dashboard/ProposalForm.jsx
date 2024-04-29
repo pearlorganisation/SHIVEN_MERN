@@ -1,26 +1,76 @@
+// ----------------------------------------------Imports----------------------------------------
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+// ----------------------------------------------------------------------------------------------
 
 const ProposalForm = () => {
+  // --------------------------------------------States-------------------------------------------
   const [showinput, setShowinput] = useState(false);
-  const handelChange = (e) => {
-    setShowinput(e.target.value == "yes");
-  };
 
+
+  // proposalFormSchema -- schema to validate the form input
+  const proposalFormSchema = yup.object().shape({
+    fullName: yup.string().required("Full Name is a required field"),
+    maritalStatus: yup
+      .string()
+      .oneOf(["single", "married"], "Invalid Status Value")
+      .required("Marital Status is a required field"),
+    gender: yup
+      .string()
+      .oneOf(["male", "female", "other"], "Invalid Gender Value")
+      .required("Gender is a required field"),
+    panCardNumber: yup.string().required("PAN Card Number is a required field"),
+    dob: yup
+      .date()
+      .max(new Date(), "Date of Birth can't be in future")
+      .required("PAN Card Number is a required field"),
+    flatNumber: yup.string().required("Flat Number is a required field"),
+    colony: yup.string().required("Colony is a required field"),
+    landmark: yup.string().required("Landmark is a required field"),
+    city: yup.string().required("City is a required field"),
+    pincode: yup.number().required("Pincode is a required field"),
+    state: yup.string().required("State is a required field"),
+  });
+
+  
+
+  // ----------------------------------------------------------------------------------------------
+  // --------------------------------------------Hooks-------------------------------------------
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm()
+  } = useForm({ resolver: yupResolver(proposalFormSchema) });
 
-  const onSubmit = (data) => console.log(data)
+  const params = useParams("");
 
-  console.log(watch("example")) 
+  // ----------------------------------------------------------------------------------------------
+  // ------------------------------------------Functions-------------------------------------------
+  const handelChange = (e) => {
+    setShowinput(e.target.value == "yes");
+  };
+
+  const proposalFormHandler = () => {};
+  // ----------------------------------------------------------------------------------------------
+  // ------------------------------------------useEffect-------------------------------------------
+  // ----------------------------------------------------------------------------------------------
+
   return (
     <>
       <div className="container mx-auto p-5 ">
-        <form class="md:max-w-2xl mx-auto">
+        <h1 className="text-center text-2xl mb-2">{`Proposal Form - ${params?.plan
+          ?.toString()
+          .toUpperCase()
+          .split("-")
+          .join(" ")}`}</h1>
+        <form
+          class="md:max-w-2xl mx-auto"
+          onSubmit={handleSubmit(proposalFormHandler)}
+        >
           <div className="p-5 px-0">
             <h1>Proposal Details</h1>
           </div>
@@ -32,11 +82,12 @@ const ProposalForm = () => {
                 name="floating_first_name"
                 id="floating_first_name"
                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                required
-               
+                {...register("fullName")}
               />
-              
+              {errors?.fullName && (
+                <p className="text-red-700">{errors?.fullName?.message}</p>
+              )}
+
               <label
                 for="floating_first_name"
                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
@@ -49,13 +100,19 @@ const ProposalForm = () => {
               <select
                 id="gender"
                 class="bg-gray-50  rounded border border-gray-300  text-gray-900 text-sm rounded-l block w-full p-2.5"
+                {...register("maritalStatus")}
               >
-                <option selected>Marital Status</option>
+                <option selected value="">
+                  Marital Status
+                </option>
                 <option value="single">Single </option>
                 <option value="married">Married</option>
                 <option value="widowed">Widowed</option>
                 <option value="divorced">Divorced</option>
               </select>
+              {errors?.maritalStatus && (
+                <p className="text-red-700">{errors?.maritalStatus?.message}</p>
+              )}
             </div>
           </div>
 
@@ -64,12 +121,18 @@ const ProposalForm = () => {
               <select
                 id="gender"
                 class="bg-gray-50  rounded border border-gray-300  text-gray-900 text-sm rounded-l block w-full p-2.5"
+                {...register("gender")}
               >
-                <option selected>Select Gender</option>
-                <option value="US">Male</option>
-                <option value="CA">Female</option>
-                <option value="FR">Other</option>
+                <option selected value="">
+                  Select Gender
+                </option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
               </select>
+              {errors?.gender && (
+                <p className="text-red-700">{errors?.gender?.message}</p>
+              )}
             </div>
 
             <div class="relative z-0 w-full mb-5 group">
@@ -78,9 +141,11 @@ const ProposalForm = () => {
                 name="floating_company"
                 id="floating_company"
                 class="block uppercase py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                required
+                {...register("panCardNumber")}
               />
+              {errors?.panCardNumber && (
+                <p className="text-red-700">{errors?.panCardNumber?.message}</p>
+              )}
               <label
                 for="floating_company"
                 class=" peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
@@ -102,9 +167,11 @@ const ProposalForm = () => {
                 name="floating_phone"
                 id="floating_phone"
                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                required
+                {...register("dob")}
               />
+              {errors?.dob && (
+                <p className="text-red-700">{errors?.dob?.message}</p>
+              )}
               <label
                 for="floating_phone"
                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
@@ -119,10 +186,10 @@ const ProposalForm = () => {
                 name="floating_company"
                 id="floating_company"
                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder="             in feet"
-                required
-                min="4"
               />
+              {errors?.dob && (
+                <p className="text-red-700">{errors?.dob?.message}</p>
+              )}
               <label
                 for="floating_company"
                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
@@ -139,8 +206,6 @@ const ProposalForm = () => {
                 name="floating_company"
                 id="floating_company"
                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder="              in kg"
-                required
               />
               <label
                 for="floating_company"
@@ -162,10 +227,11 @@ const ProposalForm = () => {
                 name="floating_company"
                 id="floating_company"
                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=""
-                required
-                min="4"
+                {...register("flatNumber")}
               />
+              {errors?.flatNumber && (
+                <p className="text-red-700">{errors?.flatNumber?.message}</p>
+              )}
               <label
                 for="floating_company"
                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
@@ -179,10 +245,11 @@ const ProposalForm = () => {
                 name="floating_company"
                 id="floating_company"
                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=""
-                required
-                min="4"
+                {...register("colony")}
               />
+              {errors?.colony && (
+                <p className="text-red-700">{errors?.colony?.message}</p>
+              )}
               <label
                 for="floating_company"
                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
@@ -199,9 +266,11 @@ const ProposalForm = () => {
                 name="floating_company"
                 id="floating_company"
                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=""
-                required
+                {...register("landmark")}
               />
+              {errors?.landmark && (
+                <p className="text-red-700">{errors?.landmark?.message}</p>
+              )}
               <label
                 for="floating_company"
                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
@@ -215,9 +284,11 @@ const ProposalForm = () => {
                 name="floating_company"
                 id="floating_company"
                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=""
-                required
+                {...register("city")}
               />
+              {errors?.city && (
+                <p className="text-red-700">{errors?.city?.message}</p>
+              )}
               <label
                 for="floating_company"
                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
@@ -234,9 +305,11 @@ const ProposalForm = () => {
                 name="floating_company"
                 id="floating_company"
                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=""
-                required
+                {...register("pincode")}
               />
+              {errors?.pincode && (
+                <p className="text-red-700">{errors?.pincode?.message}</p>
+              )}
               <label
                 for="floating_company"
                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
@@ -250,9 +323,11 @@ const ProposalForm = () => {
                 name="floating_company"
                 id="floating_company"
                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=""
-                required
+                {...register("state")}
               />
+              {errors?.state && (
+                <p className="text-red-700">{errors?.state?.message}</p>
+              )}
               <label
                 for="floating_company"
                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
@@ -338,9 +413,6 @@ const ProposalForm = () => {
                 name="floating_company"
                 id="floating_company"
                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=""
-                required
-                min="4"
               />
               <label
                 for="floating_company"
@@ -355,8 +427,6 @@ const ProposalForm = () => {
                 name="floating_company"
                 id="floating_company"
                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=""
-                required
                 min="4"
               />
               <label
@@ -369,15 +439,12 @@ const ProposalForm = () => {
           </div>
 
           <div class="grid md:grid-cols-2 md:gap-6">
-            
             <div class="relative z-0 w-full mb-5 group">
               <input
                 type="text"
                 name="floating_company"
                 id="floating_company"
                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=""
-                required
                 min="4"
               />
               <label
@@ -393,8 +460,6 @@ const ProposalForm = () => {
                 name="floating_company"
                 id="floating_company"
                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=""
-                required
                 min="4"
               />
               <label
@@ -411,15 +476,13 @@ const ProposalForm = () => {
                 name="floating_company"
                 id="floating_company"
                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=""
-                required
                 min="4"
               />
               <label
                 for="floating_company"
                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
-                Occupation 
+                Occupation
               </label>
             </div>
             <div class="relative z-0 w-full mb-5 group">
@@ -428,8 +491,6 @@ const ProposalForm = () => {
                 name="floating_company"
                 id="floating_company"
                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=""
-                required
                 min="4"
               />
               <label
@@ -452,8 +513,6 @@ const ProposalForm = () => {
                 name="floating_company"
                 id="floating_company"
                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=""
-                required
                 min="4"
               />
               <label
@@ -469,8 +528,6 @@ const ProposalForm = () => {
                 name="floating_company"
                 id="floating_company"
                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=""
-                required
                 min="4"
               />
               <label
@@ -489,8 +546,6 @@ const ProposalForm = () => {
                 name="floating_company"
                 id="floating_company"
                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=""
-                required
               />
               <label
                 for="floating_company"
@@ -499,12 +554,7 @@ const ProposalForm = () => {
                 RelationShip to proposer
               </label>
             </div>
-           
           </div>
-
-
-
-
 
           <button
             type="submit"

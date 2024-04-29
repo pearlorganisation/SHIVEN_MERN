@@ -56,7 +56,7 @@ function App() {
           <Route path="/lifeinsurance" element={<Life_insurance />} />
           <Route path="/healthinsurance" element={<Healthinsurance />} />
           <Route
-            path="/single_healthinsurance" 
+            path="/single_healthinsurance"
             element={<Single_HealthPage />}
           />
           <Route path="/sidebar" element={<SideBar />} />
@@ -65,13 +65,13 @@ function App() {
           <Route path="/invoice" element={<Invoice />} />
           <Route path="/notification" element={<Notifications />} />
           <Route path="/plan" element={<Plans />} />
-          <Route path="/file&folder" element={<FileFolder/>} />
-          <Route path="/consultdashboard" element={<ConsultantDashboard/>} />
-          <Route path="/desiredplan" element={<DesiredPlan/>} />
-          <Route path="/schedulemeeting" element={<ScheduleMeeting/>} />
-          <Route path="/accounting" element={<Accounting/>} />
-          <Route path="/fillform" element={<FillForm/>} />
-          <Route path="/proposalForm" element={<ProposalForm/>} />
+          <Route path="/file&folder" element={<FileFolder />} />
+          <Route path="/consultdashboard" element={<ConsultantDashboard />} />
+          <Route path="/desiredplan" element={<DesiredPlan />} />
+          <Route path="/schedulemeeting" element={<ScheduleMeeting />} />
+          <Route path="/accounting" element={<Accounting />} />
+          <Route path="/fillform" element={<FillForm />} />
+          <Route path="/proposalForm" element={<ProposalForm />} />
 
           {/* Protected Routes */}
           {routes.map((route) => {

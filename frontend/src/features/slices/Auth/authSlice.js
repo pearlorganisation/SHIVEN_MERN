@@ -6,7 +6,7 @@ import { toast } from "sonner";
 
 const initialState = {
   isLoginLoading: false,
-  isUserLoggedIn: true,
+  isUserLoggedIn: false,
   loggedInUserData: {},
   errorMessage: "",
   isLoginOtpSent: false,

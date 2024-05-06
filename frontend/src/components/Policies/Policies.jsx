@@ -4,44 +4,39 @@ import { RiUmbrellaFill } from "react-icons/ri";
 import { IoMdCar } from "react-icons/io";
 import { FiArrowUpCircle } from "react-icons/fi";
 import { FaHandshake, FaShieldAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Policies = () => {
   const faqsList = [
     {
-      q: "Life Insurance",
-      icon: <FaShieldAlt size={40} className="text-red-400 px-2" />,
-      a: "That's exactly the reason we created this random question generator. There are hundreds of random questions to choose from so you're able to find the perfect random question.",
-      href: "/lifeinsurance",
-    },
-    {
       q: "Health Insurance",
       icon: <AiOutlineMedicineBox size={40} className="text-blue-500 px-2" />,
-      a: "That's exactly the reason we created this random question generator. There are hundreds of random questions to choose from so you're able to find the perfect random question.",
-      href: "javascript:void(0)",
+      desc: "That's exactly the reason we created this random question generator. There are hundreds of random questions to choose from so you're able to find the perfect random question.",
+      path: `/health-insurance`,
     },
     {
       q: "General Insurance",
       icon: <RiUmbrellaFill size={40} className="text-pink-400 px-2" />,
-      a: "This generator doesn't include most common questions. The thought is that you can come up with common questions on your own so most of the questions in this generator.",
-      href: "javascript:void(0)",
+      desc: "This generator doesn't include most common questions. The thought is that you can come up with common questions on your own so most of the questions in this generator.",
+      path: "javascript:void(0)",
     },
     {
       q: "Motor Insurance",
       icon: <IoMdCar size={40} className="text-[#cfac72] px-2" />,
-      a: "Yes! there are two ways that you can use this question generator depending on what you're after. You can indicate that you want 21 questions generated.",
-      href: "javascript:void(0)",
+      desc: "Yes! there are two ways that you can use this question generator depending on what you're after. You can indicate that you want 21 questions generated.",
+      path: "javascript:void(0)",
     },
     {
       q: "Mutual Funds",
       icon: <FiArrowUpCircle size={40} className="text-green-400 px-2" />,
-      a: "The questions in this generator are gender neutral and can be used to ask either male of females (or any other gender the person identifies with).",
-      href: "javascript:void(0)",
+      desc: "The questions in this generator are gender neutral and can be used to ask either male of females (or any other gender the person identifies with).",
+      path: "javascript:void(0)",
     },
     {
       q: "Loans",
       icon: <FaHandshake size={40} className="text-[#81e6d6] px-2" />,
-      a: "If you've been searching for a way to get random questions, you've landed on the correct webpage. We created the Random Question Generator to ask you as many random questions as your heart desires.",
-      href: "javascript:void(0)",
+      desc: "If you've been searching for a way to get random questions, you've landed on the correct webpage. We created the Random Question Generator to ask you as many random questions as your heart desires.",
+      path: "javascript:void(0)",
     },
   ];
   return (
@@ -74,12 +69,9 @@ const Policies = () => {
                   </div>
                 </summary>
 
-                <p
-                  dangerouslySetInnerHTML={{ __html: item.a }}
-                  className="text-gray-600 leading-relaxed"
-                ></p>
-                <a
-                  href={item.href}
+                <p className="text-gray-600 leading-relaxed">{item?.desc}</p>
+                <Link
+                  to={item?.path}
                   className="flex items-center gap-x-1 text-sm text-indigo-600 hover:text-indigo-400 duration-150 font-medium"
                 >
                   Read more
@@ -95,7 +87,7 @@ const Policies = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

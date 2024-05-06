@@ -1,12 +1,48 @@
+// ------------------------------------------Imports-----------------------------------------------------
 import React from "react";
 import Whychoosshiven from "../commonininsurance/Whychoosshiven";
+import { FaHeart, FaTachometerAlt } from "react-icons/fa";
+// -----------------------------------------------------------------------------------------------------
 
 const Healthinsurance = () => {
+  // ------------------------------------------States-----------------------------------------------------
+  const insuranceTypeArray = [
+    {
+      title: "Health AdvantEdge",
+      icon: () => {
+        return <FaHeart size={50} className="text-red-500"/>;
+      },
+    },
+    {
+      title: "Max Protect",
+      icon: () => {
+        return <FaTachometerAlt size={50} className="text-orange-500"/>;
+      },
+    },
+    {
+      title: "Health AdvantEdge",
+      icon: () => {
+        return <FaHeart size={50} />;
+      },
+    },
+    {
+      title: "Health AdvantEdge",
+      icon: () => {
+        return <FaHeart size={50} />;
+      },
+    },
+  ];
+  // -----------------------------------------------------------------------------------------------------
+  // ------------------------------------------Hooks-----------------------------------------------------
+  // -----------------------------------------------------------------------------------------------------
+  // ----------------------------------------Functions-----------------------------------------------------
+  // -----------------------------------------------------------------------------------------------------
+
   return (
     <>
       <div className="container mx-auto">
         <div>
-          <h1 className=" font-semibold text text-2xl py-5">
+          <h1 className=" font-semibold text text-2xl py-2">
             Health Insurance
           </h1>
           <p>
@@ -23,6 +59,61 @@ const Healthinsurance = () => {
             receive tax benefits under section 80D of the Income Tax Act, 1961.
           </p>
         </div>
+        <section className="healthInsuranceCards mt-10">
+          <div class="flex justify-center px-10 pb-5">
+            <div>
+              <div class="group relative -ml-4 flex scroll-mt-40 items-center pl-4">
+                <a
+                  href="#"
+                  class="absolute z-50 -ml-10 mb-2.5 rounded-md border border-blue-gray-50 bg-blue-gray-50/50 p-1 opacity-0 hover:opacity-100 group-hover:opacity-100"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2.5"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                    class="pointer-events-none h-3.5 w-3.5 rounded-lg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5l-3.9 19.5m-2.1-19.5l-3.9 19.5"
+                    ></path>
+                  </svg>
+                </a>
+                <h2 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug !mb-2 text-primary">
+                  Choose the type of insurance
+                </h2>
+              </div>
+              <p class="block antialiased font-sans text-base font-light leading-relaxed text-inherit !mb-4  !text-gray-600">
+                Framework-specific guides that cover our recommended approach to
+                installing @material-tailwind/react in a number of popular
+                environments. Select your preferred framework from the list
+                below and follow the instructions.
+              </p>
+              <div
+                class="mt-8 grid grid-cols-2 gap-6 md:grid-cols-4"
+                id="frameworks-integration"
+              >
+                {insuranceTypeArray.map((type) => {
+                  return (
+                    <a
+                      class="grid w-full min-w-[7rem] transform cursor-pointer place-items-center rounded-xl border border-blue-gray-50 bg-white px-3 py-2 transition-all hover:scale-105 hover:border-blue-gray-100 hover:bg-blue-gray-50 hover:bg-opacity-25"
+                      href="#"
+                    >
+                      <span class="my-6 grid h-24 w-24 place-items-center justify-center">
+                        {type?.icon()}
+                        <h3 className="text-center">{type?.title}</h3>
+                      </span>
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </section>
 
         <section>
           <div>
@@ -417,7 +508,7 @@ const Healthinsurance = () => {
                   type="button"
                   className="bg-red-500 p-3 rounded-md text-white"
                 >
-                  Check Premium   
+                  Check Premium
                 </button>
               </div>
 
@@ -434,7 +525,7 @@ const Healthinsurance = () => {
                     }}
                     width="40"
                   />
-                  <div> 
+                  <div>
                     <h3 className="text-lg font-semibold">Health Gain Plus</h3>
                     <p className="text-sm text-gray-600">
                       No room rent limit | 33% no claim bonus | 100% restoration

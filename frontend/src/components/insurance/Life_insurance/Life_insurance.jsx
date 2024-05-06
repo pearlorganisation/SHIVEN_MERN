@@ -24,7 +24,7 @@ import ViewPlan from "./ViewPlan";
 const Life_insurance = () => {
   return (
     <>
-      <div className="container md:w-[1400px] mx-auto p-10 md:p-20 ">
+      <div className="container  mx-auto p-10 md:p-20 max-w-[80%] ">
         <div>
           <h1 className="text-xl md:text-2xl font-medium">Life Insurance</h1>
         </div>
@@ -57,6 +57,7 @@ const Life_insurance = () => {
 
         <div>
           <p className="py-2">
+
             There are various types of life insurance plans namely term plans,
             child plans, retirment plans, money-back plans, and Unit-Linked
             Insurance Plans (ULIPs). Besides the term plans which are pure
@@ -66,12 +67,13 @@ const Life_insurance = () => {
             plans depends on a number of factors such as policyholder’s age,
             lifestyle, gender, and more. You must also check the inclusions and
             exclusions before actually buying this policy.
+
           </p>
         </div>
 
         <div>
           <h2 className="text-lg  font-medium">
-            Different Types of Life Insurance
+            Different Types of Life Insurance 
           </h2>
         </div>
 
@@ -80,7 +82,7 @@ const Life_insurance = () => {
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
                 <th scope="col" class="px-6 py-3">
-                  Types
+                  Types 
                 </th>
                 <th scope="col" class="px-6 py-3">
                   Overview

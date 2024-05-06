@@ -1,6 +1,10 @@
+// -------------------------------------------Imports------------------------------------------------
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/ShivenLogo.png";
+import { useDispatch, useSelector } from "react-redux";
+import { clearReduxStoreData } from "../../features/slices/Auth/authSlice";
+//---------------------------------------------------------------------------------------------------
 
 const policiesNavs = [
   {
@@ -104,6 +108,14 @@ const featureForCustomer = [
 ];
 
 const Header = () => {
+  // -------------------------------------------States------------------------------------------------
+  //  -------------------------------------------------------------------------------------------------
+  // -------------------------------------------Hooks------------------------------------------------
+  const { isUserLoggedIn } = useSelector((state) => state?.auth);
+  const dispatch = useDispatch();
+  //  -------------------------------------------------------------------------------------------------
+  // -------------------------------------------Functions------------------------------------------------
+  //  -------------------------------------------------------------------------------------------------
   const [state, setState] = useState(false);
   const [drapdownState, setDrapdownState] = useState({
     isActive: false,
@@ -154,8 +166,8 @@ const Header = () => {
   return (
     <>
       <nav
-        className={`relative z-20 bg-white shadow-lg w-full md:static md:text-sm md:border-none ${
-          state ? "shadow-lg rounded-b-xl md:shadow-none" : ""
+        className={`relative z-20 bg-white w-[100%] md:static md:text-sm md:border border-b-gray-300 border-l-neutral-50 ${
+          state ? " rounded-b-xl md:shadow-none" : ""
         }`}
       >
         <div className="items-center gap-x-14 px-4 max-w-screen-xl mx-auto md:flex md:px-8">
@@ -212,7 +224,7 @@ const Header = () => {
               {navigation.map((item, idx) => {
                 return (
                   <Link className="relative" to={item?.path} key={idx}>
-                    {item.isDrapdown ? (
+                    {item.isDrapdown ? ( 
                       <button
                         className="w-full flex items-center bg-white justify-between gap-1 text-gray-700 hover:text-indigo-600"
                         onClick={() =>
@@ -222,7 +234,7 @@ const Header = () => {
                           })
                         }
                       >
-                        {item.title}
+                        {item.title} 
                         {drapdownState.idx == idx && drapdownState.isActive ? (
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -284,21 +296,24 @@ const Header = () => {
               })}
               <div className="flex-1 items-center justify-end gap-x-6 space-y-3 md:flex md:space-y-0">
                 <li>
-                  <Link
-                    to="/login"
-                    href="javascript:void(0)"
-                    className="block py-3 text-center text-gray-700 hover:text-indigo-600 border rounded-lg md:border-none"
-                  >
-                    Log in
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/signUp"
-                    className="block py-3 px-4 font-medium text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow md:inline"
-                  >
-                    Sign in
-                  </Link>
+                  {isUserLoggedIn ? (
+                    <button
+                      onClick={() => {
+                        dispatch(clearReduxStoreData());
+                      }}
+                      className="block py-3 text-center text-white p-4 hover:text-indigo-600 border rounded-lg bg-indigo-700 font-bold text-lg"
+                    >
+                      Logout
+                    </button>
+                  ) : (
+                    <Link
+                      to="/login"
+                      href="javascript:void(0)"
+                      className="block py-3 text-center text-gray-700 hover:text-indigo-600 border rounded-lg md:border-none"
+                    >
+                      Log in
+                    </Link>
+                  )}
                 </li>
               </div>
             </ul>

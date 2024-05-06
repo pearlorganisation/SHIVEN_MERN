@@ -1,15 +1,15 @@
 import React from "react";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
 const ViewPlan = () => {
-    const {
-        register,
-        handleSubmit,
-        watch,
-        formState: { errors },
-      } = useForm()
-    
-      const onSubmit = (data) => console.log(data)
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => console.log(data);
   return (
     <>
       <style jsx>{`
@@ -19,7 +19,7 @@ const ViewPlan = () => {
         }
       `}</style>
       <div className="container  bg-[#F3F4F6] ">
-        <div className=" ">
+        <div className="">
           <div className="text text-center font-medium text-lg md:text-xl py-5 pb-0">
             <h1>Check Life Insurance Plan</h1>
           </div>
@@ -41,7 +41,9 @@ const ViewPlan = () => {
                     placeholder="Full Name"
                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                   />
-                   {errors.fullname && <span className="text-red-500">This field is required</span>}
+                  {errors.fullname && (
+                    <span className="text-red-500">This field is required</span>
+                  )}
                 </div>
                 <div class="mb-5">
                   <label
@@ -51,14 +53,16 @@ const ViewPlan = () => {
                     Phone Number
                   </label>
                   <input
-                   {...register("number", { required: true })}
+                    {...register("number", { required: true })}
                     type="text"
                     name="phone"
                     id="phone"
                     placeholder="Enter your phone number"
                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                   />
-                   {errors.number && <span className="text-red-500">This field is required</span>}
+                  {errors.number && (
+                    <span className="text-red-500">This field is required</span>
+                  )}
                 </div>
                 <div class="mb-5">
                   <label
@@ -68,14 +72,17 @@ const ViewPlan = () => {
                     Email Address
                   </label>
                   <input
-                   {...register("email", { required: true })}
+                    {...register("email", { required: true })}
                     type="email"
                     name="email"
                     id="email"
                     placeholder="Enter your email"
                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                   />
-                  {errors.email && <span className="text-red-500">This field is required</span>}
+
+                  {errors.email && (
+                    <span className="text-red-500">This field is required</span>
+                  )}
                 </div>
                 <div class="-mx-3 flex flex-wrap">
                   <div class="w-full px-3 ">
@@ -87,13 +94,17 @@ const ViewPlan = () => {
                         Date of birth
                       </label>
                       <input
-                       {...register("dob", { required: true })}
+                        {...register("dob", { required: true })}
                         type="date"
                         name="date"
                         id="date"
                         class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                       />
-                               {errors.dob && <span className="text-red-500">This field is required</span>}
+                      {errors.dob && (
+                        <span className="text-red-500">
+                          This field is required
+                        </span>
+                      )}
                     </div>
                   </div>
                   {/* <div class="w-full px-3 sm:w-1/2">

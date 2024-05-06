@@ -281,6 +281,7 @@ const Blog = () => {
             </div>
 
             <div className="bg-white shadow overflow-hidden sm:rounded-lg">
+              
               <img
                 src="https://static.toiimg.com/photo/84517409.cms"
                 alt="Blog image"
@@ -289,6 +290,7 @@ const Blog = () => {
                 height="200"
                 style={{ aspectRatio: "300 / 200", objectFit: "cover" }}
               />
+
               <div className="px-4 py-5 sm:px-6">
                 <h3 className="text-lg leading-6 font-medium text-gray-900">
                   Dream destinations to visit this year in Paris

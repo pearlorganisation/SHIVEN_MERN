@@ -31,6 +31,10 @@ import ScheduleMeeting from "./components/Dashboard/ScheduleMeeting";
 import Accounting from "./components/Dashboard/Accounting";
 import FillForm from "./components/Dashboard/FillForm";
 import ProposalForm from "./components/Dashboard/ProposalForm";
+import Healthquote from "./components/insurance_quotation/Healthquote";
+import Motorqoute from "./components/insurance_quotation/Motorqoute";
+
+
 
 // -------------------------------------------------------------------------------------------------------------
 
@@ -72,6 +76,9 @@ function App() {
           <Route path="/accounting" element={<Accounting />} />
           <Route path="/fillform" element={<FillForm />} />
           <Route path="/proposalForm" element={<ProposalForm />} />
+          <Route path="/healthqoute" element={<Healthquote/>} />
+          <Route path="/moterqoute" element={<Motorqoute/>} />
+          
 
           {/* Protected Routes */}
           {routes.map((route) => {

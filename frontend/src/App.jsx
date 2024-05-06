@@ -58,7 +58,7 @@ function App() {
           <Route path="/verification" element={<Verification />} />
           <Route path="/newpassword" element={<NewPassword />} />
           <Route path="/lifeinsurance" element={<Life_insurance />} />
-          <Route path="/healthinsurance" element={<Healthinsurance />} />
+          <Route path="/health-insurance" element={<Healthinsurance />} />
           <Route
             path="/single_healthinsurance"
             element={<Single_HealthPage />}

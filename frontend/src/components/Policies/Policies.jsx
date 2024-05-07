@@ -15,10 +15,10 @@ const Policies = () => {
       path: `/health-insurance`,
     },
     {
-      q: "General Insurance",
+      q: "Motor Insurance",
       icon: <RiUmbrellaFill size={40} className="text-pink-400 px-2" />,
       desc: "This generator doesn't include most common questions. The thought is that you can come up with common questions on your own so most of the questions in this generator.",
-      path: "javascript:void(0)",
+      path: "/motor-insurance",
     },
     {
       q: "Motor Insurance",
@@ -38,7 +38,7 @@ const Policies = () => {
       desc: "If you've been searching for a way to get random questions, you've landed on the correct webpage. We created the Random Question Generator to ask you as many random questions as your heart desires.",
       path: "javascript:void(0)",
     },
-  ]; 
+  ];
   return (
     <section className="py-14">
       <div className="max-w-screen-3xl mx-auto px-4 md:px-8">
@@ -93,7 +93,6 @@ const Policies = () => {
             ))}
           </ul>
         </div>
-
       </div>
     </section>
   );

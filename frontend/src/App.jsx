@@ -33,8 +33,7 @@ import FillForm from "./components/Dashboard/FillForm";
 import ProposalForm from "./components/Dashboard/ProposalForm";
 import Healthquote from "./components/insurance_quotation/Healthquote";
 import Motorqoute from "./components/insurance_quotation/Motorqoute";
-
-
+import MotorInsurance from "./components/insurance/MotorInsurance/MotorInsurance";
 
 // -------------------------------------------------------------------------------------------------------------
 
@@ -57,7 +56,7 @@ function App() {
           <Route path="/getotp" element={<GetOtp />} />
           <Route path="/verification" element={<Verification />} />
           <Route path="/newpassword" element={<NewPassword />} />
-          <Route path="/lifeinsurance" element={<Life_insurance />} />
+          <Route path="/motor-insurance" element={<MotorInsurance />} />
           <Route path="/health-insurance" element={<Healthinsurance />} />
           <Route
             path="/single_healthinsurance"
@@ -76,9 +75,8 @@ function App() {
           <Route path="/accounting" element={<Accounting />} />
           <Route path="/fillform" element={<FillForm />} />
           <Route path="/proposalForm" element={<ProposalForm />} />
-          <Route path="/healthqoute" element={<Healthquote/>} />
-          <Route path="/moterqoute" element={<Motorqoute/>} />
-          
+          <Route path="/health-insurance/enquiry" element={<Healthquote />} />
+          <Route path="/moterqoute" element={<Motorqoute />} />
 
           {/* Protected Routes */}
           {routes.map((route) => {

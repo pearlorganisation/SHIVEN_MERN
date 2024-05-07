@@ -15,10 +15,10 @@ const Policies = () => {
       path: `/health-insurance`,
     },
     {
-      q: "General Insurance",
+      q: "Motor Insurance",
       icon: <RiUmbrellaFill size={40} className="text-pink-400 px-2" />,
       desc: "This generator doesn't include most common questions. The thought is that you can come up with common questions on your own so most of the questions in this generator.",
-      path: "javascript:void(0)",
+      path: "/motor-insurance",
     },
     {
       q: "Motor Insurance",
@@ -58,6 +58,7 @@ const Policies = () => {
             .
           </p>
         </div>
+
         <div className="mt-12">
           <ul className="space-y-8 gap-12 grid-cols-2 sm:grid sm:space-y-0 lg:grid-cols-3">
             {faqsList.map((item, idx) => (

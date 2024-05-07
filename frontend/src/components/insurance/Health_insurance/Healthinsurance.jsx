@@ -10,13 +10,13 @@ const Healthinsurance = () => {
     {
       title: "Health AdvantEdge",
       icon: () => {
-        return <FaHeart size={50} className="text-red-500"/>;
+        return <FaHeart size={50} className="text-red-500" />;
       },
     },
     {
       title: "Max Protect",
       icon: () => {
-        return <FaTachometerAlt size={50} className="text-orange-500"/>;
+        return <FaTachometerAlt size={50} className="text-orange-500" />;
       },
     },
     {
@@ -41,11 +41,11 @@ const Healthinsurance = () => {
   return (
     <>
       <div className="container mx-auto">
-        <div>
-          <h1 className=" font-semibold text text-2xl py-2">
+        <div className="px-10 py-10">
+          <h1 className=" font-semibold text text-2xl lg:text-4xl py-2 lg:mb-6">
             Health Insurance
           </h1>
-          <p>
+          <p className="leading-7 text-black roboto-regular">
             Health insurance is an insurance product that covers medical and
             surgical expenses of an insured person. These expenses could be
             related to hospitalisation costs, medicine costs, or doctor
@@ -83,11 +83,11 @@ const Healthinsurance = () => {
                     ></path>
                   </svg>
                 </a>
-                <h2 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug !mb-2 text-primary">
+                <h2 class="font-semibold text text-2xl lg:text-3xl py-2 lg:mb-6">
                   Choose the type of insurance
                 </h2>
               </div>
-              <p class="block antialiased font-sans text-base font-light leading-relaxed text-inherit !mb-4  !text-gray-600">
+              <p class="font-base  roboto-regular text-black leading-7">
                 Framework-specific guides that cover our recommended approach to
                 installing @material-tailwind/react in a number of popular
                 environments. Select your preferred framework from the list
@@ -115,9 +115,9 @@ const Healthinsurance = () => {
           </div>
         </section>
 
-        <section>
+        <section className="px-10">
           <div>
-            <h1 className="text text-lg font-medium py-5 p-5">
+            <h1 className="text text-2xl font-medium py-5">
               Key Features of Health Insurance Plans
             </h1>
           </div>

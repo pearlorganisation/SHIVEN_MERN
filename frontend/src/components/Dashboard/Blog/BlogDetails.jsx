@@ -1,7 +1,9 @@
 import React from "react";
 import blogimg from "../../../assets/nextjs.png";
 const BlogDetails = () => {
+
   return (
+    
     <article className=" mt-4 min-h-[20rem] rounded-md duration-300 hover:shadow-sm container mx-auto py-12">
       <div className="grid  gap-3 w-[70%] mx-auto">
         <img loading="lazy" src={blogimg} className="w-full rounded-t-md" />
@@ -30,6 +32,7 @@ const BlogDetails = () => {
               </div>
             </div>
           </div>
+          
           <div className="">
             <p className=" text-2xl mt-1">
               Whiskers and Whimsy: Adventures in Feline Fancy

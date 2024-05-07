@@ -38,7 +38,7 @@ const Policies = () => {
       desc: "If you've been searching for a way to get random questions, you've landed on the correct webpage. We created the Random Question Generator to ask you as many random questions as your heart desires.",
       path: "javascript:void(0)",
     },
-  ];
+  ]; 
   return (
     <section className="py-14">
       <div className="max-w-screen-3xl mx-auto px-4 md:px-8">
@@ -58,6 +58,7 @@ const Policies = () => {
             .
           </p>
         </div>
+
         <div className="mt-12">
           <ul className="space-y-8 gap-12 grid-cols-2 sm:grid sm:space-y-0 lg:grid-cols-3">
             {faqsList.map((item, idx) => (
@@ -92,6 +93,7 @@ const Policies = () => {
             ))}
           </ul>
         </div>
+
       </div>
     </section>
   );

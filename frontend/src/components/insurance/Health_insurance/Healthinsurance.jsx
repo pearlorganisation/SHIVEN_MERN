@@ -2,6 +2,7 @@
 import React from "react";
 import Whychoosshiven from "../commonininsurance/Whychoosshiven";
 import { FaHeart, FaTachometerAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 // -----------------------------------------------------------------------------------------------------
 
 const Healthinsurance = () => {
@@ -10,26 +11,30 @@ const Healthinsurance = () => {
     {
       title: "Health AdvantEdge",
       icon: () => {
-        return <FaHeart size={50} className="text-red-500"/>;
+        return <FaHeart size={50} className="text-red-500" />;
       },
+      path: "/health-insurance/enquiry",
     },
     {
       title: "Max Protect",
       icon: () => {
-        return <FaTachometerAlt size={50} className="text-orange-500"/>;
+        return <FaTachometerAlt size={50} className="text-orange-500" />;
       },
+      path: "/health-insurance/enquiry",
     },
     {
       title: "Health AdvantEdge",
       icon: () => {
         return <FaHeart size={50} />;
       },
+      path: "/health-insurance/enquiry",
     },
     {
       title: "Health AdvantEdge",
       icon: () => {
         return <FaHeart size={50} />;
       },
+      path: "/health-insurance/enquiry",
     },
   ];
   // -----------------------------------------------------------------------------------------------------
@@ -99,15 +104,15 @@ const Healthinsurance = () => {
               >
                 {insuranceTypeArray.map((type) => {
                   return (
-                    <a
+                    <Link
                       class="grid w-full min-w-[7rem] transform cursor-pointer place-items-center rounded-xl border border-blue-gray-50 bg-white px-3 py-2 transition-all hover:scale-105 hover:border-blue-gray-100 hover:bg-blue-gray-50 hover:bg-opacity-25"
-                      href="#"
+                      to={type?.path}
                     >
                       <span class="my-6 grid h-24 w-24 place-items-center justify-center">
                         {type?.icon()}
                         <h3 className="text-center">{type?.title}</h3>
                       </span>
-                    </a>
+                    </Link>
                   );
                 })}
               </div>

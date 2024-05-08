@@ -15,19 +15,19 @@ const Policies = () => {
       path: `/health-insurance`,
     },
     {
-      q: "General Insurance",
+      q: "Motor Insurance",
       icon: <RiUmbrellaFill size={40} className="text-pink-400 px-2" />,
       desc: "This generator doesn't include most common questions. The thought is that you can come up with common questions on your own so most of the questions in this generator.",
-      path: "javascript:void(0)",
+      path: "/motor-insurance",
     },
     {
-      q: "Motor Insurance",
+      q: "Travel Insurance",
       icon: <IoMdCar size={40} className="text-[#cfac72] px-2" />,
       desc: "Yes! there are two ways that you can use this question generator depending on what you're after. You can indicate that you want 21 questions generated.",
       path: "javascript:void(0)",
     },
     {
-      q: "Mutual Funds",
+      q: "Business Insurance",
       icon: <FiArrowUpCircle size={40} className="text-green-400 px-2" />,
       desc: "The questions in this generator are gender neutral and can be used to ask either male of females (or any other gender the person identifies with).",
       path: "javascript:void(0)",
@@ -38,7 +38,7 @@ const Policies = () => {
       desc: "If you've been searching for a way to get random questions, you've landed on the correct webpage. We created the Random Question Generator to ask you as many random questions as your heart desires.",
       path: "javascript:void(0)",
     },
-  ]; 
+  ];
   return (
     <section className="py-14">
       <div className="max-w-screen-3xl mx-auto px-4 md:px-8">
@@ -62,10 +62,13 @@ const Policies = () => {
         <div className="mt-12">
           <ul className="space-y-8 gap-12 grid-cols-2 sm:grid sm:space-y-0 lg:grid-cols-3">
             {faqsList.map((item, idx) => (
-              <li key={idx} className="space-y-3">
-                <summary className="flex items-center justify-between font-semibold text-gray-700">
-                  <div className="flex justify-center items-center">
-                    <div>{item.q}</div>
+              <li
+                key={idx}
+                className="space-y-3 border border-gray-300 p-4 rounded-xl cursor-pointer shadow-md"
+              >
+                <summary className="flex items-center justify-between font-semibold text-gray-700 ">
+                  <div className="flex justify-center items-center ">
+                    <div className="text-xl italic text-yellow-700 font-bold">{item.q}</div>
                     <div>{item.icon}</div>
                   </div>
                 </summary>
@@ -93,7 +96,6 @@ const Policies = () => {
             ))}
           </ul>
         </div>
-
       </div>
     </section>
   );

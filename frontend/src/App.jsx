@@ -76,7 +76,7 @@ function App() {
           <Route path="/fillform" element={<FillForm />} />
           <Route path="/proposalForm" element={<ProposalForm />} />
           <Route path="/health-insurance/enquiry" element={<Healthquote />} />
-          <Route path="/moterqoute" element={<Motorqoute />} />
+          <Route path="/motor-insurance/enquiry" element={<Motorqoute />} />
 
           {/* Protected Routes */}
           {routes.map((route) => {

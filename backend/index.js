@@ -47,10 +47,12 @@ const versionOne = (url) => {
 // Router Imports
 import { userRouter } from "./src/Routes/Auth/User/userRoutes.js";
 import { authRouter } from "./src/Routes/Auth/authRoutes.js";
+import { enquiryRouter } from "./src/Routes/Enquiry/enquiryRoutes.js";
 
 // Route Middlewares
 app.use(versionOne("auth/user"), userRouter);
 app.use(versionOne("auth"), authRouter);
+app.use(versionOne("enquiry"), authRouter);
 
 app.all(["/", "/api", "/api/v1"], (req, res, next) => {
   return res.status(200).json({

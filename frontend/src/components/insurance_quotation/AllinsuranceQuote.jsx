@@ -1,5 +1,5 @@
 // ---------------------------------------------------Imports---------------------------------------------
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaCarAlt } from "react-icons/fa";
 import { FaMotorcycle } from "react-icons/fa6";
 import { FaHandHoldingHeart } from "react-icons/fa";
@@ -8,15 +8,22 @@ import enqImg from "../../assets/Images/enqImg.png";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import NormalButtonLoader from "../../common/Loaders/ButtonLoaders/NormalButtonLoader";
+import { useSelector, useDispatch } from "react-redux";
+import { enquiryMail } from "../../features/actions/Enquiry/enquiryActions";
+import { resetEnquiryState } from "../../features/slices/Enquiry/enquirySlice";
 // --------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------
 
 const AllinsuranceQuote = () => {
   // ---------------------------------------------------States---------------------------------------------
   const [activeTab, setActiveTab] = useState("car");
+  const [selectedField, setSelectedField] = useState("carNumber");
+
   const insurance = [
     {
       name: "car",
+      field: "carNumber",
       icon: <FaCarAlt size={25} className="text-blue-500" />,
       inputs: [
         { title: "Car Number", field: "carNumber" },
@@ -26,6 +33,7 @@ const AllinsuranceQuote = () => {
     },
     {
       name: "bike",
+      field: "bikeNumber",
       icon: <FaMotorcycle size={25} className="text-red-500" />,
       inputs: [
         { title: "Bike Number", field: "bikeNumber" },
@@ -35,6 +43,7 @@ const AllinsuranceQuote = () => {
     },
     {
       name: "health",
+      field: "policyNumber",
       icon: <FaHandHoldingHeart size={25} className="text-green-500" />,
       inputs: [
         { title: "Policy Number", field: "policyNumber" },
@@ -44,6 +53,7 @@ const AllinsuranceQuote = () => {
     },
     {
       name: "travel",
+      field: "ticketNumber",
       icon: <GiCommercialAirplane size={25} className="text-yellow-400" />,
       inputs: [
         { title: "Ticket Number", field: "ticketNumber" },
@@ -65,17 +75,26 @@ const AllinsuranceQuote = () => {
   });
   // --------------------------------------------------------------------------------------------------------
   // ---------------------------------------------------Hooks---------------------------------------------
+  const dispatch = useDispatch();
+
   const {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm({
     resolver: yupResolver(enquiryFormValidationSchema),
   });
+
+  const { isEnquiryLoading, isEnquiryMailSent } = useSelector(
+    (state) => state?.enquiry
+  );
+
   // --------------------------------------------------------------------------------------------------------
   // -------------------------------------------------Functions---------------------------------------------
-  const handleTabChange = (tabName) => {
+  const handleTabChange = (tabName, field) => {
     setActiveTab(tabName);
+    setSelectedField(field);
   };
 
   const renderInputs = (inputs) => {
@@ -85,8 +104,11 @@ const AllinsuranceQuote = () => {
           key={index}
           type="text"
           placeholder={input?.title}
-          className="my-2 px-4 py-2 w-full border rounded-md focus:outline-none focus:border-blue-500"
+          className={` ${
+            isEnquiryLoading ? "opacity-50" : ""
+          } my-2 px-4 py-2 w-full border rounded-md focus:outline-none focus:border-blue-500`}
           {...register(`${input?.field}`)}
+          disabled={isEnquiryLoading ? true : false}
         />
         {errors[`${input.field}`] && (
           <p className="text-red-600">{errors[`${input.field}`].message}</p>
@@ -94,8 +116,28 @@ const AllinsuranceQuote = () => {
       </>
     ));
   };
+
+  const enquireFormSubmitHandler = (data) => {
+    try {
+      const enquiryPayload = {
+        [selectedField]: data?.[`${selectedField}`],
+        email: data?.email,
+        mobileNumber: data?.mobileNumber,
+      };
+      console.log("enquiryPayload", enquiryPayload);
+      dispatch(enquiryMail(enquiryPayload));
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
   // --------------------------------------------------------------------------------------------------------
   // -------------------------------------------------useEffect---------------------------------------------
+  useEffect(() => {
+    if (isEnquiryMailSent) {
+      reset();
+      dispatch(resetEnquiryState(false));
+    }
+  }, [isEnquiryMailSent]);
   // --------------------------------------------------------------------------------------------------------
 
   return (
@@ -107,7 +149,7 @@ const AllinsuranceQuote = () => {
           {insurance.map((el, i) => (
             <div
               key={i}
-              onClick={() => handleTabChange(el.name)}
+              onClick={() => handleTabChange(el.name, el.field)}
               className={`flex flex-col items-center justify-center cursor-pointer p-4 border rounded-md ${
                 activeTab === el.name ? "bg-blue-100" : ""
               } 
@@ -120,17 +162,23 @@ const AllinsuranceQuote = () => {
         </div>
 
         <div className="mt-4">
-          <form onSubmit={handleSubmit(() => {})}>
+          <form onSubmit={handleSubmit(enquireFormSubmitHandler)}>
             {renderInputs(
               insurance.find((ins) => ins.name === activeTab)?.inputs
             )}
             <div className="text-center">
-              <button
-                type="submit"
-                className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
-              >
-                Enquire
-              </button>
+              {isEnquiryLoading ? (
+                <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 relative h-[40px]">
+                  <NormalButtonLoader />
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+                >
+                  Enquire
+                </button>
+              )}
             </div>
           </form>
         </div>

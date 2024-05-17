@@ -2,7 +2,7 @@
 import nodemailer, { createTransport } from "nodemailer";
 // ------------------------------------------------------------------------------------------------------------
 
-export const sendEnquiryMail = (email) => {
+export const sendEnquiryMail = (email, htmlContent) => {
   const transporter = createTransport({
     host: "smtp.gmail.com",
     port: 465,
@@ -17,7 +17,7 @@ export const sendEnquiryMail = (email) => {
     from: process.env.NODEMAILER_MAIL,
     to: email,
     subject: "Consultation Enquiry",
-    html: "Enquiry Content",
+    html: htmlContent,
   };
 
   return new Promise((resolve, reject) => {

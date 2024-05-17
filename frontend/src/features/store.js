@@ -7,6 +7,7 @@ import { persistReducer } from "redux-persist";
 import { authReducer } from "./slices/Auth/authSlice";
 import { toast } from "sonner";
 import { userReducer } from "./slices/Auth/userSlice";
+import { enquiryReducer } from "./slices/Enquiry/enquirySlice";
 
 // ------------------------------------------------------------------------------------------------------------
 
@@ -29,6 +30,7 @@ const persistConfig = {
 const reducers = combineReducers({
   auth: authReducer,
   user: userReducer,
+  enquiry: enquiryReducer,
 });
 
 const rootReducer = (state, action) => {

@@ -35,6 +35,7 @@ import Healthquote from "./components/insurance_quotation/Healthquote";
 import Motorqoute from "./components/insurance_quotation/Motorqoute";
 import MotorInsurance from "./components/insurance/MotorInsurance/MotorInsurance";
 import AllinsuranceQuote from "./components/insurance_quotation/AllinsuranceQuote";
+import Compnay from "./components/Company/Compnay";
 
 // -------------------------------------------------------------------------------------------------------------
 
@@ -79,6 +80,7 @@ function App() {
           <Route path="/health-insurance/enquiry" element={<Healthquote />} />
           <Route path="/motor-insurance/enquiry" element={<Motorqoute />} />
           <Route path="allinsuranceQuote" element={<AllinsuranceQuote />} />
+          <Route path="company" element={<Compnay />} />
 
           {/* Protected Routes */}
           {routes.map((route) => {

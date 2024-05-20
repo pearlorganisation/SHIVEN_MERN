@@ -65,6 +65,7 @@ const AllinsuranceQuote = () => {
   });
   // --------------------------------------------------------------------------------------------------------
   // ---------------------------------------------------Hooks---------------------------------------------
+
   const {
     register,
     formState: { errors },
@@ -72,8 +73,10 @@ const AllinsuranceQuote = () => {
   } = useForm({
     resolver: yupResolver(enquiryFormValidationSchema),
   });
+
   // --------------------------------------------------------------------------------------------------------
   // -------------------------------------------------Functions---------------------------------------------
+
   const handleTabChange = (tabName) => {
     setActiveTab(tabName);
   };
@@ -102,6 +105,7 @@ const AllinsuranceQuote = () => {
     <div className="relative grid place-items-center p-10 w-[100vw]">
       <img src={enqImg} className="w-full absolute -z-10 top-0 left-0 h-full" />
       <h1 className="font-bold p-2 italic text-3xl">Enquire</h1>
+
       <div className="container mx-auto border w-[40%] min-w-[350px] p-4 bg-white rounded">
         <div className="grid grid-cols-4 gap-4">
           {insurance.map((el, i) => (

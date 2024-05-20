@@ -83,6 +83,7 @@ function App() {
           <Route path="company" element={<Compnay />} />
 
           {/* Protected Routes */}
+
           {routes.map((route) => {
             const { component: Component, path } = route;
             return (

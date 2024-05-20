@@ -125,3 +125,26 @@ export const verifyLoginOtp = asyncErrorHandler(async (req, res, next) => {
     next(error);
   }
 });
+
+// @desc - logout
+//@method- POST
+// @url - auth/logout
+export const logout = asyncErrorHandler(async (req, res, next) => {
+  res.clearCookie("SHIVEN_ACCESS_TOKEN");
+
+  return res.status(200).json({
+    success: true,
+    message: "Logged Out Successfully",
+  });
+});
+
+// @desc - logout
+//@method- POST
+// @url - auth/refreshToken
+export const refreshToken = asyncErrorHandler(async (req, res, next) => {
+  console.log(req?.userId);
+  return res.status(200).json({
+    success: true,
+    message: "Logged Out Successfully",
+  });
+});

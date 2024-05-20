@@ -11,13 +11,10 @@ const Home = () => {
   return (
     <div className="mx-auto min-h-[90vh] grid place-items-center">
       <HeroSection />
-
-        <AllinsuranceQuote />
+      <AllinsuranceQuote />
       <Policies />
       <FeaturesCustomer />
-
       <FinancialConsultant />
-
       <Testimonial />
       <Faqs />
     </div>

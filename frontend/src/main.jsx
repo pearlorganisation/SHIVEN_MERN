@@ -10,7 +10,7 @@ import persistStore from "redux-persist/es/persistStore";
 import { Toaster } from "sonner";
 
 // ------------------------------------------------------------------------------------------------------------
-let persistor = persistStore(store);
+export let persistor = persistStore(store);
 // ------------------------------------------------------------------------------------------------------------
 
 ReactDOM.createRoot(document.getElementById("root")).render(

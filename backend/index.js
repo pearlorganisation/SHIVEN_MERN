@@ -51,11 +51,13 @@ const versionOne = (url) => {
 import { userRouter } from "./src/Routes/Auth/User/userRoutes.js";
 import { authRouter } from "./src/Routes/Auth/authRoutes.js";
 import { enquiryRouter } from "./src/Routes/Enquiry/enquiryRoutes.js";
+import { insuranceRouter } from "./src/Routes/Insurance/insuranceRoutes.js";
 
 // Route Middlewares
-app.use(versionOne("auth/user"), userRouter);
-app.use(versionOne("auth"), authRouter);
-app.use(versionOne("enquiry"), enquiryRouter);
+app.use(versionOne("auth/user"), userRouter); //userRouter
+app.use(versionOne("auth"), authRouter); //authRouter
+app.use(versionOne("enquiry"), enquiryRouter); // enquiryRouter
+app.use(versionOne("insurance"), insuranceRouter); // insuranceRouter
 
 app.all(["/", "/api", "/api/v1"], (req, res, next) => {
   return res.status(200).json({

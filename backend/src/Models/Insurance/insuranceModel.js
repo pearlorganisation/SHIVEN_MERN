@@ -6,6 +6,7 @@ const insuranceSchema = new mongoose.Schema({
   insuranceType: {
     type: String,
     required: [true, "Insurance Type is a required field"],
+    unique: true,
   },
   insuranceDescription: {
     type: String,
@@ -13,7 +14,7 @@ const insuranceSchema = new mongoose.Schema({
   },
   insuranceIcon: {
     type: String,
-    required: [true, "Insurance Icon is a required field"],
+    default: "",
   },
 });
 

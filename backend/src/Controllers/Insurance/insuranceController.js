@@ -30,3 +30,16 @@ export const createInsurance = asyncErrorHandler(async (req, res, next) => {
     message: "Insurance Created Successfully",
   });
 });
+
+// @method - GET
+// @desc - getInsurances - controller to get all the insurances data
+// @url -  /insurance
+export const getInsurances = asyncErrorHandler(async (req, res, next) => {
+  const insurances = await insuranceModel.find();
+
+  return res.status(200).json({
+    success: true,
+    message: "Insurance Data Found Successfully",
+    insurances,
+  });
+});

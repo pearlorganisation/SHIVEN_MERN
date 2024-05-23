@@ -8,6 +8,7 @@ import { authReducer } from "./slices/Auth/authSlice";
 import { toast } from "sonner";
 import { userReducer } from "./slices/Auth/userSlice";
 import { enquiryReducer } from "./slices/Enquiry/enquirySlice";
+import { insuranceReducer } from "./slices/Insurance/insuranceSlice";
 
 // ------------------------------------------------------------------------------------------------------------
 
@@ -31,6 +32,7 @@ const reducers = combineReducers({
   auth: authReducer,
   user: userReducer,
   enquiry: enquiryReducer,
+  insurance: insuranceReducer,
 });
 
 const rootReducer = (state, action) => {
@@ -53,4 +55,3 @@ export const store = configureStore({
       serializableCheck: false,
     }),
 });
-

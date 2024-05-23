@@ -46,6 +46,17 @@ const SideBar = () => {
       ],
     },
     {
+      title: "Insurances",
+      subMenu: true,
+      subMenuArray: [
+        { title: "Insurances", path: "/insurances" },
+        {
+          title: "Create Insurance",
+          path: "/insurances/create-insurance",
+        },
+      ],
+    },
+    {
       title: "Plans",
       subMenu: false,
       path: "/plans",

@@ -2,17 +2,37 @@
 import React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import * as yup from "yup";
 // --------------------------------------------------------------------------------------------------------
 
 const Healthquote = () => {
   // ------------------------------------------------States-------------------------------------------------
+  const enquirySchema = yup.object().shape({
+    name: yup.string().required("Name is a required field"),
+    email: yup
+      .string()
+      .email("Invalid Email")
+      .required("Email is a required field"),
+    pincode: yup.string(),
+    mobileNumber: yup
+      .string()
+      .matches(/^[0-9]{10}$/, "Mobile Number must be of 10 digits")
+      .required("Mobile Number is a required field"),
+  });
   // --------------------------------------------------------------------------------------------------------
   // ------------------------------------------------Hooks-------------------------------------------------
-  const { register, errors } = useForm();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    resolver: yupResolver(enquirySchema),
+  });
+
   // --------------------------------------------------------------------------------------------------------
-  // ----------------------------------------------Functions-------------------------------------------------
-  // --------------------------------------------------------------------------------------------------------
-  // ----------------------------------------------useEffect-------------------------------------------------
+  // ----------------------------------------------  Functions  -------------------------------------------------
+  // ----------------------------------------------  ---------  -----------------------------------------------
+  // ----------------------------------------------  useEffect  -------------------------------------------------
   // --------------------------------------------------------------------------------------------------------
   return (
     <>
@@ -28,7 +48,7 @@ const Healthquote = () => {
             </h3>
           </div>
 
-          <form class="max-w-md mx-auto">
+          <form class="max-w-md mx-auto" onSubmit={handleSubmit(() => {})}>
             <div class="grid md:grid-cols-2 md:gap-6">
               <div class="relative z-0 w-full mb-5 group">
                 <input
@@ -45,6 +65,9 @@ const Healthquote = () => {
                 >
                   Name
                 </label>
+                {errors && (
+                  <p className="text-red-500">{errors?.name?.message}</p>
+                )}
               </div>
               <div class="relative z-0 w-full mb-5 group">
                 <input
@@ -61,6 +84,9 @@ const Healthquote = () => {
                 >
                   Email
                 </label>
+                {errors && (
+                  <p className="text-red-500"> {errors?.email?.message} </p>
+                )}
               </div>
             </div>
             <div class="grid md:grid-cols-2 md:gap-6">
@@ -94,8 +120,13 @@ const Healthquote = () => {
                   for="floating_company"
                   class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
-                  Mobile
+                  Mobile Number
                 </label>
+                {errors && (
+                  <p className="text-red-500">
+                    {errors?.mobileNumber?.message}
+                  </p>
+                )}
               </div>
             </div>
             <div className="flex justify-center">

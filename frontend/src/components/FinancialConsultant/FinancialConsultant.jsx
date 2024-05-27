@@ -70,7 +70,7 @@ const FinancialConsultant = () => {
             <h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
               Features for Finincial Consultant
             </h3>
-            <p className="text-gray-600 mt-3">
+            <p className="text-black mt-3">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry.Lorem Ipsum has been the industry's standard dummy .
             </p>
@@ -91,7 +91,7 @@ const FinancialConsultant = () => {
                       {item.name}
                     </h4>
                     <p className="text-indigo-600">{item.title}</p>
-                    <p className="text-gray-600 mt-2">{item.desc}</p>
+                    <p className="text-black mt-2">{item.desc}</p>
                     <div className="mt-3 flex gap-4 text-gray-400">
                       <a href={item.twitter}>
                         <svg

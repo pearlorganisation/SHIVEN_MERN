@@ -33,24 +33,28 @@ const MotorInsurance = () => {
       icon: () => {
         return <MdSportsMotorsports size={50} />;
       },
+      path: "/motor-insurance/enquiry",
     },
     {
       title: "Bike",
       icon: () => {
         return <FaMotorcycle size={50} />;
       },
+      path: "/motor-insurance/enquiry",
     },
     {
       title: "Car",
       icon: () => {
         return <FaCarAlt size={50} />;
       },
+      path: "/motor-insurance/enquiry",
     },
     {
       title: "Motor Floater",
       icon: () => {
         return <IoBoat size={50} />;
       },
+      path: "/motor-insurance/enquiry",
     },
   ];
   // --------------------------------------------------------------------------------------------------------

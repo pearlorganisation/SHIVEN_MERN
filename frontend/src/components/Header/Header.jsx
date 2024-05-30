@@ -224,9 +224,9 @@ const Header = () => {
               {navigation.map((item, idx) => {
                 return (
                   <Link className="relative" to={item?.path} key={idx}>
-                    {item.isDrapdown ? ( 
+                    {item.isDrapdown ? (
                       <button
-                        className="w-full flex items-center bg-white justify-between gap-1 text-gray-700 hover:text-indigo-600"
+                        className="w-full flex items-center bg-white justify-between gap-1 text-gray-700 font-semibold hover:text-indigo-600"
                         onClick={() =>
                           setDrapdownState({
                             idx,
@@ -234,7 +234,7 @@ const Header = () => {
                           })
                         }
                       >
-                        {item.title} 
+                        {item.title}
                         {drapdownState.idx == idx && drapdownState.isActive ? (
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -266,7 +266,7 @@ const Header = () => {
                     ) : (
                       <a
                         href={item.path}
-                        className="block text-gray-700 hover:text-indigo-600"
+                        className="block text-gray-700 font-semibold hover:text-indigo-600"
                       >
                         {item.title}
                       </a>
@@ -309,7 +309,7 @@ const Header = () => {
                     <Link
                       to="/login"
                       href="javascript:void(0)"
-                      className="block py-3 text-center text-gray-700 hover:text-indigo-600 border rounded-lg md:border-none"
+                      className="block py-3 text-center text-gray-700 font-semibold hover:text-indigo-600 border rounded-lg md:border-none"
                     >
                       Log in
                     </Link>

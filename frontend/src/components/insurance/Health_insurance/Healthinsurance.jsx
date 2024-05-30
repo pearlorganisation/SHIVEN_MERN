@@ -8,7 +8,6 @@ import Company from "../../Company/Company";
 
 const Healthinsurance = () => {
   // ------------------------------------------States-----------------------------------------------------
-
   // -----------------------------------------------------------------------------------------------------
   // ------------------------------------------Hooks-----------------------------------------------------
   // -----------------------------------------------------------------------------------------------------
@@ -27,7 +26,7 @@ const Healthinsurance = () => {
           <h1 className=" font-semibold text text-2xl py-2">
             Health Insurance
           </h1>
-          <p>
+          <p className="leading-7 text-black roboto-regular">
             Health insurance is an insurance product that covers medical and
             surgical expenses of an insured person. These expenses could be
             related to hospitalisation costs, medicine costs, or doctor
@@ -77,9 +76,9 @@ const Healthinsurance = () => {
           </div>
         </section>
 
-        <section>
+        <section className="px-10">
           <div>
-            <h1 className="text text-lg font-medium py-5 p-5">
+            <h1 className="text text-2xl font-medium py-5">
               Key Features of Health Insurance Plans
             </h1>
           </div>

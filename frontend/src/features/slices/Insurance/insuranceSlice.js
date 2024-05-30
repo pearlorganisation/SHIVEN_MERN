@@ -2,20 +2,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "sonner";
 import { enquiryMail } from "../../actions/Enquiry/enquiryActions";
-import { getInsurances } from "../../actions/Insurance/insuranceActions";
+import {
+  createInsurance,
+  getInsurances,
+} from "../../actions/Insurance/insuranceActions";
 //------------------------------------------------------------------------------------------------------------
 
 const initialState = {
   isInsuranceLoading: false,
   errorMessage: "",
   insurancesData: {},
+  isInsuranceCreated: false,
 };
 
 const insuranceSlice = createSlice({
   name: "insurance",
   initialState,
   reducers: {
-    resetInsuranceState: (state, action) => {},
+    resetInsuranceState: (state, action) => {
+      state.isInsuranceCreated = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -31,6 +37,25 @@ const insuranceSlice = createSlice({
       })
       .addCase(getInsurances.rejected, (state, action) => {
         state.isInsuranceLoading = false;
+        state.errorMessage = action?.payload;
+        toast.error(action.payload.message);
+      })
+
+      // createInsurance lifecycle actions
+      .addCase(createInsurance.pending, (state, action) => {
+        state.isInsuranceLoading = true;
+        state.isInsuranceCreated = false;
+        state.errorMessage = "";
+      })
+      .addCase(createInsurance.fulfilled, (state, action) => {
+        state.isInsuranceLoading = false;
+        state.isInsuranceCreated = true;
+        state.errorMessage = "";
+        toast.success("Insurance Created Successfully");
+      })
+      .addCase(createInsurance.rejected, (state, action) => {
+        state.isInsuranceLoading = false;
+        state.isInsuranceCreated = false;
         state.errorMessage = action?.payload;
         toast.error(action.payload.message);
       });

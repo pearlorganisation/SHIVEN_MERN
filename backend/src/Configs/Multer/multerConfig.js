@@ -7,7 +7,7 @@ const storage = multer.memoryStorage();
 export const mediaUpload = multer({
   storage,
   limits: {
-    fileSize: 2 * 1024 * 1024, // only 2 mb of file is allowed
+    fileSize: 5 * 1024 * 1024, // only 5 mb of file is allowed
   },
   fileFilter: (req, file, cb) => {
     // filtering it to only allow below mentioned files

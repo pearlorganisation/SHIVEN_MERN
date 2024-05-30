@@ -36,7 +36,7 @@ import Motorqoute from "./components/insurance_quotation/Motorqoute";
 import MotorInsurance from "./components/insurance/MotorInsurance/MotorInsurance";
 import AllinsuranceQuote from "./components/insurance_quotation/AllinsuranceQuote";
 import Compnay from "./components/Company/Company";
-import InsuranceProvider from "./pages/Insurance/InsuranceProvide/InsuranceProvider";
+import InsuranceProvider from "./pages/Insurance/InsuranceProvider/InsuranceProvider";
 
 // -------------------------------------------------------------------------------------------------------------
 

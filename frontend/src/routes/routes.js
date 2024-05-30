@@ -27,6 +27,12 @@ const ProposalForm = lazy(() => {
 const Insurances = lazy(() => {
   return import("../pages/Insurance/admin/Insurances");
 });
+const CreateInsurance = lazy(() => {
+  return import("../pages/Insurance/admin/CreateInsurance");
+});
+const InsuranceServiceProviders = lazy(() => {
+  return import("../pages/Insurance/admin/InsuranceServiceProviders");
+});
 
 // -----------------------------------------------------------------------------------------------------------
 {
@@ -89,19 +95,19 @@ export const routes = [
   },
   {
     title: "Insurances",
-    component: Insurances,
+    component: CreateInsurance,
     path: "/insurances/create-insurance",
   },
 
   // Insurance Service Provider
   {
     title: "Insurance Service Providers",
-    component: UpdateUser,
-    path: "/insurance-service-providers",
+    component: InsuranceServiceProviders,
+    path: "/insurances/insurance-service-providers",
   },
   {
     title: "Create Insurance Service Providers",
     component: UpdateUser,
-    path: "/insurance-service-providers/create-insurance-service-provider",
+    path: "/insurances/insurance-service-providers/create-insurance-service-provider",
   },
 ];

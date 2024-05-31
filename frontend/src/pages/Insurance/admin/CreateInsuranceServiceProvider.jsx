@@ -9,7 +9,7 @@ import { resetInsuranceState } from "../../../features/slices/Insurance/insuranc
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Select from "react-select";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaRegTrashAlt } from "react-icons/fa";
 // -------------------------------------------------------------------------------------------------
 
 const CreateInsuranceServiceProvider = () => {
@@ -154,8 +154,8 @@ const CreateInsuranceServiceProvider = () => {
                   <div className="insuranceCategoryCard border rounded-lg bg-gray-100 p-2 mt-2">
                     <h3>Insurance : Health Insurance</h3>
                     <div className="insuranceCategoryCardItem p-6 flex">
-                      <div>
-                        <div>
+                      <div className="flex flex-col items-center flex-1">
+                        <div className="w-[50%]">
                           <label>Insurance Category Name</label>
                           <input
                             className="w-full px-8 py-4 rounded-lg font-medium bg-gray-200 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
@@ -175,7 +175,7 @@ const CreateInsuranceServiceProvider = () => {
                             </p>
                           )}
                         </div>
-                        <div className={`row-span-3`}>
+                        <div className={"w-[50%]"}>
                           <label className="h-[20%]">
                             Insurance Category Icon
                           </label>
@@ -210,9 +210,25 @@ const CreateInsuranceServiceProvider = () => {
                           )}
                         </div>
                       </div>
-                      <div className="">
-                        <div className="addBtn">
-                          <FaPlus />
+                      <div className="btnContainer flex">
+                        <div className="flex h-[30%] items-center gap-3">
+                          <div className="addBtn">
+                            <FaPlus
+                              size={25}
+                              className="cursor-pointer hover:text-blue-700 active:text-blue-900"
+                            />
+                          </div>
+                          <div className="deleteCategoryBtn">
+                            <FaRegTrashAlt
+                              size={25}
+                              className="cursor-pointer hover:text-blue-700 active:text-blue-900"
+                            />
+                          </div>
+                          <div className="saveCategoryBtn">
+                            <button type="button" className="border rounded-xl p-2 bg-blue-500 hover:bg-blue-700 text-white font-bold tracking-wider active:bg-blue-900">
+                              Save Category
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>

@@ -13,6 +13,7 @@ import Healthinsurance from "./components/insurance/Health_insurance/Healthinsur
 import Single_HealthPage from "./components/insurance/Health_insurance/Single_HealthPage";
 import Dashboard from "./components/Dashboard/Dashboard";
 import SideBar from "./layout/SideBar/SideBar";
+import "./App.css"
 
 import Invoice from "./components/Dashboard/Invoice";
 import Notifications from "./components/Dashboard/Notifications";

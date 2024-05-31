@@ -33,6 +33,9 @@ const CreateInsurance = lazy(() => {
 const InsuranceServiceProviders = lazy(() => {
   return import("../pages/Insurance/admin/InsuranceServiceProviders");
 });
+const CreateInsuranceServiceProvider = lazy(() => {
+  return import("../pages/Insurance/admin/CreateInsuranceServiceProvider");
+});
 
 // -----------------------------------------------------------------------------------------------------------
 {
@@ -107,7 +110,7 @@ export const routes = [
   },
   {
     title: "Create Insurance Service Providers",
-    component: UpdateUser,
+    component: CreateInsuranceServiceProvider,
     path: "/insurances/insurance-service-providers/create-insurance-service-provider",
   },
 ];

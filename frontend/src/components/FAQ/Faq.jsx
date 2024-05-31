@@ -95,7 +95,7 @@ const Faq = () => {
         <h1 className="text-3xl text-gray-800 font-semibold">
           Frequently Asked Questions
         </h1>
-        <p className="text-gray-600 max-w-lg mx-auto text-lg">
+        <p className="text-black max-w-lg mx-auto text-lg">
           Answered all frequently asked questions, Still confused? feel free to
           contact us.
         </p>

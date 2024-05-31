@@ -30,6 +30,10 @@ const insuranceServiceProviderSchema = new mongoose.Schema({
     type: String,
     required: [true, "Insurance Provider Description is a required field"],
   },
+  insuranceServiceProviderIcon: {
+    type: String,
+    required: [true, "Insurance Service Provider Icon is a required field"],
+  },
   insurances: [insuranceSchema],
 });
 

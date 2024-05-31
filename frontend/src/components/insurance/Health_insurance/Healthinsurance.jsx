@@ -1,48 +1,29 @@
 // ------------------------------------------Imports-----------------------------------------------------
-import React from "react";
+import React, { useEffect } from "react";
 import Whychoosshiven from "../commonininsurance/Whychoosshiven";
-import { FaHeart, FaTachometerAlt } from "react-icons/fa";
+
+import { Link } from "react-router-dom";
+import Company from "../../Company/Company";
 // -----------------------------------------------------------------------------------------------------
 
 const Healthinsurance = () => {
   // ------------------------------------------States-----------------------------------------------------
-  const insuranceTypeArray = [
-    {
-      title: "Health AdvantEdge",
-      icon: () => {
-        return <FaHeart size={50} className="text-red-500" />;
-      },
-    },
-    {
-      title: "Max Protect",
-      icon: () => {
-        return <FaTachometerAlt size={50} className="text-orange-500" />;
-      },
-    },
-    {
-      title: "Health AdvantEdge",
-      icon: () => {
-        return <FaHeart size={50} />;
-      },
-    },
-    {
-      title: "Health AdvantEdge",
-      icon: () => {
-        return <FaHeart size={50} />;
-      },
-    },
-  ];
   // -----------------------------------------------------------------------------------------------------
   // ------------------------------------------Hooks-----------------------------------------------------
   // -----------------------------------------------------------------------------------------------------
   // ----------------------------------------Functions-----------------------------------------------------
   // -----------------------------------------------------------------------------------------------------
+  // ----------------------------------------useEffect-----------------------------------------------------
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+  // -----------------------------------------------------------------------------------------------------
 
   return (
     <>
-      <div className="container mx-auto">
-        <div className="px-10 py-10">
-          <h1 className=" font-semibold text text-2xl lg:text-4xl py-2 lg:mb-6">
+      <div className="mx-auto ">
+        <div className="p-5">
+          <h1 className=" font-semibold text text-2xl py-2">
             Health Insurance
           </h1>
           <p className="leading-7 text-black roboto-regular">
@@ -59,9 +40,9 @@ const Healthinsurance = () => {
             receive tax benefits under section 80D of the Income Tax Act, 1961.
           </p>
         </div>
-        <section className="healthInsuranceCards mt-10">
-          <div class="flex justify-center px-10 pb-5">
-            <div>
+        <section className="healthInsuranceCards mt-10 w-[100vw]">
+          <div class="flex justify-center ">
+            <div className={`w-[100%]`}>
               <div class="group relative -ml-4 flex scroll-mt-40 items-center pl-4">
                 <a
                   href="#"
@@ -83,33 +64,13 @@ const Healthinsurance = () => {
                     ></path>
                   </svg>
                 </a>
-                <h2 class="font-semibold text text-2xl lg:text-3xl py-2 lg:mb-6">
-                  Choose the type of insurance
+                <h2 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug !mb-2 text-primary p-5 pb-0">
+                  Choose the service provider
                 </h2>
               </div>
-              <p class="font-base  roboto-regular text-black leading-7">
-                Framework-specific guides that cover our recommended approach to
-                installing @material-tailwind/react in a number of popular
-                environments. Select your preferred framework from the list
-                below and follow the instructions.
-              </p>
-              <div
-                class="mt-8 grid grid-cols-2 gap-6 md:grid-cols-4"
-                id="frameworks-integration"
-              >
-                {insuranceTypeArray.map((type) => {
-                  return (
-                    <a
-                      class="grid w-full min-w-[7rem] transform cursor-pointer place-items-center rounded-xl border border-blue-gray-50 bg-white px-3 py-2 transition-all hover:scale-105 hover:border-blue-gray-100 hover:bg-blue-gray-50 hover:bg-opacity-25"
-                      href="#"
-                    >
-                      <span class="my-6 grid h-24 w-24 place-items-center justify-center">
-                        {type?.icon()}
-                        <h3 className="text-center">{type?.title}</h3>
-                      </span>
-                    </a>
-                  );
-                })}
+
+              <div class="mt-8 w-[100%]" id="frameworks-integration">
+                <Company />
               </div>
             </div>
           </div>

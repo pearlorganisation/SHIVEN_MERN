@@ -63,14 +63,14 @@ const FinancialConsultant = () => {
     },
   ];
   return (
-    <section className="min-h-screen grid place-items-center">
+    <section className="min-h-screen grid place-items-center mt-8 md:mt-16">
       <div className="py-14">
         <div className="max-w-screen-xl mx-auto px-4 md:px-8">
           <div className="w-full md:w-[80%] lg:w-[70%] mx-auto text-center">
             <h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
               Features for Finincial Consultant
             </h3>
-            <p className="text-gray-600 mt-3">
+            <p className="text-black mt-3">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry.Lorem Ipsum has been the industry's standard dummy .
             </p>
@@ -79,10 +79,10 @@ const FinancialConsultant = () => {
             <ul className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
               {team.map((item, idx) => (
                 <li key={idx}>
-                  <div className="w-full h-60 sm:h-52 md:h-56">
+                  <div className="w-full h-60 sm:h-52 md:h-56 bg-zinc-100">
                     <img
                       src={item.avatar}
-                      className="w-full h-full  shadow-md rounded-xl"
+                      className="w-full h-full  shadow-lg rounded-xl  border-t-2 border-solid border-[var(--primary-color)]"
                       alt=""
                     />
                   </div>
@@ -91,11 +91,11 @@ const FinancialConsultant = () => {
                       {item.name}
                     </h4>
                     <p className="text-indigo-600">{item.title}</p>
-                    <p className="text-gray-600 mt-2">{item.desc}</p>
+                    <p className="text-black mt-2">{item.desc}</p>
                     <div className="mt-3 flex gap-4 text-gray-400">
                       <a href={item.twitter}>
                         <svg
-                          className="w-5 h-5 duration-150 hover:text-gray-500"
+                          className="w-5 h-5 duration-150 text-blue-400"
                           fill="currentColor"
                           viewBox="0 0 48 48"
                         >
@@ -114,7 +114,7 @@ const FinancialConsultant = () => {
                       </a>
                       <a href={item.github}>
                         <svg
-                          className="w-5 h-5 duration-150 hover:text-gray-500"
+                          className="w-5 h-5 duration-150 text-gray-600"
                           fill="currentColor"
                           viewBox="0 0 48 48"
                         >
@@ -135,7 +135,7 @@ const FinancialConsultant = () => {
                       </a>
                       <a href={item.linkedin}>
                         <svg
-                          className="w-5 h-5 duration-150 hover:text-gray-500"
+                          className="w-5 h-5 duration-150 text-blue-600"
                           fill="none"
                           viewBox="0 0 48 48"
                         >

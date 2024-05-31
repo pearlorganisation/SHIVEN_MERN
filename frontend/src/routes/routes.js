@@ -22,6 +22,21 @@ const Plans = lazy(() => {
 const ProposalForm = lazy(() => {
   return import("../components/Dashboard/ProposalForm");
 });
+
+// Insurance
+const Insurances = lazy(() => {
+  return import("../pages/Insurance/admin/Insurances");
+});
+const CreateInsurance = lazy(() => {
+  return import("../pages/Insurance/admin/CreateInsurance");
+});
+const InsuranceServiceProviders = lazy(() => {
+  return import("../pages/Insurance/admin/InsuranceServiceProviders");
+});
+const CreateInsuranceServiceProvider = lazy(() => {
+  return import("../pages/Insurance/admin/CreateInsuranceServiceProvider");
+});
+
 // -----------------------------------------------------------------------------------------------------------
 {
   /* <Route path="/" index element={<Home />} />
@@ -74,5 +89,28 @@ export const routes = [
     title: "Proposal Form",
     component: ProposalForm,
     path: "/proposalForm/:plan",
+  },
+  // Insurance
+  {
+    title: "Insurances",
+    component: Insurances,
+    path: "/insurances",
+  },
+  {
+    title: "Insurances",
+    component: CreateInsurance,
+    path: "/insurances/create-insurance",
+  },
+
+  // Insurance Service Provider
+  {
+    title: "Insurance Service Providers",
+    component: InsuranceServiceProviders,
+    path: "/insurances/insurance-service-providers",
+  },
+  {
+    title: "Create Insurance Service Providers",
+    component: CreateInsuranceServiceProvider,
+    path: "/insurances/insurance-service-providers/create-insurance-service-provider",
   },
 ];

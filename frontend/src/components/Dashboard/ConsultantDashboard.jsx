@@ -588,7 +588,7 @@ const ConsultantDashboard = () => {
           <div className="flex justify-between  max-w-xl  bg-[#eaeaea] p-2">
             <div>
               <div class="flex -space-x-4 rtl:space-x-reverse">
-                <img
+                <imgStochastics 
                   class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800"
                   src="https://www.shareicon.net/data/512x512/2016/05/24/770117_people_512x512.png"
                   alt=""

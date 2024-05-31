@@ -15,19 +15,19 @@ const Policies = () => {
       path: `/health-insurance`,
     },
     {
-      q: "General Insurance",
+      q: "Motor Insurance",
       icon: <RiUmbrellaFill size={40} className="text-pink-400 px-2" />,
       desc: "This generator doesn't include most common questions. The thought is that you can come up with common questions on your own so most of the questions in this generator.",
-      path: "javascript:void(0)",
+      path: "/motor-insurance",
     },
     {
-      q: "Motor Insurance",
+      q: "Travel Insurance",
       icon: <IoMdCar size={40} className="text-[#cfac72] px-2" />,
       desc: "Yes! there are two ways that you can use this question generator depending on what you're after. You can indicate that you want 21 questions generated.",
       path: "javascript:void(0)",
     },
     {
-      q: "Mutual Funds",
+      q: "Business Insurance",
       icon: <FiArrowUpCircle size={40} className="text-green-400 px-2" />,
       desc: "The questions in this generator are gender neutral and can be used to ask either male of females (or any other gender the person identifies with).",
       path: "javascript:void(0)",
@@ -46,7 +46,7 @@ const Policies = () => {
           <h3 className="text-gray-800 text-3xl font-extrabold sm:text-4xl">
             Services We Provide
           </h3>
-          <p className="text-gray-600">
+          <p className="text-black">
             Everything you need to know about the product. Can’t find the answer
             you’re looking for? feel free to{" "}
             <a
@@ -58,18 +58,24 @@ const Policies = () => {
             .
           </p>
         </div>
+
         <div className="mt-12">
           <ul className="space-y-8 gap-12 grid-cols-2 sm:grid sm:space-y-0 lg:grid-cols-3">
             {faqsList.map((item, idx) => (
-              <li key={idx} className="space-y-3">
-                <summary className="flex items-center justify-between font-semibold text-gray-700">
-                  <div className="flex justify-center items-center">
-                    <div>{item.q}</div>
+              <li
+                key={idx}
+                className="space-y-3 border bg-white p-4 rounded-xl cursor-pointer shadow-md"
+              >
+                <summary className="flex items-center justify-between font-semibold text ">
+                  <div className="flex justify-center items-center ">
+                    <div className="text-xl italic text-yellow-700 font-bold">
+                      {item.q}
+                    </div>
                     <div>{item.icon}</div>
                   </div>
                 </summary>
 
-                <p className="text-gray-600 leading-relaxed">{item?.desc}</p>
+                <p className="text-black leading-relaxed">{item?.desc}</p>
                 <Link
                   to={item?.path}
                   className="flex items-center gap-x-1 text-sm text-indigo-600 hover:text-indigo-400 duration-150 font-medium"

@@ -1,5 +1,6 @@
 // ----------------------------------------------Imports-----------------------------------------------------
-import { enquiryMail } from "../../Controllers/Enquiry/enquiryController";
+import { enquiryMail } from "../../Controllers/Enquiry/enquiryController.js";
+import { Router } from "express";
 // ----------------------------------------------------------------------------------------------------------
 // ----------------------------------------------------------------------------------------------------------
 export const enquiryRouter = Router();

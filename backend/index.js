@@ -52,7 +52,7 @@ import { enquiryRouter } from "./src/Routes/Enquiry/enquiryRoutes.js";
 // Route Middlewares
 app.use(versionOne("auth/user"), userRouter);
 app.use(versionOne("auth"), authRouter);
-app.use(versionOne("enquiry"), authRouter);
+app.use(versionOne("enquiry"), enquiryRouter);
 
 app.all(["/", "/api", "/api/v1"], (req, res, next) => {
   return res.status(200).json({

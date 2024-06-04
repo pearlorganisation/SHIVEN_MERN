@@ -1,19 +1,15 @@
-// ----------------------------------------------Imports-----------------------------------------------
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import { verifyLoginOtp } from "../../../features/actions/Auth/authActions";
 import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
-// ----------------------------------------------------------------------------------------------------
 
-const OtpVarfication = () => {
-  // ---------------------------------------------States------------------------------------------------
-  // ----------------------------------------------------------------------------------------------------
-  // ---------------------------------------------Hooks------------------------------------------------
+const OtpVerification = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
 
@@ -21,14 +17,33 @@ const OtpVarfication = () => {
   const location = useLocation();
   const email = location?.state?.email || "";
   const dispatch = useDispatch();
-  const {isUserLoggedIn} = useSelector((state)=>state?.auth)
-  // ----------------------------------------------------------------------------------------------------
-  // --------------------------------------------Functions------------------------------------------------
+  const { isUserLoggedIn } = useSelector((state) => state?.auth);
+
+  const onInputChange = (event, index) => {
+    const inputName = `otp${index + 1}`;
+    const value = event.target.value;
+
+    // Move focus to the next input field if a digit is entered
+    if (value && value.length === 1 && index < 3) {
+      const nextInputName = `otp${index + 2}`;
+      document.getElementsByName(nextInputName)[0].focus();
+    }
+
+    // Move focus to the previous input field if backspace is pressed and the current input field is empty
+    if (event.keyCode === 8 && !value && index > 0) {
+      const prevInputName = `otp${index}`;
+      document.getElementsByName(prevInputName)[0].focus();
+    }
+
+    // Update the input field value
+    setValue(inputName, value);
+  };
+
   const onSubmit = (data) => {
     let otp = "";
     for (let i in data) {
       otp += data[i];
-    } // You can handle OTP verification here
+    }
 
     if (!email) {
       toast.error("Email is required");
@@ -36,14 +51,12 @@ const OtpVarfication = () => {
       dispatch(verifyLoginOtp({ email, otp }));
     }
   };
-  // ----------------------------------------------------------------------------------------------------
-  // --------------------------------------------useEffect------------------------------------------------
-  useEffect(()=>{
-    if(isUserLoggedIn){
-      navigate("/")
+
+  useEffect(() => {
+    if (isUserLoggedIn) {
+      navigate("/");
     }
-  },[isUserLoggedIn])
-  // ----------------------------------------------------------------------------------------------------
+  }, [isUserLoggedIn]);
 
   return (
     <div className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-12">
@@ -54,13 +67,13 @@ const OtpVarfication = () => {
               <p>Otp Verification</p>
             </div>
             <div className="flex flex-row text-sm font-medium text-gray-400">
-              <p>We have sent a code to your email abc@gmaqil.com</p>
+              <p>We have sent a code to your email {email}</p>
             </div>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="flex flex-col space-y-16">
-              <div className="flex flex-row items-center justify-between mx-auto w-full max-w-xs">
+            <div className="flex flex-col space-y-16 ">
+              <div className="flex flex-row items-center justify-between mx-auto w-full max-w-xs ">
                 {[1, 2, 3, 4].map((index) => (
                   <div key={index} className="w-16 h-16">
                     <input
@@ -76,6 +89,9 @@ const OtpVarfication = () => {
                       type="text"
                       placeholder="*"
                       maxLength={1}
+                      onChange={(event) => onInputChange(event, index - 1)}
+                      onKeyDown={(event) => onInputChange(event, index - 1)}
+                      name={`otp${index}`}
                     />
                   </div>
                 ))}
@@ -111,4 +127,4 @@ const OtpVarfication = () => {
   );
 };
 
-export default OtpVarfication;
+export default OtpVerification;

@@ -7,11 +7,15 @@ export const enquiryMail = createAsyncThunk(
   "enquiry/enquiryMail",
   async (payload, { rejectWithValue }) => {
     try {
-      const response = await instance.post("/enquiry", payload, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await instance.post(
+        "/enquiry",
+        { payload },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       return response.data;
     } catch (error) {

@@ -6,7 +6,6 @@ import { enquiryMail } from "../../actions/Enquiry/enquiryActions";
 
 const initialState = {
   isEnquiryLoading: false,
-  loggedInUserData: {},
   errorMessage: "",
   isEnquiryMailSent: false,
 };
@@ -14,7 +13,11 @@ const initialState = {
 const enquirySlice = createSlice({
   name: "enquiry",
   initialState,
-  reducers: {},
+  reducers: {
+    resetEnquiryState: (state, action) => {
+      state.isEnquiryMailSent = action?.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       // enquiry lifecycle actions
@@ -39,4 +42,4 @@ const enquirySlice = createSlice({
 });
 
 export const enquiryReducer = enquirySlice.reducer;
-export const {} = enquirySlice.actions;
+export const {resetEnquiryState} = enquirySlice.actions;

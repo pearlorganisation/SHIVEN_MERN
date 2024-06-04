@@ -36,14 +36,17 @@ const Compnay = () => {
                 <ul className="list-none">
                   <li className="flex items-center text-gray-700 mb-2">
                     <IoMdArrowDropright size={24} className="mr-2" />
+
                     <span>
                       Competitive rates and customizable coverage options
                     </span>
                   </li>
+
                   <li className="flex items-center text-gray-700 mb-2">
                     <IoMdArrowDropright size={24} className="mr-2" />
                     <span>24/7 customer support for your peace of mind</span>
                   </li>
+
                   <li className="flex items-center text-gray-700">
                     <IoMdArrowDropright size={24} className="mr-2" />
                     <span>Quick and hassle-free claim process</span>

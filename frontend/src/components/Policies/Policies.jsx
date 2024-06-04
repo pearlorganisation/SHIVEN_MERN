@@ -46,7 +46,7 @@ const Policies = () => {
           <h3 className="text-gray-800 text-3xl font-extrabold sm:text-4xl">
             Services We Provide
           </h3>
-          <p className="text-gray-600">
+          <p className="text-black">
             Everything you need to know about the product. Can’t find the answer
             you’re looking for? feel free to{" "}
             <a
@@ -64,16 +64,18 @@ const Policies = () => {
             {faqsList.map((item, idx) => (
               <li
                 key={idx}
-                className="space-y-3 border border-gray-300 p-4 rounded-xl cursor-pointer shadow-md"
+                className="space-y-3 border bg-white p-4 rounded-xl cursor-pointer shadow-md"
               >
-                <summary className="flex items-center justify-between font-semibold text-gray-700 ">
+                <summary className="flex items-center justify-between font-semibold text ">
                   <div className="flex justify-center items-center ">
-                    <div className="text-xl italic text-yellow-700 font-bold">{item.q}</div>
+                    <div className="text-xl italic text-yellow-700 font-bold">
+                      {item.q}
+                    </div>
                     <div>{item.icon}</div>
                   </div>
                 </summary>
 
-                <p className="text-gray-600 leading-relaxed">{item?.desc}</p>
+                <p className="text-black leading-relaxed">{item?.desc}</p>
                 <Link
                   to={item?.path}
                   className="flex items-center gap-x-1 text-sm text-indigo-600 hover:text-indigo-400 duration-150 font-medium"

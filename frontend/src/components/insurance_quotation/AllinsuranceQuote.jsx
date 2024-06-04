@@ -143,23 +143,22 @@ const AllinsuranceQuote = () => {
   // --------------------------------------------------------------------------------------------------------
 
   return (
-    <div className="relative grid place-items-center p-10 w-[100vw]">
-      <img src={enqImg} className="w-full absolute -z-10 top-0 left-0 h-full" />
-      <h1 className="font-bold p-2 italic text-3xl">Enquire</h1>
-
-      <div className="container mx-auto border w-[40%] min-w-[350px] p-4 bg-white rounded">
-        <div className="grid grid-cols-4 gap-4">
-          {insurance?.map((el, i) => (
+    <div className="relative grid place-items-center p-10 w-[100vw] h-[100vh]  z-10">
+      <img src={enqImg} className="w-full absolute top-0 left-0 h-full" />
+      <h1 className="font-bold p-2 italic text-3xl z-10">Enquire</h1>
+      <div className="container mx-auto border w-[40%] min-w-[350px] p-4 bg-white rounded z-10">
+        <div className="grid grid-cols-4 gap-4 z-10">
+          {insurance.map((el, i) => (
             <div
               key={i}
               onClick={() => handleTabChange(el.name, el.field)}
-              className={`flex flex-col items-center justify-center cursor-pointer p-4 border rounded-md ${
+              className={` z-10 flex flex-col items-center justify-center cursor-pointer p-4 border rounded-md ${
                 activeTab === el.name ? "bg-blue-100" : ""
               } 
             `}
             >
-              <div className="mb-2">{el.icon}</div>
-              <h1 className="text-center text-[#666666]">{el?.name}</h1>
+              <div className="mb-2 z-10">{el.icon}</div>
+              <h1 className="text-center text-[#666666]">{el.name}</h1>
             </div>
           ))}
         </div>
@@ -171,13 +170,13 @@ const AllinsuranceQuote = () => {
             )}
             <div className="text-center">
               {isEnquiryLoading ? (
-                <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 relative h-[40px]">
+                <button className="mt-4 bg-[var(--primary-color)] text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 relative h-[40px]">
                   <NormalButtonLoader />
                 </button>
               ) : (
                 <button
                   type="submit"
-                  className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+                  className="mt-4 bg-[var(--primary-color)] text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
                 >
                   Enquire
                 </button>

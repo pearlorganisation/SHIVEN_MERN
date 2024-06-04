@@ -13,6 +13,7 @@ import Healthinsurance from "./components/insurance/Health_insurance/Healthinsur
 import Single_HealthPage from "./components/insurance/Health_insurance/Single_HealthPage";
 import Dashboard from "./components/Dashboard/Dashboard";
 import SideBar from "./layout/SideBar/SideBar";
+import "./App.css"
 
 import Invoice from "./components/Dashboard/Invoice";
 import Notifications from "./components/Dashboard/Notifications";
@@ -35,7 +36,8 @@ import Healthquote from "./components/insurance_quotation/Healthquote";
 import Motorqoute from "./components/insurance_quotation/Motorqoute";
 import MotorInsurance from "./components/insurance/MotorInsurance/MotorInsurance";
 import AllinsuranceQuote from "./components/insurance_quotation/AllinsuranceQuote";
-import Compnay from "./components/Company/Compnay";
+import Compnay from "./components/Company/Company";
+import InsuranceProvider from "./pages/Insurance/InsuranceProvide/InsuranceProvider";
 
 // -------------------------------------------------------------------------------------------------------------
 
@@ -58,8 +60,7 @@ function App() {
           <Route path="/getotp" element={<GetOtp />} />
           <Route path="/verification" element={<Verification />} />
           <Route path="/newpassword" element={<NewPassword />} />
-          <Route path="/motor-insurance" element={<MotorInsurance />} />
-          <Route path="/health-insurance" element={<Healthinsurance />} />
+
           <Route
             path="/single_healthinsurance"
             element={<Single_HealthPage />}
@@ -77,8 +78,22 @@ function App() {
           <Route path="/accounting" element={<Accounting />} />
           <Route path="/fillform" element={<FillForm />} />
           <Route path="/proposalForm" element={<ProposalForm />} />
-          <Route path="/health-insurance/enquiry" element={<Healthquote />} />
-          <Route path="/motor-insurance/enquiry" element={<Motorqoute />} />
+          {/* -----------------------------------Insurance Routes----------------------------------------- */}
+          <Route path="/motor-insurance" element={<MotorInsurance />} />
+          <Route path="/health-insurance" element={<Healthinsurance />} />
+          <Route
+            path="/health-insurance/:insuranceProvider"
+            element={<InsuranceProvider />}
+          />
+          <Route
+            path="/health-insurance/:insuranceProvider/:insuranceCategory/enquiry"
+            element={<Healthquote />}
+          />
+          <Route
+            path="/motor-insurance/:insuranceProvider/enquiry"
+            element={<Motorqoute />}
+          />
+          {/* --------------------------------------------------------------------------------------------- */}
           <Route path="allinsuranceQuote" element={<AllinsuranceQuote />} />
           <Route path="company" element={<Compnay />} />
 

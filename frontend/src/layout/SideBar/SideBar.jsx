@@ -1,17 +1,9 @@
 // -----------------------------------------------Imports---------------------------------------------------
 import React, { useState } from "react";
-import { FaWpforms } from "react-icons/fa6";
-import { FaBookOpen } from "react-icons/fa6";
 import { GoTag } from "react-icons/go";
-import { SlCalender } from "react-icons/sl";
-import { FiEdit } from "react-icons/fi";
-import { CgProfile } from "react-icons/cg";
-import { ImNewspaper } from "react-icons/im";
-import { GrAnnounce } from "react-icons/gr";
-import { FaCalculator } from "react-icons/fa";
-import { IoMdNotifications } from "react-icons/io";
-import { FaRegMessage } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../../features/actions/Auth/authActions";
 // ----------------------------------------------------------------------------------------------------------
 const SideBar = () => {
   // -----------------------------------------------States-----------------------------------------------------
@@ -22,8 +14,17 @@ const SideBar = () => {
   // ----------------------------------------------------------------------------------------------------------
   // -----------------------------------------------Hooks-----------------------------------------------------
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   // ----------------------------------------------------------------------------------------------------------
   // --------------------------------------------Functions-----------------------------------------------------
+  // logoutHandler -- handler to call the logout api
+  const logoutHandler = () => {
+    try {
+      dispatch(logout());
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
   // ----------------------------------------------------------------------------------------------------------
   // --------------------------------------------useEffect-----------------------------------------------------
   // ----------------------------------------------------------------------------------------------------------
@@ -42,6 +43,17 @@ const SideBar = () => {
       subMenuArray: [
         { title: "Users", path: "/users" },
         { title: "Create User", path: "/users/create-user" },
+      ],
+    },
+    {
+      title: "Insurances",
+      subMenu: true,
+      subMenuArray: [
+        { title: "Insurances", path: "/insurances" },
+        {
+          title: "Create Insurance",
+          path: "/insurances/create-insurance",
+        },
       ],
     },
     {
@@ -217,6 +229,14 @@ const SideBar = () => {
                   </a>
                 </li>
               </ul>
+            </div>
+            <div className="logoutBtn flex justify-center items-center">
+              <button
+                className="border border-white p-3 font-bold bg-red-800 text-white rounded-lg tracking-widest hover:bg-red-600"
+                onClick={logoutHandler}
+              >
+                Logout
+              </button>
             </div>
           </nav>
 

@@ -1,3 +1,8 @@
+:root {
+  --primary-color: #704fcc;
+  --main-background: #bfe1f7b5;
+}
+
 .roboto-regular {
   font-family: "Roboto", sans-serif;
   font-weight: 400;

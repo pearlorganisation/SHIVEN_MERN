@@ -1,7 +1,8 @@
 // ----------------------------------------------Imports-----------------------------------------------------
 import { createSlice } from "@reduxjs/toolkit";
-import { login, verifyLoginOtp } from "../../actions/Auth/authActions";
+import { login, logout, verifyLoginOtp } from "../../actions/Auth/authActions";
 import { toast } from "sonner";
+import { persistor } from "../../../main";
 //------------------------------------------------------------------------------------------------------------
 
 const initialState = {
@@ -32,6 +33,7 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
         state.errorMessage = "";
+        state.loggedInUserData = action?.payload;
         state.isLoginOtpSent = true;
         toast.success("OTP for verification sent successfully");
       })
@@ -59,6 +61,24 @@ const authSlice = createSlice({
         state.errorMessage = action?.payload;
         state.loggedInUserData = {};
         state.isUserLoggedIn = false;
+        toast.error(action?.payload?.response?.data?.message || "Error!");
+      })
+      // logout lifecycle actions
+      .addCase(logout.pending, (state, action) => {
+        state.isLoading = true;
+        state.errorMessage = "";
+        state.isUserLoggedIn = false;
+      })
+      .addCase(logout.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = "";
+        state.isUserLoggedIn = false;
+        persistor.purge();
+        toast.success("Logout successfully");
+      })
+      .addCase(logout.rejected, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = action?.payload;
         toast.error(action?.payload?.response?.data?.message || "Error!");
       });
   },

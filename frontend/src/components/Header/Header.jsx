@@ -166,7 +166,7 @@ const Header = () => {
   return (
     <>
       <nav
-        className={`relative z-20 bg-white w-[100%] md:static md:text-sm md:border border-b-gray-300 border-l-neutral-50 ${
+        className={`relative z-20 bg-[lightskyblue] w-[100%] md:static md:text-sm md:border shadow-lg border-b-gray-300 border-l-neutral-50 ${
           state ? " rounded-b-xl md:shadow-none" : ""
         }`}
       >
@@ -174,7 +174,7 @@ const Header = () => {
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
             <Link
               to="/"
-              className="text-3xl font-semibold text-indigo-500 font-mono"
+              className="text-3xl font-semibold text-black font-mono"
               href="javascript:void(0)"
             >
               <img className="h-[4rem] w-[6rem]" src={Logo} alt="" />
@@ -224,9 +224,9 @@ const Header = () => {
               {navigation.map((item, idx) => {
                 return (
                   <Link className="relative" to={item?.path} key={idx}>
-                    {item.isDrapdown ? ( 
+                    {item.isDrapdown ? (
                       <button
-                        className="w-full flex items-center bg-white justify-between gap-1 text-gray-700 hover:text-indigo-600"
+                        className="w-full flex text-md items-center bg-[lightskyblue] justify-between gap-1 text-black font-semibold hover:text-blue-600"
                         onClick={() =>
                           setDrapdownState({
                             idx,
@@ -234,7 +234,7 @@ const Header = () => {
                           })
                         }
                       >
-                        {item.title} 
+                        {item.title}
                         {drapdownState.idx == idx && drapdownState.isActive ? (
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -266,7 +266,7 @@ const Header = () => {
                     ) : (
                       <a
                         href={item.path}
-                        className="block text-gray-700 hover:text-indigo-600"
+                        className="block text-black font-semibold text-md hover:text-blue-600"
                       >
                         {item.title}
                       </a>
@@ -281,7 +281,7 @@ const Header = () => {
                               className="px-4 font-medium py-2 hover:bg-indigo-100"
                               key={idx}
                             >
-                              <p className="text-indigo-600 text-sm">
+                              <p className="text-black poppins-semibold text-sm">
                                 {dropdownItem.label}
                               </p>
                             </li>
@@ -301,7 +301,7 @@ const Header = () => {
                       onClick={() => {
                         dispatch(clearReduxStoreData());
                       }}
-                      className="block py-3 text-center text-white p-4 hover:text-indigo-600 border rounded-lg bg-indigo-700 font-bold text-lg"
+                      className=" px-4 py-2 bg-[var(--primary-color)] block  text-center text-white font-semibold hover:text-[var(--primary-color)] hover:bg-gray-300 hover:shadow-lg border rounded-lg md:border-none"
                     >
                       Logout
                     </button>
@@ -309,7 +309,7 @@ const Header = () => {
                     <Link
                       to="/login"
                       href="javascript:void(0)"
-                      className="block py-3 text-center text-gray-700 hover:text-indigo-600 border rounded-lg md:border-none"
+                      className=" px-4 py-2 bg-[var(--primary-color)] block  text-center text-white font-semibold hover:text-black hover:bg-gray-300 hover:shadow-lg border rounded-lg md:border-none"
                     >
                       Log in
                     </Link>

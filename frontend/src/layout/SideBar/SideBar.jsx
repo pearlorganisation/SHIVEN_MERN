@@ -54,6 +54,14 @@ const SideBar = () => {
           title: "Create Insurance",
           path: "/insurances/create-insurance",
         },
+        {
+          title: "Insurance Service Providers",
+          path: "/insurances/insurance-service-providers",
+        },
+        {
+          title: "Create Insurance Service Providers",
+          path: "/insurances/insurance-service-providers/create-insurance-service-provider",
+        },
       ],
     },
     {

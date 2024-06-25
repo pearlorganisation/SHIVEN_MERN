@@ -16,3 +16,22 @@ export const getInsurances = createAsyncThunk(
     }
   }
 );
+
+// createInsurance -- action to call the createInsurance api
+export const createInsurance = createAsyncThunk(
+  "insurance/createInsurance",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await instance.post("/insurance", payload, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        withCredentials: true,
+      });
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);

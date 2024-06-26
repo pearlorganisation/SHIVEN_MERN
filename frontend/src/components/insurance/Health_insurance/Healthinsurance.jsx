@@ -4,6 +4,7 @@ import Whychoosshiven from "../commonininsurance/Whychoosshiven";
 
 import { Link } from "react-router-dom";
 import Company from "../../Company/Company";
+import CreateProfile from "../../CreateProfile/CreateProfile";
 // -----------------------------------------------------------------------------------------------------
 
 const Healthinsurance = () => {
@@ -40,6 +41,7 @@ const Healthinsurance = () => {
             receive tax benefits under section 80D of the Income Tax Act, 1961.
           </p>
         </div>
+
         <section className="healthInsuranceCards mt-10 w-[100vw]">
           <div class="flex justify-center ">
             <div className={`w-[100%]`}>
@@ -71,6 +73,7 @@ const Healthinsurance = () => {
 
               <div class="mt-8 w-[100%]" id="frameworks-integration">
                 <Company />
+                <CreateProfile />
               </div>
             </div>
           </div>
@@ -127,6 +130,7 @@ const Healthinsurance = () => {
                   </th>
                   <td class="px-6 py-4">Usually 30-60 days</td>
                 </tr>
+
                 <tr class="bg-white dark:bg-gray-800">
                   <th
                     scope="row"
@@ -136,6 +140,7 @@ const Healthinsurance = () => {
                   </th>
                   <td class="px-6 py-4">Covered</td>
                 </tr>
+
                 <tr class="bg-white dark:bg-gray-800">
                   <th
                     scope="row"

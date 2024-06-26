@@ -13,6 +13,7 @@ const FinancialConsultant = () => {
       twitter: "javascript:void(0)",
       github: "javascript:void(0)",
     },
+
     {
       avatar: FormsI,
       name: "Customized Forms",
@@ -22,6 +23,7 @@ const FinancialConsultant = () => {
       twitter: "javascript:void(0)",
       github: "javascript:void(0)",
     },
+
     {
       avatar:
         "https://d3an9kf42ylj3p.cloudfront.net/uploads/2023/10/kf_typesofdbms_oct23.png",
@@ -75,6 +77,7 @@ const FinancialConsultant = () => {
               industry.Lorem Ipsum has been the industry's standard dummy .
             </p>
           </div>
+
           <div className="mt-12">
             <ul className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
               {team.map((item, idx) => (
@@ -112,6 +115,7 @@ const FinancialConsultant = () => {
                           </defs>
                         </svg>
                       </a>
+
                       <a href={item.github}>
                         <svg
                           className="w-5 h-5 duration-150 text-gray-600"
@@ -133,6 +137,7 @@ const FinancialConsultant = () => {
                           </defs>
                         </svg>
                       </a>
+
                       <a href={item.linkedin}>
                         <svg
                           className="w-5 h-5 duration-150 text-blue-600"

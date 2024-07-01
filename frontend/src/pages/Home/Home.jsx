@@ -6,6 +6,7 @@ import FeaturesCustomer from "../../components/FeaturesCustomer/FeaturesCustomer
 import Testimonial from "../../components/Testimonials/Testimonial";
 import Faqs from "../../components/Faqs/Faqs";
 import AllinsuranceQuote from "../../components/insurance_quotation/AllinsuranceQuote";
+import HealthPremium from "../../components/CheckPremium/HealthPremium";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <HeroSection />
       {/* <AllinsuranceQuote /> */}
       <Policies />
+
       <FeaturesCustomer />
       <FinancialConsultant />
       <Testimonial />

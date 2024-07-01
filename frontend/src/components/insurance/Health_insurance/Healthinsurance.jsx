@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import Whychoosshiven from "../commonininsurance/Whychoosshiven";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Company from "../../Company/Company";
 import CreateProfile from "../../CreateProfile/CreateProfile";
 // -----------------------------------------------------------------------------------------------------
@@ -19,7 +19,10 @@ const Healthinsurance = () => {
     window.scroll(0, 0);
   }, []);
   // -----------------------------------------------------------------------------------------------------
-
+  const navigate = useNavigate();
+  const handelNavigate = () => {
+    navigate("/HealthPremium");
+  };
   return (
     <>
       <div className="mx-auto ">
@@ -315,6 +318,7 @@ const Healthinsurance = () => {
                 <button
                   type="button"
                   className="bg-red-500 p-3 rounded-md text-white"
+                  onClick={handelNavigate}
                 >
                   Check Premium
                 </button>
@@ -353,6 +357,7 @@ const Healthinsurance = () => {
                 <button
                   type="button"
                   className="bg-red-500 p-3 rounded-md text-white"
+                  onClick={handelNavigate}
                 >
                   Check Premium
                 </button>
@@ -392,6 +397,7 @@ const Healthinsurance = () => {
                 <button
                   type="button"
                   className="bg-red-500 p-3 rounded-md text-white"
+                  onClick={handelNavigate}
                 >
                   Check Premium
                 </button>
@@ -431,6 +437,7 @@ const Healthinsurance = () => {
                 <button
                   type="button"
                   className="bg-red-500 p-3 rounded-md text-white"
+                  onClick={handelNavigate}
                 >
                   Check Premium
                 </button>
@@ -470,6 +477,7 @@ const Healthinsurance = () => {
                 <button
                   type="button"
                   className="bg-red-500 p-3 rounded-md text-white"
+                  onClick={handelNavigate}
                 >
                   Check Premium
                 </button>
@@ -509,18 +517,19 @@ const Healthinsurance = () => {
                 <button
                   type="button"
                   className="bg-red-500 p-3 rounded-md text-white"
+                  onClick={handelNavigate}
                 >
                   Check Premium
                 </button>
               </div>
             </div>
-            <div>
+            {/* <div>
               <div class="flex justify-center mt-6">
                 <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 bg-blue-600 text-white">
                   See More Plans
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
         </section>
       </div>

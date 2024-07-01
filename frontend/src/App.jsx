@@ -13,7 +13,7 @@ import Healthinsurance from "./components/insurance/Health_insurance/Healthinsur
 import Single_HealthPage from "./components/insurance/Health_insurance/Single_HealthPage";
 import Dashboard from "./components/Dashboard/Dashboard";
 import SideBar from "./layout/SideBar/SideBar";
-import "./App.css"
+import "./App.css";
 
 import Invoice from "./components/Dashboard/Invoice";
 import Notifications from "./components/Dashboard/Notifications";
@@ -38,6 +38,7 @@ import MotorInsurance from "./components/insurance/MotorInsurance/MotorInsurance
 import AllinsuranceQuote from "./components/insurance_quotation/AllinsuranceQuote";
 import Compnay from "./components/Company/Company";
 import InsuranceProvider from "./pages/Insurance/InsuranceProvider/InsuranceProvider";
+import HealthPremium from "./components/CheckPremium/HealthPremium";
 
 // -------------------------------------------------------------------------------------------------------------
 
@@ -96,6 +97,7 @@ function App() {
           {/* --------------------------------------------------------------------------------------------- */}
           <Route path="allinsuranceQuote" element={<AllinsuranceQuote />} />
           <Route path="company" element={<Compnay />} />
+          <Route path="HealthPremium" element={<HealthPremium />} />
 
           {/* Protected Routes */}
 

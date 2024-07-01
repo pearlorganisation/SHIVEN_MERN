@@ -24,6 +24,7 @@ const Accounting = () => {
               </th>
             </tr>
           </thead>
+
           <tbody>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
@@ -37,6 +38,7 @@ const Accounting = () => {
               <td class="px-6 py-4">114000</td>
               <td class="px-6 py-4">Paid</td>
             </tr>
+
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
                 scope="row"
@@ -49,6 +51,7 @@ const Accounting = () => {
               <td class="px-6 py-4">114000</td>
               <td class="px-6 py-4">Paid</td>
             </tr>
+
             <tr class="bg-white border-b  dark:bg-gray-800">
               <th
                 scope="row"

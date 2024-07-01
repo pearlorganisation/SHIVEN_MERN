@@ -135,7 +135,7 @@ const Header = () => {
       isDrapdown: false,
     },
     {
-      title: "Policies",
+      title: "Service",
       path: "javascript:void(0)",
       isDrapdown: true,
       navs: policiesNavs,

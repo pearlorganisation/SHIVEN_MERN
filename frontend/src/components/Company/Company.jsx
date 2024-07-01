@@ -127,7 +127,7 @@ const Company = () => {
       </div> */}
 
       <section class="text-center py-8 container max-w-6xl mx-auto">
-        <h2 class="text-2xl font-bold mb-4">Choose the service provider</h2>
+        <h2 class="text-2xl font-bold mb-4">Our service provider</h2>
         <p class="text-gray-600 mb-8">
           Leading insurers for your financial freedom
         </p>

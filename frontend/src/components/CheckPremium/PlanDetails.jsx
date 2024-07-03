@@ -24,6 +24,7 @@ const PlanDetails = () => {
             </button>
           </div>
         </div>
+
         <div className="mt-6 flex flex-col md:flex-row justify-between">
           <div className="flex-1">
             <div className="flex space-x-4 border-b pb-2">
@@ -70,6 +71,35 @@ const PlanDetails = () => {
                         No Sublimit on Modern Treatment, AYUSH, Room rent, etc.
                       </p>
                     </li>
+
+                    <li className="flex items-start space-x-2">
+                      <span className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white">
+                        ✓
+                      </span>
+                      <p>
+                        Unlimited E-Consultations - Available for Consultations
+                        with General Physicians
+                      </p>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <span className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white">
+                        ✓
+                      </span>
+                      <p>
+                        Unlimited E-Consultations - Available for Consultations
+                        with General Physicians
+                      </p>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <span className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white">
+                        ✓
+                      </span>
+                      <p>
+                        Restoration Benefits: Rs. 500000. For both same &
+                        different illness. Unlimited times/year.
+                      </p>
+                    </li>
+
                     <li className="flex items-start space-x-2">
                       <span className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white">
                         ✓
@@ -81,29 +111,10 @@ const PlanDetails = () => {
                     </li>
                   </ul>
                 </div>
-                <div className="mt-4 space-y-2">
-                  <div className="flex items-start space-x-2">
-                    <span className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white">
-                      ✓
-                    </span>
-                    <p>
-                      Restoration Benefits: Rs. 500000. For both same &
-                      different illness. Unlimited times/year.
-                    </p>
-                  </div>
-                  <div className="flex items-start space-x-2">
-                    <span className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white">
-                      ✓
-                    </span>
-                    <p>
-                      Pre Hospitalization: Covered up to 60 days. Max up to Rs.
-                      500000.
-                    </p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
+
           <div className="mt-6 md:mt-0 md:w-80">
             <div className="bg-gray-50 p-4 rounded-md shadow-md">
               <h3 className="text-lg font-semibold">Premium Breakup</h3>

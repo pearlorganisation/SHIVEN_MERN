@@ -31,6 +31,7 @@ const Single_HealthPage = () => {
                 annual health check-ups, maternity expenses, and more.
                 {"\n          "}
               </li>
+
               <li>
                 <strong>Niva Bupa Health Companion:</strong>
                 Another popular health insurance plan that you can buy with Niva
@@ -55,6 +56,7 @@ const Single_HealthPage = () => {
             </p>
           </div>
         </section>
+
         <section>
           <div class="max-w-8xl mx-auto p-6 bg-white shadow-lg rounded-lg">
             <h1 class="text-3xl font-bold mb-6">

@@ -27,8 +27,9 @@ const Filter = () => {
           className="mt-2 sm:mt-0 ml-0 sm:ml-4 p-2 border rounded-md w-full sm:w-auto"
         />
       </div>
+
       <div className="mt-4 flex flex-wrap gap-2">
-        <div className="relative">
+        <div className="relative ">
           <button
             className="px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 transition duration-300"
             onClick={toggleCoverDropdown}
@@ -39,20 +40,25 @@ const Filter = () => {
             <div className="absolute mt-2 w-56 bg-white border rounded-md shadow-lg z-10">
               <ul>
                 <li className="px-4 py-2 hover:bg-blue-100 cursor-pointer">
-                  Which cover amount is best for you? Let's Find Out ›
+                  Which cover amount is best for you? Let's Find Out
                 </li>
+
                 <li className="px-4 py-2 hover:bg-blue-100 cursor-pointer">
                   Recommended
                 </li>
+
                 <li className="px-4 py-2 hover:bg-blue-100 cursor-pointer">
-                  Below ₹5 Lakh
+                  Below ₹5 LaKh
                 </li>
+
                 <li className="px-4 py-2 hover:bg-blue-100 cursor-pointer">
                   ₹5-9 Lakh
                 </li>
+
                 <li className="px-4 py-2 hover:bg-blue-100 cursor-pointer">
                   ₹10-24 Lakh
                 </li>
+
                 <li className="px-4 py-2 hover:bg-blue-100 cursor-pointer">
                   ₹25-99 Lakh
                 </li>
@@ -92,9 +98,11 @@ const Filter = () => {
         <button className="px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 transition duration-300">
           Maternity Cover
         </button>
+
         <button className="px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 transition duration-300">
           Company
         </button>
+
         <button className="px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 transition duration-300">
           <div className="flex justify-center items-center">
             <div>

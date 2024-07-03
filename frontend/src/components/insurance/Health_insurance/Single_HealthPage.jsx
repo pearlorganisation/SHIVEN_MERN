@@ -57,20 +57,23 @@ const Single_HealthPage = () => {
         </section>
         <section>
           <div class="max-w-8xl mx-auto p-6 bg-white shadow-lg rounded-lg">
-            <h1 class="text-3xl font-bold mb-6">  
-              Niva Bupa Health Insurance Plan List 
+            <h1 class="text-3xl font-bold mb-6">
+              Niva Bupa Health Insurance Plan List
             </h1>
-            
+
             <div class="flex flex-wrap gap-2 mb-6">
               <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 bg-blue-100 text-blue-800">
                 Individual (17)
               </button>
+
               <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 bg-blue-100 text-blue-800">
                 Family (17)
               </button>
+
               <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 bg-blue-100 text-blue-800">
                 Woman (17)
               </button>
+
               <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 bg-blue-100 text-blue-800">
                 Blood Pressure (17)
               </button>
@@ -96,6 +99,7 @@ const Single_HealthPage = () => {
                 Senior Citizen (9)
               </button>
             </div>
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div
                 class="rounded-lg border bg-card text-card-foreground shadow-sm col-span-1 "
@@ -129,6 +133,7 @@ const Single_HealthPage = () => {
                   </div>
                 </div>
               </div>
+
               <div
                 class="rounded-lg border bg-card text-card-foreground shadow-sm col-span-1"
                 data-v0-t="card"
@@ -185,6 +190,7 @@ const Single_HealthPage = () => {
                     <p class="text-gray-600">COVER 5 Lakh</p>
                     <p class="text-gray-600">CASHLESS HOSPITAL 10059</p>
                   </div>
+
                   <div class="flex justify-between items-center">
                     <p class="text-gray-600">Starting From ₹678/month*</p>
                     <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 bg-red-500 text-white">

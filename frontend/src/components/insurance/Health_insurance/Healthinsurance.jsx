@@ -2,8 +2,9 @@
 import React, { useEffect } from "react";
 import Whychoosshiven from "../commonininsurance/Whychoosshiven";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Company from "../../Company/Company";
+import CreateProfile from "../../CreateProfile/CreateProfile";
 // -----------------------------------------------------------------------------------------------------
 
 const Healthinsurance = () => {
@@ -18,11 +19,14 @@ const Healthinsurance = () => {
     window.scroll(0, 0);
   }, []);
   // -----------------------------------------------------------------------------------------------------
-
+  const navigate = useNavigate();
+  const handelNavigate = () => {
+    navigate("/HealthPremium");
+  };
   return (
     <>
       <div className="mx-auto ">
-        <div className="p-5">
+        <div className="p-5 md:p-8 conatiner mx-auto max-w-7xl">
           <h1 className=" font-semibold text text-2xl py-2">
             Health Insurance
           </h1>
@@ -40,6 +44,7 @@ const Healthinsurance = () => {
             receive tax benefits under section 80D of the Income Tax Act, 1961.
           </p>
         </div>
+
         <section className="healthInsuranceCards mt-10 w-[100vw]">
           <div class="flex justify-center ">
             <div className={`w-[100%]`}>
@@ -64,19 +69,49 @@ const Healthinsurance = () => {
                     ></path>
                   </svg>
                 </a>
-                <h2 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug !mb-2 text-primary p-5 pb-0">
-                  Choose the service provider
-                </h2>
               </div>
 
+              <section>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow">
+                      <h1 class="text-2xl font-bold text-gray-900 mb-2">
+                        What is Health Insurance?
+                      </h1>
+                      <p class="text-gray-600">
+                        Health insurance is an agreement between the insurer and
+                        the policyholder whereby an insurance company agrees to
+                        reimburse for medical costs incurred by the policyholder
+                        during the tenure of the policy. According to the policy
+                        terms, the insured may incur medical expenses if they
+                        get ill or meet an unfortunate accident that leads to
+                        treatment at the hospital. To avail of the coverage
+                        benefits of a health insurance policy, the policyholder
+                        must pay a specific amount periodically, called a
+                        premium. The premium is determined by the insurance
+                        company and must be paid by the policyholders without
+                        any fail either monthly, quarterly, half-yearly or
+                        annually.
+                      </p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg flex justify-center items-center overflow-hidden">
+                      <img
+                        className="w-[100%]"
+                        src="https://i.graphicmama.com/blog/wp-content/uploads/2021/04/14070313/free-medical-illustrations-59.png"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </section>
               <div class="mt-8 w-[100%]" id="frameworks-integration">
                 <Company />
+                {/* <CreateProfile /> */}
               </div>
             </div>
           </div>
         </section>
 
-        <section className="px-10">
+        {/* <section className="px-10">
           <div>
             <h1 className="text text-2xl font-medium py-5">
               Key Features of Health Insurance Plans
@@ -127,6 +162,7 @@ const Healthinsurance = () => {
                   </th>
                   <td class="px-6 py-4">Usually 30-60 days</td>
                 </tr>
+
                 <tr class="bg-white dark:bg-gray-800">
                   <th
                     scope="row"
@@ -136,6 +172,7 @@ const Healthinsurance = () => {
                   </th>
                   <td class="px-6 py-4">Covered</td>
                 </tr>
+
                 <tr class="bg-white dark:bg-gray-800">
                   <th
                     scope="row"
@@ -233,43 +270,11 @@ const Healthinsurance = () => {
               </tbody>
             </table>
           </div>
-        </section>
+        </section> */}
 
-        <section>
+        {/* <section>
           <Whychoosshiven />
-        </section>
-
-        <section>
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="bg-white p-6 rounded-lg shadow">
-                <h1 class="text-2xl font-bold text-gray-900 mb-2">
-                  What is Health Insurance?
-                </h1>
-                <p class="text-gray-600">
-                  Health insurance is an agreement between the insurer and the
-                  policyholder whereby an insurance company agrees to reimburse
-                  for medical costs incurred by the policyholder during the
-                  tenure of the policy. According to the policy terms, the
-                  insured may incur medical expenses if they get ill or meet an
-                  unfortunate accident that leads to treatment at the hospital.
-                  To avail of the coverage benefits of a health insurance
-                  policy, the policyholder must pay a specific amount
-                  periodically, called a premium. The premium is determined by
-                  the insurance company and must be paid by the policyholders
-                  without any fail either monthly, quarterly, half-yearly or
-                  annually.
-                </p>
-              </div>
-              <div class="bg-gray-200 rounded-lg flex justify-center items-center overflow-hidden">
-                <img
-                  className="w-[100%]"
-                  src="https://i.graphicmama.com/blog/wp-content/uploads/2021/04/14070313/free-medical-illustrations-59.png"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+        </section> */}
 
         <section>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -313,6 +318,7 @@ const Healthinsurance = () => {
                 <button
                   type="button"
                   className="bg-red-500 p-3 rounded-md text-white"
+                  onClick={handelNavigate}
                 >
                   Check Premium
                 </button>
@@ -351,6 +357,7 @@ const Healthinsurance = () => {
                 <button
                   type="button"
                   className="bg-red-500 p-3 rounded-md text-white"
+                  onClick={handelNavigate}
                 >
                   Check Premium
                 </button>
@@ -390,6 +397,7 @@ const Healthinsurance = () => {
                 <button
                   type="button"
                   className="bg-red-500 p-3 rounded-md text-white"
+                  onClick={handelNavigate}
                 >
                   Check Premium
                 </button>
@@ -429,6 +437,7 @@ const Healthinsurance = () => {
                 <button
                   type="button"
                   className="bg-red-500 p-3 rounded-md text-white"
+                  onClick={handelNavigate}
                 >
                   Check Premium
                 </button>
@@ -468,6 +477,7 @@ const Healthinsurance = () => {
                 <button
                   type="button"
                   className="bg-red-500 p-3 rounded-md text-white"
+                  onClick={handelNavigate}
                 >
                   Check Premium
                 </button>
@@ -507,18 +517,19 @@ const Healthinsurance = () => {
                 <button
                   type="button"
                   className="bg-red-500 p-3 rounded-md text-white"
+                  onClick={handelNavigate}
                 >
                   Check Premium
                 </button>
               </div>
             </div>
-            <div>
+            {/* <div>
               <div class="flex justify-center mt-6">
                 <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 bg-blue-600 text-white">
                   See More Plans
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
         </section>
       </div>

@@ -10,10 +10,12 @@ const PlanDetails = () => {
             <div>
               <h2 className="text-xl font-bold">Care Health</h2>
               <p className="text-gray-600">Care Supreme VFM Discounted</p>
+
               <div className="flex items-center space-x-2 mt-2">
                 <span className="bg-blue-100 text-blue-500 px-2 py-1 rounded">
                   Cover
                 </span>
+
                 <span className="font-semibold">₹5 Lac</span>
               </div>
             </div>
@@ -35,6 +37,7 @@ const PlanDetails = () => {
               <button className="text-gray-600 pb-2">Cashless Hospitals</button>
               <button className="text-gray-600 pb-2">Claim Process</button>
             </div>
+
             <div className="mt-4">
               <div className="flex items-center space-x-2 bg-yellow-100 p-2 rounded-md">
                 <div className="w-10 h-10 bg-gray-300 rounded-full"></div>
@@ -47,12 +50,14 @@ const PlanDetails = () => {
                   </button>
                 </div>
               </div>
+
               <div className="mt-6">
                 <h3 className="text-lg font-semibold">What's covered? </h3>
                 <div className="mt-4 bg-gray-50 p-4 rounded-md">
                   <h4 className="text-yellow-600 font-bold mb-2">
                     Special Features
                   </h4>
+
                   <ul className="space-y-2">
                     <li className="flex items-start space-x-2">
                       <span className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white">
@@ -63,6 +68,7 @@ const PlanDetails = () => {
                         Illnesses.
                       </p>
                     </li>
+
                     <li className="flex items-start space-x-2">
                       <span className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white">
                         ✓

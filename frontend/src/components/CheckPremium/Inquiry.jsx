@@ -3,8 +3,8 @@ import React from "react";
 export const Inquiry = () => {
   return (
     <>
-      <div className="pt-[10%] h-screen">
-        <div class="container mx-auto max-w-3xl ">
+      <div className="pt-[10%] h-screen  bg-white">
+        <div class="container mx-auto max-w-3xl">
           <h1 class="text-center font-medium text-lg">Inquiry form </h1>
         </div>
 
@@ -21,6 +21,24 @@ export const Inquiry = () => {
               id="name"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Enter Your Name"
+              required
+            />
+          </div>
+
+          <div class="mb-5">
+            <label
+              for="password"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Age
+            </label>
+            <input
+              type="number"
+              id="number"
+              placeholder="Enter Your Number"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              maxlength="10"
+              minlength="10"
               required
             />
           </div>

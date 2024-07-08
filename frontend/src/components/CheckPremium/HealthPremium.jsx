@@ -20,6 +20,7 @@ const HealthPremium = () => {
       yearlyPremium: "₹26,060 / Year",
       claimSettlementRatio: "95%",
     },
+
     {
       id: 2,
       name: "Health Insurance",

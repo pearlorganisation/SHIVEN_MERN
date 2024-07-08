@@ -3,6 +3,9 @@ import { FaInfoCircle } from "react-icons/fa";
 import Filter from "./Filter";
 import { CiFilter } from "react-icons/ci";
 import PlanDetails from "./PlanDetails";
+import { Inquiry } from "./Inquiry";
+import { useNavigate } from "react-router-dom";
+
 const HealthPremium = () => {
   const insuranceData = [
     {
@@ -70,7 +73,7 @@ const HealthPremium = () => {
     },
     // Add more insurance data as needed
   ];
-
+  const navigate = useNavigate("");
   return (
     <>
       {" "}
@@ -137,6 +140,7 @@ const HealthPremium = () => {
         ))}
       </div>
       <PlanDetails />
+      <Inquiry />
     </>
   );
 };

@@ -71,6 +71,7 @@ const HealthInsuranceReview = () => {
               </div>
             </div>
           </div>
+
           <div class="bg-white shadow-md p-6 rounded-lg flex flex-col md:flex-row items-start">
             <img
               src="https://via.placeholder.com/80"

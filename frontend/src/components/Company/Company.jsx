@@ -3,24 +3,45 @@ import { IoMdArrowDropright } from "react-icons/io";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useNavigate } from "react-router-dom";
 import "swiper/css";
+
 const Company = () => {
   // ------------------------------------------------State----------------------------------------------
-  const insuranceProviderArray = [
+  const data = [
     {
-      title: "SBI",
-      path: "/health-insurance/sbi",
+      path: "https://upload.wikimedia.org/wikipedia/en/thumb/4/4f/Life_Insurance_Corporation_of_India_%28logo%29.svg/250px-Life_Insurance_Corporation_of_India_%28logo%29.svg.png",
     },
     {
-      title: "Tata",
-      path: "/health-insurance/tata",
+      path: "https://upload.wikimedia.org/wikipedia/en/thumb/8/8f/HDFC_Life_Logo.svg/250px-HDFC_Life_Logo.svg.png",
     },
     {
-      title: "ICICI",
-      path: "/health-insurance/icici",
+      path: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Max_Life_Insurance_logo.svg/220px-Max_Life_Insurance_logo.svg.png",
     },
     {
-      title: "Axis",
-      path: "/health-insurance/axis",
+      path: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Kotak_Life_Logo-1.png/220px-Kotak_Life_Logo-1.png",
+    },
+    {
+      path: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/ABSL_Logo_Square.png/220px-ABSL_Logo_Square.png",
+    },
+    {
+      path: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/SBI_Life.jpg/250px-SBI_Life.jpg",
+    },
+    {
+      path: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Bajaj_Group_logo.svg/220px-Bajaj_Group_logo.svg.png",
+    },
+    {
+      path: "https://upload.wikimedia.org/wikipedia/en/thumb/d/d4/PNB_MetLife_India_Logo.svg/220px-PNB_MetLife_India_Logo.svg.png",
+    },
+    {
+      path: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/RelianceNipponLifeLogo.png/220px-RelianceNipponLifeLogo.png",
+    },
+    {
+      path: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Aviva_Logo.svg/200px-Aviva_Logo.svg.png",
+    },
+    {
+      path: "https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/LogoofFGII.jpg/220px-LogoofFGII.jpg",
+    },
+    {
+      path: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Canara_HSBC_Life_Insurance_Wikipedia_Logo.jpg/220px-Canara_HSBC_Life_Insurance_Wikipedia_Logo.jpg",
     },
   ];
   // ---------------------------------------------------------------------------------------------------
@@ -31,7 +52,7 @@ const Company = () => {
 
   return (
     <>
-      <div className="bg-gradient-to-r from-blue-200 to-blue-600 rounded py-10">
+      {/* <div className="bg-gradient-to-r from-blue-200 to-blue-600 rounded py-10">
         <Swiper
           spaceBetween={10}
           slidesPerView={3}
@@ -103,7 +124,27 @@ const Company = () => {
             );
           })}
         </Swiper>
-      </div>
+      </div> */}
+
+      <section class="text-center py-8 container max-w-6xl mx-auto">
+        <h2 class="text-2xl font-bold mb-4">Our service provider</h2>
+        <p class="text-gray-600 mb-8">
+          Leading insurers for your financial freedom
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6  gap-3">
+          {data.map((el, id) => {
+            return (
+              <div class="p-4 bg-white rounded shadow">
+                <img
+                  src={el.path}
+                  alt="Partner 1"
+                  className="mx-auto w-[4rem] md:w-[5rem]"
+                />
+              </div>
+            );
+          })}
+        </div>
+      </section>
     </>
   );
 };

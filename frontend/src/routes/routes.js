@@ -36,6 +36,9 @@ const InsuranceServiceProviders = lazy(() => {
 const CreateInsuranceServiceProvider = lazy(() => {
   return import("../pages/Insurance/admin/CreateInsuranceServiceProvider");
 });
+const HealthPremium = lazy(() => {
+  return import("../components/CheckPremium/HealthPremium");
+});
 
 // -----------------------------------------------------------------------------------------------------------
 {
@@ -70,26 +73,31 @@ export const routes = [
     component: User,
     path: "/users",
   },
+
   {
     title: "Create User",
     component: CreateUser,
     path: "/users/create-user",
   },
+
   {
     title: "Update User",
     component: UpdateUser,
     path: "/users/update-user",
   },
+
   {
     title: "Plans",
     component: Plans,
     path: "/plans",
   },
+
   {
     title: "Proposal Form",
     component: ProposalForm,
     path: "/proposalForm/:plan",
   },
+
   // Insurance
   {
     title: "Insurances",

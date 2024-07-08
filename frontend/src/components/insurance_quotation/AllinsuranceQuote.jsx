@@ -106,10 +106,11 @@ const AllinsuranceQuote = () => {
           placeholder={input?.title}
           className={` ${
             isEnquiryLoading ? "opacity-50" : ""
-          } my-2 px-4 py-2 w-full border rounded-md focus:outline-none focus:border-blue-500`}
+          } my-2 px-4 py-2 w-full border rounded-md  focus:outline-none focus:border-blue-500`}
           {...register(`${input?.field}`)}
           disabled={isEnquiryLoading ? true : false}
         />
+
         {errors[`${input.field}`] && (
           <p className="text-red-600">{errors[`${input.field}`].message}</p>
         )}
@@ -130,6 +131,7 @@ const AllinsuranceQuote = () => {
       toast.error(error.message);
     }
   };
+
   // --------------------------------------------------------------------------------------------------------
   // -------------------------------------------------useEffect---------------------------------------------
   useEffect(() => {
@@ -164,7 +166,7 @@ const AllinsuranceQuote = () => {
         <div className="mt-4">
           <form onSubmit={handleSubmit(enquireFormSubmitHandler)}>
             {renderInputs(
-              insurance.find((ins) => ins.name === activeTab)?.inputs
+              insurance?.find((ins) => ins.name === activeTab)?.inputs
             )}
             <div className="text-center">
               {isEnquiryLoading ? (

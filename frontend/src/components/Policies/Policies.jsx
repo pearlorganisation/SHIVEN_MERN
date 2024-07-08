@@ -4,7 +4,7 @@ import { RiUmbrellaFill } from "react-icons/ri";
 import { IoMdCar } from "react-icons/io";
 import { FiArrowUpCircle } from "react-icons/fi";
 import { FaHandshake, FaShieldAlt } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Policies = () => {
   const faqsList = [
@@ -62,39 +62,41 @@ const Policies = () => {
         <div className="mt-12">
           <ul className="space-y-8 gap-12 grid-cols-2 sm:grid sm:space-y-0 lg:grid-cols-3">
             {faqsList.map((item, idx) => (
-              <li
-                key={idx}
-                className="space-y-3 border bg-white p-4 rounded-xl cursor-pointer shadow-md"
-              >
-                <summary className="flex items-center justify-between font-semibold text ">
-                  <div className="flex justify-center items-center ">
-                    <div className="text-xl italic text-yellow-700 font-bold">
-                      {item.q}
-                    </div>
-                    <div>{item.icon}</div>
-                  </div>
-                </summary>
-
-                <p className="text-black leading-relaxed">{item?.desc}</p>
-                <Link
-                  to={item?.path}
-                  className="flex items-center gap-x-1 text-sm text-indigo-600 hover:text-indigo-400 duration-150 font-medium"
+              <a href={item?.path}>
+                <li
+                  key={idx}
+                  className="space-y-3 border bg-white p-4 rounded-xl cursor-pointer shadow-md"
                 >
-                  Read more
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="w-5 h-5"
+                  <summary className="flex items-center justify-between font-semibold text ">
+                    <div className="flex justify-center items-center ">
+                      <div className="text-xl italic text-yellow-700 font-bold">
+                        {item.q}
+                      </div>
+                      <div>{item.icon}</div>
+                    </div>
+                  </summary>
+
+                  <p className="text-black leading-relaxed">{item?.desc}</p>
+                  <Link
+                    to={item?.path}
+                    className="flex items-center gap-x-1 text-sm text-indigo-600 hover:text-indigo-400 duration-150 font-medium"
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </Link>
-              </li>
+                    Read more
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="w-5 h-5"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </Link>
+                </li>
+              </a>
             ))}
           </ul>
         </div>

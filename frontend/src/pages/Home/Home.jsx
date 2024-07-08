@@ -6,14 +6,15 @@ import FeaturesCustomer from "../../components/FeaturesCustomer/FeaturesCustomer
 import Testimonial from "../../components/Testimonials/Testimonial";
 import Faqs from "../../components/Faqs/Faqs";
 import AllinsuranceQuote from "../../components/insurance_quotation/AllinsuranceQuote";
-import Policies from "../../components/Policies/Policies";
+import HealthPremium from "../../components/CheckPremium/HealthPremium";
 
 const Home = () => {
   return (
     <div className="mx-auto min-h-[90vh] grid place-items-center">
       <HeroSection />
-      <AllinsuranceQuote />
+      {/* <AllinsuranceQuote /> */}
       <Policies />
+
       <FeaturesCustomer />
       <FinancialConsultant />
       <Testimonial />

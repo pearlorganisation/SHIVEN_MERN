@@ -58,10 +58,10 @@ const HeroSection = () => {
   const [isVideoPoppedUp, setVideoPopUp] = useState(false);
 
   return (
-    <section>
-      <div className="max-w-screen-xl mx-auto px-4 py-8 gap-12 text-gray-600 md:px-8 xl:flex">
-        <div className="space-y-5 mx-auto text-center ">
-          <div className="flex flex-wrap items-center justify-center gap-6">
+    <section className="w-full">
+      <div className=" mx-auto   text-gray-600  xl:flex">
+        <div className="space-y-5 text-center  w-full">
+          {/* <div className="flex flex-wrap items-center justify-center gap-6">
             {features.map((item, idx) => (
               <div
                 key={idx}
@@ -74,12 +74,12 @@ const HeroSection = () => {
           </div>
           <h1 className="text-4xl text-gray-800 font-extrabold mx-auto md:text-5xl">
             Explore in-demand careers and develop cutting edge skills
-          </h1>
-          <div className="mx-auto mt-14 xl:mt-0  grid place-items-center">
-            <div className="relative">
+          </h1> */}
+          <div className="mx-auto w-full  xl:mt-0  grid place-items-center">
+            <div className="relative w-full">
               <img
                 src="https://images.unsplash.com/photo-1513258496099-48168024aec0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-                className="rounded-lg"
+                className=" w-full h-[90dvh] object-cover"
                 alt=""
               />
               <button
@@ -96,27 +96,6 @@ const HeroSection = () => {
                 </svg>
               </button>
             </div>
-          </div>
-
-          <div className="items-center justify-center gap-x-3 space-y-3 sm:flex sm:space-y-0 ">
-            <a
-              href="javascript:void(0)"
-              className="flex items-center justify-center gap-x-2 py-2 px-4 text-white font-medium bg-gray-800 duration-150 hover:bg-gray-700 active:bg-gray-900 rounded-lg md:inline-flex"
-            >
-              Get Started
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-5 h-5"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </a>
           </div>
         </div>
       </div>

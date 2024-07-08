@@ -24,7 +24,7 @@ const FinancialConsultant = () => {
     },
     {
       avatar:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        "https://d3an9kf42ylj3p.cloudfront.net/uploads/2023/10/kf_typesofdbms_oct23.png",
       name: "Centralised Database",
       title: "Full stack engineer",
       desc: "Lorem Ipsum is simply dummy text of the printing and typesettin industry.",
@@ -34,8 +34,8 @@ const FinancialConsultant = () => {
     },
     {
       avatar:
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-      name: "Lysa sandiago",
+        "https://cronuts.digital/wp-content/uploads/2019/12/proteger-producto-amazon.jpg",
+      name: "CRM",
       title: "CRM / Enquiry / Leads",
       desc: "Lorem Ipsum is simply dummy text of the printing and typesettin industry.",
       linkedin: "javascript:void(0)",
@@ -44,7 +44,7 @@ const FinancialConsultant = () => {
     },
     {
       avatar:
-        "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        "https://s.tmimgcdn.com/scr/1200x627/260000/business-service-promotion-social-media-post-design-template-01_260077-original.jpg",
       name: "Social Media Posts",
       title: "Product designer",
       desc: "Lorem Ipsum is simply dummy text of the printing and typesettin industry.",
@@ -53,8 +53,7 @@ const FinancialConsultant = () => {
       github: "javascript:void(0)",
     },
     {
-      avatar:
-        "https://images.unsplash.com/photo-1540569014015-19a7be504e3a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
+      avatar: "https://www.go2market.in/assets/images/final-banner-sms.png",
       name: "Bulk Messaging",
       title: "Product manager",
       desc: "Lorem Ipsum is simply dummy text of the printing and typesettin industry.",
@@ -64,26 +63,26 @@ const FinancialConsultant = () => {
     },
   ];
   return (
-    <section className="min-h-screen grid place-items-center">
+    <section className="min-h-screen grid place-items-center mt-8 md:mt-16">
       <div className="py-14">
         <div className="max-w-screen-xl mx-auto px-4 md:px-8">
           <div className="w-full md:w-[80%] lg:w-[70%] mx-auto text-center">
             <h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
-              What We Provide To Our Financial Consultant
+              Features for Finincial Consultant
             </h3>
-            <p className="text-gray-600 mt-3">
+            <p className="text-black mt-3">
               Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry.Lorem Ipsum has been the industry's standard dummy.
+              industry.Lorem Ipsum has been the industry's standard dummy .
             </p>
           </div>
           <div className="mt-12">
             <ul className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
               {team.map((item, idx) => (
                 <li key={idx}>
-                  <div className="w-full h-60 sm:h-52 md:h-56">
+                  <div className="w-full h-60 sm:h-52 md:h-56 bg-zinc-100">
                     <img
                       src={item.avatar}
-                      className="w-full h-full  shadow-md rounded-xl"
+                      className="w-full h-full  shadow-lg rounded-xl  border-t-2 border-solid border-[var(--primary-color)]"
                       alt=""
                     />
                   </div>
@@ -92,11 +91,11 @@ const FinancialConsultant = () => {
                       {item.name}
                     </h4>
                     <p className="text-indigo-600">{item.title}</p>
-                    <p className="text-gray-600 mt-2">{item.desc}</p>
+                    <p className="text-black mt-2">{item.desc}</p>
                     <div className="mt-3 flex gap-4 text-gray-400">
                       <a href={item.twitter}>
                         <svg
-                          className="w-5 h-5 duration-150 hover:text-gray-500"
+                          className="w-5 h-5 duration-150 text-blue-400"
                           fill="currentColor"
                           viewBox="0 0 48 48"
                         >
@@ -115,7 +114,7 @@ const FinancialConsultant = () => {
                       </a>
                       <a href={item.github}>
                         <svg
-                          className="w-5 h-5 duration-150 hover:text-gray-500"
+                          className="w-5 h-5 duration-150 text-gray-600"
                           fill="currentColor"
                           viewBox="0 0 48 48"
                         >
@@ -136,7 +135,7 @@ const FinancialConsultant = () => {
                       </a>
                       <a href={item.linkedin}>
                         <svg
-                          className="w-5 h-5 duration-150 hover:text-gray-500"
+                          className="w-5 h-5 duration-150 text-blue-600"
                           fill="none"
                           viewBox="0 0 48 48"
                         >

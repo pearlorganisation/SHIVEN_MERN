@@ -2,20 +2,20 @@
 import mongoose from "mongoose";
 // ------------------------------------------------------------------------------------------------------------
 
-const insuranceSchema = new mongoose.Schema({
-  insuranceType: {
+const serviceSchema = new mongoose.Schema({
+  serviceType: {
     type: String,
-    required: [true, "Insurance Type is a required field"],
+    required: [true, "service Type is a required field"],
     unique: true,
   },
-  insuranceDescription: {
+  serviceDescription: {
     type: String,
-    required: [true, "Insurance Description is a required field"],
+    required: [true, "service Description is a required field"],
   },
-  insuranceIcon: {
+  logo: {
     type: String,
     default: "",
   },
 });
 
-export const insuranceModel = mongoose.model("insurance", insuranceSchema);
+export const serviceModel = mongoose.model("service", serviceSchema);

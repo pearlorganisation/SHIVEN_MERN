@@ -3,12 +3,6 @@ import dotenv from "dotenv";
 dotenv.config();
 // ----------------------------------------------------------------------------------------------------------
 
-// --------------------------------------------White Listed IP's---------------------------------------------
-
-export const developmentWhiteListedIpAddresses = ["http://localhost:5173","http://localhost:5174","http://localhost:5175"];
-
-export const productionWhiteListedIpAddresses = ["http://localhost:5173","http://localhost:5174","http://localhost:5175"];
-// ------------------------------------------------------------------------------------------------------------
 // ---------------------------------------------Cookie---------------------------------------------------------
 
 const httpOnlyCookieValidity = () => {

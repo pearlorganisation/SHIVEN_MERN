@@ -2,7 +2,6 @@
 import { userModel } from "../../../Models/Auth/User/userModel.js";
 import { CustomError } from "../../../Utils/Error/CustomError.js";
 import { asyncErrorHandler } from "../../../Utils/Error/asyncErrorHandler.js";
-import { pick } from "lodash-es";
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 // ------------------------------------------------------------------------------------------------------
@@ -21,17 +20,9 @@ export const createUser = asyncErrorHandler(async (req, res, next) => {
     return next(error);
   }
 
-  const payload = pick(req?.body?.payload, [
-    "userName",
-    "fullName",
-    "email",
-    "password",
-    "role",
-  ]);
-
-  console.log(payload);
-
-  const userDoc = new userModel(payload);
+  const userDoc = new userModel({
+    userName, fullName, email, password, role 
+  });
 
   await userDoc.save();
 

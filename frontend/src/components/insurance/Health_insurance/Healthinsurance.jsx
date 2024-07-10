@@ -5,6 +5,8 @@ import Whychoosshiven from "../commonininsurance/Whychoosshiven";
 import { Link, useNavigate } from "react-router-dom";
 import Company from "../../Company/Company";
 import CreateProfile from "../../CreateProfile/CreateProfile";
+import HealthInsuranceReview from "./HealthInsuranceReview";
+import HealthFaq from "./HealthFaq";
 // -----------------------------------------------------------------------------------------------------
 
 const Healthinsurance = () => {
@@ -23,9 +25,112 @@ const Healthinsurance = () => {
   const handelNavigate = () => {
     navigate("/HealthPremium");
   };
+  const data = [
+    {
+      img: "https://healthstatic.insurancedekho.com/prod/oem_image/1589358566.jpg",
+      title: "Reassure 2.0 Platinum+",
+      benifit:
+        " No room rent limit | 100% no claim bonus | Unlimited restoration benefits",
+      cover: "5",
+      premium: "832",
+    },
+    {
+      img: "https://healthstatic.insurancedekho.com/prod/oem_image/1598957797.jpg",
+      title: "Care Supreme",
+      benifit:
+        " No room rent limit | 100% no claim bonus | Unlimited restoration benefits",
+      cover: "6",
+      premium: "832",
+    },
+
+    {
+      img: "https://healthstatic.insurancedekho.com/prod/oem_image/1589358566.jpg",
+      title: "Health Gain Plus",
+      benifit:
+        " No room rent limit | 100% no claim bonus | Unlimited restoration benefits",
+      cover: "6",
+      premium: "832",
+    },
+
+    {
+      img: "https://healthstatic.insurancedekho.com/prod/oem_image/1589358566.jpg",
+      title: "Health Gain Plus",
+      benifit:
+        " No room rent limit | 100% no claim bonus | Unlimited restoration benefits",
+      cover: "6",
+      premium: "832",
+    },
+
+    {
+      img: "https://healthstatic.insurancedekho.com/prod/oem_image/1589182232.jpg",
+      title: "",
+      benifit:
+        " No room rent limit | 100% no claim bonus | Unlimited restoration benefits",
+      cover: "6",
+      premium: "832",
+    },
+
+    {},
+  ];
   return (
     <>
       <div className="mx-auto ">
+        <section>
+          <Company />
+          <div className="max-w-7xl mx-auto px-4  sm:px-6 lg:px-8 py-10">
+            <h2 className="text-4xl font-semibold text-center mb-10">
+              Choose your plans
+            </h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              {data.map((el, id) => {
+                return (
+                  <div className="bg-white p-4 shadow rounded-lg flex flex-col">
+                    <div className="flex items-center space-x-2 mb-4">
+                      <img
+                        alt="Company Logo"
+                        className="h-10 w-10"
+                        height="40"
+                        src={el.img}
+                        style={{
+                          aspectRatio: "40/40",
+                          objectFit: "cover",
+                        }}
+                        width="40"
+                      />
+                      <div>
+                        <h3 className="text-lg font-semibold">{el.title}</h3>
+                        <p className="text-sm text-gray-600">
+                          No room rent limit | 33% no claim bonus | 100%
+                          restoration benefits
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center mb-4">
+                      <div>
+                        <p className="text-sm text-gray-600">Cover</p>
+                        <p className="font-semibold">
+                          ₹<span>{el.cover}</span> L
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-600">Starting at</p>
+                        <p className="font-semibold">₹ {el.premium}/month*</p>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      className="bg-red-500 p-3 rounded-md text-white"
+                      onClick={handelNavigate}
+                    >
+                      Check Premium
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
         <div className="p-5 md:p-8 conatiner mx-auto max-w-7xl">
           <h1 className=" font-semibold text text-2xl py-2">
             Health Insurance
@@ -103,435 +208,15 @@ const Healthinsurance = () => {
                   </div>
                 </div>
               </section>
+
               <div class="mt-8 w-[100%]" id="frameworks-integration">
-                <Company />
                 {/* <CreateProfile /> */}
               </div>
             </div>
           </div>
         </section>
-
-        {/* <section className="px-10">
-          <div>
-            <h1 className="text text-2xl font-medium py-5">
-              Key Features of Health Insurance Plans
-            </h1>
-          </div>
-          <div class="relative overflow-x-auto">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-              <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                  <th scope="col" class="px-6 py-3">
-                    Feature
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                    Specifications
-                  </th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                  <th
-                    scope="row"
-                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    Sum Insured
-                  </th>
-                  <td class="px-6 py-4">Rs. 50,000- Rs.3 crore</td>
-                </tr>
-
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                  <th
-                    scope="row"
-                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    Room Rent
-                  </th>
-                  <td class="px-6 py-4">
-                    Covered as per policy terms and conditions
-                  </td>
-                </tr>
-
-                <tr class="bg-white dark:bg-gray-800">
-                  <th
-                    scope="row"
-                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    Pre and post hospitalization expenses
-                  </th>
-                  <td class="px-6 py-4">Usually 30-60 days</td>
-                </tr>
-
-                <tr class="bg-white dark:bg-gray-800">
-                  <th
-                    scope="row"
-                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    Day care procedures
-                  </th>
-                  <td class="px-6 py-4">Covered</td>
-                </tr>
-
-                <tr class="bg-white dark:bg-gray-800">
-                  <th
-                    scope="row"
-                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    Pre and post hospitalization expenses
-                  </th>
-                  <td class="px-6 py-4">Usually 30-60 days</td>
-                </tr>
-                <tr class="bg-white dark:bg-gray-800">
-                  <th
-                    scope="row"
-                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    Sum Insured Restoration Benefit
-                  </th>
-                  <td class="px-6 py-4">Available</td>
-                </tr>
-                <tr class="bg-white dark:bg-gray-800">
-                  <th
-                    scope="row"
-                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    Maternity and newborn expenses
-                  </th>
-                  <td class="px-6 py-4">Covered</td>
-                </tr>
-                <tr class="bg-white dark:bg-gray-800">
-                  <th
-                    scope="row"
-                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    Pre-existing diseases
-                  </th>
-                  <td class="px-6 py-4">
-                    Covered after the applicable waiting period
-                  </td>
-                </tr>
-                <tr class="bg-white dark:bg-gray-800">
-                  <th
-                    scope="row"
-                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    OPD Cover
-                  </th>
-                  <td class="px-6 py-4">Covered</td>
-                </tr>
-                <tr class="bg-white dark:bg-gray-800">
-                  <th
-                    scope="row"
-                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    ICU charges
-                  </th>
-                  <td class="px-6 py-4">Covered</td>
-                </tr>
-                <tr class="bg-white dark:bg-gray-800">
-                  <th
-                    scope="row"
-                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    Ambulance charges
-                  </th>
-                  <td class="px-6 py-4">Covered</td>
-                </tr>
-                <tr class="bg-white dark:bg-gray-800">
-                  <th
-                    scope="row"
-                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    Organ donor expenses
-                  </th>
-                  <td class="px-6 py-4">Covered</td>
-                </tr>
-                <tr class="bg-white dark:bg-gray-800">
-                  <th
-                    scope="row"
-                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    Free health check up
-                  </th>
-                  <td class="px-6 py-4">Covered</td>
-                </tr>
-                <tr class="bg-white dark:bg-gray-800">
-                  <th
-                    scope="row"
-                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    Tax Benefits
-                  </th>
-                  <td class="px-6 py-4">
-                    Covered after the applicable waiting period
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section> */}
-
-        {/* <section>
-          <Whychoosshiven />
-        </section> */}
-
-        <section>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            <h2 className="text-4xl font-semibold text-center mb-10">
-              Choose your plans
-            </h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-white p-4 shadow rounded-lg flex flex-col">
-                <div className="flex items-center space-x-2 mb-4">
-                  <img
-                    alt="Company Logo"
-                    className="h-10 w-10"
-                    height="40"
-                    src="https://healthstatic.insurancedekho.com/prod/oem_image/20211022184151.png"
-                    style={{
-                      aspectRatio: "40/40",
-                      objectFit: "cover",
-                    }}
-                    width="40"
-                  />
-                  <div>
-                    <h3 className="text-lg font-semibold">
-                      Reassure 2.0 Platinum+
-                    </h3>
-                    <p className="text-sm text-gray-600">
-                      No room rent limit | 100% no claim bonus | Unlimited
-                      restoration benefits
-                    </p>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center mb-4">
-                  <div>
-                    <p className="text-sm text-gray-600">Cover</p>
-                    <p className="font-semibold">₹ 5 L</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600">Starting at</p>
-                    <p className="font-semibold">₹ 832/month*</p>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  className="bg-red-500 p-3 rounded-md text-white"
-                  onClick={handelNavigate}
-                >
-                  Check Premium
-                </button>
-              </div>
-              <div className="bg-white p-4 shadow rounded-lg flex flex-col">
-                <div className="flex items-center space-x-2 mb-4">
-                  <img
-                    alt="Company Logo"
-                    className="h-10 w-10"
-                    height="40"
-                    src="https://healthstatic.insurancedekho.com/prod/oem_image/1598957797.jpg"
-                    style={{
-                      aspectRatio: "40/40",
-                      objectFit: "cover",
-                    }}
-                    width="40"
-                  />
-                  <div>
-                    <h3 className="text-lg font-semibold">Care Supreme</h3>
-                    <p className="text-sm text-gray-600">
-                      No room rent limit | Unlimited restoration benefits | 50%
-                      no claim bonus
-                    </p>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center mb-4">
-                  <div>
-                    <p className="text-sm text-gray-600">Cover</p>
-                    <p className="font-semibold">₹ 10 L</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600">Starting at</p>
-                    <p className="font-semibold">₹ 739/month*</p>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  className="bg-red-500 p-3 rounded-md text-white"
-                  onClick={handelNavigate}
-                >
-                  Check Premium
-                </button>
-              </div>
-
-              <div className="bg-white p-4 shadow rounded-lg flex flex-col">
-                <div className="flex items-center space-x-2 mb-4">
-                  <img
-                    alt="Company Logo"
-                    className="h-10 w-10"
-                    height="40"
-                    src="https://healthstatic.insurancedekho.com/prod/oem_image/1589358566.jpg"
-                    style={{
-                      aspectRatio: "40/40",
-                      objectFit: "cover",
-                    }}
-                    width="40"
-                  />
-                  <div>
-                    <h3 className="text-lg font-semibold">Health Gain Plus</h3>
-                    <p className="text-sm text-gray-600">
-                      No room rent limit | 33% no claim bonus | 100% restoration
-                      benefits
-                    </p>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center mb-4">
-                  <div>
-                    <p className="text-sm text-gray-600">Cover</p>
-                    <p className="font-semibold">₹ 5 L</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600">Starting at</p>
-                    <p className="font-semibold">₹ 447/month*</p>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  className="bg-red-500 p-3 rounded-md text-white"
-                  onClick={handelNavigate}
-                >
-                  Check Premium
-                </button>
-              </div>
-
-              <div className="bg-white p-4 shadow rounded-lg flex flex-col">
-                <div className="flex items-center space-x-2 mb-4">
-                  <img
-                    alt="Company Logo"
-                    className="h-10 w-10"
-                    height="40"
-                    src="https://healthstatic.insurancedekho.com/prod/oem_image/1589358566.jpg"
-                    style={{
-                      aspectRatio: "40/40",
-                      objectFit: "cover",
-                    }}
-                    width="40"
-                  />
-                  <div>
-                    <h3 className="text-lg font-semibold">Health Gain Plus</h3>
-                    <p className="text-sm text-gray-600">
-                      No room rent limit | 33% no claim bonus | 100% restoration
-                      benefits
-                    </p>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center mb-4">
-                  <div>
-                    <p className="text-sm text-gray-600">Cover</p>
-                    <p className="font-semibold">₹ 5 L</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600">Starting at</p>
-                    <p className="font-semibold">₹ 447/month*</p>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  className="bg-red-500 p-3 rounded-md text-white"
-                  onClick={handelNavigate}
-                >
-                  Check Premium
-                </button>
-              </div>
-
-              <div className="bg-white p-4 shadow rounded-lg flex flex-col">
-                <div className="flex items-center space-x-2 mb-4">
-                  <img
-                    alt="Company Logo"
-                    className="h-10 w-10"
-                    height="40"
-                    src="https://healthstatic.insurancedekho.com/prod/oem_image/1589358566.jpg"
-                    style={{
-                      aspectRatio: "40/40",
-                      objectFit: "cover",
-                    }}
-                    width="40"
-                  />
-                  <div>
-                    <h3 className="text-lg font-semibold">Health Gain Plus</h3>
-                    <p className="text-sm text-gray-600">
-                      No room rent limit | 33% no claim bonus | 100% restoration
-                      benefits
-                    </p>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center mb-4">
-                  <div>
-                    <p className="text-sm text-gray-600">Cover</p>
-                    <p className="font-semibold">₹ 5 L</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600">Starting at</p>
-                    <p className="font-semibold">₹ 447/month*</p>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  className="bg-red-500 p-3 rounded-md text-white"
-                  onClick={handelNavigate}
-                >
-                  Check Premium
-                </button>
-              </div>
-
-              <div className="bg-white p-4 shadow rounded-lg flex flex-col">
-                <div className="flex items-center space-x-2 mb-4">
-                  <img
-                    alt="Company Logo"
-                    className="h-10 w-10"
-                    height="40"
-                    src="https://healthstatic.insurancedekho.com/prod/oem_image/1589182232.jpg"
-                    style={{
-                      aspectRatio: "40/40",
-                      objectFit: "cover",
-                    }}
-                    width="40"
-                  />
-                  <div>
-                    <h3 className="text-lg font-semibold">Health Gain Plus</h3>
-                    <p className="text-sm text-gray-600">
-                      No room rent limit | 33% no claim bonus | 100% restoration
-                      benefits
-                    </p>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center mb-4">
-                  <div>
-                    <p className="text-sm text-gray-600">Cover</p>
-                    <p className="font-semibold">₹ 5 L</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600">Starting at</p>
-                    <p className="font-semibold">₹ 447/month*</p>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  className="bg-red-500 p-3 rounded-md text-white"
-                  onClick={handelNavigate}
-                >
-                  Check Premium
-                </button>
-              </div>
-            </div>
-            {/* <div>
-              <div class="flex justify-center mt-6">
-                <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 bg-blue-600 text-white">
-                  See More Plans
-                </button>
-              </div>
-            </div> */}
-          </div>
-        </section>
+        <HealthInsuranceReview />
+        <HealthFaq />
       </div>
     </>
   );

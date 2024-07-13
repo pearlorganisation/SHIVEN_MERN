@@ -4,12 +4,11 @@ import { envAccess } from "../../Utils/index.js";
 // ------------------------------------------------------------------------------------------------------------
 
 // cloudinary configurations
-export const cloudinaryConfig = () => {
+
   cloudinary.config({
     cloud_name: envAccess("CLOUDINARY_CLOUD_NAME"),
     api_key: envAccess("CLOUDINARY_API_KEY"),
     api_secret: envAccess("CLOUDINARY_API_SECRET"),
   });
 
-  return cloudinary;
-};
+  export {cloudinary};

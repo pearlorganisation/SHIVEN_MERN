@@ -3,10 +3,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import {
-  developmentWhiteListedIpAddresses,
-  productionWhiteListedIpAddresses,
-} from "./src/Utils/index.js";
+
 import { CustomError } from "./src/Utils/Error/CustomError.js";
 import { mongoConnect } from "./src/Configs/DB/mongo.js";
 // -------------------------------------------------------------------------------------------------------------
@@ -24,8 +21,8 @@ app.use(
   cors({
     origin:
       process.env.NODE_WORKING_ENV === "development"
-        ? developmentWhiteListedIpAddresses
-        : productionWhiteListedIpAddresses,
+        ? ["http://localhost:5173","http://localhost:5174","http://localhost:5175"]
+        : ["http://localhost:5173","http://localhost:5174","http://localhost:5175"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token"],
     methods: ["GET", "PUT", "POST", "PATCH", "DELETE"],
@@ -43,21 +40,23 @@ app.use(cookieParser());
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------Routes----------------------------------------------------
 
-const versionOne = (url) => {
-  return `/api/v1/${url}`;
-};
-
 // Router Imports
 import { userRouter } from "./src/Routes/Auth/User/userRoutes.js";
 import { authRouter } from "./src/Routes/Auth/authRoutes.js";
 import { enquiryRouter } from "./src/Routes/Enquiry/enquiryRoutes.js";
-import { insuranceRouter } from "./src/Routes/Insurance/insuranceRoutes.js";
+import serviceRouter from "./src/Routes/Service/service.js";
+import servicePlanRouter from "./src/Routes/Service/servicePlan.js";
+import serviceProviderRouter from "./src/Routes/Service/serviceProvider.js";
 
 // Route Middlewares
-app.use(versionOne("auth/user"), userRouter); //userRouter
-app.use(versionOne("auth"), authRouter); //authRouter
-app.use(versionOne("enquiry"), enquiryRouter); // enquiryRouter
-app.use(versionOne("insurance"), insuranceRouter); // insuranceRouter
+app.use("/api/v1/auth/user", userRouter);
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/enquiry", enquiryRouter); 
+app.use("/api/v1/service", serviceRouter);
+app.use("/api/v1/servicePlan", servicePlanRouter); 
+app.use("/api/v1/serviceProvider", serviceProviderRouter); 
+
+
 
 app.all(["/", "/api", "/api/v1"], (req, res, next) => {
   return res.status(200).json({

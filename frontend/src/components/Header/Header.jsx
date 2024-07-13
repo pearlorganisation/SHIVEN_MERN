@@ -166,7 +166,7 @@ const Header = () => {
   return (
     <>
       <nav
-        className={`relative z-20 bg-[lightskyblue] w-[100%] md:static md:text-sm md:border shadow-lg border-b-gray-300 border-l-neutral-50 ${
+        className={`fixed top-0 z-20 position: bg-[lightskyblue] w-[100%]  md:text-sm md:border shadow-lg border-b-gray-300 border-l-neutral-50 ${
           state ? " rounded-b-xl md:shadow-none" : ""
         }`}
       >
@@ -294,6 +294,7 @@ const Header = () => {
                   </Link>
                 );
               })}
+
               <div className="flex-1 items-center justify-end gap-x-6 space-y-3 md:flex md:space-y-0">
                 <li>
                   {isUserLoggedIn ? (

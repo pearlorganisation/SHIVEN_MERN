@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaInfoCircle } from "react-icons/fa";
 import Filter from "./Filter";
 import { CiFilter } from "react-icons/ci";
 import PlanDetails from "./PlanDetails";
 import { Inquiry } from "./Inquiry";
 import { useNavigate } from "react-router-dom";
+import { servicePlanAction } from "../../features/actions/servicePlan/servicePlan";
+import { useDispatch, useSelector } from "react-redux";
 
 const HealthPremium = () => {
+  const { servicePlanData } = useSelector((state) => state?.servicePlan);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(servicePlanAction());
+  }, []);
+  console.log(servicePlanData, " new plan data");
   const insuranceData = [
     {
       id: 1,
@@ -74,6 +84,7 @@ const HealthPremium = () => {
     },
     // Add more insurance data as needed
   ];
+
   const navigate = useNavigate("");
   return (
     <>
@@ -140,7 +151,6 @@ const HealthPremium = () => {
           </div>
         ))}
       </div>
-      <PlanDetails />
       <Inquiry />
     </>
   );

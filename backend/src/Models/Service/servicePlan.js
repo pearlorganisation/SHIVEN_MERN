@@ -11,21 +11,13 @@ const servicePlanSchema= new mongoose.Schema({
         ref:"service",
         required:[true,"service type is required"]
     },
-    serviceProvider:{
+    serviceProviderName:{
         type:mongoose.Types.ObjectId,
         ref:"serviceProvider",
         required:[true,"ServiceProviderName is required"]
     },
     mainPoints:{              // like Room rent upto 1.5% of SI
         type:[String]
-    },
-    premiumPerMonth:{
-        type:Number,
-        required:[true,"premiumPerMonth is required"]
-    },
-    premiumPerYear:{
-        type:Number,
-        required:[true,"premiumPerYear is required"]
     },
     coverAmount:{
         type:String,

@@ -21,7 +21,7 @@ export const createServicePlan = asyncErrorHandler(async (req, res, next) => {
 export const getAllServicePlan = asyncErrorHandler(async (req, res, next) => {
  
   
-    const data = await servicePlan.find().populate("serviceProvider")
+    const data = await servicePlan.find()
   
     return res.status(200).json({
       success: true,

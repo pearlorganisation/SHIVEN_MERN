@@ -9,7 +9,9 @@ import { toast } from "sonner";
 import { userReducer } from "./slices/Auth/userSlice";
 import { enquiryReducer } from "./slices/Enquiry/enquirySlice";
 import { insuranceReducer } from "./slices/Insurance/insuranceSlice";
-
+import service from "./slices/Service/service";
+import serviceProvider from "./slices/Service/serviceProvider";
+import servicePlan from "./slices/Service/servicePlan";
 // ------------------------------------------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------------------------------------------
@@ -33,6 +35,9 @@ const reducers = combineReducers({
   user: userReducer,
   enquiry: enquiryReducer,
   insurance: insuranceReducer,
+  service,
+  serviceProvider,
+  servicePlan,
 });
 
 const rootReducer = (state, action) => {

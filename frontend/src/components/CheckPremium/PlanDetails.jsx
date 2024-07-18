@@ -31,40 +31,40 @@ const PlanDetails = () => {
           <div className="flex-1">
             <div className="flex space-x-4 border-b pb-2">
               <button
-                className={`text-blue-500 border-b-2 ${
+                className={`pb-2 ${
                   activeTab === "Includes"
-                    ? "border-blue-500"
-                    : "border-transparent"
-                } pb-2`}
+                    ? "text-blue-500 border-b-2 border-blue-500"
+                    : "text-gray-600 border-transparent"
+                }`}
                 onClick={() => setActiveTab("Includes")}
               >
                 Includes
               </button>
               <button
-                className={`text-gray-600 pb-2 ${
+                className={`pb-2 ${
                   activeTab === "Excludes"
-                    ? "border-blue-500"
-                    : "border-transparent"
+                    ? "text-blue-500 border-b-2 border-blue-500"
+                    : "text-gray-600 border-transparent"
                 }`}
                 onClick={() => setActiveTab("Excludes")}
               >
                 Excludes
               </button>
               <button
-                className={`text-gray-600 pb-2 ${
+                className={`pb-2 ${
                   activeTab === "Cashless Hospitals"
-                    ? "border-blue-500"
-                    : "border-transparent"
+                    ? "text-blue-500 border-b-2 border-blue-500"
+                    : "text-gray-600 border-transparent"
                 }`}
                 onClick={() => setActiveTab("Cashless Hospitals")}
               >
                 Cashless Hospitals
               </button>
               <button
-                className={`text-gray-600 pb-2 ${
+                className={`pb-2 ${
                   activeTab === "Claim Process"
-                    ? "border-blue-500"
-                    : "border-transparent"
+                    ? "text-blue-500 border-b-2 border-blue-500"
+                    : "text-gray-600 border-transparent"
                 }`}
                 onClick={() => setActiveTab("Claim Process")}
               >
@@ -197,18 +197,99 @@ const PlanDetails = () => {
             {activeTab === "Cashless Hospitals" && (
               <div className="mt-4">
                 <h3 className="text-lg font-semibold">Cashless Hospitals</h3>
-                <p className="mt-2 text-gray-600">
-                  Details about cashless hospitals will be displayed here.
-                </p>
+                <div className="mt-2">
+                  <div className="flex items-center space-x-2">
+                    <input
+                      type="text"
+                      placeholder="Select City, Pincode"
+                      className="p-2 border rounded-md w-64"
+                    />
+                    <button className="px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 transition duration-300">
+                      Search for Cashless Hospitals
+                    </button>
+                  </div>
+                  <div className="mt-4">
+                    <p className="text-gray-600">
+                      31 Cashless Hospitals found in your area
+                    </p>
+                    <div className="mt-2 space-y-4">
+                      <div>
+                        <h4 className="font-semibold">
+                          COMBINED MEDICAL INSTITUTE HOSPITAL
+                        </h4>
+                        <p>54 Hardwar Road Prince Chowk DEHRADUN Uttarakhand</p>
+                        <p>Pin Code-248001</p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold">ARCHANA HOSPITAL</h4>
+                        <p>
+                          123 - A Mahindra Vihar (Behind Hotel Surbhi Palace)
+                          Ballupur Road DEHRADUN Uttarakhand
+                        </p>
+                        <p>Pin Code-248001</p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold">
+                          Max Super Specialty Hospital Dehradun
+                        </h4>
+                        <p>
+                          Malsi Mussoorie Diversion Road DEHRADUN Uttarakhand
+                        </p>
+                        <p>Pin Code-248001</p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold">
+                          Fortis Escorts Hospital Dehradun
+                        </h4>
+                        <p>
+                          2nd Floor Coronation Hospital Curzon Road Dalanwala
+                          DEHRADUN Uttarakhand
+                        </p>
+                        <p>Pin Code-248001</p>
+                      </div>
+                      {/* Add more hospital entries as needed */}
+                    </div>
+                  </div>
+                </div>
               </div>
             )}
 
             {activeTab === "Claim Process" && (
               <div className="mt-4">
                 <h3 className="text-lg font-semibold">Claim Process</h3>
-                <p className="mt-2 text-gray-600">
-                  Details about the claim process will be displayed here.
-                </p>
+                <div className="mt-2 text-gray-600">
+                  <div className="mb-4">
+                    <h4 className="font-semibold">Step 1: Claim Intimation</h4>
+                    <p>
+                      Contact the insurer and provide relevant details about the
+                      medical treatment.
+                    </p>
+                  </div>
+                  <div className="mb-4">
+                    <h4 className="font-semibold">
+                      Step 2: Third Party Administrator (TPA) form filling
+                    </h4>
+                    <p>
+                      Visit the TPA desks for Pre-Authorization Request Form at
+                      the hospital, submit the same to the insurer.
+                    </p>
+                  </div>
+                  <div className="mb-4">
+                    <h4 className="font-semibold">Step 3: Cashless Approval</h4>
+                    <p>
+                      Insurer provides the cashless approval after verifying all
+                      the details and documents submitted by you.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Step 4: Claim Settlements</h4>
+                    <p>
+                      Avail the required medical treatment. The insurance
+                      company will directly settle the bills at the network
+                      hospital.
+                    </p>
+                  </div>
+                </div>
               </div>
             )}
           </div>

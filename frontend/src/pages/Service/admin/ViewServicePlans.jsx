@@ -1,14 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Stack,Skeleton } from '@mui/material';
 import { getAllServicePlans } from '../../../features/actions/Service/servicePlan';
+import ServiceProviderModal from '../../../components/Modal/ServicePlanModal';
 
 const ViewServicePlans = () => {
   const dispatch= useDispatch();
   const navigate = useNavigate();
   const {servicePlanData,isLoading } = useSelector(state => state.servicePlan)
+
+  const [showViewModal,setShowViewModal] = useState(false)
+const [viewData,setViewData]= useState()
+
+const handleViewModal=(itemData)=>{
+  setShowViewModal(true)
+  setViewData(itemData)
+}
 
   useEffect(()=>{
     dispatch(getAllServicePlans())
@@ -36,9 +45,11 @@ const ViewServicePlans = () => {
               <thead className="bg-gray-50 text-gray-600 font-medium border-b">
                 <tr>
                   <th className="py-3 px-6">ID</th>
+                  <th className="py-3 px-6">Service Plan </th>
+                  <th className="py-3 px-6">Service Provider </th>
+                  <th className="py-3 px-6">Cover </th>
+                  <th className="py-3 px-6">Claim Settlement Ratio </th>
                   <th className="py-3 px-6">Service Type </th>
-                  <th className="py-3 px-6">Logo </th>
-                  <th className="py-3 px-6">Description </th>
            
                   <th className="py-3 px-6">Actions</th>
                 
@@ -63,19 +74,34 @@ const ViewServicePlans = () => {
                     <tr key={idx}>
                       <td className="px-6 py-4 whitespace-nowrap">{idx+1}</td>
                       <td className="px-6 py-4 whitespace-nowrap ">
-                        {item?.servicePlanName}
+                        {item?.serviceName}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap ">
-                        <img src={item?.logo} className='rounded-lg w-24 h-20' />
+                        {item?.serviceProvider?.serviceProviderName}
+                      </td>
+                
+                      <td className="px-6 py-4 whitespace-nowrap truncate max-w-56 ">
+                        {item?.coverAmount}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap truncate max-w-56 ">
-                        {item?.serviceDescription}
+                        {item?.claimSettlementRatio}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap truncate max-w-56 ">
+                        {item?.serviceType?.serviceType}
                       </td>
                     
                  
                       
                      
                       <td className=" whitespace-nowrap">
+                      <button
+                          onClick={() => {
+                            handleViewModal(item)
+                          }}
+                          className="py-2 leading-none px-3 font-semibold text-yellow-500 hover:text-yellow-600 duration-150 hover:bg-gray-50 rounded-lg"
+                        >
+                          View
+                        </button>
                         <a
                           // onClick={() => {
                           //   navigate(`/updateDessert/${item?._id}`, { state: item  });
@@ -100,6 +126,9 @@ const ViewServicePlans = () => {
               </tbody>
             </table>
           </div>
+          {showViewModal && (
+        <ServiceProviderModal setModal={setShowViewModal} viewData={viewData} />
+      )}
     </div>
   )
 }

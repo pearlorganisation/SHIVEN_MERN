@@ -11,7 +11,7 @@ const servicePlanSchema= new mongoose.Schema({
         ref:"service",
         required:[true,"service type is required"]
     },
-    serviceProviderName:{
+    serviceProvider:{
         type:mongoose.Types.ObjectId,
         ref:"serviceProvider",
         required:[true,"ServiceProviderName is required"]

@@ -17,23 +17,23 @@ const DefaultLayout = () => {
     <>
       <div className="flex w-[100vw]">
         <div className="w-[20%] min-w-[10px] bg-slate-800">
-           <SideBar />
+          <SideBar />
         </div>
         <div className="w-[80%]">
           {/* <Header /> */}
           <div className="">
-          <Outlet />
+            <Outlet />
           </div>
           <Footer />
         </div>
       </div>
     </>
   ) : (
-    <>
+    <div className="mt-24">
       <Header />
       <Outlet />
       <Footer />
-    </>
+    </div>
   );
 };
 

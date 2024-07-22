@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { IoMdArrowDropright } from "react-icons/io";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useNavigate } from "react-router-dom";
 import "swiper/css";
+import { serviceProviderAction } from "../../features/actions/serviceProvider/serviceProvider";
+import { useDispatch, useSelector } from "react-redux";
 
 const Company = () => {
   // ------------------------------------------------State----------------------------------------------
@@ -49,6 +51,16 @@ const Company = () => {
   // ------------------------------------------------Hooks----------------------------------------------
   const navigate = useNavigate();
   // ---------------------------------------------------------------------------------------------------
+  const { serviceProviderData } = useSelector(
+    (state) => state?.serviceProvider
+  );
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(serviceProviderAction());
+  }, []);
+
+  console.log(serviceProviderData.data, "new data");
 
   return (
     <>
@@ -132,11 +144,11 @@ const Company = () => {
           Leading insurers for your financial freedom
         </p>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6  gap-3">
-          {data.map((el, id) => {
+          {serviceProviderData.map((el, id) => {
             return (
               <div class="p-4 bg-white rounded shadow">
                 <img
-                  src={el.path}
+                  src={el.logo}
                   alt="Partner 1"
                   className="mx-auto w-[4rem] md:w-[5rem]"
                 />

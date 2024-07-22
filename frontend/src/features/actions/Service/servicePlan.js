@@ -6,9 +6,7 @@ export const createServicePlan = createAsyncThunk(
   "createServicePlan",
   async (payload, { rejectWithValue }) => {
     try {
-      const response = await instance.post(`/servicePlan`, payload, {
-        withCredentials: true
-      });
+      const response = await instance.post(`/servicePlan`, payload);
       return response;
     } catch (e) {
       return rejectWithValue(e);
@@ -19,9 +17,7 @@ export const createServicePlan = createAsyncThunk(
 export const getAllServicePlans = createAsyncThunk("getServicePlan",    
   async (payload, { rejectWithValue }) => {
   try {
-    const {data} = await instance.get(`/servicePlan`, {
-      withCredentials: true,
-    });
+    const {data} = await instance.get(`/servicePlan`);
     return data;
 
   } catch (e) {

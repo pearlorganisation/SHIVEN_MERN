@@ -40,7 +40,7 @@ import Compnay from "./components/Company/Company";
 import InsuranceProvider from "./pages/Insurance/InsuranceProvider/InsuranceProvider";
 import HealthPremium from "./components/CheckPremium/HealthPremium";
 import PlanDetails from "./components/CheckPremium/PlanDetails";
-import { Inquiry } from "./components/CheckPremium/Inquiry";
+import Enquiry from "./components/CheckPremium/Enquiry";
 
 // -------------------------------------------------------------------------------------------------------------
 
@@ -103,7 +103,7 @@ function App() {
           <Route path="company" element={<Compnay />} />
           <Route path="HealthPremium" element={<HealthPremium />} />
           <Route path="PlanDetails" element={<PlanDetails />} />
-          <Route path="enquiry" element={<Inquiry />} />
+          <Route path="enquiry" element={<Enquiry />} />
 
           {/* Protected Routes */}
 

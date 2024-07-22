@@ -65,6 +65,29 @@ const SideBar = () => {
       ],
     },
     {
+      title: "Services",
+      subMenu: true,
+      subMenuArray: [
+        { title: "Services", path: "/service" },
+        // {
+        //   title: "Create Insurance",
+        //   path: "/insurances/create-insurance",
+        // },
+        {
+          title: "Service Providers",
+          path: "/serviceProvider",
+        },
+        {
+          title: "Service Plans",
+          path: "/servicePlan",
+        },
+        // {
+        //   title: "Create Insurance Service Providers",
+        //   path: "/insurances/insurance-service-providers/create-insurance-service-provider",
+        // },
+      ],
+    },
+    {
       title: "Plans",
       subMenu: false,
       path: "/plans",

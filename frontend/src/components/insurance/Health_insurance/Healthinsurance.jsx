@@ -7,6 +7,8 @@ import Company from "../../Company/Company";
 import CreateProfile from "../../CreateProfile/CreateProfile";
 import HealthInsuranceReview from "./HealthInsuranceReview";
 import HealthFaq from "./HealthFaq";
+import { useDispatch, useSelector } from "react-redux";
+import { servicePlanAction } from "../../../features/actions/servicePlan/servicePlan";
 // -----------------------------------------------------------------------------------------------------
 
 const Healthinsurance = () => {
@@ -25,6 +27,7 @@ const Healthinsurance = () => {
   const handelNavigate = () => {
     navigate("/HealthPremium");
   };
+
   const data = [
     {
       img: "https://healthstatic.insurancedekho.com/prod/oem_image/1589358566.jpg",
@@ -69,9 +72,17 @@ const Healthinsurance = () => {
       cover: "6",
       premium: "832",
     },
-
-    {},
   ];
+  const { servicePlanData } = useSelector((state) => state?.servicePlan);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(servicePlanAction());
+  }, []);
+
+  console.log(servicePlanData, "plan data");
+
   return (
     <>
       <div className="mx-auto ">
@@ -81,8 +92,9 @@ const Healthinsurance = () => {
             <h2 className="text-4xl font-semibold text-center mb-10">
               Choose your plans
             </h2>
+
             <div className="grid md:grid-cols-3 gap-6">
-              {data.map((el, id) => {
+              {servicePlanData.map((el, id) => {
                 return (
                   <div className="bg-white p-4 shadow rounded-lg flex flex-col">
                     <div className="flex items-center space-x-2 mb-4">
@@ -90,31 +102,37 @@ const Healthinsurance = () => {
                         alt="Company Logo"
                         className="h-10 w-10"
                         height="40"
-                        src={el.img}
+                        src={el?.serviceProvider?.logo}
                         style={{
                           aspectRatio: "40/40",
                           objectFit: "cover",
                         }}
                         width="40"
                       />
+
                       <div>
-                        <h3 className="text-lg font-semibold">{el.title}</h3>
+                        <h3 className="text-lg font-semibold">
+                          {el.serviceName}
+                        </h3>
                         <p className="text-sm text-gray-600">
                           No room rent limit | 33% no claim bonus | 100%
                           restoration benefits
                         </p>
                       </div>
                     </div>
+
                     <div className="flex justify-between items-center mb-4">
                       <div>
                         <p className="text-sm text-gray-600">Cover</p>
                         <p className="font-semibold">
-                          ₹<span>{el.cover}</span> L
+                          ₹<span>{el.coverAmount}</span>
                         </p>
                       </div>
                       <div>
                         <p className="text-sm text-gray-600">Starting at</p>
-                        <p className="font-semibold">₹ {el.premium}/month*</p>
+                        <p className="font-semibold">
+                          ₹ {el.premiumPerMonth}/month*
+                        </p>
                       </div>
                     </div>
                     <button

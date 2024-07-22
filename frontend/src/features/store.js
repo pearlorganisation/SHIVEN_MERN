@@ -12,6 +12,7 @@ import { insuranceReducer } from "./slices/Insurance/insuranceSlice";
 import service from "./slices/Service/service";
 import serviceProvider from "./slices/Service/serviceProvider";
 import servicePlan from "./slices/Service/servicePlan";
+
 // ------------------------------------------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------------------------------------------
@@ -38,7 +39,7 @@ const reducers = combineReducers({
   service,
   serviceProvider,
   servicePlan,
-});
+
 
 const rootReducer = (state, action) => {
   if (action.type === "auth/clearReduxStoreData") {

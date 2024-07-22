@@ -27,7 +27,7 @@ const ViewServices = () => {
               navigate("/service/createService");
             }}
           >
-            Services
+            Create Service
           </button>
         </div>
       </div>

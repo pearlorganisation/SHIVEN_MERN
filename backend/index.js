@@ -21,8 +21,8 @@ app.use(
   cors({
     origin:
       process.env.NODE_WORKING_ENV === "development"
-        ? ["http://localhost:5173","http://localhost:5174","http://localhost:5175"]
-        : ["http://localhost:5173","http://localhost:5174","http://localhost:5175"],
+        ? ["http://localhost:5173","http://localhost:5174","http://localhost:5175","https://shiven-mern.vercel.app"]
+        : ["http://localhost:5173","http://localhost:5174","http://localhost:5175","https://shiven-mern.vercel.app"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token"],
     methods: ["GET", "PUT", "POST", "PATCH", "DELETE"],

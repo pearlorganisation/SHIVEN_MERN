@@ -30,7 +30,7 @@ export const serviceSlice = createSlice({
         state.isSuccess = true;
         state.errorMessage = "";
         state.serviceData = action.payload.data;
-        toast.success("service Added Successfully...",{
+        toast.success("Service Added Successfully",{
           position:"top-center"
         });
       })

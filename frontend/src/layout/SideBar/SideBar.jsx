@@ -45,25 +45,25 @@ const SideBar = () => {
         { title: "Create User", path: "/users/create-user" },
       ],
     },
-    {
-      title: "Insurances",
-      subMenu: true,
-      subMenuArray: [
-        { title: "Insurances", path: "/insurances" },
-        {
-          title: "Create Insurance",
-          path: "/insurances/create-insurance",
-        },
-        {
-          title: "Insurance Service Providers",
-          path: "/insurances/insurance-service-providers",
-        },
-        {
-          title: "Create Insurance Service Providers",
-          path: "/insurances/insurance-service-providers/create-insurance-service-provider",
-        },
-      ],
-    },
+    // {
+    //   title: "Insurances",
+    //   subMenu: true,
+    //   subMenuArray: [
+    //     { title: "Insurances", path: "/insurances" },
+    //     {
+    //       title: "Create Insurance",
+    //       path: "/insurances/create-insurance",
+    //     },
+    //     {
+    //       title: "Insurance Service Providers",
+    //       path: "/insurances/insurance-service-providers",
+    //     },
+    //     {
+    //       title: "Create Insurance Service Providers",
+    //       path: "/insurances/insurance-service-providers/create-insurance-service-provider",
+    //     },
+    //   ],
+    // },
     {
       title: "Services",
       subMenu: true,

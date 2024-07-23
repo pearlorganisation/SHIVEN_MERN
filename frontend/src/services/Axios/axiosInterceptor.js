@@ -8,7 +8,6 @@ const url =
     : `${import.meta.env.VITE_PROD_API_URL}/api/v1`;
 
 export const instance = axios.create({
-  withCredentials: true,
   baseURL: `${url}`,
 });
 

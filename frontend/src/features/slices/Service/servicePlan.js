@@ -31,7 +31,7 @@ export const servicePlanSlice = createSlice({
         state.isSuccess = true;
         state.errorMessage = "";
         state.servicePlanData = action.payload.data;
-        toast.success("servicePlan Added Successfully...",{
+        toast.success("Service Plan Added Successfully",{
           position:"top-center"
         });
       })

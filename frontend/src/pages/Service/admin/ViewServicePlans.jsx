@@ -48,7 +48,6 @@ const handleViewModal=(itemData)=>{
                   <th className="py-3 px-6">Service Plan </th>
                   <th className="py-3 px-6">Service Provider </th>
                   <th className="py-3 px-6">Cover </th>
-                  <th className="py-3 px-6">Claim Settlement Ratio </th>
                   <th className="py-3 px-6">Service Type </th>
            
                   <th className="py-3 px-6">Actions</th>
@@ -83,9 +82,7 @@ const handleViewModal=(itemData)=>{
                       <td className="px-6 py-4 whitespace-nowrap truncate max-w-56 ">
                         {item?.coverAmount}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap truncate max-w-56 ">
-                        {item?.claimSettlementRatio}
-                      </td>
+             
                       <td className="px-6 py-4 whitespace-nowrap truncate max-w-56 ">
                         {item?.serviceType?.serviceType}
                       </td>

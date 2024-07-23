@@ -8,7 +8,7 @@ import CreateProfile from "../../CreateProfile/CreateProfile";
 import HealthInsuranceReview from "./HealthInsuranceReview";
 import HealthFaq from "./HealthFaq";
 import { useDispatch, useSelector } from "react-redux";
-import { servicePlanAction } from "../../../features/actions/servicePlan/servicePlan";
+import { getAllServicePlans } from "../../../features/actions/Service/servicePlan";
 // -----------------------------------------------------------------------------------------------------
 
 const Healthinsurance = () => {
@@ -28,57 +28,13 @@ const Healthinsurance = () => {
     navigate("/HealthPremium");
   };
 
-  const data = [
-    {
-      img: "https://healthstatic.insurancedekho.com/prod/oem_image/1589358566.jpg",
-      title: "Reassure 2.0 Platinum+",
-      benifit:
-        " No room rent limit | 100% no claim bonus | Unlimited restoration benefits",
-      cover: "5",
-      premium: "832",
-    },
-    {
-      img: "https://healthstatic.insurancedekho.com/prod/oem_image/1598957797.jpg",
-      title: "Care Supreme",
-      benifit:
-        " No room rent limit | 100% no claim bonus | Unlimited restoration benefits",
-      cover: "6",
-      premium: "832",
-    },
 
-    {
-      img: "https://healthstatic.insurancedekho.com/prod/oem_image/1589358566.jpg",
-      title: "Health Gain Plus",
-      benifit:
-        " No room rent limit | 100% no claim bonus | Unlimited restoration benefits",
-      cover: "6",
-      premium: "832",
-    },
-
-    {
-      img: "https://healthstatic.insurancedekho.com/prod/oem_image/1589358566.jpg",
-      title: "Health Gain Plus",
-      benifit:
-        " No room rent limit | 100% no claim bonus | Unlimited restoration benefits",
-      cover: "6",
-      premium: "832",
-    },
-
-    {
-      img: "https://healthstatic.insurancedekho.com/prod/oem_image/1589182232.jpg",
-      title: "",
-      benifit:
-        " No room rent limit | 100% no claim bonus | Unlimited restoration benefits",
-      cover: "6",
-      premium: "832",
-    },
-  ];
   const { servicePlanData } = useSelector((state) => state?.servicePlan);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(servicePlanAction());
+    dispatch(getAllServicePlans());
   }, []);
 
   console.log(servicePlanData, "plan data");

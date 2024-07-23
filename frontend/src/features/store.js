@@ -39,7 +39,7 @@ const reducers = combineReducers({
   service,
   serviceProvider,
   servicePlan,
-
+})
 
 const rootReducer = (state, action) => {
   if (action.type === "auth/clearReduxStoreData") {

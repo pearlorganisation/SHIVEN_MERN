@@ -7,7 +7,7 @@ export const createService = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       const response = await instance.post(`/service`, payload, {
-        withCredentials: true,
+   
         headers: {
           "Content-type": "multipart/form-data",
         },
@@ -22,9 +22,7 @@ export const createService = createAsyncThunk(
 export const getAllServices = createAsyncThunk("getService",    
   async (payload, { rejectWithValue }) => {
   try {
-    const {data} = await instance.get(`/service`, {
-      withCredentials: true,
-    });
+    const {data} = await instance.get(`/service`);
     return data;
 
   } catch (e) {

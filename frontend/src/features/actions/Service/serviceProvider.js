@@ -7,7 +7,6 @@ export const createServiceProvider = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       const response = await instance.post(`/serviceProvider`, payload, {
- 
         headers: {
           "Content-type": "multipart/form-data",
         },

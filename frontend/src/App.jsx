@@ -39,6 +39,8 @@ import AllinsuranceQuote from "./components/insurance_quotation/AllinsuranceQuot
 import Compnay from "./components/Company/Company";
 import InsuranceProvider from "./pages/Insurance/InsuranceProvider/InsuranceProvider";
 import HealthPremium from "./components/CheckPremium/HealthPremium";
+import PlanDetails from "./components/CheckPremium/PlanDetails";
+import Enquiry from "./components/CheckPremium/Enquiry";
 
 // -------------------------------------------------------------------------------------------------------------
 
@@ -79,7 +81,9 @@ function App() {
           <Route path="/accounting" element={<Accounting />} />
           <Route path="/fillform" element={<FillForm />} />
           <Route path="/proposalForm" element={<ProposalForm />} />
+
           {/* -----------------------------------Insurance Routes----------------------------------------- */}
+
           <Route path="/motor-insurance" element={<MotorInsurance />} />
           <Route path="/health-insurance" element={<Healthinsurance />} />
           <Route
@@ -98,6 +102,8 @@ function App() {
           <Route path="allinsuranceQuote" element={<AllinsuranceQuote />} />
           <Route path="company" element={<Compnay />} />
           <Route path="HealthPremium" element={<HealthPremium />} />
+          <Route path="PlanDetails" element={<PlanDetails />} />
+          <Route path="enquiry" element={<Enquiry />} />
 
           {/* Protected Routes */}
 

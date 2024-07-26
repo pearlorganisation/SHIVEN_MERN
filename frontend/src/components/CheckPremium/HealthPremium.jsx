@@ -19,82 +19,85 @@ const HealthPremium = () => {
 
   console.log(servicePlanData, " premium plan data");
 
-  const insuranceData = [
-    {
-      id: 1,
-      name: "National Insurance",
-      img: "https://healthstatic.insurancedekho.com/prod/oem_image/20211022184151.png",
-      plan: "National Mediclaim Plus",
-      roomRent: "Room rent upto 1% of SI",
-      noClaimBonus: "5% no claim bonus",
-      cover: "₹5 Lac",
-      premium: "₹2,172/month",
-      yearlyPremium: "₹26,060 / Year",
-      claimSettlementRatio: "95%",
-    },
+  // const insuranceData = [
+  //   {
+  //     id: 1,
+  //     name: "National Insurance",
+  //     img: "https://healthstatic.insurancedekho.com/prod/oem_image/20211022184151.png",
+  //     plan: "National Mediclaim Plus",
+  //     roomRent: "Room rent upto 1% of SI",
+  //     noClaimBonus: "5% no claim bonus",
+  //     cover: "₹5 Lac",
+  //     premium: "₹2,172/month",
+  //     yearlyPremium: "₹26,060 / Year",
+  //     claimSettlementRatio: "95%",
+  //   },
 
-    {
-      id: 2,
-      name: "Health Insurance",
-      plan: "Health Gain Plus",
-      img: "https://healthstatic.insurancedekho.com/prod/oem_image/1589358566.jpg",
-      roomRent: "Room rent upto 1.5% of SI",
-      noClaimBonus: "10% no claim bonus",
-      cover: "₹15 Lac",
-      premium: "₹3,000/month",
-      yearlyPremium: "₹36,000 / Year",
-      claimSettlementRatio: "90%",
-    },
+  //   {
+  //     id: 2,
+  //     name: "Health Insurance",
+  //     plan: "Health Gain Plus",
+  //     img: "https://healthstatic.insurancedekho.com/prod/oem_image/1589358566.jpg",
+  //     roomRent: "Room rent upto 1.5% of SI",
+  //     noClaimBonus: "10% no claim bonus",
+  //     cover: "₹15 Lac",
+  //     premium: "₹3,000/month",
+  //     yearlyPremium: "₹36,000 / Year",
+  //     claimSettlementRatio: "90%",
+  //   },
 
-    {
-      id: 3,
-      name: "Care Health",
-      plan: "Care Health vmf",
-      img: "https://ins-common-logos-prod.s3.ap-south-1.amazonaws.com/brokerage/logo/health/care4x.png",
-      roomRent: "Room rent upto 1.5% of SI",
-      noClaimBonus: "10% no claim bonus",
-      cover: "₹10 Lac",
-      premium: "₹3,000/month",
-      yearlyPremium: "₹36,000 / Year",
-      claimSettlementRatio: "90%",
-    },
+  //   {
+  //     id: 3,
+  //     name: "Care Health",
+  //     plan: "Care Health vmf",
+  //     img: "https://ins-common-logos-prod.s3.ap-south-1.amazonaws.com/brokerage/logo/health/care4x.png",
+  //     roomRent: "Room rent upto 1.5% of SI",
+  //     noClaimBonus: "10% no claim bonus",
+  //     cover: "₹10 Lac",
+  //     premium: "₹3,000/month",
+  //     yearlyPremium: "₹36,000 / Year",
+  //     claimSettlementRatio: "90%",
+  //   },
 
-    {
-      id: 4,
-      name: "ICICI Lombard",
-      plan: "Health AdvantEdge Plus 2.0 With Befit",
-      img: "https://ins-common-logos-prod.s3.ap-south-1.amazonaws.com/brokerage/logo/health/icici-lombard4x.png",
-      roomRent: "Room rent upto 1.5% of SI",
-      noClaimBonus: "10% no claim bonus",
-      cover: "₹10 Lac",
-      premium: "₹3,000/month",
-      yearlyPremium: "₹36,000 / Year",
-      claimSettlementRatio: "90%",
-    },
+  //   {
+  //     id: 4,
+  //     name: "ICICI Lombard",
+  //     plan: "Health AdvantEdge Plus 2.0 With Befit",
+  //     img: "https://ins-common-logos-prod.s3.ap-south-1.amazonaws.com/brokerage/logo/health/icici-lombard4x.png",
+  //     roomRent: "Room rent upto 1.5% of SI",
+  //     noClaimBonus: "10% no claim bonus",
+  //     cover: "₹10 Lac",
+  //     premium: "₹3,000/month",
+  //     yearlyPremium: "₹36,000 / Year",
+  //     claimSettlementRatio: "90%",
+  //   },
 
-    {
-      id: 5,
-      name: "Niva Bupa",
-      plan: "Reassure 2.0 Platinum+ (Direct)",
-      img: "https://ins-common-logos-stage.s3.ap-south-1.amazonaws.com/brokerage/logo/health/niva-bupa4x.png",
-      roomRent: "Room rent upto 1.5% of SI",
-      noClaimBonus: "10% no claim bonus",
-      cover: "₹10 Lac",
-      premium: "₹3,000/month",
-      yearlyPremium: "₹36,000 / Year",
-      claimSettlementRatio: "90%",
-    },
-    // Add more insurance data as needed
-  ];
+  //   {
+  //     id: 5,
+  //     name: "Niva Bupa",
+  //     plan: "Reassure 2.0 Platinum+ (Direct)",
+  //     img: "https://ins-common-logos-stage.s3.ap-south-1.amazonaws.com/brokerage/logo/health/niva-bupa4x.png",
+  //     roomRent: "Room rent upto 1.5% of SI",
+  //     noClaimBonus: "10% no claim bonus",
+  //     cover: "₹10 Lac",
+  //     premium: "₹3,000/month",
+  //     yearlyPremium: "₹36,000 / Year",
+  //     claimSettlementRatio: "90%",
+  //   },
+  //   // Add more insurance data as needed
+  // ];
 
-  const navigate = useNavigate("");
+  const navigate = useNavigate();
+  const handelNavigate = () => {
+    navigate("/planDetails");
+  };
   return (
     <>
       {" "}
       <div className="container mx-auto max-w-5xl p-5">
         <Filter />
       </div>
-      <div className="space-y-4 p-4 md:p-10">
+      <div className="space-y-4 p-4 md:p-10" onClick={handelNavigate}>
         {servicePlanData.map((el, id) => (
           <div
             key={el.id}
@@ -160,7 +163,6 @@ const HealthPremium = () => {
           </div>
         ))}
       </div>
-      <Enquiry />
     </>
   );
 };

@@ -25,7 +25,7 @@ const Healthinsurance = () => {
   // -----------------------------------------------------------------------------------------------------
   const navigate = useNavigate();
   const handelNavigate = () => {
-    navigate("/HealthPremium");
+    navigate("/enquiry");
   };
 
   const data = [

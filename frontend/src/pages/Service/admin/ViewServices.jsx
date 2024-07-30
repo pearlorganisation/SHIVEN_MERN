@@ -12,6 +12,7 @@ const ViewServices = () => {
 
   useEffect(()=>{
     dispatch(getAllServices())
+  
   },[])
 
   return (
@@ -27,7 +28,7 @@ const ViewServices = () => {
               navigate("/service/createService");
             }}
           >
-            Create Service
+            Add Service
           </button>
         </div>
       </div>

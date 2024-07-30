@@ -1,5 +1,6 @@
 import { lazy } from "react";
 
+
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
   return import("../components/Dashboard/Dashboard");
@@ -33,9 +34,16 @@ const CreateService = lazy(() => {
 const ViewServicePlans = lazy(() => {
   return import("../pages/Service/admin/ViewServicePlans");
 });
+const CreateServicePlan = lazy(() => {
+  return import("../pages/Service/admin/CreateServicePlan");
+});
 const ViewServiceProviders = lazy(() => {
   return import("../pages/Service/admin/ViewServiceProviders");
 });
+const CreateServiceProvider = lazy(() => {
+  return import("../pages/Service/admin/CreateServiceProvider");
+});
+
 // Insurance
 const Insurances = lazy(() => {
   return import("../pages/Insurance/admin/Insurances");
@@ -150,10 +158,20 @@ export const routes = [
     component: ViewServiceProviders,
     path: "/serviceProvider",
   },
+   {
+    title: "Create Service Provider",
+    component: CreateServiceProvider,
+    path: "/serviceProvider/createServiceProvider",
+  },
   {
     title: " Service Plan ",
     component: ViewServicePlans,
     path: "/servicePlan",
+  },
+  {
+    title: "Create Service Plan",
+    component: CreateServicePlan,
+    path: "/servicePlan/createServicePlan",
   },
 
 ];

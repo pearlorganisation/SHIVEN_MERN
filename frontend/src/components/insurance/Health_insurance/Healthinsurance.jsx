@@ -37,6 +37,7 @@ const Healthinsurance = () => {
       cover: "5",
       premium: "832",
     },
+
     {
       img: "https://healthstatic.insurancedekho.com/prod/oem_image/1598957797.jpg",
       title: "Care Supreme",

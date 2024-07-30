@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Stack,Skeleton } from '@mui/material';
 import { getAllServiceProviders } from '../../../features/actions/Service/serviceProvider';
+import { getAllServices } from '../../../features/actions/Service/service';
 
 const ViewServiceProviders = () => {
   const dispatch= useDispatch();
@@ -12,6 +13,7 @@ const ViewServiceProviders = () => {
 
   useEffect(()=>{
     dispatch(getAllServiceProviders())
+    dispatch(getAllServices())
   },[])
 
   return (
@@ -24,7 +26,7 @@ const ViewServiceProviders = () => {
           <button
             className=" p-2 rounded-lg bg-indigo-600 text-white font-bold tracking-widest"
             onClick={() => {
-              navigate("/service/createService");
+              navigate("/serviceProvider/createServiceProvider");
             }}
           >
            Add Service Provider

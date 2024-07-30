@@ -2,7 +2,6 @@
 import mongoose from "mongoose";
 // ------------------------------------------------------------------------------------------------------------
 
-
 const serviceProviderSchema = new mongoose.Schema({
   serviceProviderName: {
     type: String,
@@ -16,13 +15,10 @@ const serviceProviderSchema = new mongoose.Schema({
     type: String,
     required: [true, "Service Provider Icon is a required field"],
   },
-  service:{
-    type:mongoose.Types.ObjectId,
-    ref:"servicePlan"
-  }
+  service: {
+    type: mongoose.Types.ObjectId,
+    ref: "servicePlan",
+  },
 });
 
-export default mongoose.model(
-  "serviceProvider",
-  serviceProviderSchema
-);
+export default mongoose.model("serviceProvider", serviceProviderSchema);

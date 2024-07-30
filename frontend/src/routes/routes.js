@@ -134,7 +134,7 @@ export const routes = [
     component: CreateInsuranceServiceProvider,
     path: "/insurances/insurance-service-providers/create-insurance-service-provider",
   },
-  //  Service 
+  //  Service
   {
     title: " Service ",
     component: ViewServices,
@@ -155,5 +155,4 @@ export const routes = [
     component: ViewServicePlans,
     path: "/servicePlan",
   },
-
 ];

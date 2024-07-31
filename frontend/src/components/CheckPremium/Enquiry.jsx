@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const Enquiry = () => {
   const {
@@ -12,6 +13,10 @@ const Enquiry = () => {
     console.log(data);
   };
 
+  const navigate = useNavigate();
+  const handelNavigate = () => {
+    navigate("/HealthPremium");
+  };
   return (
     <div className="pt-16 h-screen bg-gray-100 flex items-center justify-center">
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
@@ -98,6 +103,7 @@ const Enquiry = () => {
           <button
             type="submit"
             className="w-full bg-indigo-600 text-white py-2 rounded-md text-sm font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+            onClick={handelNavigate}
           >
             Submit
           </button>

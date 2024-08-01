@@ -36,7 +36,7 @@ const handleViewModal=(itemData)=>{
               navigate("/service/createService");
             }}
           >
-            Service Plan
+          Add Service Plan
           </button>
         </div>
       </div>

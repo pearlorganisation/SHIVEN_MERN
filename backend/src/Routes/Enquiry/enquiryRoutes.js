@@ -8,3 +8,4 @@ export const enquiryRouter = Router();
 
 //enquiryMail
 enquiryRouter.route("/").post(enquiryMail);
+

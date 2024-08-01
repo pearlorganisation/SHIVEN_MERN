@@ -18,6 +18,9 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    resetIsLoading :(state)=>{
+state.isLoading = false
+    },
     resetLoginState: (state, action) => {
       state.isLoginOtpSent = action.payload;
     },
@@ -87,4 +90,4 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
-export const { resetLoginState, clearReduxStoreData } = authSlice.actions;
+export const { resetLoginState, clearReduxStoreData,resetIsLoading } = authSlice.actions;

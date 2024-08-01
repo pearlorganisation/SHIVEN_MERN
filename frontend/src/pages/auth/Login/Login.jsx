@@ -31,7 +31,7 @@ const Login = () => {
   });
 
   const { isLoginOtpSent,isLoading } = useSelector((state) => state?.auth);
-
+console.log(isLoading)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // ---------------------------------------------------------------------------------------------------------

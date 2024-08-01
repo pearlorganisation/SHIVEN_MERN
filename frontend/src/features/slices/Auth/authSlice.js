@@ -11,6 +11,7 @@ const initialState = {
   loggedInUserData: {},
   errorMessage: "",
   isLoginOtpSent: false,
+  isLoading:false,
 };
 
 const authSlice = createSlice({

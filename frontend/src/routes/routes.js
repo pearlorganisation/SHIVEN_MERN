@@ -1,6 +1,5 @@
 import { lazy } from "react";
 
-
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
   return import("../components/Dashboard/Dashboard");
@@ -142,7 +141,7 @@ export const routes = [
     component: CreateInsuranceServiceProvider,
     path: "/insurances/insurance-service-providers/create-insurance-service-provider",
   },
-  //  Service 
+  //  Service
   {
     title: " Service ",
     component: ViewServices,
@@ -158,7 +157,7 @@ export const routes = [
     component: ViewServiceProviders,
     path: "/serviceProvider",
   },
-   {
+  {
     title: "Create Service Provider",
     component: CreateServiceProvider,
     path: "/serviceProvider/createServiceProvider",
@@ -173,5 +172,4 @@ export const routes = [
     component: CreateServicePlan,
     path: "/servicePlan/createServicePlan",
   },
-
 ];

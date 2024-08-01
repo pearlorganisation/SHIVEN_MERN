@@ -19,4 +19,4 @@ authRouter.route("/login").post(login);
 authRouter.route("/login/verify").post(verifyLoginOtp);
 
 // logout
-authRouter.route("/logout").post(verifyTokenMiddleware, logout);
+authRouter.route("/logout").post(logout);

@@ -1,32 +1,29 @@
-
 import servicePlan from "../../Models/Service/servicePlan.js";
 import { asyncErrorHandler } from "../../Utils/Error/asyncErrorHandler.js";
 
-
-
-
 export const createServicePlan = asyncErrorHandler(async (req, res, next) => {
- 
-  
-    const data = new servicePlan(req?.body);
+  const data = new servicePlan(req?.body);
 
-    await data.save();
-  
-    return res.status(200).json({
-      success: true,
-      message: "Service Plan Created Successfully",
-    });
+  await data.save();
+
+  return res.status(200).json({
+    success: true,
+    message: "Service Plan Created Successfully",
   });
+});
 
 export const getAllServicePlan = asyncErrorHandler(async (req, res, next) => {
- 
-  
-    const data = await servicePlan.find().populate("serviceProvider").populate("serviceType")
-  
-    return res.status(200).json({
-      success: true,
-      message: "All Service Plans Found Successfully",
-      data
-    });
+  console.log(req.query.sort, "---- ");
+
+  const data = await servicePlan
+    .find()
+    .sort(req.query?.sort)
+    .populate("serviceProvider")
+    .populate("serviceType");
+
+  return res.status(200).json({
+    success: true,
+    message: "All Service Plans Found Successfully",
+    data,
   });
-  
+});

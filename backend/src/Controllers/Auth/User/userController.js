@@ -1,9 +1,13 @@
 // -----------------------------------------------Imports------------------------------------------------
 import { userModel } from "../../../Models/Auth/User/userModel.js";
+import { loginOtpModel } from "../../../Models/Otp/loginOtpModel.js";
 import { CustomError } from "../../../Utils/Error/CustomError.js";
 import { asyncErrorHandler } from "../../../Utils/Error/asyncErrorHandler.js";
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
+import { sendLoginOtp } from "../../../Utils/Mail/Otp/sendLoginOtp.js";
+import { generateOTP } from "../../../Utils/Mail/Otp/generateOTP.js";
+import moment from "moment";
 // ------------------------------------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------------------------------------
@@ -21,7 +25,11 @@ export const createUser = asyncErrorHandler(async (req, res, next) => {
   }
 
   const userDoc = new userModel({
-    userName, fullName, email, password, role 
+    userName,
+    fullName,
+    email,
+    password,
+    role,
   });
 
   await userDoc.save();
@@ -127,4 +135,23 @@ export const getIndividualUser = asyncErrorHandler(async (req, res, next) => {
     message: "User Found Successfully",
     user,
   });
+});
+
+//Controller to resend OTP
+export const resendOTP = asyncErrorHandler(async (req, res, next) => {
+  const { email } = req.body;
+  const existingUser = userModel.findOne({ email });
+  if (!existingUser) {
+    const error = new CustomError("User not found!", 401);
+    return next(error);
+  }
+  const otp = generateOTP();
+
+  let currentDate = moment();
+  let expiresAt = currentDate.add(10, "m").toISOString();
+  const otpDoc = new loginOtpModel({ otp, email, expiresAt });
+  await otpDoc.save();
+  await sendLoginOtp(email, otp);
+
+  return res.status(200).json({ success: true, message: "OTP sent again." });
 });

@@ -5,7 +5,7 @@ import {
   deleteUser,
   getIndividualUser,
   getUsers,
-  updateUser,
+  updateUser,resendOTP
 } from "../../../Controllers/Auth/User/userController.js";
 // ------------------------------------------------------------------------------------------------------
 
@@ -26,3 +26,5 @@ userRouter.route("/:userId").delete(deleteUser);
 
 // getIndividualUser
 userRouter.route("/:userId").get(getIndividualUser);
+
+userRouter.route("/resend-otp").post(resendOTP);

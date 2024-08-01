@@ -10,6 +10,7 @@ import { loginOtpModel } from "../../Models/Otp/loginOtpModel.js";
 import moment from "moment";
 import jsonwebtoken from "jsonwebtoken";
 import { saveAccessTokenToCookie } from "../../Utils/index.js";
+import { generateOTP } from "../../Utils/Mail/Otp/generateOTP.js";
 // ------------------------------------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------------------------------------
@@ -45,15 +46,10 @@ export const login = asyncErrorHandler(async (req, res, next) => {
 
   const mailExistence = await loginOtpModel.findOneAndDelete({ email }); // replacing the previous otp
 
-  let otp = ""; // creating a 4 digit otp
-
-  for (let i = 0; i < 4; i++) {
-    otp += Math.floor(Math.random() * 10);
-  }
-
+  const otp = generateOTP();
   let currentDate = moment(); // hold current date
   let expiresAt = currentDate.add(10, "m").toISOString(); //  adding one minute to the current otp creation date
-  console.log(expiresAt);
+
   const otpDoc = new loginOtpModel({ otp, email, expiresAt });
 
   await otpDoc.save();

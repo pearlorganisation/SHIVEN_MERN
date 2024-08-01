@@ -37,6 +37,7 @@ export const logout = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       const response = await instance.post("/auth/logout");
+      return response;
     } catch (error) {
       return rejectWithValue(error);
     }

@@ -41,6 +41,7 @@ import InsuranceProvider from "./pages/Insurance/InsuranceProvider/InsuranceProv
 import HealthPremium from "./components/CheckPremium/HealthPremium";
 import PlanDetails from "./components/CheckPremium/PlanDetails";
 import Enquiry from "./components/CheckPremium/Enquiry";
+import WhatIsNew from "./pages/WhatIsNew/WhatIsNew";
 
 // -------------------------------------------------------------------------------------------------------------
 
@@ -68,6 +69,7 @@ function App() {
             path="/single_healthinsurance"
             element={<Single_HealthPage />}
           />
+
           <Route path="/sidebar" element={<SideBar />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blogDetails" element={<BlogDetails />} />
@@ -101,9 +103,10 @@ function App() {
           {/* --------------------------------------------------------------------------------------------- */}
           <Route path="allinsuranceQuote" element={<AllinsuranceQuote />} />
           <Route path="company" element={<Compnay />} />
-          <Route path="HealthPremium" element={<HealthPremium />} />
-          <Route path="PlanDetails" element={<PlanDetails />} />
+          <Route path="healthPremium" element={<HealthPremium />} />
+          <Route path="planDetails" element={<PlanDetails />} />
           <Route path="enquiry" element={<Enquiry />} />
+          <Route path="whatsnew" element={<WhatIsNew />} />
 
           {/* Protected Routes */}
 

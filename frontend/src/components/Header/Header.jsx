@@ -152,6 +152,11 @@ const Header = () => {
       isDrapdown: true,
       navs: featureForCustomer,
     },
+    {
+      title: "What's new",
+      path: "/whatsnew",
+      isDrapdown: false,
+    },
     { title: "Contact Us", path: "javascript:void(0)", isDrapdown: false },
   ];
 

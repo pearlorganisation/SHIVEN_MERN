@@ -52,15 +52,15 @@ export const login = asyncErrorHandler(async (req, res, next) => {
   }
 
   let currentDate = moment(); // hold current date
-  let expiresAt = currentDate.add(1, "m").toISOString(); //  adding one minute to the current otp creation date
-
+  let expiresAt = currentDate.add(10, "m").toISOString(); //  adding one minute to the current otp creation date
+  console.log(expiresAt);
   const otpDoc = new loginOtpModel({ otp, email, expiresAt });
 
   await otpDoc.save();
   await sendLoginOtp(email, otp);
 
   return res.status(200).json({
-    success: true,
+    status: true,
     message: "Otp for mail verification sent successfully",
   });
 });
@@ -88,6 +88,8 @@ export const verifyLoginOtp = asyncErrorHandler(async (req, res, next) => {
 
   let currentDate = moment();
   let expiresAt = moment(otpDoc.expiresAt);
+  console.log(`Current date: ${currentDate.toISOString()}`);
+  console.log(`OTP expires at: ${expiresAt.toISOString()}`);
 
   if (currentDate.isBefore(expiresAt)) {
     // response -- generic response for the login success or failure

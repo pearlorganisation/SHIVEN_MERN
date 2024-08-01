@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { login } from "../../../features/actions/Auth/authActions";
-import { resetLoginState } from "../../../features/slices/Auth/authSlice";
+import { resetIsLoading, resetLoginState } from "../../../features/slices/Auth/authSlice";
 import {ClipLoader} from "react-spinners"
 // ----------------------------------------------------------------------------------------------------------
 
@@ -31,7 +31,6 @@ const Login = () => {
   });
 
   const { isLoginOtpSent,isLoading } = useSelector((state) => state?.auth);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // ---------------------------------------------------------------------------------------------------------
@@ -52,6 +51,9 @@ const Login = () => {
       dispatch(resetLoginState(false));
     }
   }, [isLoginOtpSent]);
+  useEffect(() => {
+      dispatch(resetIsLoading());
+  }, []);
   // ---------------------------------------------------------------------------------------------------------
   return (
     <div className="grid place-items-center h-[90vh] ">

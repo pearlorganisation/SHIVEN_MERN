@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { servicePlanAction } from "../../features/actions/servicePlan/servicePlan";
+import {getAllServicePlans } from "../../features/actions/Service/servicePlan";
 import { useDispatch, useSelector } from "react-redux";
 
 const PlanDetails = () => {
   const { servicePlanData } = useSelector((state) => state?.servicePlan);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(servicePlanAction());
+    dispatch(getAllServicePlans());
   }, []);
 
   console.log(servicePlanData, "  plan DETILAS  data");

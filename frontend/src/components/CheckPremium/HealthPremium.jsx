@@ -20,14 +20,17 @@ const HealthPremium = () => {
   console.log(servicePlanData, " premium plan data");
 
 
-  const navigate = useNavigate("");
+  const navigate = useNavigate();
+  const handelNavigate = () => {
+    navigate("/planDetails");
+  };
   return (
     <>
       {" "}
       <div className="container mx-auto max-w-5xl p-5">
         <Filter />
       </div>
-      <div className="space-y-4 p-4 md:p-10">
+      <div className="space-y-4 p-4 md:p-10" onClick={handelNavigate}>
         {servicePlanData.map((el, id) => (
           <div
             key={el.id}
@@ -93,7 +96,6 @@ const HealthPremium = () => {
           </div>
         ))}
       </div>
-      <Enquiry />
     </>
   );
 };

@@ -56,7 +56,7 @@ export const login = asyncErrorHandler(async (req, res, next) => {
   await sendLoginOtp(email, otp);
 
   return res.status(200).json({
-    success: true,
+    status: true,
     message: "Otp for mail verification sent successfully",
   });
 });

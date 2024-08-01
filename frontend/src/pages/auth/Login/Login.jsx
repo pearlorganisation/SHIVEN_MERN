@@ -31,7 +31,6 @@ const Login = () => {
   });
 
   const { isLoginOtpSent,isLoading } = useSelector((state) => state?.auth);
-console.log(isLoading)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // ---------------------------------------------------------------------------------------------------------
@@ -200,7 +199,7 @@ console.log(isLoading)
                   {errors.password?.message}
                 </p>
               </div>
-              <button disabled={isLoading} className="w-full px-4 py-2 text-white font-medium bg-gray-800 hover:bg-gray-700 active:bg-gray-900 rounded-lg duration-150">
+              <button className="w-full px-4 py-2 text-white font-medium bg-gray-800 hover:bg-gray-700 active:bg-gray-900 rounded-lg duration-150">
                {isLoading ? <ClipLoader color="#c4c2c2" />:  "Log in"}
               </button>
             </form>

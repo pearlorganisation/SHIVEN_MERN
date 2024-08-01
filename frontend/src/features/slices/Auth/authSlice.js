@@ -42,7 +42,8 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.errorMessage = action?.payload;
         state.isLoginOtpSent = false;
-        toast.error(action.payload.message);
+        toast.error(action.payload.response.data.message);
+        console.log(state.errorMessage)
       })
       // verifyLoginOtp lifecycle actions
       .addCase(verifyLoginOtp.pending, (state, action) => {
@@ -74,7 +75,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.errorMessage = "";
         state.isUserLoggedIn = false;
-        persistor.purge();
+        // persistor.purge();
         toast.success("Logout successfully");
       })
       .addCase(logout.rejected, (state, action) => {

@@ -155,3 +155,52 @@ export const resendOTP = asyncErrorHandler(async (req, res, next) => {
 
   return res.status(200).json({ success: true, message: "OTP sent again." });
 });
+
+//Controller for forgot password
+export const forgotPassword = asyncErrorHandler(async (req, res, next) => {
+  const { email, type } = req.body;
+  if (!email) {
+    const error = new CustomError("Email is required", 401);
+    return next(error);
+  }
+
+  const existingUser = await userModel.findOne({ email });
+  if (!existingUser) {
+    const error = new CustomError("User not found!", 401);
+    return next(error);
+  }
+  let currentDate = moment();
+  let expiresAt = currentDate.add(10, "m").toISOString();
+  const otpDoc = new loginOtpModel({ otp, email, expiresAt });
+  await otpDoc.save();
+  await sendLoginOtp(email, otp);
+  return res
+    .status(200)
+    .json({ success: true, message: "OTP sent to email for password reset." });
+});
+
+//Reset Password Controller
+export const resetPassword = asyncErrorHandler(async (req, res, next) => {
+  const { email, password, confirmPassword } = req.body;
+  if (!email) {
+    const error = new CustomError("Email is required", 401);
+    return next(error);
+  }
+
+  const existingUser = await userModel.findOne({ email });
+  if (!existingUser) {
+    const error = new CustomError("User not found!", 401);
+    return next(error);
+  }
+
+  if (password !== confirmPassword) {
+    const error = new CustomError("Password does not match.", 401);
+    return next(error);
+  }
+
+  existingUser.password = password;
+  await existingUser.save();
+  return res
+    .status(200)
+    .json({ success: true, message: "Password reset successfully." });
+});

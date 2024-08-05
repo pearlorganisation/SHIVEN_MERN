@@ -62,7 +62,7 @@ export const login = asyncErrorHandler(async (req, res, next) => {
 });
 
 // @desc - login otp verification
-//@method- POST
+// @method- POST
 // @url - auth/login/verify
 export const verifyLoginOtp = asyncErrorHandler(async (req, res, next) => {
   const { email, otp } = req?.body?.payload;

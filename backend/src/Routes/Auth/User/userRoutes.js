@@ -5,7 +5,10 @@ import {
   deleteUser,
   getIndividualUser,
   getUsers,
-  updateUser,resendOTP
+  updateUser,
+  resendOTP,
+  forgotPassword,
+  resetPassword,
 } from "../../../Controllers/Auth/User/userController.js";
 // ------------------------------------------------------------------------------------------------------
 
@@ -28,3 +31,6 @@ userRouter.route("/:userId").delete(deleteUser);
 userRouter.route("/:userId").get(getIndividualUser);
 
 userRouter.route("/resend-otp").post(resendOTP);
+
+userRouter.route("/forgot-password").post(forgotPassword);
+userRouter.route("/reset-password").post(resetPassword);

@@ -2,10 +2,15 @@
 import mongoose from "mongoose";
 // ------------------------------------------------------------------------------------------------------------
 
-const loginOtpSchema = new mongoose.Schema({
+const otpSchema = new mongoose.Schema({
   otp: {
     type: String,
     required: [true, "Otp is a required field"],
+  },
+  type: {
+    type: String,
+    default: "LOGIN",
+    enum: ["LOGIN", "FORGOTPASSWORD"],
   },
   email: {
     type: String,
@@ -17,4 +22,4 @@ const loginOtpSchema = new mongoose.Schema({
   },
 });
 
-export const loginOtpModel = mongoose.model("loginOtp", loginOtpSchema);
+export const otpModel = mongoose.model("loginOtp", otpSchema);

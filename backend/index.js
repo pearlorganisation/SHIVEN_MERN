@@ -21,8 +21,18 @@ app.use(
   cors({
     origin:
       process.env.NODE_WORKING_ENV === "development"
-        ? ["http://localhost:5173","http://localhost:5174","http://localhost:5175","https://shiven-mern.vercel.app"]
-        : ["http://localhost:5173","http://localhost:5174","http://localhost:5175","https://shiven-mern.vercel.app"],
+        ? [
+            "http://localhost:5173",
+            "http://localhost:5174",
+            "http://localhost:5175",
+            "https://shiven-mern.vercel.app",
+          ]
+        : [
+            "http://localhost:5173",
+            "http://localhost:5174",
+            "http://localhost:5175",
+            "https://shiven-mern.vercel.app",
+          ],
     credentials: false,
     allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token"],
     methods: ["GET", "PUT", "POST", "PATCH", "DELETE"],
@@ -47,16 +57,17 @@ import { enquiryRouter } from "./src/Routes/Enquiry/enquiryRoutes.js";
 import serviceRouter from "./src/Routes/Service/service.js";
 import servicePlanRouter from "./src/Routes/Service/servicePlan.js";
 import serviceProviderRouter from "./src/Routes/Service/serviceProvider.js";
+import mutualFundRoutes from "./src/Routes/Service/MutualFundRoutes/mutualFundRoutes.js" 
 
 // Route Middlewares
 app.use("/api/v1/auth/user", userRouter);
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/enquiry", enquiryRouter); 
+app.use("/api/v1/enquiry", enquiryRouter);
 app.use("/api/v1/service", serviceRouter);
-app.use("/api/v1/servicePlan", servicePlanRouter); 
-app.use("/api/v1/serviceProvider", serviceProviderRouter); 
+app.use("/api/v1/servicePlan", servicePlanRouter);
+app.use("/api/v1/serviceProvider", serviceProviderRouter);
 
-
+app.use("/api/v1/mutual-funds/service-plans", mutualFundRoutes);
 
 app.all(["/", "/api", "/api/v1"], (req, res, next) => {
   return res.status(200).json({

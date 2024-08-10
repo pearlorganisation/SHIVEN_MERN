@@ -4,7 +4,7 @@ import { CustomError } from "../../../Utils/Error/CustomError.js";
 
 export const createMutualFundServicePlan = asyncErrorHandler(
   async (req, res, next) => {
-    const mutualFundPlan = new MutualFundPlan({ ...req.body });
+    const mutualFundPlan = new MutualFundServicePlan({ ...req.body });
     if (!mutualFundPlan) {
       return next(
         new CustomError("Mutual fund service plan is not created", 400)

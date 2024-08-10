@@ -43,6 +43,9 @@ const mutualFundServicePlanSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const MutualFundServicePlan = mongoose.model( "MutualFund", mutualFundServicePlanSchema );
+const MutualFundServicePlan = mongoose.model(
+  "MutualFundServicePlan",
+  mutualFundServicePlanSchema
+);
 
 export default MutualFundServicePlan;

@@ -58,6 +58,7 @@ import serviceRouter from "./src/Routes/Service/service.js";
 import servicePlanRouter from "./src/Routes/Service/servicePlan.js";
 import serviceProviderRouter from "./src/Routes/Service/serviceProvider.js";
 import mutualFundRouter from "./src/Routes/Service/MutualFundRoutes/mutualFundRoutes.js";
+import wholeLifeInsurenceRouter from "./src/Routes/Service/WholeLifeInsurence/wholeLifeInsurenceRoutes.js";
 
 // Route Middlewares
 app.use("/api/v1/auth/user", userRouter);
@@ -69,6 +70,9 @@ app.use("/api/v1/serviceProvider", serviceProviderRouter);
 
 // Mutual Funds - Routes
 app.use("/api/v1/mutual-funds/service-plans", mutualFundRouter);
+
+//Whole life insurence - Routes
+app.use("/api/v1/whole-life-insurence/service-plans", wholeLifeInsurenceRouter);
 
 app.all(["/", "/api", "/api/v1"], (req, res, next) => {
   return res.status(200).json({

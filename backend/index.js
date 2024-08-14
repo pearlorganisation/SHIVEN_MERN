@@ -57,7 +57,7 @@ import { enquiryRouter } from "./src/Routes/Enquiry/enquiryRoutes.js";
 import serviceRouter from "./src/Routes/Service/service.js";
 import servicePlanRouter from "./src/Routes/Service/servicePlan.js";
 import serviceProviderRouter from "./src/Routes/Service/serviceProvider.js";
-import mutualFundRouter from "./src/Routes/Service/MutualFundRoutes/mutualFundRoutes.js";
+import mutualFundRouter from "./src/Routes/Service/MutualFund/mutualFundRoutes.js";
 import wholeLifeInsurenceRouter from "./src/Routes/Service/WholeLifeInsurence/wholeLifeInsurenceRoutes.js";
 
 // Route Middlewares

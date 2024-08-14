@@ -34,3 +34,18 @@ export const getAllMutualFundServicePlans = asyncErrorHandler(
     });
   }
 );
+
+export const deleteMutualFundServicePlan = asyncErrorHandler(
+  async (req, res, next) => {
+    const mutualFundServicePlan = await MutualFundServicePlan.findByIdAndDelete(
+      req.params?.id
+    );
+    if (!mutualFundServicePlan) {
+      return next(new CustomError("Mutual fund service plan not deleted", 404));
+    }
+    return res.status(200).json({
+      success: true,
+      message: "Mutual fund service plan deleted successfully",
+    });
+  }
+);

@@ -1,6 +1,7 @@
 import express from "express";
 import {
   createMutualFundServicePlan,
+  deleteMutualFundServicePlan,
   getAllMutualFundServicePlans,
 } from "../../../Controllers/Service/MutualFundController/mutualFundController.js";
 
@@ -10,5 +11,7 @@ router
   .route("/")
   .post(createMutualFundServicePlan)
   .get(getAllMutualFundServicePlans);
+
+router.route("/:id").delete(deleteMutualFundServicePlan);
 
 export default router;

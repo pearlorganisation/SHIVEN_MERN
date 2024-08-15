@@ -18,7 +18,7 @@ const homeLoanPlanSchema = new mongoose.Schema(
       required: [true, "Service type is required"],
     },
     bestRate: {
-      type: Number, // Interest rate percentage
+      type: Number, 
       required: [true, "Best rate is required"],
     },
     processingFee: {

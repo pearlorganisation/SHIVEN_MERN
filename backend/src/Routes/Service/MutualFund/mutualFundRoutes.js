@@ -3,7 +3,7 @@ import {
   createMutualFundServicePlan,
   deleteMutualFundServicePlan,
   getAllMutualFundServicePlans,
-} from "../../../Controllers/Service/MutualFundController/mutualFundController.js";
+} from "../../../Controllers/Service/MutualFund/mutualFundController.js";
 
 const router = express.Router();
 

@@ -9,9 +9,7 @@ export const createService = asyncErrorHandler(async (req, res, next) => {
   const logoResult = await cloudinary.uploader.upload(logo.path); // Upload files to Cloudinary
 
   const data = new serviceModel({ ...req?.body, logo: logoResult?.secure_url });
-
   await data.save();
-
   return res.status(200).json({
     success: true,
     message: "Service Created Successfully",

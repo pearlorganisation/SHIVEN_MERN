@@ -6,7 +6,11 @@ const MutualfundProvider = () => {
       <div class="p-6">
         <div class="space-y-4">
           <div class="flex items-center p-4 bg-white shadow-md rounded-md">
-            <img src="path_to_icici_logo" alt="ICICI" class="w-12 h-12 mr-4" />
+            <img
+              src="https://assets-netstorage.groww.in/mf-assets/logos/icici_groww.png"
+              alt="ICICI"
+              class="w-12 h-12 mr-4"
+            />
             <div class="flex-1">
               <h3 class="text-lg font-medium">
                 ICICI Prudential BHARAT 22 FOF Direct Growth
@@ -31,7 +35,7 @@ const MutualfundProvider = () => {
 
           <div class="flex items-center p-4 bg-white shadow-md rounded-md">
             <img
-              src="path_to_motilal_logo"
+              src="https://assets-netstorage.groww.in/mf-assets/logos/escorts_groww.png"
               alt="Motilal Oswal"
               class="w-12 h-12 mr-4"
             />
@@ -59,7 +63,7 @@ const MutualfundProvider = () => {
 
           <div class="flex items-center p-4 bg-white shadow-md rounded-md">
             <img
-              src="path_to_motilal_logo"
+              src="https://assets-netstorage.groww.in/mf-assets/logos/motilal_groww.png"
               alt="Motilal Oswal"
               class="w-12 h-12 mr-4"
             />
@@ -87,7 +91,7 @@ const MutualfundProvider = () => {
 
           <div class="flex items-center p-4 bg-white shadow-md rounded-md">
             <img
-              src="path_to_motilal_logo"
+              src="https://assets-netstorage.groww.in/mf-assets/logos/motilal_groww.png"
               alt="Motilal Oswal"
               class="w-12 h-12 mr-4"
             />
@@ -115,7 +119,7 @@ const MutualfundProvider = () => {
 
           <div class="flex items-center p-4 bg-white shadow-md rounded-md">
             <img
-              src="path_to_motilal_logo"
+              src="https://assets-netstorage.groww.in/mf-assets/logos/escorts_groww.png"
               alt="Motilal Oswal"
               class="w-12 h-12 mr-4"
             />

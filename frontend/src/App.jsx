@@ -42,6 +42,11 @@ import HealthPremium from "./components/CheckPremium/HealthPremium";
 import PlanDetails from "./components/CheckPremium/PlanDetails";
 import Enquiry from "./components/CheckPremium/Enquiry";
 import WhatIsNew from "./pages/WhatIsNew/WhatIsNew";
+import BikeInsurance from "./components/insurance/MotorInsurance/BikeInsurance/BikeInsurance";
+import BikeEnquiry from "./components/insurance/MotorInsurance/BikeInsurance/BikeEnquiry";
+import BikeInsuranceDetails from "./components/insurance/MotorInsurance/BikeInsurance/BikeInsuranceDetails";
+import DummyLogin from "./components/insurance/MotorInsurance/BikeInsurance/DummyLogin";
+import MutualfundProvider from "./components/MutualFund/MutualfundProvider/MutualfundProvider";
 
 // -------------------------------------------------------------------------------------------------------------
 
@@ -106,7 +111,15 @@ function App() {
           <Route path="healthPremium" element={<HealthPremium />} />
           <Route path="planDetails" element={<PlanDetails />} />
           <Route path="enquiry" element={<Enquiry />} />
+          <Route path="bikeEnquiry" element={<BikeEnquiry />} />
           <Route path="whatsnew" element={<WhatIsNew />} />
+          <Route path="bikeInsurance" element={<BikeInsurance />} />
+          <Route path="mutualfund" element={<MutualfundProvider />} />
+          <Route
+            path="bikeInsuranceDetails"
+            element={<BikeInsuranceDetails />}
+          />
+          <Route path="dummy" element={<DummyLogin />} />
 
           {/* Protected Routes */}
 

@@ -75,7 +75,7 @@ app.use("/api/v1/mutual-funds/service-plans", mutualFundRouter);
 //Whole life insurence - Routes
 app.use("/api/v1/whole-life-insurence/service-plans", wholeLifeInsurenceRouter);
 
-//
+//Home Loan - Routes
 app.use("/api/v1/home-loan/service-plans", homeLoanRouter);
 
 app.all(["/", "/api", "/api/v1"], (req, res, next) => {

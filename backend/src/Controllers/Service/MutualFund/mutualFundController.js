@@ -25,7 +25,7 @@ export const getAllMutualFundServicePlans = asyncErrorHandler(
       "serviceType"
     );
     if (!mutualFundServicePlans) {
-      return next(new CustomError("Mutual fund service plan not found", 204));
+      return next(new CustomError("Mutual fund service plan not found", 404));
     }
     return res.status(200).json({
       success: true,

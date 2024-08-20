@@ -1,6 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const BikeInsurance = () => {
+const BikePremium = () => {
+  const navigate = useNavigate();
+  const handelChange = () => {
+    navigate("/bikeInsuranceDetails");
+  };
+
   const bikeData = [
     {
       img: "https://static.pbcdn.in/twowheeler-cdn/InsurerImages/HDFC_ERGO.gif?v=1",
@@ -45,6 +51,7 @@ const BikeInsurance = () => {
             <div
               key={id}
               className="max-w-3xl mx-auto bg-white p-6 py-10 mt-2 shadow-lg rounded-lg"
+              onClick={handelChange}
             >
               <div className="bg-white p-4 rounded-lg shadow flex flex-col sm:flex-row items-center justify-between">
                 <div className="flex items-center mb-4 sm:mb-0">
@@ -111,4 +118,4 @@ const BikeInsurance = () => {
   );
 };
 
-export default BikeInsurance;
+export default BikePremium;

@@ -40,7 +40,7 @@ const MotorInsurance = () => {
       icon: () => {
         return <FaMotorcycle size={50} />;
       },
-      path: "/bikeInsurance",
+      path: "/bikeEnquiry",
     },
     {
       title: "Car",

@@ -40,14 +40,14 @@ const MotorInsurance = () => {
       icon: () => {
         return <FaMotorcycle size={50} />;
       },
-      path: "/bikeEnquiry",
+      path: "/motorenquiry",
     },
     {
       title: "Car",
       icon: () => {
         return <FaCarAlt size={50} />;
       },
-      path: "/motor-insurance/enquiry",
+      path: "/motorenquiry",
     },
     {
       title: "Motor Floater",

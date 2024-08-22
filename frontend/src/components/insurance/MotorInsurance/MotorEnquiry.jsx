@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-const BikeEnquiry = () => {
+const MotorEnquiry = () => {
   const {
     register,
     handleSubmit,
@@ -31,102 +31,45 @@ const BikeEnquiry = () => {
               htmlFor="modalName"
               className="block text-sm font-medium text-gray-700"
             >
-              Modal Name
+              vehicle registration Number
             </label>
             <input
-              type="text"
-              id="modalName"
+              type="number"
+              id="registration"
               className={`mt-1 block w-full rounded-md border ${
                 errors.modalName ? "border-red-500" : "border-gray-300"
               } p-2 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50`}
               placeholder="Enter Modal Name"
-              {...register("modalName", { required: "Modal Name is required" })}
+              {...register("registration", {
+                required: "Modal Name is required",
+              })}
             />
-            {errors.modalName && (
+            {errors.registration && (
               <p className="text-red-500 text-xs mt-1">
-                {errors.modalName.message}
+                {errors.registration.message}
               </p>
             )}
           </div>
 
           <div className="mb-4">
             <label
-              htmlFor="ownerName"
+              htmlFor="Mobile No"
               className="block text-sm font-medium text-gray-700"
             >
-              Owner Name
+              Mobile No
             </label>
             <input
-              type="text"
-              id="ownerName"
+              type="number"
+              id="monumber"
               className={`mt-1 block w-full rounded-md border ${
                 errors.ownerName ? "border-red-500" : "border-gray-300"
               } p-2 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50`}
               placeholder="Enter Owner Name"
-              {...register("ownerName", { required: "Owner Name is required" })}
+              {...register("number", { required: "Owner Name is required" })}
             />
-            {errors.ownerName && (
+            {errors.number && (
               <p className="text-red-500 text-xs mt-1">
-                {errors.ownerName.message}
-              </p>
-            )}
-          </div>
-
-          <div className="mb-4">
-            <label
-              htmlFor="registrationYear"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Registration Year
-            </label>
-            <input
-              type="date"
-              id="registrationYear"
-              className={`mt-1 block w-full rounded-md border ${
-                errors.registrationYear ? "border-red-500" : "border-gray-300"
-              } p-2 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50`}
-              placeholder="Enter Registration Year"
-              {...register("registrationYear", {
-                required: "Registration Year is required",
-                min: { value: 1900, message: "Year must be at least 1900" },
-                max: {
-                  value: new Date().getFullYear(),
-                  message: "Year must be at most current year",
-                },
-              })}
-            />
-            {errors.registrationYear && (
-              <p className="text-red-500 text-xs mt-1">
-                {errors.registrationYear.message}
-              </p>
-            )}
-          </div>
-
-          <div className="mb-4">
-            <label
-              htmlFor="bikeNumber"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Bike Number
-            </label>
-            <input
-              type="text"
-              id="bikeNumber"
-              className={`mt-1 block w-full rounded-md border ${
-                errors.bikeNumber ? "border-red-500" : "border-gray-300"
-              } p-2 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50`}
-              placeholder="Enter Bike Number"
-              {...register("bikeNumber", {
-                required: "Bike Number is required",
-                pattern: {
-                  value: /^[A-Z0-9]+$/,
-                  message: "Bike Number must be alphanumeric",
-                },
-              })}
-            />
-            {errors.bikeNumber && (
-              <p className="text-red-500 text-xs mt-1">
-                {errors.bikeNumber.message}
+                {errors.number.message}
               </p>
             )}
           </div>
@@ -148,7 +91,7 @@ const BikeEnquiry = () => {
               })}
             >
               <option value="">Select Type</option>
-              <option value="Scooty">Scooty</option>
+              <option value="Scooty">Car</option>
               <option value="Bike">Bike</option>
             </select>
             {errors.vehicleType && (
@@ -171,4 +114,4 @@ const BikeEnquiry = () => {
   );
 };
 
-export default BikeEnquiry;
+export default MotorEnquiry;

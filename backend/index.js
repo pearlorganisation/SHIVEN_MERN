@@ -82,6 +82,7 @@ app.use("/api/v1/home-loan/service-plans", homeLoanRouter);
 //Motor Insurance - Routes
 app.use("/api/v1/motor-insurance/service-plans", motorInsuranceRouter);
 
+
 app.all(["/", "/api", "/api/v1"], (req, res, next) => {
   return res.status(200).json({
     message: "Welcome to Shiven",
@@ -105,6 +106,6 @@ app.use((error, req, res, next) => {
 // -------------------------------------------------------------------------------------------------------------
 
 app.listen(PORT, () => {
-  console.log(`Server Running at port ${PORT}`);
+  console.log(`Server Running at port http://localhost:${PORT}`);
 });
 // -------------------------------------------------------------------------------------------------------------

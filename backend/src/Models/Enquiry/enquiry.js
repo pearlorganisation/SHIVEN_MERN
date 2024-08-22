@@ -3,14 +3,14 @@ import mongoose from "mongoose";
 const enquirySchema = new mongoose.Schema(
   {
     serviceType: {
-      type: String,
-      enum: ["HealthInsurance", "MotorInsurance", "Loan"],
-      required: true,
+      type: mongoose.Types.ObjectId,
+      ref: "service",
+      required: [true, "Service type is required"],
     },
     serviceProvider: {
       type: mongoose.Types.ObjectId,
       ref: "ServiceProvider",
-      required: true,
+      required: [true, "Service provider is required"],
     },
   },
   { timestamps: true }

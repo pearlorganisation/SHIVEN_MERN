@@ -7,7 +7,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({
-  storage: storage,
+  storage,
   limits: {
     fileSize: 1 * 1024 * 1024, // file of size till 1 mb is allowed
   },
@@ -18,6 +18,7 @@ const upload = multer({
       "image/png",
       "image/jpg",
       "image/webp",
+      "image/jpeg",
     ];
     if (allowedMimeTypes.includes(file?.mimetype)) {
       cb(null, true);

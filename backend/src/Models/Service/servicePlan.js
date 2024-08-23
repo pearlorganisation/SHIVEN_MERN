@@ -19,14 +19,6 @@ const servicePlanSchema= new mongoose.Schema({
     mainPoints:{              // like Room rent upto 1.5% of SI
         type:[String]
     },
-    premiumPerMonth:{
-        type:Number,
-        required:[true,"premiumPerMonth is required"]
-    },
-    premiumPerYear:{
-        type:Number,
-        required:[true,"premiumPerYear is required"]
-    },
     coverAmount:{
         type:String,
         required:[true,"cover is required"]

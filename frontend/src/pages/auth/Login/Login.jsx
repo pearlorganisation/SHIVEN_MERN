@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { login } from "../../../features/actions/Auth/authActions";
-import { resetLoginState } from "../../../features/slices/Auth/authSlice";
+import { resetIsLoading, resetLoginState } from "../../../features/slices/Auth/authSlice";
+import {ClipLoader} from "react-spinners"
 // ----------------------------------------------------------------------------------------------------------
 
 const Login = () => {
@@ -29,8 +30,7 @@ const Login = () => {
     resolver: yupResolver(loginSchema),
   });
 
-  const { isLoginOtpSent } = useSelector((state) => state?.auth);
-
+  const { isLoginOtpSent,isLoading } = useSelector((state) => state?.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // ---------------------------------------------------------------------------------------------------------
@@ -51,6 +51,9 @@ const Login = () => {
       dispatch(resetLoginState(false));
     }
   }, [isLoginOtpSent]);
+  useEffect(() => {
+      dispatch(resetIsLoading());
+  }, []);
   // ---------------------------------------------------------------------------------------------------------
   return (
     <div className="grid place-items-center h-[90vh] ">
@@ -199,11 +202,11 @@ const Login = () => {
                   {errors.password?.message}
                 </p>
               </div>
-              <button className="w-full px-4 py-2 text-white font-medium bg-gray-800 hover:bg-gray-700 active:bg-gray-900 rounded-lg duration-150">
-                Log in
+              <button disabled={isLoading} className="w-full px-4 py-2 text-white font-medium bg-gray-800 hover:bg-gray-700 active:bg-gray-900 rounded-lg duration-150">
+               {isLoading ? <ClipLoader color="#c4c2c2" />:  "Log in"}
               </button>
             </form>
-            <p className="text-center">
+            {/* <p className="text-center">
               Don't have an account?{" "}
               <Link
                 to="/register"
@@ -211,7 +214,7 @@ const Login = () => {
               >
                 Create account
               </Link>
-            </p>
+            </p> */}
             <p className="text-center">
               <Link
                 to="/forgot-password"

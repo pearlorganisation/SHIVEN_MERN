@@ -5,22 +5,22 @@ import bcrypt from "bcrypt";
 import { asyncErrorHandler } from "../../Utils/Error/asyncErrorHandler.js";
 import { userModel } from "../../Models/Auth/User/userModel.js";
 import { CustomError } from "../../Utils/Error/CustomError.js";
-import { sendLoginOtp } from "../../Utils/Mail/Otp/sendLoginOtp.js";
-import { loginOtpModel } from "../../Models/Otp/loginOtpModel.js";
+import { sendOtp } from "../../Utils/Mail/Otp/sendOtp.js";
+import { otpModel } from "../../Models/Otp/otpModel.js";
 import moment from "moment";
 import jsonwebtoken from "jsonwebtoken";
 import { saveAccessTokenToCookie } from "../../Utils/index.js";
+import { generateOTP } from "../../Utils/Mail/Otp/generateOTP.js";
 // ------------------------------------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------------
 
 // @desc - login
-//@method- POST
+// @method- POST
 // @url - auth/login
 export const login = asyncErrorHandler(async (req, res, next) => {
-  const { email, password } = req?.body?.payload;
-
+  const { email, password } = req?.body;
   if (!email || !password) {
     const error = new CustomError(
       "Please Provide Email/Password for logging in",
@@ -28,7 +28,6 @@ export const login = asyncErrorHandler(async (req, res, next) => {
     );
     return next(error);
   }
-
   const user = await userModel.findOne({ email });
 
   if (!user) {
@@ -42,34 +41,36 @@ export const login = asyncErrorHandler(async (req, res, next) => {
     const error = new CustomError("Invalid Email/Password", 400);
     return next(error);
   }
+  const otp = generateOTP();
+  const otpDoc = await otpModel.findOneAndUpdate(
+    { email, type: "LOGIN" },
+    { otp, expiresAt: new Date(Date.now() + 600000) },
+    { $new: true }
+  );
 
-  const mailExistence = await loginOtpModel.findOneAndDelete({ email }); // replacing the previous otp
-
-  let otp = ""; // creating a 4 digit otp
-
-  for (let i = 0; i < 4; i++) {
-    otp += Math.floor(Math.random() * 10);
+  if (!otpDoc) {
+    let doc = new otpModel({
+      email,
+      type: "LOGIN",
+      otp,
+      expiresAt: new Date(Date.now() + 600000), //10min
+    });
+    await doc.save();
   }
-
-  let currentDate = moment(); // hold current date
-  let expiresAt = currentDate.add(1, "m").toISOString(); //  adding one minute to the current otp creation date
-
-  const otpDoc = new loginOtpModel({ otp, email, expiresAt });
-
+  await sendOtp(email, otp, "LOGIN");
   await otpDoc.save();
-  await sendLoginOtp(email, otp);
 
   return res.status(200).json({
-    success: true,
+    status: true,
     message: "Otp for mail verification sent successfully",
   });
 });
 
 // @desc - login otp verification
-//@method- POST
+// @method- POST
 // @url - auth/login/verify
 export const verifyLoginOtp = asyncErrorHandler(async (req, res, next) => {
-  const { email, otp } = req?.body?.payload;
+  const { email, otp } = req?.body;
 
   if (!email || !otp) {
     const error = new CustomError(
@@ -79,7 +80,7 @@ export const verifyLoginOtp = asyncErrorHandler(async (req, res, next) => {
     return next(error);
   }
 
-  const otpDoc = await loginOtpModel.findOne({ email });
+  const otpDoc = await otpModel.findOne({ email });
 
   if (!otpDoc) {
     const error = new CustomError("No such Email exists");
@@ -127,7 +128,7 @@ export const verifyLoginOtp = asyncErrorHandler(async (req, res, next) => {
 });
 
 // @desc - logout
-//@method- POST
+// @method- POST
 // @url - auth/logout
 export const logout = asyncErrorHandler(async (req, res, next) => {
   res.clearCookie("SHIVEN_ACCESS_TOKEN");

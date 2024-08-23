@@ -3,7 +3,12 @@ import nodemailer from "nodemailer";
 // --------------------------------------------------------------------------------------------------------
 
 // sendLoginOtp -- function to send the otp in the specified mail
-export const sendLoginOtp = (email, otp) => {
+export const sendOtp = (email, otp, type) => {
+  const subject = type === "LOGIN" ? "Login OTP" : "Password reset request";
+  const html =
+    type === "LOGIN"
+      ? `<h1>Login OTP is <br/>  ${otp}</h1>`
+      : `<h1>Reset OTP is <br/>  ${otp}</h1>`;
   // transporter -- creating transporter with the mail configurations
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -18,8 +23,8 @@ export const sendLoginOtp = (email, otp) => {
   let mailOptions = {
     from: process.env.NODEMAILER_MAIL,
     to: email,
-    subject: "Shiven Login Otp",
-    html: `<h1>Login OTP is <br/>  ${otp}</h1>`,
+    subject,
+    html,
   };
   return new Promise((resolve, reject) => {
     transporter.sendMail(mailOptions, (error, info) => {

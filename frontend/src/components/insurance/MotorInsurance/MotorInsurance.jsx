@@ -40,7 +40,7 @@ const MotorInsurance = () => {
       icon: () => {
         return <FaMotorcycle size={50} />;
       },
-      path: "/motor-insurance/enquiry",
+      path: "/bikeEnquiry",
     },
     {
       title: "Car",
@@ -57,13 +57,13 @@ const MotorInsurance = () => {
       path: "/motor-insurance/enquiry",
     },
   ];
-  // --------------------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------------
   // ----------------------------------------------Hooks-----------------------------------------------
-  // -------------------------------------------------------------------------------------------------------
-  // ----------------------------------------------Functions-----------------------------------------------
-  // -------------------------------------------------------------------------------------------------------
-  // ----------------------------------------------useEffect-----------------------------------------------
-  // -------------------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------------
+  // ----------------------------------------------Functions------------------------------------------
+  // -------------------------------------------------------------------------------------------------
+  // ----------------------------------------------useEffect------------------------------------------
+  // -------------------------------------------------------------------------------------------------
   return (
     <>
       <div className="container  mx-auto p-10 md:p-20 max-w-[80%] ">
@@ -117,7 +117,7 @@ const MotorInsurance = () => {
           {insuranceTypeArray.map((type) => {
             return (
               <Link
-                class="grid w-full min-w-[7rem] transform cursor-pointer place-items-center rounded-xl border border-blue-gray-50 bg-white px-3 py-2 transition-all hover:scale-105 hover:border-blue-gray-100 hover:bg-blue-gray-50 hover:bg-opacity-25"
+                class="grid w-full min-w-[7rem] tranbsform cursor-pointer place-items-center rounded-xl border border-blue-gray-50 bg-white px-3 py-2 transition-all hover:scale-105 hover:border-blue-gray-100 hover:bg-blue-gray-50 hover:bg-opacity-25"
                 to={type?.path}
               >
                 <span class="my-6 grid h-24 w-24 place-items-center justify-center">
@@ -146,6 +146,7 @@ const MotorInsurance = () => {
                 </th>
               </tr>
             </thead>
+
             <tbody>
               <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <th
@@ -181,6 +182,7 @@ const MotorInsurance = () => {
                   Offers the benefit of savings along with protection
                 </td>
               </tr>
+
               <tr class="bg-white dark:bg-gray-800">
                 <th
                   scope="row"
@@ -192,6 +194,7 @@ const MotorInsurance = () => {
                   Protection is offered for lifetime or till the age of 100
                 </td>
               </tr>
+
               <tr class="bg-white dark:bg-gray-800">
                 <th
                   scope="row"
@@ -204,6 +207,7 @@ const MotorInsurance = () => {
                   intervals
                 </td>
               </tr>
+
               <tr class="bg-white dark:bg-gray-800">
                 <th
                   scope="row"
@@ -256,6 +260,7 @@ const MotorInsurance = () => {
               </div>
             </div>
           </div>
+
           <div>
             <h1 className="text text-center text-xl md:text-2xl font-medium">
               What is Life Insurance?

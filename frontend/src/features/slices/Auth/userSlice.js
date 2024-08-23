@@ -66,7 +66,7 @@ const userSlice = createSlice({
         state.errorMessage = action?.payload;
         state.isUserCreated = false;
         toast.error(action.payload.message);
-      })
+      })  
       // getUsers lifecycle actions
       .addCase(getUsers.pending, (state, action) => {
         state.isUserLoading = true;

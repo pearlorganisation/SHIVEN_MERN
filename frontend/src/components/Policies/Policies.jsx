@@ -5,7 +5,7 @@ import { IoMdCar } from "react-icons/io";
 import { FiArrowUpCircle } from "react-icons/fi";
 import { FaHandshake, FaShieldAlt } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-
+import { RiFundsLine } from "react-icons/ri";
 const Policies = () => {
   const faqsList = [
     {
@@ -35,6 +35,12 @@ const Policies = () => {
     {
       q: "Loans",
       icon: <FaHandshake size={40} className="text-[#81e6d6] px-2" />,
+      desc: "If you've been searching for a way to get random questions, you've landed on the correct webpage. We created the Random Question Generator to ask you as many random questions as your heart desires.",
+      path: "javascript:void(0)",
+    },
+    {
+      q: "Mutual Fund",
+      icon: <RiFundsLine size={40} className="text-[#50db63] px-2" />,
       desc: "If you've been searching for a way to get random questions, you've landed on the correct webpage. We created the Random Question Generator to ask you as many random questions as your heart desires.",
       path: "javascript:void(0)",
     },

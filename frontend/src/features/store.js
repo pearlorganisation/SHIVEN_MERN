@@ -39,7 +39,6 @@ const reducers = combineReducers({
   serviceProvider: serviceProviderReducer,
   servicePlan: servicePlanReducer,
   motorenquiry: motorenquiryReducer,
-  
 });
 
 const rootReducer = (state, action) => {
@@ -49,6 +48,7 @@ const rootReducer = (state, action) => {
     sessionStorage.clear();
     toast.success("Logged Out Successfully");
   }
+
   return reducers(state, action);
 };
 

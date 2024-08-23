@@ -1,6 +1,6 @@
 import React from "react";
-
-const BikeInsuranceDetails = () => {
+import { RiMotorbikeFill } from "react-icons/ri";
+const CarInsuranceDetails = () => {
   return (
     <>
       <div class="max-w-xl mx-auto  bg-white shadow-lg rounded-lg overflow-hidden p-5 m-10">
@@ -9,7 +9,7 @@ const BikeInsuranceDetails = () => {
             <h1 class="text-lg font-semibold">TVS Ntorq</h1>
             <p class="text-sm text-gray-600">UK07ABCD| Registered in 2024</p>
           </div>
-          <img src="bicycle.png" alt="Bike" class="w-10 h-10" />
+          <img src="car.png" alt="Bike" class="w-8 h-8" />
         </div>
         <div class="p-4">
           <div class="flex items-center mb-4">
@@ -104,4 +104,4 @@ const BikeInsuranceDetails = () => {
   );
 };
 
-export default BikeInsuranceDetails;
+export default CarInsuranceDetails;

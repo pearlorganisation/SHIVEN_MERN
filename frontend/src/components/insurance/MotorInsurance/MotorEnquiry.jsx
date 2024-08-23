@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux"; // Import useSelector
 import { useNavigate } from "react-router-dom";
+import { motorEnquiry } from "../../../features/actions/Enquiry/motorEnquiryAction";
 
 const MotorEnquiry = () => {
   const {
@@ -9,13 +11,20 @@ const MotorEnquiry = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-
   const navigate = useNavigate();
-  const handleNavigate = () => {
-    navigate("/BikePremium");
+  const dispatch = useDispatch();
+
+  const onSubmit = (data) => {
+    // Dispatch the motorEnquiry action with form data
+    dispatch(motorEnquiry(data))
+      .unwrap()
+      .then((response) => {
+        console.log("Enquiry submitted successfully", response);
+        navigate("/BikePremium"); // Navigate to another page on success
+      })
+      .catch((error) => {
+        console.error("Failed to submit enquiry", error);
+      });
   };
 
   return (
@@ -28,20 +37,20 @@ const MotorEnquiry = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
             <label
-              htmlFor="modalName"
+              htmlFor="registration"
               className="block text-sm font-medium text-gray-700"
             >
-              vehicle registration Number
+              Vehicle Registration Number
             </label>
             <input
-              type="number"
+              type="text"
               id="registration"
               className={`mt-1 block w-full rounded-md border ${
-                errors.modalName ? "border-red-500" : "border-gray-300"
+                errors.registration ? "border-red-500" : "border-gray-300"
               } p-2 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50`}
-              placeholder="Enter Modal Name"
+              placeholder="Enter Vehicle Registration Number"
               {...register("registration", {
-                required: "Modal Name is required",
+                required: "Vehicle Registration Number is required",
               })}
             />
             {errors.registration && (
@@ -53,19 +62,21 @@ const MotorEnquiry = () => {
 
           <div className="mb-4">
             <label
-              htmlFor="Mobile No"
+              htmlFor="number"
               className="block text-sm font-medium text-gray-700"
             >
               Mobile No
             </label>
             <input
-              type="number"
-              id="monumber"
+              type="text"
+              id="number"
               className={`mt-1 block w-full rounded-md border ${
-                errors.ownerName ? "border-red-500" : "border-gray-300"
+                errors.number ? "border-red-500" : "border-gray-300"
               } p-2 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50`}
-              placeholder="Enter Owner Name"
-              {...register("number", { required: "Owner Name is required" })}
+              placeholder="Enter Mobile Number"
+              {...register("number", {
+                required: "Mobile Number is required",
+              })}
             />
             {errors.number && (
               <p className="text-red-500 text-xs mt-1">
@@ -91,7 +102,7 @@ const MotorEnquiry = () => {
               })}
             >
               <option value="">Select Type</option>
-              <option value="Scooty">Car</option>
+              <option value="Car">Car</option>
               <option value="Bike">Bike</option>
             </select>
             {errors.vehicleType && (
@@ -104,7 +115,6 @@ const MotorEnquiry = () => {
           <button
             type="submit"
             className="w-full bg-indigo-600 text-white py-2 rounded-md text-sm font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
-            onClick={handleNavigate}
           >
             Submit
           </button>

@@ -11,6 +11,8 @@ import { enquiryReducer } from "./slices/Enquiry/enquirySlice";
 import { insuranceReducer } from "./slices/Insurance/insuranceSlice";
 import { serviceProviderReducer } from "./slices/ServiceProvider/ServiceProvider";
 import { servicePlanReducer } from "./slices/servicePlan/servicePlan";
+import { motorEnquiry } from "./actions/Enquiry/motorEnquiryAction";
+import { motorenquiryReducer } from "./slices/Enquiry/motorEnquirySlice";
 // ------------------------------------------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------------------------------------------
@@ -36,6 +38,8 @@ const reducers = combineReducers({
   insurance: insuranceReducer,
   serviceProvider: serviceProviderReducer,
   servicePlan: servicePlanReducer,
+  motorenquiry: motorenquiryReducer,
+  
 });
 
 const rootReducer = (state, action) => {

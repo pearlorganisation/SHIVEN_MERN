@@ -17,7 +17,9 @@ import moment from "moment";
 // @method- POST
 // @url - auth/user
 export const createUser = asyncErrorHandler(async (req, res, next) => {
-  const { userName, fullName, email, password, role } = req?.body?.payload;
+  const { userName, fullName, email, password, role } = req?.body;
+
+  console.log("req?.body?.payload", req?.body);
 
   if (!userName && !fullName && !email && !password && !role) {
     const error = new CustomError("Please Fill Complete Details", 400);

@@ -19,13 +19,28 @@ export const createBikeInsurancePlan = asyncErrorHandler(
 export const getAllBikeInsurancePlan = asyncErrorHandler(
   async (req, res, next) => {
     const bikeInsurancePlans = await BikeInsurancePlan.find();
-    if (!bikeInsurancePlans || bikeInsurancePlans.length===0) {
+    if (!bikeInsurancePlans || bikeInsurancePlans.length === 0) {
       return next(new CustomError("Bike insurance plans not found", 404));
     }
     return res.status(201).json({
       success: true,
       message: "All bike insurance plans found successfully",
       data: bikeInsurancePlans,
+    });
+  }
+);
+
+export const deleteBikeInsurancePlan = asyncErrorHandler(
+  async (req, res, next) => {
+    const bikeInsurancePlan = await BikeInsurancePlan.findByIdAndDelete(
+      req.params?.id
+    );
+    if (!bikeInsurancePlan) {
+      return next(new CustomError("Bike insurance plan not deleted", 404));
+    }
+    return res.status(200).json({
+      success: true,
+      message: "Bike insurance plan deleted successfully",
     });
   }
 );

@@ -21,7 +21,6 @@ import { generateOTP } from "../../Utils/Mail/Otp/generateOTP.js";
 // @url - auth/login
 export const login = asyncErrorHandler(async (req, res, next) => {
   const { email, password } = req?.body.payload;
-  console.log("sgdhdfhs", email, password);
   if (!email || !password) {
     const error = new CustomError(
       "Please Provide Email/Password for logging in",

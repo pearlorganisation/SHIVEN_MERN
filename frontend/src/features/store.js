@@ -9,15 +9,10 @@ import { toast } from "sonner";
 import { userReducer } from "./slices/Auth/userSlice";
 import { enquiryReducer } from "./slices/Enquiry/enquirySlice";
 import { insuranceReducer } from "./slices/Insurance/insuranceSlice";
-
-import { serviceProviderReducer } from "./slices/ServiceProvider/ServiceProvider";
-import { servicePlanReducer } from "./slices/servicePlan/servicePlan";
-import { motorEnquiry } from "./actions/Enquiry/motorEnquiryAction";
 import { motorenquiryReducer } from "./slices/Enquiry/motorEnquirySlice";
 import service from "./slices/Service/service";
 import serviceProvider from "./slices/Service/serviceProvider";
 import servicePlan from "./slices/Service/servicePlan";
-
 
 // ------------------------------------------------------------------------------------------------------------
 
@@ -42,17 +37,11 @@ const reducers = combineReducers({
   user: userReducer,
   enquiry: enquiryReducer,
   insurance: insuranceReducer,
-
-  serviceProvider: serviceProviderReducer,
-  servicePlan: servicePlanReducer,
-  motorenquiry: motorenquiryReducer,
-});
-
   service,
   serviceProvider,
   servicePlan,
-})
-
+  motorenquiry: motorenquiryReducer,
+});
 
 const rootReducer = (state, action) => {
   if (action.type === "auth/clearReduxStoreData") {

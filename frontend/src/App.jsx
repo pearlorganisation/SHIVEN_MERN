@@ -50,6 +50,7 @@ import BikePremium from "./components/insurance/MotorInsurance/BikeInsurance/Bik
 import CarPremium from "./components/insurance/MotorInsurance/CarInsurance/CarPremium";
 import CarInsuranceDetails from "./components/insurance/MotorInsurance/CarInsurance/CarInsuranceDetails";
 import MotorEnquiry from "./components/insurance/MotorInsurance/MotorEnquiry";
+import MutualfundDetails from "./components/MutualFund/MutualfundProvider/MutualfundDetails";
 
 // -------------------------------------------------------------------------------------------------------------
 
@@ -118,6 +119,7 @@ function App() {
           <Route path="whatsnew" element={<WhatIsNew />} />
           <Route path="bikePremium" element={<BikePremium />} />
           <Route path="mutualfund" element={<MutualfundProvider />} />
+          <Route path="mutualfunddetails" element={<MutualfundDetails />} />
           <Route
             path="bikeInsuranceDetails"
             element={<BikeInsuranceDetails />}

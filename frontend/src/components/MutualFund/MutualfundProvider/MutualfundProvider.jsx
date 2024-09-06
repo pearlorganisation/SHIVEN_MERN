@@ -1,11 +1,19 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const MutualfundProvider = () => {
+  const navigate = useNavigate();
+  const handelChange = () => {
+    navigate("/mutualfunddetails");
+  };
   return (
     <>
       <div class="p-6">
         <div class="space-y-4">
-          <div class="flex items-center p-4 bg-white shadow-md rounded-md">
+          <div
+            class="flex items-center p-4 bg-white shadow-md rounded-md"
+            onClick={handelChange}
+          >
             <img
               src="https://assets-netstorage.groww.in/mf-assets/logos/icici_groww.png"
               alt="ICICI"
@@ -33,7 +41,10 @@ const MutualfundProvider = () => {
             </div>
           </div>
 
-          <div class="flex items-center p-4 bg-white shadow-md rounded-md">
+          <div
+            class="flex items-center p-4 bg-white shadow-md rounded-md"
+            onClick={handelChange}
+          >
             <img
               src="https://assets-netstorage.groww.in/mf-assets/logos/escorts_groww.png"
               alt="Motilal Oswal"
@@ -61,7 +72,10 @@ const MutualfundProvider = () => {
             </div>
           </div>
 
-          <div class="flex items-center p-4 bg-white shadow-md rounded-md">
+          <div
+            class="flex items-center p-4 bg-white shadow-md rounded-md"
+            onClick={handelChange}
+          >
             <img
               src="https://assets-netstorage.groww.in/mf-assets/logos/motilal_groww.png"
               alt="Motilal Oswal"
@@ -89,7 +103,10 @@ const MutualfundProvider = () => {
             </div>
           </div>
 
-          <div class="flex items-center p-4 bg-white shadow-md rounded-md">
+          <div
+            class="flex items-center p-4 bg-white shadow-md rounded-md"
+            onClick={handelChange}
+          >
             <img
               src="https://assets-netstorage.groww.in/mf-assets/logos/motilal_groww.png"
               alt="Motilal Oswal"
@@ -117,7 +134,10 @@ const MutualfundProvider = () => {
             </div>
           </div>
 
-          <div class="flex items-center p-4 bg-white shadow-md rounded-md">
+          <div
+            class="flex items-center p-4 bg-white shadow-md rounded-md"
+            onClick={handelChange}
+          >
             <img
               src="https://assets-netstorage.groww.in/mf-assets/logos/escorts_groww.png"
               alt="Motilal Oswal"

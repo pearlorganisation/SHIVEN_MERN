@@ -6,7 +6,7 @@ const CarInsuranceDetails = () => {
       <div class="max-w-xl mx-auto  bg-white shadow-lg rounded-lg overflow-hidden p-5 m-10">
         <div class="p-4 flex items-center justify-between bg-gray-50 border-b">
           <div>
-            <h1 class="text-lg font-semibold">TVS Ntorq</h1>
+            <h1 class="text-lg font-semibold">Honda City</h1>
             <p class="text-sm text-gray-600">UK07ABCD| Registered in 2024</p>
           </div>
           <img src="car.png" alt="Bike" class="w-8 h-8" />
@@ -48,7 +48,7 @@ const CarInsuranceDetails = () => {
                   name="insurance"
                   class="form-radio text-blue-600"
                 />
-                <span class="text-sm">Digit ₹366</span>
+                <span class="text-sm">Digit ₹3066</span>
               </label>
               <label class="flex items-center space-x-2">
                 <input
@@ -56,7 +56,7 @@ const CarInsuranceDetails = () => {
                   name="insurance"
                   class="form-radio text-blue-600"
                 />
-                <span class="text-sm">Chola MS ₹384</span>
+                <span class="text-sm">Chola MS ₹3084</span>
               </label>
               <label class="flex items-center space-x-2">
                 <input
@@ -64,7 +64,7 @@ const CarInsuranceDetails = () => {
                   name="insurance"
                   class="form-radio text-blue-600"
                 />
-                <span class="text-sm">Liberty GI ₹380</span>
+                <span class="text-sm">Liberty GI ₹3080</span>
               </label>
             </div>
           </div>
@@ -74,17 +74,17 @@ const CarInsuranceDetails = () => {
             </h2>
             <div class="flex justify-between text-sm text-gray-600">
               <p>Net premium</p>
-              <p>₹419</p>
+              <p>₹4109</p>
             </div>
             <div class="flex justify-between text-sm text-gray-600">
               <p>GST</p>
-              <p>₹75</p>
+              <p>₹750</p>
             </div>
           </div>
           <div class="mb-4">
             <div class="flex justify-between font-semibold text-lg text-gray-800">
               <p>Total amount</p>
-              <p>₹494</p>
+              <p>₹4840</p>
             </div>
           </div>
           <div class="text-center">

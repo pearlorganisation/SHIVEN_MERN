@@ -42,7 +42,7 @@ const Policies = () => {
       q: "Mutual Fund",
       icon: <RiFundsLine size={40} className="text-[#50db63] px-2" />,
       desc: "If you've been searching for a way to get random questions, you've landed on the correct webpage. We created the Random Question Generator to ask you as many random questions as your heart desires.",
-      path: "javascript:void(0)",
+      path: "/mutualfund",
     },
   ];
   return (

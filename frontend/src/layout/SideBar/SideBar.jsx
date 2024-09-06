@@ -36,6 +36,46 @@ const SideBar = () => {
       subMenu: false,
       path: "/dashboard",
     },
+    {
+      title: "Mutual Fund",
+      subMenu: false,
+      path: "/dashboard",
+    },
+    {
+      title: "Loans",
+      subMenu: false,
+      path: "/dashboard",
+    },
+    {
+      title: "Health Insurance ",
+      subMenu: false,
+      path: "/dashboard",
+    },
+    {
+      title: "Motor Insurace",
+      subMenu: false,
+      path: "/dashboard",
+    },
+    {
+      title: "Fixed Deposit ",
+      subMenu: false,
+      path: "/dashboard",
+    },
+    {
+      title: "Stocks",
+      subMenu: false,
+      path: "/dashboard",
+    },
+    {
+      title: "Property",
+      subMenu: false,
+      path: "/dashboard",
+    },
+    {
+      title: "Govt. Insurance",
+      subMenu: false,
+      path: "/dashboard",
+    },
 
     {
       title: "Users",

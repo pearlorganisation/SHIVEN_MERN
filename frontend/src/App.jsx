@@ -51,6 +51,9 @@ import CarPremium from "./components/insurance/MotorInsurance/CarInsurance/CarPr
 import CarInsuranceDetails from "./components/insurance/MotorInsurance/CarInsurance/CarInsuranceDetails";
 import MotorEnquiry from "./components/insurance/MotorInsurance/MotorEnquiry";
 import MutualfundDetails from "./components/MutualFund/MutualfundProvider/MutualfundDetails";
+import CalculatorFunds from "./ClientsComponents/CalculatorFunds/CalculatorFunds";
+import Profile from "./ClientsComponents/Profile/Profile";
+import Documents from "./ClientsComponents/Documents/Documents";
 
 // -------------------------------------------------------------------------------------------------------------
 
@@ -129,12 +132,19 @@ function App() {
           <Route path="carpremium" element={<CarPremium />} />
           <Route path="motorenquiry" element={<MotorEnquiry />} />
 
+
+          {/* Routes defined by shashank */}
+          <Route path="calculatorFunds" element={<CalculatorFunds />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="clientDocuments" element={<Documents />} />
+
+
           {/* Protected Routes */}
 
-          {routes.map((route) => {
+          {routes.map((route,index) => {
             const { component: Component, path } = route;
             return (
-              <Route element={<ProtectedRoutesHandler />}>
+              <Route key={index} element={<ProtectedRoutesHandler />}>
                 <Route
                   path={path}
                   element={

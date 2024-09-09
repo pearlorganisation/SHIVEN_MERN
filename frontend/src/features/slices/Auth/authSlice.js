@@ -57,7 +57,8 @@ const authSlice = createSlice({
       .addCase(verifyLoginOtp.fulfilled, (state, action) => {
         state.isLoading = false;
         state.errorMessage = "";
-        state.loggedInUserData = action?.payload;
+        state.loggedInUserData = action?.payload.data;
+        console.log("Hey im from auth slice here is user's data and role",state.loggedInUserData);
         state.isUserLoggedIn = true;
         toast.success("Logged In successfully");
       })

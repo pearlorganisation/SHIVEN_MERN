@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { GoTag } from "react-icons/go";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/actions/Auth/authActions";
 // ----------------------------------------------------------------------------------------------------------
 const SideBar = () => {
@@ -10,6 +10,10 @@ const SideBar = () => {
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [subMenuIndex, setSubMenuIndex] = useState([]);
+
+  const {loggedInUserData} = useSelector((state)=> state.auth);
+
+  console.log("ssas",loggedInUserData);
 
   // ----------------------------------------------------------------------------------------------------------
   // -----------------------------------------------Hooks-----------------------------------------------------
@@ -35,46 +39,122 @@ const SideBar = () => {
       title: "Dashboard",
       subMenu: false,
       path: "/dashboard",
+      show: loggedInUserData.role === '0' || loggedInUserData.role === '1' ||  loggedInUserData.role === '2'
     },
     {
       title: "Mutual Fund",
       subMenu: false,
       path: "/dashboard",
+      show: loggedInUserData.role === '0' || loggedInUserData.role === '1' 
+
+    },
+    {
+      title: "Calculator Funds",
+      subMenu: false,
+      path: "/calculatorFunds",
+      show: loggedInUserData.role === '2' 
+
+    },
+    {
+      title: "Upload Your Documents",
+      subMenu: false,
+      path: "/clientDocuments",
+      show: loggedInUserData.role === '2' 
+
+    },
+    {
+      title: "Services",
+      subMenu: false,
+      path: "/customerServices",
+      show: loggedInUserData.role === '2' 
+
+    },
+    {
+      title: "Customer Support",
+      subMenu: false,
+      path: "/customerSupport",
+      show: loggedInUserData.role === '2' 
+
+    },
+    {
+      title: "Complaint",
+      subMenu: false,
+      path: "/complaint",
+      show: loggedInUserData.role === '2' 
+
+    },
+    {
+      title: "Purchase",
+      subMenu: true,
+      subMenuArray: [
+        { title: "Purchase", path: "/purchase" },
+        {
+          title: "Renewal ",
+          path: "/renewal",
+        },
+        {
+          title: "Invoices",
+          path: "/invoice",
+        },
+      ],
+      show: loggedInUserData.role === '2' 
+
+    },
+    {
+      title: "Schedule Management",
+      subMenu: false,
+      path: "/scheduleManagement",
+      show: loggedInUserData.role === '2' 
+
     },
     {
       title: "Loans",
       subMenu: false,
       path: "/dashboard",
+      show: loggedInUserData.role === '0' || loggedInUserData.role === '1' 
+
     },
     {
       title: "Health Insurance ",
       subMenu: false,
       path: "/dashboard",
+      show: loggedInUserData.role === '0' || loggedInUserData.role === '1' 
+
     },
     {
       title: "Motor Insurace",
       subMenu: false,
       path: "/dashboard",
+      show: loggedInUserData.role === '0' || loggedInUserData.role === '1' 
+
     },
     {
       title: "Fixed Deposit ",
       subMenu: false,
       path: "/dashboard",
+      show: loggedInUserData.role === '0' || loggedInUserData.role === '1' 
+
     },
     {
       title: "Stocks",
       subMenu: false,
       path: "/dashboard",
+      show: loggedInUserData.role === '0' || loggedInUserData.role === '1' 
+
     },
     {
       title: "Property",
       subMenu: false,
       path: "/dashboard",
+      show: loggedInUserData.role === '0' || loggedInUserData.role === '1' 
+
     },
     {
       title: "Govt. Insurance",
       subMenu: false,
       path: "/dashboard",
+      show: loggedInUserData.role === '0' || loggedInUserData.role === '1' 
+
     },
 
     {
@@ -84,6 +164,33 @@ const SideBar = () => {
         { title: "Users", path: "/users" },
         { title: "Create User", path: "/users/create-user" },
       ],
+      show: loggedInUserData.role === '0' 
+
+    },
+    {
+      title: "Meeting",
+      subMenu: true,
+      subMenuArray: [
+        { title: "All Meetings", path: "/scheduledMeetings" },
+        // {
+        //   title: "Create Insurance",
+        //   path: "/insurances/create-insurance",
+        // },
+        {
+          title: "Online",
+          path: "/scheduleOnlineMeeting",
+        },
+        {
+          title: "Offline",
+          path: "/scheduleOfflineMeeting",
+        },
+        // {
+        //   title: "Create Insurance Service Providers",
+        //   path: "/insurances/insurance-service-providers/create-insurance-service-provider",
+        // },
+      ],
+      show: loggedInUserData.role === '0' || loggedInUserData.role === '1' 
+
     },
     // {
     //   title: "Insurances",
@@ -126,11 +233,15 @@ const SideBar = () => {
         //   path: "/insurances/insurance-service-providers/create-insurance-service-provider",
         // },
       ],
+      show: loggedInUserData.role === '0' || loggedInUserData.role === '1' 
+
     },
     {
       title: "Plans",
       subMenu: false,
       path: "/plans",
+      show: loggedInUserData.role === '0' || loggedInUserData.role === '1' 
+
     },
   ];
   // ----------------------------------------------------------------------------------------------------------
@@ -216,7 +327,7 @@ const SideBar = () => {
           >
             <div>
               <ul className="flex flex-1 flex-col gap-1 py-3">
-                {sidebarOptions.map((option, index) => {
+                {sidebarOptions.filter(el => el.show === true).map((option, index) => {
                   return option?.subMenu ? (
                     <li className="px-3 dropdown relative">
                       <div
@@ -248,9 +359,10 @@ const SideBar = () => {
                       </div>
                       {subMenuIndex.includes(index) && (
                         <ul className="dropdown-content  bg-slate-800  rounded mt-2 py-1 w-full transition-all duration-1000 ease-in-out border border-white">
-                          {option?.subMenuArray?.map((subOption) => {
+                          {option?.subMenuArray?.map((subOption,index) => {
                             return (
                               <li
+                              key={index}
                                 onClick={() => {
                                   navigate(`${subOption.path}`);
                                 }}

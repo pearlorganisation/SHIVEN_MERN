@@ -117,7 +117,7 @@ export const verifyLoginOtp = asyncErrorHandler(async (req, res, next) => {
 
       saveAccessTokenToCookie(res, token);
 
-      response(200, true, "Login Successful");
+      res.status(200).json({status:true,message:"Login Successful",data:userDoc});
     } else {
       response(400, false, "Invalid Otp");
     }

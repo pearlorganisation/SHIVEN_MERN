@@ -54,6 +54,11 @@ import MutualfundDetails from "./components/MutualFund/MutualfundProvider/Mutual
 import CalculatorFunds from "./ClientsComponents/CalculatorFunds/CalculatorFunds";
 import Profile from "./ClientsComponents/Profile/Profile";
 import Documents from "./ClientsComponents/Documents/Documents";
+import Services from "./pages/Service/user/Services";
+import Purchase from "./pages/Service/user/purchase/Purchase";
+import Renewal from "./pages/Service/user/purchase/Renewal";
+import Invoices from "./pages/Service/user/purchase/Invoices";
+import Complain from "./pages/Service/user/Complain";
 
 // -------------------------------------------------------------------------------------------------------------
 
@@ -132,16 +137,19 @@ function App() {
           <Route path="carpremium" element={<CarPremium />} />
           <Route path="motorenquiry" element={<MotorEnquiry />} />
 
-
           {/* Routes defined by shashank */}
           <Route path="calculatorFunds" element={<CalculatorFunds />} />
           <Route path="profile" element={<Profile />} />
           <Route path="clientDocuments" element={<Documents />} />
-
+          <Route path="/user/services" element={<Services />} />
+          <Route path="/user/purchase" element={<Purchase />} />
+          <Route path="/purchase/renewal" element={<Renewal />} />
+          <Route path="/purchase/invoices" element={<Invoices />} />
+          <Route path="/user/complaint" element={<Complain />} />
 
           {/* Protected Routes */}
 
-          {routes.map((route,index) => {
+          {routes.map((route, index) => {
             const { component: Component, path } = route;
             return (
               <Route key={index} element={<ProtectedRoutesHandler />}>

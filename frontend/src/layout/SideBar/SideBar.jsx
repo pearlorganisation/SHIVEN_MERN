@@ -11,9 +11,9 @@ const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [subMenuIndex, setSubMenuIndex] = useState([]);
 
-  const {loggedInUserData} = useSelector((state)=> state.auth);
+  const { loggedInUserData } = useSelector((state) => state.auth);
 
-  console.log("ssas",loggedInUserData);
+  console.log("ssas", loggedInUserData);
 
   // ----------------------------------------------------------------------------------------------------------
   // -----------------------------------------------Hooks-----------------------------------------------------
@@ -39,122 +39,116 @@ const SideBar = () => {
       title: "Dashboard",
       subMenu: false,
       path: "/dashboard",
-      show: loggedInUserData.role === '0' || loggedInUserData.role === '1' ||  loggedInUserData.role === '2'
+      show:
+        loggedInUserData.role === "0" ||
+        loggedInUserData.role === "1" ||
+        loggedInUserData.role === "2",
     },
     {
       title: "Mutual Fund",
       subMenu: false,
       path: "/dashboard",
-      show: loggedInUserData.role === '0' || loggedInUserData.role === '1' 
-
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
+    },
+    {
+      title: "My Profile",
+      subMenu: false,
+      path: "/profile",
+      show: loggedInUserData.role === "2" || loggedInUserData.role === "1",
     },
     {
       title: "Calculator Funds",
       subMenu: false,
       path: "/calculatorFunds",
-      show: loggedInUserData.role === '2' 
-
+      show: loggedInUserData.role === "2",
     },
     {
       title: "Upload Your Documents",
       subMenu: false,
       path: "/clientDocuments",
-      show: loggedInUserData.role === '2' 
-
+      show: loggedInUserData.role === "2",
     },
     {
       title: "Services",
       subMenu: false,
-      path: "/customerServices",
-      show: loggedInUserData.role === '2' 
-
+      path: "/user/services",
+      show: loggedInUserData.role === "2",
     },
     {
       title: "Customer Support",
       subMenu: false,
       path: "/customerSupport",
-      show: loggedInUserData.role === '2' 
-
+      show: loggedInUserData.role === "2",
     },
     {
-      title: "Complaint",
+      title: "Complaint / Services Request",
       subMenu: false,
-      path: "/complaint",
-      show: loggedInUserData.role === '2' 
-
+      path: "user/complaint",
+      show: loggedInUserData.role === "2",
     },
     {
       title: "Purchase",
       subMenu: true,
       subMenuArray: [
-        { title: "Purchase", path: "/purchase" },
+        { title: "Purchase", path: "user/purchase" },
         {
           title: "Renewal ",
-          path: "/renewal",
+          path: "purchase/renewal",
         },
         {
           title: "Invoices",
-          path: "/invoice",
+          path: "purchase/invoices",
         },
       ],
-      show: loggedInUserData.role === '2' 
-
+      show: loggedInUserData.role === "2",
     },
     {
       title: "Schedule Management",
       subMenu: false,
       path: "/scheduleManagement",
-      show: loggedInUserData.role === '2' 
-
+      show: loggedInUserData.role === "2",
     },
     {
       title: "Loans",
       subMenu: false,
       path: "/dashboard",
-      show: loggedInUserData.role === '0' || loggedInUserData.role === '1' 
-
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
     },
     {
       title: "Health Insurance ",
       subMenu: false,
       path: "/dashboard",
-      show: loggedInUserData.role === '0' || loggedInUserData.role === '1' 
-
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
     },
     {
       title: "Motor Insurace",
       subMenu: false,
       path: "/dashboard",
-      show: loggedInUserData.role === '0' || loggedInUserData.role === '1' 
-
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
     },
     {
       title: "Fixed Deposit ",
       subMenu: false,
       path: "/dashboard",
-      show: loggedInUserData.role === '0' || loggedInUserData.role === '1' 
-
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
     },
     {
       title: "Stocks",
       subMenu: false,
       path: "/dashboard",
-      show: loggedInUserData.role === '0' || loggedInUserData.role === '1' 
-
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
     },
     {
       title: "Property",
       subMenu: false,
       path: "/dashboard",
-      show: loggedInUserData.role === '0' || loggedInUserData.role === '1' 
-
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
     },
     {
       title: "Govt. Insurance",
       subMenu: false,
       path: "/dashboard",
-      show: loggedInUserData.role === '0' || loggedInUserData.role === '1' 
-
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
     },
 
     {
@@ -164,8 +158,7 @@ const SideBar = () => {
         { title: "Users", path: "/users" },
         { title: "Create User", path: "/users/create-user" },
       ],
-      show: loggedInUserData.role === '0' 
-
+      show: loggedInUserData.role === "0",
     },
     {
       title: "Meeting",
@@ -189,8 +182,7 @@ const SideBar = () => {
         //   path: "/insurances/insurance-service-providers/create-insurance-service-provider",
         // },
       ],
-      show: loggedInUserData.role === '0' || loggedInUserData.role === '1' 
-
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
     },
     // {
     //   title: "Insurances",
@@ -233,15 +225,13 @@ const SideBar = () => {
         //   path: "/insurances/insurance-service-providers/create-insurance-service-provider",
         // },
       ],
-      show: loggedInUserData.role === '0' || loggedInUserData.role === '1' 
-
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
     },
     {
       title: "Plans",
       subMenu: false,
       path: "/plans",
-      show: loggedInUserData.role === '0' || loggedInUserData.role === '1' 
-
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
     },
   ];
   // ----------------------------------------------------------------------------------------------------------
@@ -327,92 +317,77 @@ const SideBar = () => {
           >
             <div>
               <ul className="flex flex-1 flex-col gap-1 py-3">
-                {sidebarOptions.filter(el => el.show === true).map((option, index) => {
-                  return option?.subMenu ? (
-                    <li className="px-3 dropdown relative">
-                      <div
-                        onClick={() => {
-                          toggleDropdown(index);
-                        }}
-                        className="flex items-center gap-3 rounded p-3 text-white hover:bg-[#60A5FA] hover:text-white focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 cursor-pointer transition-colors"
-                      >
-                        <div className="flex items-center self-center">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth="1.5"
-                            stroke="currentColor"
-                            className="h-6 w-6"
-                            aria-label="Dropdown icon"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M19 9l-7 7-7-7"
-                            ></path>
-                          </svg>
+                {sidebarOptions
+                  .filter((el) => el.show === true)
+                  .map((option, index) => {
+                    return option?.subMenu ? (
+                      <li className="px-3 dropdown relative">
+                        <div
+                          onClick={() => {
+                            toggleDropdown(index);
+                          }}
+                          className="flex items-center gap-3 rounded p-3 text-white hover:bg-[#60A5FA] hover:text-white focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 cursor-pointer transition-colors"
+                        >
+                          <div className="flex items-center self-center">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth="1.5"
+                              stroke="currentColor"
+                              className="h-6 w-6"
+                              aria-label="Dropdown icon"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M19 9l-7 7-7-7"
+                              ></path>
+                            </svg>
+                          </div>
+                          <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm ">
+                            {option?.title}
+                          </div>
                         </div>
-                        <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm ">
-                          {option?.title}
-                        </div>
-                      </div>
-                      {subMenuIndex.includes(index) && (
-                        <ul className="dropdown-content  bg-slate-800  rounded mt-2 py-1 w-full transition-all duration-1000 ease-in-out border border-white">
-                          {option?.subMenuArray?.map((subOption,index) => {
-                            return (
-                              <li
-                              key={index}
-                                onClick={() => {
-                                  navigate(`${subOption.path}`);
-                                }}
-                                className="cursor-pointer "
-                              >
-                                <div className="  block px-4 py-2 text-white hover:bg-gray-200 hover:text-black">
-                                  {subOption?.title}
-                                </div>
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      )}
-                    </li>
-                  ) : (
-                    <li className="px-3">
-                      <Link
-                        to={`${option?.path}`}
-                        className="flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-red-500 aria-[current=page]:bg-emerald-500 aria-[current=page]:text-emerald-500 "
-                      >
-                        <div className="flex items-center self-center">
-                          <GoTag />
-                        </div>
-                        <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                          {option?.title}
-                        </div>
-                      </Link>
-                    </li>
-                  );
-                })}
+                        {subMenuIndex.includes(index) && (
+                          <ul className="dropdown-content  bg-slate-800  rounded mt-2 py-1 w-full transition-all duration-1000 ease-in-out border border-white">
+                            {option?.subMenuArray?.map((subOption, index) => {
+                              return (
+                                <li
+                                  key={index}
+                                  onClick={() => {
+                                    navigate(`${subOption.path}`);
+                                  }}
+                                  className="cursor-pointer "
+                                >
+                                  <div className="  block px-4 py-2 text-white hover:bg-gray-200 hover:text-black">
+                                    {subOption?.title}
+                                  </div>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        )}
+                      </li>
+                    ) : (
+                      <li className="px-3">
+                        <Link
+                          to={`${option?.path}`}
+                          className="flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-red-500 aria-[current=page]:bg-emerald-500 aria-[current=page]:text-emerald-500 "
+                        >
+                          <div className="flex items-center self-center">
+                            <GoTag />
+                          </div>
+                          <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
+                            {option?.title}
+                          </div>
+                        </Link>
+                      </li>
+                    );
+                  })}
               </ul>
             </div>
 
-            <div className="transition-all duration-1000 ease-in-out">
-              <ul className="flex flex-1 flex-col gap-1 py-3 ">
-                <li className="px-3 text-white">
-                  <a
-                    href="/invoice"
-                    className="flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
-                  >
-                    <div className="flex items-center self-center">
-                      <GoTag />
-                    </div>
-                    <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                      Quotation / Invoices
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </div>
             <div className="logoutBtn flex justify-center items-center">
               <button
                 className="border border-white p-3 font-bold bg-red-800 text-white rounded-lg tracking-widest hover:bg-red-600"

@@ -35,9 +35,7 @@ const FilesPage = () => {
               >
                 James Anderson
               </th>
-              {/* <td className="px-6 py-4">
-                        Silver
-                    </td> */}
+
               <td className="px-6 py-4">Pan Card</td>
               <td className="px-6 py-4">KLPNMDGH</td>
               <td className="px-6 py-4 grid grid-cols-2 ">
@@ -63,9 +61,7 @@ const FilesPage = () => {
               >
                 Mark Yensen
               </th>
-              {/* <td className="px-6 py-4">
-                        Black
-                    </td> */}
+
               <td className="px-6 py-4">Aadhar</td>
               <td className="px-6 py-4">615782365728910</td>
               <td className="px-6 py-4 grid grid-cols-2 ">

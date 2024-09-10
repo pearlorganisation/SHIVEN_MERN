@@ -61,6 +61,7 @@ import Invoices from "./pages/Service/user/purchase/Invoices";
 import Complain from "./pages/Service/user/Complain";
 import FilesPage from "./ClientsComponents/FilesPage/FilesPage";
 import ScheduleManagement from "./pages/Service/user/ScheduleManagement";
+import CustomerSupport from "./ClientsComponents/CustomerSupport/CustomerSupport";
 
 // -------------------------------------------------------------------------------------------------------------
 
@@ -149,6 +150,7 @@ function App() {
           <Route path="/purchase/invoices" element={<Invoices />} />
           <Route path="/user/complaint" element={<Complain />} />
           <Route path="clientFiles" element={<FilesPage />} />
+          <Route path="customerSupport" element={<CustomerSupport />} />
           <Route
             path="user/scheduleManagement"
             element={<ScheduleManagement />}

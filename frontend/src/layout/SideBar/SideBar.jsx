@@ -69,6 +69,12 @@ const SideBar = () => {
       show: loggedInUserData.role === "2",
     },
     {
+      title: "Your Documents",
+      subMenu: false,
+      path: "/clientFiles",
+      show: loggedInUserData.role === "2",
+    },
+    {
       title: "Services",
       subMenu: false,
       path: "/user/services",
@@ -105,7 +111,7 @@ const SideBar = () => {
     {
       title: "Schedule Management",
       subMenu: false,
-      path: "/scheduleManagement",
+      path: "user/scheduleManagement",
       show: loggedInUserData.role === "2",
     },
     {

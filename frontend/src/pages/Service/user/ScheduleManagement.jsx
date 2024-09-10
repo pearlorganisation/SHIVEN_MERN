@@ -24,14 +24,16 @@ const monthsOfYear = [
   "December",
 ];
 
-const PadCell = () => <div className="bg-blue-50 border-2 border-white" />;
+const PadCell = () => (
+  <div className="bg-blue-50 rounded-lg border-2 border-white" />
+);
 
 const DayCell = ({ children, className }) => (
   <div
     className={
       `
     flex justify-center items-center aspect-square
-    border-2 border-black bg-gray-50 p-5
+    rounded-md bg-gray-50 p-5
     text-xl cursor-pointer select-none
     transition-all duration-75
     hover:scale-110 hover:bg-white hover:shadow-xl
@@ -66,7 +68,7 @@ const Grid = ({ inputDate = new Date() }) => {
       startDate.getFullYear() === today.getFullYear()
     ) {
       daysInMonth.push(
-        <DayCell key={key} className="!bg-blue-400 text-outline text-white">
+        <DayCell key={key} className="!bg-blue-500 text-outline text-white">
           {day}
         </DayCell>
       );
@@ -89,7 +91,7 @@ const ScheduleManagement = () => {
 
   return (
     <>
-      <div className="bg-blue-400 text-white text-outline border-2 border-black flex justify-around my-2 py-2.5 select-none">
+      <div className="bg-blue-500 text-white text-outline rounded-md flex justify-around my-2 py-2.5 select-none">
         <div
           className="text-xl cursor-pointer hover:scale-105"
           onClick={() =>
@@ -118,7 +120,7 @@ const ScheduleManagement = () => {
         </div>
       </div>
 
-      <div className="border-2 border-black relative bg-blue-100 p-10 select-none">
+      <div className=" relative bg-blue-100 p-10 select-none">
         <div className="text-outline text-5xl text-right text-white mb-10">
           {monthsOfYear[displayDate.getMonth()]} {displayDate.getFullYear()}
         </div>

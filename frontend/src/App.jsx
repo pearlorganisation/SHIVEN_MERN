@@ -61,6 +61,7 @@ import Invoices from "./pages/Service/user/purchase/Invoices";
 import Complain from "./pages/Service/user/Complain";
 import FilesPage from "./ClientsComponents/FilesPage/FilesPage";
 import ScheduleManagement from "./pages/Service/user/ScheduleManagement";
+import CustomerSupport from "./pages/Service/user/CustomerSupport";
 
 // -------------------------------------------------------------------------------------------------------------
 
@@ -153,6 +154,7 @@ function App() {
             path="user/scheduleManagement"
             element={<ScheduleManagement />}
           />
+          <Route path="customerSupport" element={<CustomerSupport />} />
 
           {/* Protected Routes */}
 

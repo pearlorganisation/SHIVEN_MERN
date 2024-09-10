@@ -63,6 +63,13 @@ const SideBar = () => {
 
     },
     {
+      title: "Your Documents",
+      subMenu: false,
+      path: "/clientFiles",
+      show: loggedInUserData.role === '2' 
+
+    },
+    {
       title: "Services",
       subMenu: false,
       path: "/customerServices",

@@ -54,6 +54,7 @@ import MutualfundDetails from "./components/MutualFund/MutualfundProvider/Mutual
 import CalculatorFunds from "./ClientsComponents/CalculatorFunds/CalculatorFunds";
 import Profile from "./ClientsComponents/Profile/Profile";
 import Documents from "./ClientsComponents/Documents/Documents";
+import FilesPage from "./ClientsComponents/FilesPage/FilesPage";
 
 // -------------------------------------------------------------------------------------------------------------
 
@@ -137,6 +138,7 @@ function App() {
           <Route path="calculatorFunds" element={<CalculatorFunds />} />
           <Route path="profile" element={<Profile />} />
           <Route path="clientDocuments" element={<Documents />} />
+          <Route path="clientFiles" element={<FilesPage />} />
 
 
           {/* Protected Routes */}

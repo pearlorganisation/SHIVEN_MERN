@@ -61,7 +61,7 @@ const Grid = ({ inputDate = new Date() }) => {
   while (startDate < endDate) {
     const day = startDate.getDate();
     const key = `day-${day}`;
-
+    console.log(key);
     if (
       startDate.getDate() === today.getDate() &&
       startDate.getMonth() === today.getMonth() &&
@@ -70,6 +70,18 @@ const Grid = ({ inputDate = new Date() }) => {
       daysInMonth.push(
         <DayCell key={key} className="!bg-blue-500 text-outline text-white">
           {day}
+        </DayCell>
+      );
+    } else if (day === 4) {
+      daysInMonth.push(
+        <DayCell key={key} className="!bg-red-500 text-outline text-white">
+          Renewal Health Plan
+        </DayCell>
+      );
+    } else if (day === 19) {
+      daysInMonth.push(
+        <DayCell key={key} className="!bg-red-500 text-outline text-white">
+          Renewal Motor Insurance Plan
         </DayCell>
       );
     } else {
@@ -88,6 +100,7 @@ const Grid = ({ inputDate = new Date() }) => {
 
 const ScheduleManagement = () => {
   const [displayDate, setDisplayDate] = useState(new Date());
+  console.log(displayDate);
 
   return (
     <>

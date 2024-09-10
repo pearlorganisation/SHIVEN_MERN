@@ -2,38 +2,39 @@
 import { useRef, useState } from "react";
 // import Bot from "../../assets/Bot.jpg";
 
-
 const Documents = () => {
   const [uploadImage, setUploadImage] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-
   const [x, setX] = useState(0);
-
+  const documents = [
+    "Aadhaar Card",
+    "PAN Card",
+    "Driving License",
+    "Birth Certificate",
+  ];
 
   const fileInputRef = useRef();
-
 
   const handleChange = (e) => {
     e.preventDefault();
     console.log(e.target.value);
-
 
     setX(x + 1);
   };
   return (
     <div className="h-[100vh]">
       <div>
-         <h1 className="text-center text-4xl bg-blue-400 text-white py-8">
-            Save Your Documents
-         </h1>
+        <h1 className="text-center text-4xl bg-blue-400 text-white py-8">
+          Save Your Documents
+        </h1>
         <div className="p-10 flex flex-col  gap-5">
           <div className="grid  grid-cols-3 gap-3">
-            {Array.from({ length: 3 }).map((item) => {
+            {documents.map((item, idx) => {
               return (
-                <div key={item}>
+                <div key={idx}>
                   <h1 className="text-xl leading-[30px] font-medium text-[#315288] mt-4">
-                    PanCard
+                    {item}
                   </h1>
                   <div className="border-[#0D5C2A] border-dashed  border-2 rounded-md max-w-min flex flex-col mt-4">
                     <div className="p-3 flex items-center justify-center mt-4">
@@ -52,7 +53,6 @@ const Documents = () => {
                       </svg>
                     </div>
 
-
                     <div className="px-6 py-4 flex items-center justify-center mb-3">
                       <button
                         onClick={() => fileInputRef.current.click()}
@@ -62,7 +62,6 @@ const Documents = () => {
                         Browse
                       </button>
 
-
                       <input
                         onChange={handleChange}
                         multiple={false}
@@ -71,7 +70,6 @@ const Documents = () => {
                         hidden
                       />
                     </div>
-
 
                     <div className="px-6 mt-2 mb-2 w-full hidden">
                       <button
@@ -88,7 +86,6 @@ const Documents = () => {
                               {/*content*/}
                               <div className="border-0 rounded-2xl relative flex flex-col w-full lg:w-full bg-white outline-none focus:outline-none">
                                 {/*header*/}
-
 
                                 {/*body*/}
                                 <div className="relative p-6 flex-auto">
@@ -111,7 +108,6 @@ const Documents = () => {
                                         className="border-2 border-green-200 rounded-md p-1"
                                       />
                                     </div>
-
 
                                     <div className="flex flex-row gap-3 items-center justify-center">
                                       <h1 className="text-[#393939] font-light text-base leading-6">
@@ -144,7 +140,6 @@ const Documents = () => {
                       ) : null}
                     </div>
 
-
                     <div className="hidden">
                       <div className="flex justify-between px-2 items-center border-t-2 border-t-green-300">
                         <h4 className="text-[#393939]  font-semibold ">
@@ -163,6 +158,5 @@ const Documents = () => {
     </div>
   );
 };
-
 
 export default Documents;

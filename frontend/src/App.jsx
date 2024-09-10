@@ -69,7 +69,6 @@ function App() {
   // ---------------------------------------------Hooks--------------------------------------------------------
   const { isUserLoggedIn } = useSelector((state) => state?.auth);
   // -----------------------------------------------------------------------------------------------------------
-  const [count, setCount] = useState(0);
 
   return (
     <div className="App">
@@ -155,6 +154,7 @@ function App() {
             path="user/scheduleManagement"
             element={<ScheduleManagement />}
           />
+          <Route path="customerSupport" element={<CustomerSupport />} />
 
           {/* Protected Routes */}
 

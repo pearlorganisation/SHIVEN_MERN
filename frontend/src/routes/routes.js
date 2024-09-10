@@ -5,6 +5,10 @@ const Dashboard = lazy(() => {
   return import("../components/Dashboard/Dashboard");
 });
 
+const CalculatorFunds = lazy(()=>{
+  return import("../ClientsComponents/CalculatorFunds/CalculatorFunds")
+})
+
 const User = lazy(() => {
   return import("../pages/auth/User/User");
 });
@@ -61,27 +65,7 @@ const HealthPremium = lazy(() => {
 });
 
 // -----------------------------------------------------------------------------------------------------------
-{
-  /* <Route path="/" index element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/getotp" element={<GetOtp />} />
-          <Route path="/verification" element={<Verification />} />
-          <Route path="/newpassword" element={<NewPassword />} />
-          <Route path="/lifeinsurance" element={<Life_insurance />} />
-          <Route path="/lifeinsurance" element={<Life_insurance />} />
-          <Route path="/Healthinsurance" element={<Healthinsurance />} />
-          <Route
-            path="/single_healthinsurance"
-            element={<Single_HealthPage />}
-          />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/sidebar" element={<SideBar />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blogDetails" element={<BlogDetails />} />
-          <Route path="/invoice" element={<Invoice />} />
-          <Route path="/notification" element={<Notifications />} />
-          <Route path="/plan" element={<Plans />} /> */
-}
+
 export const routes = [
   {
     title: "Dashboard",
@@ -171,5 +155,9 @@ export const routes = [
     title: "Create Service Plan",
     component: CreateServicePlan,
     path: "/servicePlan/createServicePlan",
+  },
+  {
+    title: "Create Service Plan",
+    path:"calculatorFunds", element:CalculatorFunds
   },
 ];

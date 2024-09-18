@@ -9,6 +9,7 @@ import ScheduleManagement from "../pages/Service/user/ScheduleManagement";
 import AddNewProfile from "../ClientsComponents/Profile/AddNewProfile";
 import CreateRequest from "../pages/Service/user/complain/CreateRequest";
 import Purchase from "../pages/Service/user/purchase/Purchase";
+import CustomerFeedback from "../pages/Service/consultant/CustomerFeedback";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -163,7 +164,7 @@ export const routes = [
     component: CreateServicePlan,
     path: "/servicePlan/createServicePlan",
   },
-  /// users routes
+  /// Customer routes
   {
     title: "Calculator",
     component: CalculatorFunds,
@@ -212,11 +213,23 @@ export const routes = [
   {
     title: "My docs",
     component: FilesPage,
-    path: "clientFiles",
+    path: "/clientFiles",
   },
   {
     title: "Schedule management",
     component: ScheduleManagement,
-    path: "user/scheduleManagement",
+    path: "/user/scheduleManagement",
+  },
+
+  /// Consultant Routes ///
+  {
+    title: "Customer Feedbacks",
+    component: CustomerFeedback,
+    path: "/consultant/feedbacks",
+  },
+  {
+    title: "Customer Documents",
+    component: Documents,
+    path: "/consultant/documents",
   },
 ];

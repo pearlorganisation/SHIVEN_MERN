@@ -1,8 +1,22 @@
 import { lazy } from "react";
+import Profile from "../ClientsComponents/Profile/Profile";
+import Documents from "../ClientsComponents/Documents/Documents";
+import Renewal from "../pages/Service/user/purchase/Renewal";
+import Invoices from "../pages/Service/user/purchase/Invoices";
+import Complain from "../pages/Service/user/complain/Complain";
+import FilesPage from "../ClientsComponents/FilesPage/FilesPage";
+import ScheduleManagement from "../pages/Service/user/ScheduleManagement";
+import AddNewProfile from "../ClientsComponents/Profile/AddNewProfile";
+import CreateRequest from "../pages/Service/user/complain/CreateRequest";
+import Purchase from "../pages/Service/user/purchase/Purchase";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
   return import("../components/Dashboard/Dashboard");
+});
+
+const CalculatorFunds = lazy(() => {
+  return import("../ClientsComponents/CalculatorFunds/CalculatorFunds");
 });
 
 const User = lazy(() => {
@@ -56,32 +70,9 @@ const InsuranceServiceProviders = lazy(() => {
 const CreateInsuranceServiceProvider = lazy(() => {
   return import("../pages/Insurance/admin/CreateInsuranceServiceProvider");
 });
-const HealthPremium = lazy(() => {
-  return import("../components/CheckPremium/HealthPremium");
-});
 
 // -----------------------------------------------------------------------------------------------------------
-{
-  /* <Route path="/" index element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/getotp" element={<GetOtp />} />
-          <Route path="/verification" element={<Verification />} />
-          <Route path="/newpassword" element={<NewPassword />} />
-          <Route path="/lifeinsurance" element={<Life_insurance />} />
-          <Route path="/lifeinsurance" element={<Life_insurance />} />
-          <Route path="/Healthinsurance" element={<Healthinsurance />} />
-          <Route
-            path="/single_healthinsurance"
-            element={<Single_HealthPage />}
-          />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/sidebar" element={<SideBar />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blogDetails" element={<BlogDetails />} />
-          <Route path="/invoice" element={<Invoice />} />
-          <Route path="/notification" element={<Notifications />} />
-          <Route path="/plan" element={<Plans />} /> */
-}
+
 export const routes = [
   {
     title: "Dashboard",
@@ -171,5 +162,61 @@ export const routes = [
     title: "Create Service Plan",
     component: CreateServicePlan,
     path: "/servicePlan/createServicePlan",
+  },
+  /// users routes
+  {
+    title: "Calculator",
+    component: CalculatorFunds,
+    path: "/calculatorFunds",
+  },
+  {
+    title: "My profile",
+    component: Profile,
+    path: "/profile",
+  },
+  {
+    title: "Create profile",
+    component: AddNewProfile,
+    path: "/profile/createProfile",
+  },
+  {
+    title: "Upload documents",
+    component: Documents,
+    path: "/clientDocuments",
+  },
+  {
+    title: "Purchase",
+    component: Purchase,
+    path: "/user/purchase",
+  },
+  {
+    title: "Renewal",
+    component: Renewal,
+    path: "/purchase/renewal",
+  },
+  {
+    title: "Invoice",
+    component: Invoices,
+    path: "/purchase/invoices",
+  },
+  {
+    title: "Complaint",
+    component: Complain,
+    path: "/user/complaint",
+  },
+  {
+    title: "Create Complaint",
+    component: CreateRequest,
+    path: "/user/complaint/createRequest",
+  },
+  {
+    title: "My docs",
+    component: FilesPage,
+    path: "clientFiles",
+  },
+  {
+    title: "Schedule management",
+    component: ScheduleManagement,
+    path: "user/scheduleManagement",
   },
 ];

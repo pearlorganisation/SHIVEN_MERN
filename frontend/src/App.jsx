@@ -51,16 +51,7 @@ import CarPremium from "./components/insurance/MotorInsurance/CarInsurance/CarPr
 import CarInsuranceDetails from "./components/insurance/MotorInsurance/CarInsurance/CarInsuranceDetails";
 import MotorEnquiry from "./components/insurance/MotorInsurance/MotorEnquiry";
 import MutualfundDetails from "./components/MutualFund/MutualfundProvider/MutualfundDetails";
-import CalculatorFunds from "./ClientsComponents/CalculatorFunds/CalculatorFunds";
-import Profile from "./ClientsComponents/Profile/Profile";
-import Documents from "./ClientsComponents/Documents/Documents";
-import Services from "./pages/Service/user/Services";
-import Purchase from "./pages/Service/user/purchase/Purchase";
-import Renewal from "./pages/Service/user/purchase/Renewal";
-import Invoices from "./pages/Service/user/purchase/Invoices";
-import Complain from "./pages/Service/user/Complain";
-import FilesPage from "./ClientsComponents/FilesPage/FilesPage";
-import ScheduleManagement from "./pages/Service/user/ScheduleManagement";
+
 
 // -------------------------------------------------------------------------------------------------------------
 
@@ -68,7 +59,6 @@ function App() {
   // ---------------------------------------------Hooks--------------------------------------------------------
   const { isUserLoggedIn } = useSelector((state) => state?.auth);
   // -----------------------------------------------------------------------------------------------------------
-  const [count, setCount] = useState(0);
 
   return (
     <div className="App">
@@ -140,19 +130,6 @@ function App() {
           <Route path="motorenquiry" element={<MotorEnquiry />} />
 
           {/* Routes defined by shashank */}
-          <Route path="calculatorFunds" element={<CalculatorFunds />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="clientDocuments" element={<Documents />} />
-          <Route path="/user/services" element={<Services />} />
-          <Route path="/user/purchase" element={<Purchase />} />
-          <Route path="/purchase/renewal" element={<Renewal />} />
-          <Route path="/purchase/invoices" element={<Invoices />} />
-          <Route path="/user/complaint" element={<Complain />} />
-          <Route path="clientFiles" element={<FilesPage />} />
-          <Route
-            path="user/scheduleManagement"
-            element={<ScheduleManagement />}
-          />
 
           {/* Protected Routes */}
 

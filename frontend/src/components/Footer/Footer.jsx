@@ -23,7 +23,7 @@ const Footer = () => {
 
     {
       href: "javascript:void()",
-      name: "Suuport",
+      name: "Support",
     },
   ];
 

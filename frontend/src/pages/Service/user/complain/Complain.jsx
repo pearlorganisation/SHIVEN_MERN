@@ -30,14 +30,14 @@ const Complain = () => {
           Service Requests
         </h4>
         <div className="createEmployeeBtn flex justify-end p-4 ">
-          {/* <button
+          <button
             className=" p-2 rounded-lg bg-indigo-600 text-white font-bold tracking-widest"
             onClick={() => {
-              navigate("/service/createService");
+              navigate("/user/complaint/createRequest");
             }}
           >
-            Add Service Plan
-          </button> */}
+            Create request
+          </button>
         </div>
       </div>
       <div className="mt-6 shadow-xl rounded-lg overflow-x-auto">
@@ -46,7 +46,8 @@ const Complain = () => {
             <tr>
               <th className="py-3 px-6">ID</th>
               <th className="py-3 px-6">Service Request No. </th>
-              <th className="py-3 px-6">Service Provider </th>
+              <th className="py-3 px-6">Name</th>
+              <th className="py-3 px-6">Email</th>
               <th className="py-3 px-6">Service Plan </th>
               <th className="py-3 px-6">Message</th>
               {/* <th className="py-3 px-6">Cover </th> */}
@@ -57,7 +58,7 @@ const Complain = () => {
           <tbody className="text-gray-600 divide-y">
             {true ? (
               <tr>
-                <td colSpan="6" className="text-center px-6 py-8">
+                <td colSpan="7" className="text-center px-6 py-8">
                   <Stack spacing={4}>
                     <Skeleton variant="rounded" height={30} />
                     <Skeleton variant="rounded" height={25} />

@@ -148,10 +148,13 @@ import Select from 'react-select';
 import React from 'react'
 import MutualFundCalculator from "./Calculators/MutualFundCalculator";
 import EmiCalculator from "./Calculators/EmiCalculator";
+import NpsCalculator from "./Calculators/NpsCalculator";
+import LoanCalculator from "./Calculators/LoanCalculator";
+import SipCalculator from "./Calculators/SipCalculator";
 
 const CalculatorFunds = () => {
    const [currentCalculator,setCurrentCalcualtor] = useState('mutualFunds');
-const typesOfCalculator = [ {label:"Mutual Funds",value:"mutualFunds"},{label:"Emi",value:"emi"},{label:"Gold",value:"gold"} ];
+const typesOfCalculator = [ {label:"Mutual Funds",value:"mutualFunds"},{label:"Emi",value:"emi"}, {label:"Gold",value:"gold"} , {label:"NPS",value:"nps"} , {label:"Loan",value:"loan"}, {label:"Sip",value:"sip"} ];
    
 useEffect(()=>{
   console.log("asdas",currentCalculator);
@@ -160,16 +163,19 @@ useEffect(()=>{
 
   
     return (
-    <div className="h-screen p-10">
+    <div className=" p-10">
       <p className="text-center text-4xl font-bold">Calculate Your Mutual Funds , Emi and Many More.</p>
 
      <p>
      Select Your Calculator
-     <Select options={typesOfCalculator} onChange={(option)=>setCurrentCalcualtor(option.value) } />
+     <Select options={typesOfCalculator} defaultValue={{label:"Mutual Funds",value:"mutualFunds"}} onChange={(option)=>setCurrentCalcualtor(option.value) } />
      </p>
      <div>
         {currentCalculator === 'mutualFunds' &&<MutualFundCalculator/>}
         {currentCalculator === 'emi' && <EmiCalculator/>}
+        {currentCalculator === 'nps' && <NpsCalculator/>}
+        {currentCalculator === 'loan' && <LoanCalculator/>}
+        {currentCalculator === 'sip' && <SipCalculator/>}
      </div>
 
     </div>

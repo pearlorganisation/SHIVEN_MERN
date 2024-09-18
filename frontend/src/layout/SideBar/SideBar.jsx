@@ -60,13 +60,19 @@ const SideBar = () => {
     {
       title: "Company Profile",
       subMenu: false,
-      path: "/profile",
+      path: "/",
       show: loggedInUserData.role === "1" ,
     },
     {
       title: "Customer Feedbacks",
       subMenu: false,
       path: "/consultant/feedbacks",
+      show: loggedInUserData.role === "1" ,
+    },
+    {
+      title: "Customer Documents",
+      subMenu: false,
+      path: "/clientFiles",
       show: loggedInUserData.role === "1" ,
     },
 
@@ -88,7 +94,7 @@ const SideBar = () => {
       title: "Calculator Funds",
       subMenu: false,
       path: "/calculatorFunds",
-      show: loggedInUserData.role === "2",
+      show: loggedInUserData.role === "2" || loggedInUserData.role === "1",
     },
     {
       title: "Your Documents",

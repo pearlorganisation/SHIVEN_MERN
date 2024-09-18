@@ -55,6 +55,21 @@ const SideBar = () => {
       show: loggedInUserData.role === "0",
     },
 
+/// CONSULTANT PANEL ///
+
+    {
+      title: "Company Profile",
+      subMenu: false,
+      path: "/profile",
+      show: loggedInUserData.role === "1" ,
+    },
+    {
+      title: "Customer Feedbacks",
+      subMenu: false,
+      path: "/consultant/feedbacks",
+      show: loggedInUserData.role === "1" ,
+    },
+
 
 /// CUSTOMER PANEL ///
     {

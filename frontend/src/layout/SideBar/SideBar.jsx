@@ -44,17 +44,30 @@ const SideBar = () => {
         loggedInUserData.role === "1" ||
         loggedInUserData.role === "2",
     },
+    
     {
-      title: "Mutual Fund",
-      subMenu: false,
-      path: "/dashboard",
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
+      title: "Users",
+      subMenu: true,
+      subMenuArray: [
+        { title: "Users", path: "/users" },
+        { title: "Create User", path: "/users/create-user" },
+      ],
+      show: loggedInUserData.role === "0",
     },
+
+
+/// CUSTOMER PANEL ///
     {
       title: "My Profile",
       subMenu: false,
       path: "/profile",
-      show: loggedInUserData.role === "2" || loggedInUserData.role === "1",
+      show: loggedInUserData.role === "2" ,
+    },
+    {
+      title: "Services",
+      subMenu: false,
+      path: "/user/services",
+      show: loggedInUserData.role === "2",
     },
     {
       title: "Calculator Funds",
@@ -62,36 +75,12 @@ const SideBar = () => {
       path: "/calculatorFunds",
       show: loggedInUserData.role === "2",
     },
-    // {
-    //   title: "Upload Your Documents",
-    //   subMenu: false,
-    //   path: "/clientDocuments",
-    //   show: loggedInUserData.role === "2",
-    // },
     {
       title: "Your Documents",
       subMenu: false,
       path: "/clientFiles",
       show: loggedInUserData.role === "2",
     },
-    // {
-    //   title: "Services",
-    //   subMenu: false,
-    //   path: "/user/services",
-    //   show: loggedInUserData.role === "2",
-    // },
-    // {
-    //   title: "Customer Support",
-    //   subMenu: false,
-    //   path: "/customerSupport",
-    //   show: loggedInUserData.role === "2",
-    // },
-    // {
-    //   title: "Complaint / Services Request",
-    //   subMenu: false,
-    //   path: "user/complaint",
-    //   show: loggedInUserData.role === "2",
-    // },
     {
       title: "Purchase",
       subMenu: true,
@@ -112,59 +101,53 @@ const SideBar = () => {
       title: "Schedule Management",
       subMenu: false,
       path: "user/scheduleManagement",
-      show: loggedInUserData.role === "2",
+      show: loggedInUserData.role === "2" || loggedInUserData.role === "1" ,
     },
     {
-      title: "Loans",
+      title: "Complaint / Services Request",
       subMenu: false,
-      path: "/dashboard",
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
-    },
-    {
-      title: "Health Insurance ",
-      subMenu: false,
-      path: "/dashboard",
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
-    },
-    {
-      title: "Motor Insurace",
-      subMenu: false,
-      path: "/dashboard",
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
-    },
-    {
-      title: "Fixed Deposit ",
-      subMenu: false,
-      path: "/dashboard",
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
-    },
-    {
-      title: "Stocks",
-      subMenu: false,
-      path: "/dashboard",
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
-    },
-    {
-      title: "Property",
-      subMenu: false,
-      path: "/dashboard",
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
-    },
-    {
-      title: "Govt. Insurance",
-      subMenu: false,
-      path: "/dashboard",
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
+      path: "user/complaint",
+      show: loggedInUserData.role === "2" || loggedInUserData.role === "1" ,
     },
 
+    // Super Admin and Consultant Routes
     {
-      title: "Users",
+      title: "Service Plans",
       subMenu: true,
       subMenuArray: [
-        { title: "Users", path: "/users" },
-        { title: "Create User", path: "/users/create-user" },
+        { title: "Mutual Fund",
+           path: "/" 
+          },
+          {
+            title: "Loans",
+            path: "/dashboard"
+          },
+          {
+            title: "Health Insurance ",
+            path: "/dashboard"
+          },
+          {
+            title: "Motor Insurance",
+            path: "/dashboard"
+          },
+          {
+            title: "Fixed Deposit ",
+            path: "/dashboard"
+          },
+          {
+            title: "Stocks",
+            path: "/dashboard"
+          },
+          {
+            title: "Property",
+            path: "/dashboard"
+          },
+          {
+            title: "Govt. Insurance",
+            path: "/dashboard"
+          }
       ],
-      show: loggedInUserData.role === "0",
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
     },
     {
       title: "Meeting",
@@ -210,35 +193,43 @@ const SideBar = () => {
     //   ],
     // },
     {
-      title: "Services",
+      title: "Service Providers",
       subMenu: true,
       subMenuArray: [
-        { title: "Services", path: "/service" },
-        // {
-        //   title: "Create Insurance",
-        //   path: "/insurances/create-insurance",
-        // },
-        {
-          title: "Service Providers",
-          path: "/serviceProvider",
-        },
-        {
-          title: "Service Plans",
-          path: "/servicePlan",
-        },
-        // {
-        //   title: "Create Insurance Service Providers",
-        //   path: "/insurances/insurance-service-providers/create-insurance-service-provider",
-        // },
-      ],
+          { title: "Mutual Fund",
+             path: "/" 
+            },
+            {
+              title: "Loans",
+              path: "/dashboard"
+            },
+            {
+              title: "Health Insurance ",
+              path: "/dashboard"
+            },
+            {
+              title: "Motor Insurance",
+              path: "/dashboard"
+            },
+            {
+              title: "Fixed Deposit ",
+              path: "/dashboard"
+            },
+            {
+              title: "Stocks",
+              path: "/dashboard"
+            },
+            {
+              title: "Property",
+              path: "/dashboard"
+            },
+            {
+              title: "Govt. Insurance",
+              path: "/dashboard"
+            }
+        ],
       show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
-    },
-    {
-      title: "Plans",
-      subMenu: false,
-      path: "/plans",
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
-    },
+    }
   ];
   // ----------------------------------------------------------------------------------------------------------
 

@@ -25,7 +25,8 @@ const MutualFundCalculator = () => {
   };
 
   return (
-    <section className="p-4 py-16 space-y-10 bg-[#F0F8FF]">
+    <section className="p-4 py-5 space-y-10 bg-[#F0F8FF]">
+      <div className="text-center text-xl">Mutual Fund Calculator</div>
       <div className="flex justify-center">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 rounded-2xl w-full md:w-2/3 bg-[#87CEFA]/80 p-6">
           <div className="flex flex-col space-y-10 text-white rounded-l-2xl">

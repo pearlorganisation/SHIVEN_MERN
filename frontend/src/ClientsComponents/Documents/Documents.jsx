@@ -25,9 +25,11 @@ const Documents = () => {
   return (
     <div className="h-[100vh]">
       <div>
-        <h1 className="text-center text-4xl bg-blue-400 text-white py-8">
+        <div className="flex justify-between items-center px-10 "><h1 className="text-center text-4xl text-blue-500 py-8">
           Save Your Documents
         </h1>
+        <button className="bg-blue-500 hover:bg-blue-600 h-16 text-white rounded-lg px-5">Add New Document </button></div>
+  
         <div className="p-10 flex flex-col  gap-5">
           <div className="grid  grid-cols-3 gap-3">
             {documents.map((item, idx) => {

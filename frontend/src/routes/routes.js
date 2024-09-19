@@ -51,6 +51,15 @@ const ViewServicePlans = lazy(() => {
 const CreateServicePlan = lazy(() => {
   return import("../pages/Service/admin/CreateServicePlan");
 });
+
+const MutualFunds = lazy(() => {
+  return import("../pages/ServicePlans/MutualFund");
+});
+
+const HomeLoan = lazy(() => {
+  return import("../pages/ServicePlans/HomeLoan");
+});
+
 const ViewServiceProviders = lazy(() => {
   return import("../pages/Service/admin/ViewServiceProviders");
 });
@@ -163,6 +172,17 @@ export const routes = [
     title: "Create Service Plan",
     component: CreateServicePlan,
     path: "/servicePlan/createServicePlan",
+  },
+
+  {
+    title: "Mutual Funds",
+    component: MutualFunds,
+    path: "/servicePlan/mutual-fund",
+  },
+  {
+    title: "Home Loan",
+    component: HomeLoan,
+    path: "/servicePlan/home-loan",
   },
   /// Customer routes
   {

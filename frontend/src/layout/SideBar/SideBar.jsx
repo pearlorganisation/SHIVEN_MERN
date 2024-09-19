@@ -136,9 +136,12 @@ const SideBar = () => {
       title: "Service Plans",
       subMenu: true,
       subMenuArray: [
-        { title: "Mutual Fund",
-           path: "/" 
+          { title: "Mutual Fund",
+           path: "/servicePlan/mutual-fund" 
           },
+          { title: "Home Loan",
+            path: "/servicePlan/home-loan" 
+           },
           {
             title: "Loans",
             path: "/dashboard"

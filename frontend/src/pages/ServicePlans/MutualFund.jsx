@@ -126,9 +126,9 @@ const MutualFund = () => {
         <div className="sm:flex space-y-6 sm:space-y-0 justify-between gap-10">
           <div className="font-medium w-full space-y-6">
             {" "}
-            Screenshot
+            Fund Logo
             <img
-              class="mt-2 w-full h-50  sm:w-44 sm:h-36 rounded"
+              class="mt-2 w-full h-50 object-cover sm:w-44 sm:h-36 rounded"
               src={photo || defaultPhoto}
               alt="No Image"
             />
@@ -144,7 +144,7 @@ const MutualFund = () => {
               </div>
             </label>
             <input
-              {...register("banner", {
+              {...register("fundLogo", {
                 required: true,
                 onChange: (e) => {
                   handlePhotoChange(e);
@@ -154,9 +154,9 @@ const MutualFund = () => {
               id="file_input"
               type="file"
             />
-            {errors.banner && (
+            {errors.fundLogo && (
               <span className="text-sm font-medium text-red-500">
-                Image is required
+                Fund Logo is required
               </span>
             )}
           </div>

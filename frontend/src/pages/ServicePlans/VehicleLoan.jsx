@@ -1,11 +1,11 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
 import defaultPhoto from "/placeholder.jpg";
 import { MdOutlineInsertPhoto } from "react-icons/md";
 import Input from "../../components/form/Input";
 
-const HomeLoan = () => {
+const VehicleLoan = () => {
   const [photo, setPhoto] = useState("");
   const {
     register,
@@ -33,7 +33,7 @@ const HomeLoan = () => {
   return (
     <div className="max-w-4xl mx-auto my-5 overflow-hidden rounded-2xl bg-white shadow-lg">
       <div className="bg-blue-600 px-10 py-4 text-center text-white font-semibold">
-        Home Loan Plan
+        Vehicle Loan Plan
       </div>
       <form className="space-y-5 my-4 mx-8 sm:mx-2" onSubmit={handleSubmit(onSubmit)}>
         <div className="sm:flex space-y-6 sm:space-y-0 justify-between gap-10">
@@ -53,8 +53,8 @@ const HomeLoan = () => {
                 <Select
                   value={field.value}
                   options={[
-                    { value: "Home Loan", label: "Home Loan" },
-                    { value: "Personal Loan", label: "Personal Loan" },
+                    { value: "Car Loan", label: "Car Loan" },
+                    { value: "Bike Loan", label: "Bike Loan" },
                   ]}
                   onChange={(selectedOption) => field.onChange(selectedOption)}
                   className="mt-2"
@@ -85,11 +85,11 @@ const HomeLoan = () => {
 
         <div className="sm:flex space-y-6 sm:space-y-0 justify-between gap-10">
           <Input
-            label="Best Rate"
+            label="Interest Rate (%)"
             type="number"
-            {...register("bestRate", { required: true })}
-            isError={errors.bestRate}
-            errorMessage="Best rate is required"
+            {...register("interestRate", { required: true })}
+            isError={errors.interestRate}
+            errorMessage="Interest rate is required"
           />
 
           <Input
@@ -119,36 +119,17 @@ const HomeLoan = () => {
         </div>
 
         <div className="sm:flex space-y-6 sm:space-y-0 justify-between gap-10">
-          <Input
-            label="Minimum Year"
-            {...register("yearRange.minYear", { required: true })}
-            isError={errors.yearRange?.minYear}
-            errorMessage="Minimum year is required"
-          />
-
-          <Input
-            label="Maximum Year"
-            {...register("yearRange.maxYear", { required: true })}
-            isError={errors.yearRange?.maxYear}
-            errorMessage="Maximum year is required"
-          />
-        </div>
-
-        <div className="sm:flex space-y-6 sm:space-y-0 justify-between gap-10">
-          <div className="font-medium w-full space-y-6">
-            {" "}
+        <div className="font-medium w-full space-y-6">
             Plan Logo
             <img
-              class="mt-2 w-full h-50  sm:w-44 object-cover sm:h-36 rounded"
+              className="mt-2 w-full h-50 sm:w-44 object-cover sm:h-36 rounded"
               src={photo || defaultPhoto}
               alt="No Image"
             />
             <label
               htmlFor="file_input"
-              className="flex gap-1
-           "
+              className="flex gap-1"
             >
-              {" "}
               <MdOutlineInsertPhoto size="25" />
               <div className="px-2 border rounded-md border-slate-300 hover:bg-red-500 hover:text-white hover:border-none">
                 Click here to upload
@@ -161,7 +142,7 @@ const HomeLoan = () => {
                   handlePhotoChange(e);
                 },
               })}
-              className="hidden "
+              className="hidden"
               id="file_input"
               type="file"
             />
@@ -171,6 +152,13 @@ const HomeLoan = () => {
               </span>
             )}
           </div>
+
+          <Input
+            label="Vehicle Type"
+            {...register("vehicleType", { required: true })}
+            isError={errors.vehicleType}
+            errorMessage="Vehicle type is required"
+          />
         </div>
 
         <button
@@ -184,4 +172,4 @@ const HomeLoan = () => {
   );
 };
 
-export default HomeLoan;
+export default VehicleLoan;

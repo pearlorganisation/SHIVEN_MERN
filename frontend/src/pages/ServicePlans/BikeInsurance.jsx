@@ -1,11 +1,11 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
 import defaultPhoto from "/placeholder.jpg";
 import { MdOutlineInsertPhoto } from "react-icons/md";
 import Input from "../../components/form/Input";
 
-const HomeLoan = () => {
+const BikeInsurance = () => {
   const [photo, setPhoto] = useState("");
   const {
     register,
@@ -33,7 +33,7 @@ const HomeLoan = () => {
   return (
     <div className="max-w-4xl mx-auto my-5 overflow-hidden rounded-2xl bg-white shadow-lg">
       <div className="bg-blue-600 px-10 py-4 text-center text-white font-semibold">
-        Home Loan Plan
+        Bike Insurance Plan
       </div>
       <form className="space-y-5 my-4 mx-8 sm:mx-2" onSubmit={handleSubmit(onSubmit)}>
         <div className="sm:flex space-y-6 sm:space-y-0 justify-between gap-10">
@@ -53,8 +53,8 @@ const HomeLoan = () => {
                 <Select
                   value={field.value}
                   options={[
-                    { value: "Home Loan", label: "Home Loan" },
-                    { value: "Personal Loan", label: "Personal Loan" },
+                    { value: "Comprehensive", label: "Comprehensive" },
+                    { value: "Third Party", label: "Third Party" },
                   ]}
                   onChange={(selectedOption) => field.onChange(selectedOption)}
                   className="mt-2"
@@ -85,70 +85,59 @@ const HomeLoan = () => {
 
         <div className="sm:flex space-y-6 sm:space-y-0 justify-between gap-10">
           <Input
-            label="Best Rate"
+            label="Premium Amount"
             type="number"
-            {...register("bestRate", { required: true })}
-            isError={errors.bestRate}
-            errorMessage="Best rate is required"
+            {...register("premiumAmount", { required: true })}
+            isError={errors.premiumAmount}
+            errorMessage="Premium amount is required"
           />
 
           <Input
-            label="Processing Fee"
-            {...register("processingFee", { required: true })}
-            isError={errors.processingFee}
-            errorMessage="Processing fee is required"
+            label="IDV"
+            {...register("idv", { required: true })}
+            isError={errors.idv}
+            errorMessage="IDV is required"
           />
         </div>
 
         <div className="sm:flex space-y-6 sm:space-y-0 justify-between gap-10">
           <Input
-            label="Tenure (years)"
+            label="Claims Settled (%)"
             type="number"
-            {...register("tenure", { required: true })}
-            isError={errors.tenure}
-            errorMessage="Tenure is required"
+            {...register("claimsSettled", {
+              required: true,
+              min: { value: 0, message: "Cannot be less than 0%" },
+              max: { value: 100, message: "Cannot exceed 100%" },
+            })}
+            isError={errors.claimsSettled}
+            errorMessage={errors.claimsSettled?.message || "Claims Settled is required"}
           />
 
-          <Input
-            label="Loan Upper Limit"
-            type="number"
-            {...register("upTo", { required: true })}
-            isError={errors.upTo}
-            errorMessage="Loan upper limit is required"
-          />
-        </div>
-
-        <div className="sm:flex space-y-6 sm:space-y-0 justify-between gap-10">
-          <Input
-            label="Minimum Year"
-            {...register("yearRange.minYear", { required: true })}
-            isError={errors.yearRange?.minYear}
-            errorMessage="Minimum year is required"
-          />
-
-          <Input
-            label="Maximum Year"
-            {...register("yearRange.maxYear", { required: true })}
-            isError={errors.yearRange?.maxYear}
-            errorMessage="Maximum year is required"
-          />
+          <div className="w-full">
+            <label className="font-medium">Zero Depreciation</label>
+            <div className="mt-2">
+              <input
+                type="checkbox"
+                {...register("zeroDepreciation")}
+                className="mr-2 leading-tight"
+              />
+              <span className="text-sm font-medium">Include Zero Depreciation</span>
+            </div>
+          </div>
         </div>
 
         <div className="sm:flex space-y-6 sm:space-y-0 justify-between gap-10">
           <div className="font-medium w-full space-y-6">
-            {" "}
             Plan Logo
             <img
-              class="mt-2 w-full h-50  sm:w-44 object-cover sm:h-36 rounded"
+              className="mt-2 w-full h-50 sm:w-44 object-cover sm:h-36 rounded"
               src={photo || defaultPhoto}
               alt="No Image"
             />
             <label
               htmlFor="file_input"
-              className="flex gap-1
-           "
+              className="flex gap-1"
             >
-              {" "}
               <MdOutlineInsertPhoto size="25" />
               <div className="px-2 border rounded-md border-slate-300 hover:bg-red-500 hover:text-white hover:border-none">
                 Click here to upload
@@ -161,7 +150,7 @@ const HomeLoan = () => {
                   handlePhotoChange(e);
                 },
               })}
-              className="hidden "
+              className="hidden"
               id="file_input"
               type="file"
             />
@@ -184,4 +173,4 @@ const HomeLoan = () => {
   );
 };
 
-export default HomeLoan;
+export default BikeInsurance;

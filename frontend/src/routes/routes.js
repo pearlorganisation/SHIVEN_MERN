@@ -60,6 +60,14 @@ const HomeLoan = lazy(() => {
   return import("../pages/ServicePlans/HomeLoan");
 });
 
+const BikeInsurance = lazy(() => {
+  return import("../pages/ServicePlans/BikeInsurance");
+});
+
+const VehicleLoan = lazy(() => {
+  return import("../pages/ServicePlans/VehicleLoan");
+});
+
 const ViewServiceProviders = lazy(() => {
   return import("../pages/Service/admin/ViewServiceProviders");
 });
@@ -183,6 +191,17 @@ export const routes = [
     title: "Home Loan",
     component: HomeLoan,
     path: "/servicePlan/home-loan",
+  },
+
+  {
+    title: "Bike Insurance",
+    component: BikeInsurance,
+    path: "/servicePlan/bike-insurance",
+  },
+  {
+    title: "Vehicle Loan",
+    component: VehicleLoan,
+    path: "/servicePlan/vehicle-loan",
   },
   /// Customer routes
   {

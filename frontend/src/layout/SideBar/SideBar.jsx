@@ -142,6 +142,13 @@ const SideBar = () => {
           { title: "Home Loan",
             path: "/servicePlan/home-loan" 
            },
+           { title: "Bike Insurance",
+            path: "/servicePlan/bike-insurance" 
+           },
+           {
+            title: "Vehicle Loan",
+            path: "/servicePlan/vehicle-loan",
+          },
           {
             title: "Loans",
             path: "/dashboard"

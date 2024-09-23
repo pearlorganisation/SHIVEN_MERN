@@ -136,8 +136,25 @@ const SideBar = () => {
       title: "Service Plans",
       subMenu: true,
       subMenuArray: [
-        { title: "Mutual Fund",
-           path: "/" 
+          { 
+            title: "Mutual Fund",
+           path: "/servicePlan/mutual-fund" 
+          },
+          { 
+            title: "Home Loan",
+            path: "/servicePlan/home-loan" 
+          },
+          { 
+            title: "Bike Insurance",
+            path: "/servicePlan/bike-insurance" 
+          },
+          {
+            title: "Vehicle Loan",
+            path: "/servicePlan/vehicle-loan",
+          },
+          {
+            title: "Whole Life Insurance",
+            path: "/servicePlan/whole-life-insurance",
           },
           {
             title: "Loans",

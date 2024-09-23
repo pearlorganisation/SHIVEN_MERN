@@ -51,6 +51,27 @@ const ViewServicePlans = lazy(() => {
 const CreateServicePlan = lazy(() => {
   return import("../pages/Service/admin/CreateServicePlan");
 });
+
+const MutualFunds = lazy(() => {
+  return import("../pages/ServicePlans/MutualFund");
+});
+
+const HomeLoan = lazy(() => {
+  return import("../pages/ServicePlans/HomeLoan");
+});
+
+const BikeInsurance = lazy(() => {
+  return import("../pages/ServicePlans/BikeInsurance");
+});
+
+const VehicleLoan = lazy(() => {
+  return import("../pages/ServicePlans/VehicleLoan");
+});
+
+const WholeLifeInsurance = lazy(() => {
+  return import("../pages/ServicePlans/WholeLifeInsurance");
+});
+
 const ViewServiceProviders = lazy(() => {
   return import("../pages/Service/admin/ViewServiceProviders");
 });
@@ -163,6 +184,34 @@ export const routes = [
     title: "Create Service Plan",
     component: CreateServicePlan,
     path: "/servicePlan/createServicePlan",
+  },
+
+  {
+    title: "Mutual Funds",
+    component: MutualFunds,
+    path: "/servicePlan/mutual-fund",
+  },
+  {
+    title: "Home Loan",
+    component: HomeLoan,
+    path: "/servicePlan/home-loan",
+  },
+
+  {
+    title: "Bike Insurance",
+    component: BikeInsurance,
+    path: "/servicePlan/bike-insurance",
+  },
+  {
+    title: "Vehicle Loan",
+    component: VehicleLoan,
+    path: "/servicePlan/vehicle-loan",
+  },
+
+  {
+    title: "Whole Life Insurance",
+    component: WholeLifeInsurance,
+    path: "/servicePlan/whole-life-insurance",
   },
   /// Customer routes
   {

@@ -68,6 +68,10 @@ const VehicleLoan = lazy(() => {
   return import("../pages/ServicePlans/VehicleLoan");
 });
 
+const WholeLifeInsurance = lazy(() => {
+  return import("../pages/ServicePlans/WholeLifeInsurance");
+});
+
 const ViewServiceProviders = lazy(() => {
   return import("../pages/Service/admin/ViewServiceProviders");
 });
@@ -202,6 +206,12 @@ export const routes = [
     title: "Vehicle Loan",
     component: VehicleLoan,
     path: "/servicePlan/vehicle-loan",
+  },
+
+  {
+    title: "Whole Life Insurance",
+    component: WholeLifeInsurance,
+    path: "/servicePlan/whole-life-insurance",
   },
   /// Customer routes
   {

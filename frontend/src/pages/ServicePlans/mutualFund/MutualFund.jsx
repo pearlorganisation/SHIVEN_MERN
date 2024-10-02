@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import Select from "react-select";
 import defaultPhoto from "/placeholder.jpg";
 import { MdOutlineInsertPhoto } from "react-icons/md";
-import Input from "../../components/form/Input";
+import Select from "react-select";
+import Input from "../../../components/form/Input";
 
-const BikeInsurance = () => {
-  const [photo, setPhoto] = useState("");
+const MutualFund = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
     control,
   } = useForm();
+  const [photo, setPhoto] = useState("");
 
   const onSubmit = (data) => {
     console.log(data);
@@ -31,17 +31,20 @@ const BikeInsurance = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto my-5 overflow-hidden rounded-2xl bg-white shadow-lg">
+    <div className="max-w-4xl mx-auto my-5 overflow-hidden rounded-2xl bg-white shadow-lg ">
       <div className="bg-blue-600 px-10 py-4 text-center text-white font-semibold">
-        Bike Insurance Plan
+        Mutual Fund
       </div>
-      <form className="space-y-5 my-4 mx-8 sm:mx-2" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="space-y-5 my-4 mx-8 sm:mx-2"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <div className="sm:flex space-y-6 sm:space-y-0 justify-between gap-10">
           <Input
-            label="Plan Name"
-            {...register("planName", { required: true })}
-            isError={errors.planName}
-            errorMessage="Plan Name is required"
+            label="Fund Name"
+            {...register("fundName", { required: true })}
+            isError={errors.fundName}
+            errorMessage="Fund Name is required"
           />
 
           <div className="w-full">
@@ -53,22 +56,23 @@ const BikeInsurance = () => {
                 <Select
                   value={field.value}
                   options={[
-                    { value: "Comprehensive", label: "Comprehensive" },
-                    { value: "Third Party", label: "Third Party" },
+                    { value: "Motor Insurance", label: "Motor Insurance" },
+                    { value: "Life Insurance", label: "Life Insurance" },
+                    { value: "Health Insurance", label: "Health Insurance" },
                   ]}
                   onChange={(selectedOption) => field.onChange(selectedOption)}
-                  className="mt-2"
-                  placeholder="Choose Service Type"
+                  className="mt-2 "
+                  placeholder="Choose Service Type "
                   styles={{
                     control: (provided) => ({
                       ...provided,
-                      border: "1px solid #CBD5E1",
-                      borderRadius: "0.400rem",
-                      height: "40px",
+                      border: "1px solid #CBD5E1", // Set custom border style
+                      borderRadius: "0.400rem", // Set custom border radius
+                      height: "40px", // Add height here
                     }),
                     placeholder: (provided) => ({
                       ...provided,
-                      color: "#9CA3AF",
+                      color: "#9CA3AF", // Set custom placeholder color
                     }),
                   }}
                 />
@@ -76,101 +80,102 @@ const BikeInsurance = () => {
               rules={{ required: true }}
             />
             {errors.serviceType && (
-              <span className="text-sm font-medium text-red-500">
+              <span className=" text-sm font-medium text-red-500">
                 Service Type is required
               </span>
             )}
           </div>
         </div>
+        <div className="sm:flex space-y-6 sm:space-y-0 justify-between gap-10">
+          <Input label="Fund Size" {...register("fundSize")} />
+
+          <Input label="Category" {...register("category")} />
+        </div>
 
         <div className="sm:flex space-y-6 sm:space-y-0 justify-between gap-10">
           <Input
-            label="Premium Amount"
+            label="Minimum SIP Amount"
             type="number"
-            {...register("premiumAmount", { required: true })}
-            isError={errors.premiumAmount}
-            errorMessage="Premium amount is required"
+            {...register("minSIPAmount", { required: true })}
+            isError={errors.minSIPAmount}
+            errorMessage="Minimum SIP Amount is required"
           />
 
           <Input
-            label="IDV"
-            {...register("idv", { required: true })}
-            isError={errors.idv}
-            errorMessage="IDV is required"
+            label="Expense Ratio"
+            type="number"
+            {...register("expenseRatio", { min: 0, max: 100 })}
+            isError={errors.expenseRatio}
+            errorMessage="Expense ratio must be between 0 and 100"
           />
         </div>
 
         <div className="sm:flex space-y-6 sm:space-y-0 justify-between gap-10">
           <Input
-            label="Claims Settled (%)"
+            label="Five Years Annualised Returns"
             type="number"
-            {...register("claimsSettled", {
-              required: true,
-              min: { value: 0, message: "Cannot be less than 0%" },
-              max: { value: 100, message: "Cannot exceed 100%" },
-            })}
-            isError={errors.claimsSettled}
-            errorMessage={errors.claimsSettled?.message || "Claims Settled is required"}
+            {...register("fiveYearsAnnualisedReturns")}
           />
 
-          <div className="w-full">
-            <label className="font-medium">Zero Depreciation</label>
-            <div className="mt-2">
-              <input
-                type="checkbox"
-                {...register("zeroDepreciation")}
-                className="mr-2 leading-tight"
-              />
-              <span className="text-sm font-medium">Include Zero Depreciation</span>
-            </div>
-          </div>
+          <Input
+            label="One Years Annualised Returns"
+            type="number"
+            {...register("oneYearsAnnualisedReturns")}
+          />
         </div>
 
         <div className="sm:flex space-y-6 sm:space-y-0 justify-between gap-10">
           <div className="font-medium w-full space-y-6">
-            Plan Logo
+            {" "}
+            Fund Logo
             <img
-              className="mt-2 w-full h-50 sm:w-44 object-cover sm:h-36 rounded"
+              class="mt-2 w-full h-50 object-cover sm:w-44 sm:h-36 rounded"
               src={photo || defaultPhoto}
               alt="No Image"
             />
             <label
               htmlFor="file_input"
-              className="flex gap-1"
+              className="flex gap-1
+           "
             >
+              {" "}
               <MdOutlineInsertPhoto size="25" />
               <div className="px-2 border rounded-md border-slate-300 hover:bg-red-500 hover:text-white hover:border-none">
                 Click here to upload
               </div>
             </label>
             <input
-              {...register("planLogo", {
+              {...register("fundLogo", {
                 required: true,
                 onChange: (e) => {
                   handlePhotoChange(e);
                 },
               })}
-              className="hidden"
+              className="hidden "
               id="file_input"
               type="file"
             />
-            {errors.planLogo && (
+            {errors.fundLogo && (
               <span className="text-sm font-medium text-red-500">
-                Plan Logo is required
+                Fund Logo is required
               </span>
             )}
           </div>
+
+          <Input label="Risk Factor" {...register("riskFactor")} />
         </div>
 
         <button
           type="submit"
-          className="w-full rounded-lg bg-gray-700 hover:bg-gray-800 active:bg-gray-700 px-10 py-3 font-semibold text-white"
+          className=" w-full rounded-lg bg-gray-700 hover:bg-gray-800 active:bg-gray-700 px-10 py-3 font-semibold text-white"
         >
-          Create
+          {/* {isLoading ? <ClipLoader color="#c4c2c2" /> : */}
+          <>Create</>
+          {/* } */}
         </button>
       </form>
     </div>
   );
 };
 
-export default BikeInsurance;
+export default MutualFund;

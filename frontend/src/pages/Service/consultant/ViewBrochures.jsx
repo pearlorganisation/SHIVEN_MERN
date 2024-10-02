@@ -1,48 +1,55 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { getAllServices } from '../../../features/actions/Service/service';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Stack,Skeleton } from '@mui/material';
+import { getAllServicePlans } from '../../../features/actions/Service/servicePlan';
+import BrochureModal from '../../../components/Modal/BrochureModal';
 
-const ViewServices = () => {
+const ViewBrochures = () => {
   const dispatch= useDispatch();
   const navigate = useNavigate();
-  const { loggedInUserData } = useSelector((state) => state.auth);
-  const {serviceData,isLoading } = useSelector(state => state.service)
+  const {servicePlanData,isLoading } = useSelector(state => state.servicePlan)
+
+  const [showViewModal,setShowViewModal] = useState(false)
+const [viewData,setViewData]= useState()
+
+const handleViewModal=(itemData)=>{
+  setShowViewModal(true)
+  setViewData(itemData)
+}
 
   useEffect(()=>{
-    dispatch(getAllServices())
-  
+    dispatch(getAllServicePlans())
   },[])
 
   return (
     <div className="userContainer p-10 ">
       <div className="title p-1">
         <h4 className="font-bold text-blue-500 text-sm sm:text-md md:text-lg">
-          Service Listing
+           Plans Brochures Listing
         </h4>
-       { loggedInUserData.role === "0" && <div className="createEmployeeBtn flex justify-end p-4 ">
-          <button
+        <div className="createEmployeeBtn flex justify-end p-4 ">
+          {/* <button
             className=" p-2 rounded-lg bg-indigo-600 text-white font-bold tracking-widest"
             onClick={() => {
-              navigate("/policy/addPolicy");
+              navigate("/servicePlan/addServicePlan");
             }}
           >
-            Add Policy
-          </button>
-        </div>}
+          Add Service Plan
+          </button> */}
+        </div>
       </div>
       <div className="mt-6 shadow-xl rounded-lg overflow-x-auto">
             <table className="w-full table-auto text-sm text-left">
               <thead className="bg-gray-50 text-gray-600 font-medium border-b">
                 <tr>
                   <th className="py-3 px-6">ID</th>
+                  <th className="py-3 px-6">Service Plan </th>
+                  <th className="py-3 px-6">Service Provider </th>
                   <th className="py-3 px-6">Service Type </th>
-                  <th className="py-3 px-6">Logo </th>
-                  <th className="py-3 px-6">Description </th>
            
-                  { loggedInUserData.role === "0" && <th className="py-3 px-6" colSpan={1}>Actions</th>}
+                  <th className="py-3 px-6">Actions</th>
                 
                   
                 </tr>
@@ -61,24 +68,40 @@ const ViewServices = () => {
               </td>
             </tr>
             ) : (
-                 Array.isArray(serviceData) && serviceData.length > 0 && serviceData?.map((item, idx) => (
+                 Array.isArray(servicePlanData) && servicePlanData.length > 0 && servicePlanData?.map((item, idx) => (
                     <tr key={idx}>
                       <td className="px-6 py-4 whitespace-nowrap">{idx+1}</td>
                       <td className="px-6 py-4 whitespace-nowrap ">
-                        {item?.serviceType}
+                        {item?.serviceName}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap ">
-                        <img src={item?.logo} className='rounded-lg w-24 h-20' />
+                        {item?.serviceProvider?.serviceProviderName}
                       </td>
+               
+             
                       <td className="px-6 py-4 whitespace-nowrap truncate max-w-56 ">
-                        {item?.serviceDescription}
+                        {item?.serviceType?.serviceType}
                       </td>
                     
                  
                       
                      
-                  {  loggedInUserData.role === "0" &&   <td className=" whitespace-nowrap py-3 px-6">
-                        <a
+                      <td className=" whitespace-nowrap">
+                      <button
+                  
+                          className="py-2 leading-none px-3 font-semibold text-green-500 hover:text-green-600 duration-150 hover:bg-gray-50 rounded-lg"
+                        >
+                          View Brochure 
+                        </button>
+                      <button
+                          onClick={() => {
+                            handleViewModal(item)
+                          }}
+                          className="py-2 leading-none px-3 font-semibold text-blue-500 hover:text-blue-600 duration-150 hover:bg-gray-50 rounded-lg"
+                        >
+                          Add New Brochure 
+                        </button>
+                        {/* <a
                           // onClick={() => {
                           //   navigate(`/updateDessert/${item?._id}`, { state: item  });
                           // }}
@@ -86,7 +109,15 @@ const ViewServices = () => {
                         >
                           Edit
                         </a>
-                      </td>}
+                        <button
+                          // onClick={() => {
+                          //   handleModal(item?._id);
+                          // }}
+                          className="py-2 leading-none px-3 font-semibold text-red-500 hover:text-red-600 duration-150 hover:bg-gray-50 rounded-lg"
+                        >
+                          Delete
+                        </button> */}
+                      </td>
                     </tr>
                   ))
                 
@@ -94,8 +125,11 @@ const ViewServices = () => {
               </tbody>
             </table>
           </div>
+          {showViewModal && (
+        <BrochureModal setModal={setShowViewModal} viewData={viewData} />
+      )}
     </div>
   )
 }
 
-export default ViewServices
+export default ViewBrochures

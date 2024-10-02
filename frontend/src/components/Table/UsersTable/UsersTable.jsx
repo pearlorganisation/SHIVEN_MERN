@@ -57,9 +57,6 @@ const UsersTable = () => {
                 Email
               </th>
               <th scope="col" class="px-6 py-3">
-                Role
-              </th>
-              <th scope="col" class="px-6 py-3">
                 Action
               </th>
             </tr>
@@ -79,9 +76,9 @@ const UsersTable = () => {
                       </th>
                       <td class="px-6 py-4">{user?.userName || "N/A"}</td>
                       <td class="px-6 py-4">{user?.email || "N/A"}</td>
-                      <td class="px-6 py-4">
+                      {/* <td class="px-6 py-4">
                         {reverseRoleChecker(user?.role) || "N/A"}
-                      </td>
+                      </td> */}
                       <td class="px-6 py-4">
                         {actionButtons.map((btn) => {
                           return (

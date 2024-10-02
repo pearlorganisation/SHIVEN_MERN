@@ -17,18 +17,7 @@ import { resetUserState } from "../../../features/slices/Auth/userSlice";
 // -------------------------------------------------------------------------------------------------
 
 const CreateUser = () => {
-  // --------------------------------------------------States----------------------------------------
-  const roleOptions = [
-    {
-      label: "Consultant",
-      value: roleChecker("CONSULTANT"),
-    },
-    {
-      label: "Customer",
-      value: roleChecker("CUSTOMER"),
-    },
-  ];
-
+  const { loggedInUserData } = useSelector((state) => state.auth);
   const [role, setRole] = useState("");
   // -------------------------------------------------------------------------------------------------
   // --------------------------------------------------Hooks----------------------------------------
@@ -46,6 +35,7 @@ const CreateUser = () => {
   // ------------------------------------------------Functions----------------------------------------
   // createUserHandler -- handler to create the user
   const createUserHandler = (data) => {
+
     try {
       const { userName, fullName, email, password } = data;
       const payload = { userName, fullName, email, password, role };
@@ -61,14 +51,6 @@ const CreateUser = () => {
     }
   };
 
-  // roleHandler -- handler to handle the roles
-  const roleHandler = (data) => {
-    try {
-      setRole(data?.value);
-    } catch (error) {
-      toast.error(error.message);
-    }
-  };
 
   // ------------------------------------------------useEffect----------------------------------------
   useEffect(() => {
@@ -87,7 +69,7 @@ const CreateUser = () => {
         <div class="max-w-screen-xl m-0 sm:m-5 bg-white shadow sm:rounded-lg flex justify-center flex-1">
           <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
             <h1 className="text-center font-bold text-blue-600 text-sm sm:text-lg md:text-xl">
-              Create User
+            {    loggedInUserData.role === "0" ? "Create Consultant Account" : "Create Client Account" }  
             </h1>
             <div class="mt-12 flex flex-col items-center">
               <div class="w-full flex-1 mt-8">
@@ -162,9 +144,9 @@ const CreateUser = () => {
                         "Password is a required field"}
                     </p>
                   )}
-                  <div class="w-full rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5">
+                  {/* <div class="w-full rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5">
                     <Select options={roleOptions} onChange={roleHandler} />
-                  </div>
+                  </div> */}
                   {isUserLoading ? (
                     <button
                       class="mt-5 tracking-wide font-semibold bg-green-400 text-white-500 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
@@ -189,7 +171,7 @@ const CreateUser = () => {
                         <circle cx="8.5" cy="7" r="4" />
                         <path d="M20 8v6M23 11h-6" />
                       </svg>
-                      <span class="ml-">Create User</span>
+                      <span class="ml-3">Create</span>
                     </button>
                   )}
                   <p class="mt-6 text-xs text-gray-600 text-center">

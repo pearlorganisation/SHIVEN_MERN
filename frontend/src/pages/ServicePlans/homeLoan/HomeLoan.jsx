@@ -3,7 +3,8 @@ import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
 import defaultPhoto from "/placeholder.jpg";
 import { MdOutlineInsertPhoto } from "react-icons/md";
-import Input from "../../components/form/Input";
+import Input from "../../../components/form/Input";
+
 
 const HomeLoan = () => {
   const [photo, setPhoto] = useState("");

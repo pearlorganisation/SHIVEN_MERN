@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function ServiceProviderModal ({viewData,setModal}) {
+export default function ViewModalMutual ({viewData,setModal}) {
     const createdAtDate = viewData?.updatedAt ? new Date(viewData?.updatedAt) : null;
   const formattedDate = createdAtDate ? createdAtDate.toISOString().split('T')[0] : '';
 
@@ -21,7 +21,7 @@ export default function ServiceProviderModal ({viewData,setModal}) {
       {/*        <!-- Modal header --> */}
       <header id="header-3a" className="flex items-center gap-4">
         <h3 className="flex-1 text-xl font-medium text-slate-700">
-        Service Plan
+        Mutual Fund Plan
         </h3>
         <div>Last Updated : {formattedDate} </div>
         <button
@@ -59,73 +59,49 @@ export default function ServiceProviderModal ({viewData,setModal}) {
       <table className="w-full table-auto text-sm">
     <tbody className="text-gray-600">
       <tr>
-        <td className="py-2 px-4 border border-gray-300">Service Plan Name</td>
-        <td className="py-2 px-4 border border-gray-300">{viewData ? viewData?.serviceName: ''}</td>
+        <td className="py-2 px-4 border border-gray-300">Plan Name</td>
+        <td className="py-2 px-4 border border-gray-300">dummy</td>
+      </tr>
+      <tr>
+        <td className="py-2 px-4 border border-gray-300">Plan Image</td>
+        <td className="py-2 px-4 border border-gray-300">dummy</td>
       </tr>
       <tr>
         <td className="py-2 px-4 border border-gray-300">Service Provider</td>
-        <td className="py-2 px-4 border border-gray-300">{viewData ? viewData?.serviceProvider?.serviceProviderName : ''}</td>
+        <td className="py-2 px-4 border border-gray-300">dummy</td>
       </tr>
       <tr>
-        <td className="py-2 px-4 border border-gray-300">Monthly Premium</td>
-        <td className="py-2 px-4 border border-gray-300">{viewData ? `₹ ${viewData?.premiumPerMonth} / Month `: ''}</td>
+        <td className="py-2 px-4 border border-gray-300">Service Type</td>
+        <td className="py-2 px-4 border border-gray-300">dummy</td>
       </tr>
       <tr>
-        <td className="py-2 px-4 border border-gray-300">Yearly Premium</td>
-        <td className="py-2 px-4 border border-gray-300">{viewData ? `₹ ${viewData?.premiumPerYear} / Year `  : ''}</td>
+        <td className="py-2 px-4 border border-gray-300">Fund Size</td>
+        <td className="py-2 px-4 border border-gray-300">dummy</td>
       </tr>
       <tr>
-        <td className="py-2 px-4 border border-gray-300">Cover</td>
-        <td className="py-2 px-4 border border-gray-300">{viewData ? `₹ ${viewData?.coverAmount}` : ''}</td>
+        <td className="py-2 px-4 border border-gray-300">Category</td>
+        <td className="py-2 px-4 border border-gray-300">dummy</td>
       </tr>
       <tr>
-        <td className="py-2 px-4 border border-gray-300">Claim Settlement Ratio </td>
-        <td className="py-2 px-4 border border-gray-300">{viewData ? viewData?.claimSettlementRatio : ''}</td>
+        <td className="py-2 px-4 border border-gray-300">Minimum SIP Amount</td>
+        <td className="py-2 px-4 border border-gray-300">dummy</td>
       </tr>
       <tr>
-        <td className="py-2 px-4 border border-gray-300">Service Type </td>
-        <td className="py-2 px-4 border border-gray-300">{viewData ? viewData?.serviceType?.serviceType: ''}</td>
-      </tr>
-    
-      <tr>
-        <td className="py-2 px-4 border border-b-1 border-gray-300">Provision</td>
-        <td className="py-2 px-4 border border-gray-300">
-          {viewData && viewData.mainPoints ? (
-            viewData.mainPoints.map((item, idx) => (
-              <div className='border border-slate-300 flex mb-2 rounded-md px-2 gap-2' key={idx}>
-                 <div className='flex items-center '><span className=''>{idx+1} :</span> </div>
-                 <div className='p-2 space-x-2'>
-              <span className='bg-slate-100 mb-2 rounded-md px-2 '>{item}</span>
-           
-              </div>
-              </div>
-            ))
-          ) : (
-            'No Price available'
-          )}
-        </td>
+        <td className="py-2 px-4 border border-gray-300">Expense Ratio</td>
+        <td className="py-2 px-4 border border-gray-300">dummy</td>
       </tr>
       <tr>
-        <td className="py-2 px-4 border border-b-1 border-gray-300">Cashless Hospitals</td>
-        <td className="py-2 px-4 border border-gray-300">
-        
-        </td>
+        <td className="py-2 px-4 border border-gray-300">Five Years Annualised Returns </td>
+        <td className="py-2 px-4 border border-gray-300">dummy</td>
       </tr>
       <tr>
-        <td className="py-2 px-4 border border-b-1 border-gray-300">Includes</td>
-        <td className="py-2 px-4 border border-gray-300">
-        
-        </td>
+        <td className="py-2 px-4 border border-gray-300">One Year Annualised Returns</td>
+        <td className="py-2 px-4 border border-gray-300">dummy</td>
       </tr>
       <tr>
-        <td className="py-2 px-4 border border-b-1 border-gray-300">Excludes</td>
-        <td className="py-2 px-4 border border-gray-300">
-      
-        </td>
+        <td className="py-2 px-4 border border-gray-300">Risk Factor</td>
+        <td className="py-2 px-4 border border-gray-300">dummy</td>
       </tr>
-      
-      
-
       
     </tbody>
   </table>

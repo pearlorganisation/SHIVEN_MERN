@@ -4,15 +4,30 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Stack,Skeleton } from '@mui/material';
 import { getAllServicePlans } from '../../../features/actions/Service/servicePlan';
-import ServiceProviderModal from '../../../components/Modal/ServicePlanModal';
+import HealthModal from './HealthModal';
+import Delete from '../../../components/delete';
 
-const ViewServicePlans = () => {
+const HealthPlan = () => {
   const dispatch= useDispatch();
   const navigate = useNavigate();
   const {servicePlanData,isLoading } = useSelector(state => state.servicePlan)
 
   const [showViewModal,setShowViewModal] = useState(false)
 const [viewData,setViewData]= useState()
+
+const [showDeleteModal, setShowDeleteModal] = useState(false);
+const [id, setId] = useState();
+
+const handleModal = (ID) => {
+  setShowDeleteModal(true);
+  setId(ID);
+  }; 
+  const handleDelete = () => {
+    dispatch(deleteDrink(id));
+    
+    setShowDeleteModal(false);
+    setId('');
+    };
 
 const handleViewModal=(itemData)=>{
   setShowViewModal(true)
@@ -27,16 +42,16 @@ const handleViewModal=(itemData)=>{
     <div className="userContainer p-10 ">
       <div className="title p-1">
         <h4 className="font-bold text-blue-500 text-sm sm:text-md md:text-lg">
-          Service Plans Listing
+          Health Insurance Plan Listing
         </h4>
         <div className="createEmployeeBtn flex justify-end p-4 ">
           <button
             className=" p-2 rounded-lg bg-indigo-600 text-white font-bold tracking-widest"
             onClick={() => {
-              navigate("/service/createService");
+              navigate("/servicePlan/health-insurance");
             }}
           >
-          Add Service Plan
+          Add Health Insurance Plan
           </button>
         </div>
       </div>
@@ -45,10 +60,9 @@ const handleViewModal=(itemData)=>{
               <thead className="bg-gray-50 text-gray-600 font-medium border-b">
                 <tr>
                   <th className="py-3 px-6">ID</th>
-                  <th className="py-3 px-6">Service Plan </th>
+                  <th className="py-3 px-6">Plan Name</th>
                   <th className="py-3 px-6">Service Provider </th>
                   <th className="py-3 px-6">Cover </th>
-                  <th className="py-3 px-6">Service Type </th>
            
                   <th className="py-3 px-6">Actions</th>
                 
@@ -82,10 +96,7 @@ const handleViewModal=(itemData)=>{
                       <td className="px-6 py-4 whitespace-nowrap truncate max-w-56 ">
                         {item?.coverAmount}
                       </td>
-             
-                      <td className="px-6 py-4 whitespace-nowrap truncate max-w-56 ">
-                        {item?.serviceType?.serviceType}
-                      </td>
+
                     
                  
                       
@@ -108,9 +119,9 @@ const handleViewModal=(itemData)=>{
                           Edit
                         </a>
                         <button
-                          // onClick={() => {
-                          //   handleModal(item?._id);
-                          // }}
+                          onClick={() => {
+                            handleModal(item?._id);
+                          }}
                           className="py-2 leading-none px-3 font-semibold text-red-500 hover:text-red-600 duration-150 hover:bg-gray-50 rounded-lg"
                         >
                           Delete
@@ -124,10 +135,13 @@ const handleViewModal=(itemData)=>{
             </table>
           </div>
           {showViewModal && (
-        <ServiceProviderModal setModal={setShowViewModal} viewData={viewData} />
+        <HealthModal setModal={setShowViewModal} viewData={viewData} />
       )}
+      {showDeleteModal && (
+          <Delete setModal={setShowDeleteModal} handleDelete={handleDelete} />
+        )}
     </div>
   )
 }
 
-export default ViewServicePlans
+export default HealthPlan

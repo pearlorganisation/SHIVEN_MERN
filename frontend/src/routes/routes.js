@@ -21,6 +21,7 @@ import ViewWholeLifeInsurance from "../pages/ServicePlans/wholeLifeInsurance/Vie
 import WholeLifeInsurancePlan from "../pages/ServicePlans/wholeLifeInsurance/WholeLifeInsurance";
 import ViewHomeLoan from "../pages/ServicePlans/homeLoan/ViewHomeLoan";
 import HomeLoan from "../pages/ServicePlans/homeLoan/HomeLoan";
+import CompanyProfile from "../components/CompanyProfile/CompanyProfile";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -307,5 +308,10 @@ export const routes = [
     title: "Customer Documents",
     component: Documents,
     path: "/consultant/documents",
+  },
+  {
+    title: "Company Profile",
+    component: CompanyProfile,
+    path: "/companyProfile",
   },
 ];

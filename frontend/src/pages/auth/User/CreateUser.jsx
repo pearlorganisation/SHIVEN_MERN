@@ -1,7 +1,7 @@
 // --------------------------------------------------Imports----------------------------------------
 import React, { useEffect, useState } from "react";
 import userBg from "../../../assets/Images/userBg.jpg";
-import Select from "react-select";
+// import Select from "react-select";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";

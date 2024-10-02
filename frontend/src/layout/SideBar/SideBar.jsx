@@ -130,7 +130,7 @@ const SideBar = () => {
             },
             {
               title: "Vehicle Loan",
-              path: "/servicePlan/vehicle-loan",
+              path: "/servicePlan/view-vehicle-loan",
             },
             {
               title: "Govt. Insurance",

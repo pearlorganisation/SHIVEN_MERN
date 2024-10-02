@@ -21,6 +21,8 @@ import ViewWholeLifeInsurance from "../pages/ServicePlans/wholeLifeInsurance/Vie
 import WholeLifeInsurancePlan from "../pages/ServicePlans/wholeLifeInsurance/WholeLifeInsurance";
 import ViewHomeLoan from "../pages/ServicePlans/homeLoan/ViewHomeLoan";
 import HomeLoan from "../pages/ServicePlans/homeLoan/HomeLoan";
+import ViewVehicleLoan from "../pages/ServicePlans/vehicleLoan/ViewVehicleLoan";
+import VehicleLoan from "../pages/ServicePlans/vehicleLoan/VehicleLoan";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -66,9 +68,6 @@ const BikeInsurance = lazy(() => {
   return import("../pages/ServicePlans/bikeInsurance/BikeInsurance");
 });
 
-const VehicleLoan = lazy(() => {
-  return import("../pages/ServicePlans/VehicleLoan");
-});
 
 const ViewServiceProviders = lazy(() => {
   return import("../pages/Service/admin/ViewServiceProviders");
@@ -218,6 +217,11 @@ export const routes = [
     title: "View Home Loan",
     component: ViewHomeLoan,
     path: "/servicePlan/view-home-loan",
+  },
+  {
+    title: "View Vehicle Loan",
+    component: ViewVehicleLoan,
+    path: "/servicePlan/view-vehicle-loan",
   },
   {
     title: "Vehicle Loan",

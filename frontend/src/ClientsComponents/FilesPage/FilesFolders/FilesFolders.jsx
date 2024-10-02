@@ -68,7 +68,7 @@ const FilesFolders = () => {
         </div>
       </div>
       <BreadCrumb routes={routes} setRoutes={setRoutes} />
-      <div className="w-full grid grid-cols-8 gap-y-8 p-5 bg-neutral-100 rounded-lg h-full ">
+      <div className="w-full grid grid-cols-8 gap-y-8 p-5  bg-neutral-100 rounded-lg h-full ">
         {!routes.trim()
           ? folderData.map((data, index) => {
               return (
@@ -100,9 +100,9 @@ const BreadCrumb = (props) => {
 
   return (
     <div className="w-full h-10 flex items-center px-7">
-      <div className="flex gap-4">
+      <div className="flex gap-4 ">
         <FaRegFolder size={25} className="text-gray-500" />
-        <p onClick={() => setRoutes("")} className="text-gray-500">
+        <p onClick={() => setRoutes("")} className="text-gray-500 cursor-pointer hover:text-black">
           Folders
         </p>
         {routes &&

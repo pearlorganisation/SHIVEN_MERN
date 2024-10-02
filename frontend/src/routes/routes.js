@@ -5,6 +5,7 @@ import Renewal from "../pages/Service/user/purchase/Renewal";
 import Invoices from "../pages/Service/user/purchase/Invoices";
 import Complain from "../pages/Service/user/complain/Complain";
 import FilesPage from "../ClientsComponents/FilesPage/FilesPage";
+import FilesFolders from "../ClientsComponents/FilesPage/FilesFolders/FilesFolders";
 import ScheduleManagement from "../pages/Service/user/ScheduleManagement";
 import AddNewProfile from "../ClientsComponents/Profile/AddNewProfile";
 import CreateRequest from "../pages/Service/user/complain/CreateRequest";
@@ -263,6 +264,11 @@ export const routes = [
     title: "My docs",
     component: FilesPage,
     path: "/clientFiles",
+  },
+  {
+    title: "Files and Folders",
+    component: FilesFolders,
+    path: "/clientFiles/files-folders",
   },
   {
     title: "Schedule management",

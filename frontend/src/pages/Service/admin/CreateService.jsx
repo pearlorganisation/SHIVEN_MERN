@@ -71,35 +71,35 @@ useEffect(() => {
                   <input
                     className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                     type="text"
-                    placeholder="Service Type"
+                    placeholder="Policy Type"
                     {...register("serviceType", {
                       required: {
                         value: true,
-                        message: "Service Type is a required field",
+                        message: "Policy Type is a required field",
                       },
                     })}
                   />
                   {errors.serviceType && (
                     <p className="text-red-500 text-xs mt-1">
                       {errors?.serviceType?.message ||
-                        "Service Type is a required field"}
+                        "Policy Type is a required field"}
                     </p>
                   )}
                   <textarea
                     className="w-full max-h-[200px] px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                     type="text"
-                    placeholder="Service Description"
+                    placeholder="Policy Description"
                     {...register("serviceDescription", {
                       required: {
                         value: true,
-                        message: "Service Description is a required field",
+                        message: "Policy Description is a required field",
                       },
                     })}
                   />
                   {errors.serviceDescription && (
                     <p className="text-red-500 text-xs mt-1">
                       {errors?.serviceDescription?.message ||
-                        "Insurance Description is a required field"}
+                        "Policy Description is a required field"}
                     </p>
                   )}
                   <label htmlFor="fileImage">
@@ -114,7 +114,7 @@ useEffect(() => {
                         <span className="text-red-500 font-bold">
                           Select :{" "}
                         </span>
-                        Service Logo
+                        Policy Logo
                       </p>
                     )}
                     {photo && <img src={photo} className=" h-40 w-52" />}
@@ -132,7 +132,7 @@ useEffect(() => {
                   {errors?.logo && (
                     <p className="text-red-500 text-xs mt-1">
                       
-                        Service Logo is a required field
+                        Policy Logo is a required field
                     </p>
                   )}
                 
@@ -140,7 +140,7 @@ useEffect(() => {
                       className="mt-5 tracking-wide font-semibold bg-green-600 text-white-500 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
                       type="submit"
                     >
-                       {isLoading ? (<ClipLoader color="#c4c2c2" />) : (<>Create Service</>)}
+                       {isLoading ? (<ClipLoader color="#c4c2c2" />) : (<>Create Policy</>)}
                     </button>
                  
                   <p className="mt-6 text-xs text-gray-600 text-center">

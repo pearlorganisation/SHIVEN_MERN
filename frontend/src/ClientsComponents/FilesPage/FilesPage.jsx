@@ -96,6 +96,15 @@ const FilesPage = () => {
                       >
                         Add New Document
                       </a>
+
+                      <a
+                        onClick={() => {
+                          navigate("/clientFiles/files-folders");
+                        }}
+                        className="cursor-pointer py-2 px-3 font-semibold text-green-600 hover:text-green-700 duration-150 hover:bg-gray-50 rounded-lg"
+                      >
+                        Files and Folders
+                      </a>
                     </td>
                   </tr>
                 ))

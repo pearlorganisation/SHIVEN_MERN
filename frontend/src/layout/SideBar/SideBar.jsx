@@ -46,13 +46,10 @@ const SideBar = () => {
     },
     
     {
-      title: "Users",
-      subMenu: true,
-      subMenuArray: [
-        { title: "Users", path: "/users" },
-        { title: "Create User", path: "/users/create-user" },
-      ],
-      show: loggedInUserData.role === "0",
+      title: "Clients",
+      subMenu: false,
+      path:  "/users",
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
     },
 
 /// CONSULTANT PANEL ///
@@ -60,9 +57,112 @@ const SideBar = () => {
     {
       title: "Company Profile",
       subMenu: false,
-      path: "/",
+      path: "/companyProfile",
       show: loggedInUserData.role === "1" ,
     },
+
+      // Super Admin and Consultant Routes
+      {
+        title: "Service Providers",
+        subMenu: true,
+        subMenuArray: [
+            { title: "Mutual Fund",
+               path: "/" 
+              },
+              {
+                title: "Loans",
+                path: "/dashboard"
+              },
+              {
+                title: "Health Insurance ",
+                path: "/dashboard"
+              },
+              {
+                title: "Motor Insurance",
+                path: "/dashboard"
+              },
+              {
+                title: "Fixed Deposit ",
+                path: "/dashboard"
+              },
+              {
+                title: "Stocks",
+                path: "/dashboard"
+              },
+              {
+                title: "Property",
+                path: "/dashboard"
+              },
+              {
+                title: "Govt. Insurance",
+                path: "/dashboard"
+              }
+          ],
+        show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
+      },
+      {
+        title: "Plans",
+        subMenu: true,
+        subMenuArray: [
+            { 
+              title: "Mutual Fund",
+             path: "/servicePlan/view-mutual-fund" 
+            },
+            {
+              title: "Health Insurance ",
+              path: "/servicePlan/view-health-insurance"
+            },
+            { 
+              title: "Bike Insurance",
+              path: "/servicePlan/view-bike-insurance" 
+            },
+            {
+              title: "Motor Insurance",
+              path: "/dashboard"
+            },
+            {
+              title: "Whole Life Insurance",
+              path: "/servicePlan/view-whole-life-insurance",
+            },
+            { 
+              title: "Home Loan",
+              path: "/servicePlan/view-home-loan" 
+            },
+            {
+              title: "Vehicle Loan",
+              path: "/servicePlan/view-vehicle-loan",
+            },
+            {
+              title: "Govt. Insurance",
+              path: "/dashboard"
+            },
+            {
+              title: "Fixed Deposit ",
+              path: "/dashboard"
+            },
+            {
+              title: "Stocks",
+              path: "/dashboard"
+            },
+            {
+              title: "Property",
+              path: "/dashboard"
+            },
+        ],
+        show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
+      },
+      {
+        title: "Services",
+        subMenu: false,
+        path: "/service",
+        show: loggedInUserData.role === "1" ,
+      },
+      {
+        title: "Brochures",
+        subMenu: false,
+        path: "/brochure",
+        show: loggedInUserData.role === "1" ,
+      },
     {
       title: "Customer Feedbacks",
       subMenu: false,
@@ -79,13 +179,23 @@ const SideBar = () => {
 
 /// CUSTOMER PANEL ///
     {
-      title: "My Profile",
-      subMenu: false,
-      path: "/profile",
+      title: "Profiles",
+      subMenu: true,
+      subMenuArray: [
+        { title: "Your Profile", path: "/profile" },
+        { title: "Family Profile", path: "/profile" },
+      ],
       show: loggedInUserData.role === "2" ,
     },
+ 
     {
-      title: "Services",
+      title: "Policies / Plans / Brochures",
+      subMenu: false,
+      path:"/user/policies",
+      show: loggedInUserData.role === "2",
+    },
+    {
+      title: "Customises Forms",
       subMenu: false,
       path: "/user/services",
       show: loggedInUserData.role === "2",
@@ -97,9 +207,12 @@ const SideBar = () => {
       show: loggedInUserData.role === "2" || loggedInUserData.role === "1",
     },
     {
-      title: "Your Documents",
-      subMenu: false,
-      path: "/clientFiles",
+      title: "Documents Management",
+      subMenu: true,
+      subMenuArray: [
+        { title: "Your Documents", path: "/clientFiles" },
+        { title: "Family Documents", path: "/clientFiles" },
+      ],
       show: loggedInUserData.role === "2",
     },
     {
@@ -120,154 +233,44 @@ const SideBar = () => {
     },
     {
       title: "Schedule Management",
-      subMenu: false,
-      path: "user/scheduleManagement",
+      subMenu: true,
+      subMenuArray: [
+        {
+          title: "Online Meeting ",
+          path: "user/scheduleManagement",
+        },
+        {
+          title: "Offline Meeting",
+          path: "user/scheduleManagement",
+        },
+        {
+          title: "Client Visit",
+          path: "user/scheduleManagement",
+        },
+      ],
       show: loggedInUserData.role === "2" || loggedInUserData.role === "1" ,
     },
     {
-      title: "Complaint / Services Request",
+      title: "Services Request",
+      subMenu: false,
+      path: "user/complaint",
+      show: loggedInUserData.role === "2" || loggedInUserData.role === "1" ,
+    },
+    {
+      title: "Blogs / Articles",
+      subMenu: false,
+      path: "user/complaint",
+      show: loggedInUserData.role === "2" || loggedInUserData.role === "1" ,
+    },
+    {
+      title: "Announcements",
       subMenu: false,
       path: "user/complaint",
       show: loggedInUserData.role === "2" || loggedInUserData.role === "1" ,
     },
 
-    // Super Admin and Consultant Routes
-    {
-      title: "Service Plans",
-      subMenu: true,
-      subMenuArray: [
-          { 
-            title: "Mutual Fund",
-           path: "/servicePlan/mutual-fund" 
-          },
-          { 
-            title: "Home Loan",
-            path: "/servicePlan/home-loan" 
-          },
-          { 
-            title: "Bike Insurance",
-            path: "/servicePlan/bike-insurance" 
-          },
-          {
-            title: "Vehicle Loan",
-            path: "/servicePlan/vehicle-loan",
-          },
-          {
-            title: "Whole Life Insurance",
-            path: "/servicePlan/whole-life-insurance",
-          },
-          {
-            title: "Loans",
-            path: "/dashboard"
-          },
-          {
-            title: "Health Insurance ",
-            path: "/dashboard"
-          },
-          {
-            title: "Motor Insurance",
-            path: "/dashboard"
-          },
-          {
-            title: "Fixed Deposit ",
-            path: "/dashboard"
-          },
-          {
-            title: "Stocks",
-            path: "/dashboard"
-          },
-          {
-            title: "Property",
-            path: "/dashboard"
-          },
-          {
-            title: "Govt. Insurance",
-            path: "/dashboard"
-          }
-      ],
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
-    },
-    {
-      title: "Meeting",
-      subMenu: true,
-      subMenuArray: [
-        { title: "All Meetings", path: "/scheduledMeetings" },
-        // {
-        //   title: "Create Insurance",
-        //   path: "/insurances/create-insurance",
-        // },
-        {
-          title: "Online",
-          path: "/scheduleOnlineMeeting",
-        },
-        {
-          title: "Offline",
-          path: "/scheduleOfflineMeeting",
-        },
-        // {
-        //   title: "Create Insurance Service Providers",
-        //   path: "/insurances/insurance-service-providers/create-insurance-service-provider",
-        // },
-      ],
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
-    },
-    // {
-    //   title: "Insurances",
-    //   subMenu: true,
-    //   subMenuArray: [
-    //     { title: "Insurances", path: "/insurances" },
-    //     {
-    //       title: "Create Insurance",
-    //       path: "/insurances/create-insurance",
-    //     },
-    //     {
-    //       title: "Insurance Service Providers",
-    //       path: "/insurances/insurance-service-providers",
-    //     },
-    //     {
-    //       title: "Create Insurance Service Providers",
-    //       path: "/insurances/insurance-service-providers/create-insurance-service-provider",
-    //     },
-    //   ],
-    // },
-    {
-      title: "Service Providers",
-      subMenu: true,
-      subMenuArray: [
-          { title: "Mutual Fund",
-             path: "/" 
-            },
-            {
-              title: "Loans",
-              path: "/dashboard"
-            },
-            {
-              title: "Health Insurance ",
-              path: "/dashboard"
-            },
-            {
-              title: "Motor Insurance",
-              path: "/dashboard"
-            },
-            {
-              title: "Fixed Deposit ",
-              path: "/dashboard"
-            },
-            {
-              title: "Stocks",
-              path: "/dashboard"
-            },
-            {
-              title: "Property",
-              path: "/dashboard"
-            },
-            {
-              title: "Govt. Insurance",
-              path: "/dashboard"
-            }
-        ],
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
-    }
+  
+
   ];
   // ----------------------------------------------------------------------------------------------------------
 
@@ -356,7 +359,9 @@ const SideBar = () => {
                   .filter((el) => el.show === true)
                   .map((option, index) => {
                     return option?.subMenu ? (
-                      <li className="px-3 dropdown relative">
+                      <li 
+                      key={index}
+                      className="px-3 dropdown relative">
                         <div
                           onClick={() => {
                             toggleDropdown(index);
@@ -405,7 +410,9 @@ const SideBar = () => {
                         )}
                       </li>
                     ) : (
-                      <li className="px-3">
+                      <li 
+                      key={index}
+                      className="px-3">
                         <Link
                           to={`${option?.path}`}
                           className="flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-red-500 aria-[current=page]:bg-emerald-500 aria-[current=page]:text-emerald-500 "

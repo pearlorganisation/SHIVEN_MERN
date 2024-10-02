@@ -15,6 +15,7 @@
     "@hookform/resolvers": "^3.3.4",
     "@mui/material": "^5.16.4",
     "@reduxjs/toolkit": "^2.2.2",
+    "@szhsin/react-menu": "^4.2.2",
     "axios": "^1.6.8",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",

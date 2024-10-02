@@ -3,9 +3,10 @@ import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
 import defaultPhoto from "/placeholder.jpg";
 import { MdOutlineInsertPhoto } from "react-icons/md";
-import Input from "../../components/form/Input";
+import Input from "../../../components/form/Input";
 
-const BikeInsurance = () => {
+
+const VehicleLoan = () => {
   const [photo, setPhoto] = useState("");
   const {
     register,
@@ -33,7 +34,7 @@ const BikeInsurance = () => {
   return (
     <div className="max-w-4xl mx-auto my-5 overflow-hidden rounded-2xl bg-white shadow-lg">
       <div className="bg-blue-600 px-10 py-4 text-center text-white font-semibold">
-        Bike Insurance Plan
+        Vehicle Loan Plan
       </div>
       <form className="space-y-5 my-4 mx-8 sm:mx-2" onSubmit={handleSubmit(onSubmit)}>
         <div className="sm:flex space-y-6 sm:space-y-0 justify-between gap-10">
@@ -53,8 +54,8 @@ const BikeInsurance = () => {
                 <Select
                   value={field.value}
                   options={[
-                    { value: "Comprehensive", label: "Comprehensive" },
-                    { value: "Third Party", label: "Third Party" },
+                    { value: "Car Loan", label: "Car Loan" },
+                    { value: "Bike Loan", label: "Bike Loan" },
                   ]}
                   onChange={(selectedOption) => field.onChange(selectedOption)}
                   className="mt-2"
@@ -85,49 +86,41 @@ const BikeInsurance = () => {
 
         <div className="sm:flex space-y-6 sm:space-y-0 justify-between gap-10">
           <Input
-            label="Premium Amount"
+            label="Interest Rate (%)"
             type="number"
-            {...register("premiumAmount", { required: true })}
-            isError={errors.premiumAmount}
-            errorMessage="Premium amount is required"
+            {...register("interestRate", { required: true })}
+            isError={errors.interestRate}
+            errorMessage="Interest rate is required"
           />
 
           <Input
-            label="IDV"
-            {...register("idv", { required: true })}
-            isError={errors.idv}
-            errorMessage="IDV is required"
+            label="Processing Fee"
+            {...register("processingFee", { required: true })}
+            isError={errors.processingFee}
+            errorMessage="Processing fee is required"
           />
         </div>
 
         <div className="sm:flex space-y-6 sm:space-y-0 justify-between gap-10">
           <Input
-            label="Claims Settled (%)"
+            label="Tenure (years)"
             type="number"
-            {...register("claimsSettled", {
-              required: true,
-              min: { value: 0, message: "Cannot be less than 0%" },
-              max: { value: 100, message: "Cannot exceed 100%" },
-            })}
-            isError={errors.claimsSettled}
-            errorMessage={errors.claimsSettled?.message || "Claims Settled is required"}
+            {...register("tenure", { required: true })}
+            isError={errors.tenure}
+            errorMessage="Tenure is required"
           />
 
-          <div className="w-full">
-            <label className="font-medium">Zero Depreciation</label>
-            <div className="mt-2">
-              <input
-                type="checkbox"
-                {...register("zeroDepreciation")}
-                className="mr-2 leading-tight"
-              />
-              <span className="text-sm font-medium">Include Zero Depreciation</span>
-            </div>
-          </div>
+          <Input
+            label="Loan Upper Limit"
+            type="number"
+            {...register("upTo", { required: true })}
+            isError={errors.upTo}
+            errorMessage="Loan upper limit is required"
+          />
         </div>
 
         <div className="sm:flex space-y-6 sm:space-y-0 justify-between gap-10">
-          <div className="font-medium w-full space-y-6">
+        <div className="font-medium w-full space-y-6">
             Plan Logo
             <img
               className="mt-2 w-full h-50 sm:w-44 object-cover sm:h-36 rounded"
@@ -160,6 +153,13 @@ const BikeInsurance = () => {
               </span>
             )}
           </div>
+
+          <Input
+            label="Vehicle Type"
+            {...register("vehicleType", { required: true })}
+            isError={errors.vehicleType}
+            errorMessage="Vehicle type is required"
+          />
         </div>
 
         <button
@@ -173,4 +173,4 @@ const BikeInsurance = () => {
   );
 };
 
-export default BikeInsurance;
+export default VehicleLoan;

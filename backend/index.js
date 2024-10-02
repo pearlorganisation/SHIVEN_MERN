@@ -63,6 +63,7 @@ import mutualFundRouter from "./src/Routes/Service/MutualFund/mutualFundRoutes.j
 import wholeLifeInsurenceRouter from "./src/Routes/Service/WholeLifeInsurence/wholeLifeInsurenceRoutes.js";
 import homeLoanRouter from "./src/Routes/Service/HomeLoan/homeLoanRoutes.js";
 import motorInsuranceRouter from "./src/Routes/Service/MotorInsurance/BikeInsurance/bikeInsuranceRoutes.js";
+import vehicleLoanRouter from "./src/Routes/Service/VehicleLoan/vehicleLoanRoutes.js";
 
 // Route Middlewares
 app.use("/api/v1/auth/user", userRouter);
@@ -83,6 +84,9 @@ app.use("/api/v1/home-loan/service-plans", homeLoanRouter);
 
 //Motor Insurance - Routes
 app.use("/api/v1/motor-insurance/service-plans", motorInsuranceRouter);
+
+//Vehicle Loan - Routes
+app.use("/api/v1/service-plans/vehicle-loan", vehicleLoanRouter);
 
 
 app.all(["/", "/api", "/api/v1"], (req, res, next) => {

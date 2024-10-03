@@ -64,11 +64,16 @@ const FilesFolders = () => {
 
         <div className="px-20">
           {routes.trim() !== "" ? (
-            <div className=" px-6 py-1 rounded text-white bg-blue-700" onClick={() => setRoutes("")}>Back</div>
+            <div
+              className="px-6 py-1 rounded text-white bg-blue-700"
+              onClick={() => setRoutes("")}
+            >
+              Back
+            </div>
           ) : (
             <FaFolderPlus
               onClick={createFolder}
-              className=" cursor-pointer text-4xl"
+              className="cursor-pointer text-4xl"
             />
           )}
         </div>

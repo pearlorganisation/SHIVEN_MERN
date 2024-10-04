@@ -179,12 +179,9 @@ const SideBar = () => {
 
 /// CUSTOMER PANEL ///
     {
-      title: "Profiles",
-      subMenu: true,
-      subMenuArray: [
-        { title: "Your Profile", path: "/profile" },
-        { title: "Family Profile", path: "/profile" },
-      ],
+      title: "Your Profile / Family Profile",
+      subMenu: false,
+      path: "/profile",
       show: loggedInUserData.role === "2" ,
     },
  
@@ -195,28 +192,13 @@ const SideBar = () => {
       show: loggedInUserData.role === "2",
     },
     {
-      title: "Customises Forms",
+      title: "Customised Forms",
       subMenu: false,
       path: "/user/services",
       show: loggedInUserData.role === "2",
     },
     {
-      title: "Calculator Funds",
-      subMenu: false,
-      path: "/calculatorFunds",
-      show: loggedInUserData.role === "2" || loggedInUserData.role === "1",
-    },
-    {
-      title: "Documents Management",
-      subMenu: true,
-      subMenuArray: [
-        { title: "Your Documents", path: "/clientFiles" },
-        { title: "Family Documents", path: "/clientFiles" },
-      ],
-      show: loggedInUserData.role === "2",
-    },
-    {
-      title: "Purchase",
+      title: "Purchase / Renewal / Invoices",
       subMenu: true,
       subMenuArray: [
         { title: "Purchase", path: "user/purchase" },
@@ -232,44 +214,56 @@ const SideBar = () => {
       show: loggedInUserData.role === "2",
     },
     {
+      title: "Files / Folder Management",
+      subMenu: false,
+      path:"/clientFiles",
+      show: loggedInUserData.role === "2",
+    },
+    {
+      title: "Calculator Funds / Interest",
+      subMenu: false,
+      path: "/calculatorFunds",
+      show: loggedInUserData.role === "2" ,
+    },
+    {
+      title: "Investments / Valuation / Portfolio",
+      subMenu: false,
+      path: "/calculatorFunds",
+      show: loggedInUserData.role === "2" ,
+    },
+
+    {
       title: "Schedule Management",
-      subMenu: true,
-      subMenuArray: [
-        {
-          title: "Online Meeting ",
-          path: "user/scheduleManagement",
-        },
-        {
-          title: "Offline Meeting",
-          path: "user/scheduleManagement",
-        },
-        {
-          title: "Client Visit",
-          path: "user/scheduleManagement",
-        },
-      ],
-      show: loggedInUserData.role === "2" || loggedInUserData.role === "1" ,
+      subMenu: false,
+      path: "user/scheduleManagement",
+      show: loggedInUserData.role === "2"  ,
     },
     {
-      title: "Services Request",
+      title: "Notifications / Circulars ",
       subMenu: false,
-      path: "user/complaint",
-      show: loggedInUserData.role === "2" || loggedInUserData.role === "1" ,
-    },
-    {
-      title: "Blogs / Articles",
-      subMenu: false,
-      path: "user/complaint",
-      show: loggedInUserData.role === "2" || loggedInUserData.role === "1" ,
+      path: "/",
+      show: loggedInUserData.role === "2" ,
     },
     {
       title: "Announcements",
       subMenu: false,
-      path: "user/complaint",
-      show: loggedInUserData.role === "2" || loggedInUserData.role === "1" ,
+      path: "/",
+      show: loggedInUserData.role === "2" ,
+    },
+    {
+      title: "Blogs / Articles",
+      subMenu: false,
+      path: "/",
+      show: loggedInUserData.role === "2",
     },
 
-  
+
+    {
+      title: "Services Request",
+      subMenu: false,
+      path: "user/complaint",
+      show: loggedInUserData.role === "2" ,
+    },
 
   ];
   // ----------------------------------------------------------------------------------------------------------

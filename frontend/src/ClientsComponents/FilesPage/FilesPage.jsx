@@ -41,9 +41,9 @@ const FilesPage = () => {
         <table className="w-full table-auto text-sm text-left">
           <thead className="bg-gray-50 text-gray-600 font-medium border-b">
             <tr>
+              <th className="py-3 px-6">Relation</th>
               <th className="py-3 px-6">First Name</th>
               <th className="py-3 px-6">Last Name </th>
-              <th className="py-3 px-6">Documents</th>
 
               <th className="py-3 px-6">Actions</th>
             </tr>
@@ -68,6 +68,10 @@ const FilesPage = () => {
                 servicePlanData.length > 0 &&
                 servicePlanData?.map((item, idx) => (
                   <tr key={idx}>
+
+                    <td className="px-6 py-4 whitespace-nowrap truncate max-w-56 ">
+                    Wife
+                    </td>
                     <td className="px-6 py-4 whitespace-nowrap ">
                       {item?.firstName}
                     </td>
@@ -75,27 +79,7 @@ const FilesPage = () => {
                       {item?.lastName}
                     </td>
 
-                    <td className="px-6 py-4 whitespace-nowrap truncate max-w-56 ">
-                      Aadhar card, PAN card, Driving License
-                    </td>
-
                     <td className=" whitespace-nowrap">
-                      <button
-                        onClick={() => {
-                          handleViewModal(item);
-                        }}
-                        className="py-2 leading-none px-3 font-semibold text-yellow-500 hover:text-yellow-600 duration-150 hover:bg-gray-50 rounded-lg"
-                      >
-                        View
-                      </button>
-                      <a
-                        onClick={() => {
-                          navigate("/clientDocuments");
-                        }}
-                        className="cursor-pointer py-2 px-3 font-semibold text-green-600 hover:text-green-700 duration-150 hover:bg-gray-50 rounded-lg"
-                      >
-                        Add New Document
-                      </a>
 
                       <a
                         onClick={() => {

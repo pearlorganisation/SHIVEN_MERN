@@ -133,10 +133,19 @@ const ScheduleManagement = () => {
         </div>
       </div>
 
-      <div className=" relative bg-blue-100 p-10 select-none">
+
+      <div className=" relative bg-blue-100 px-10 pb-10 select-none">
+      <div className="flex p-2 pt-4 justify-between">
+      <div className="flex gap-5">
+        <button className="bg-slate-600 hover:bg-slate-700 text-white p-2 h-fit rounded-md curao"> Important Dates</button>
+        <button className="bg-slate-600 hover:bg-slate-700 text-white p-2 h-fit rounded-md curao"> Online Meeting</button>
+        <button className="bg-slate-600 hover:bg-slate-700 text-white p-2 h-fit rounded-md curao"> Offline Meeting</button>
+        <button className="bg-slate-600 hover:bg-slate-700 text-white p-2 h-fit rounded-md curao"> Client Visit</button>
+        </div>
         <div className="text-outline text-5xl text-right text-white mb-10">
           {monthsOfYear[displayDate.getMonth()]} {displayDate.getFullYear()}
         </div>
+      </div>
         <div className="grid grid-cols-7 gap-2">
           {daysOfWeek.map((i) => (
             <div key={i}>{i.slice(0, 3)}</div>

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { FaRegFolder, FaFolderPlus, FaFile } from "react-icons/fa";
+import React, { useEffect, useState, useRef } from "react";
+import { FaRegFolder, FaFolderPlus, FaFile, FaCaretDown } from "react-icons/fa";
 import { FcOpenedFolder } from "react-icons/fc";
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
@@ -50,8 +50,10 @@ const FilesFolders = () => {
       { id: 6, label: "New Folder", type: "folder", isDeleteAllowed: true },
     ]);
   };
+  const DynamicFolderRef = useRef(null);
+  const StaticFolderRef = useRef(null);
 
-  const [folderData, setFolderData] = useState(folders);
+  const [folderData, setFolderData] = useState([]);
   const [fileData, setFileData] = useState(files);
   return (
     <div className="w-full min-h-[100dvh]">
@@ -61,50 +63,136 @@ const FilesFolders = () => {
         </h1>
 
         <div className="px-20">
-          <FaFolderPlus
-            onClick={createFolder}
-            className=" cursor-pointer text-4xl"
-          />
+          {routes.trim() !== "" ? (
+            <div
+              className="px-6 py-1 rounded cursor-pointer text-white bg-blue-700 hover:bg-blue-600"
+              onClick={() => setRoutes("")}
+            >
+              Back
+            </div>
+          ) : (
+            <FaFolderPlus
+              onClick={createFolder}
+              className="cursor-pointer text-4xl"
+            />
+          )}
         </div>
       </div>
       <BreadCrumb routes={routes} setRoutes={setRoutes} />
-      <div className="w-full grid grid-cols-8 gap-y-8 p-5  bg-neutral-100 rounded-lg h-full ">
-        {!routes.trim()
-          ? folderData.map((data, index) => {
-              return (
-                <FolderIcon
-                  index={index}
-                  renameFolder={renameFolder}
-                  deleteElement={deleteElementAtIndex}
-                  setRoutes={setRoutes}
-                  folder={data}
-                />
-              );
-            })
-          : fileData.map((data, index) => {
-              return (
-                <div key={index}>
-                  <FileIcon file={data} />
-                </div>
-              );
-            })}
-      </div>
+
+      {!routes.trim() ? (
+        <>
+          <FoldersContainer
+            folderTitle="Static Folders"
+            folderData={folders}
+            prefix="Static"
+            renameFolder={renameFolder}
+            deleteElementAtIndex={deleteElementAtIndex}
+            setRoutes={setRoutes}
+          />
+
+          {folderData.length > 0 && (
+            <FoldersContainer
+              folderTitle="Dynamic Folders"
+              folderData={folderData}
+              prefix="Dynamic"
+              renameFolder={renameFolder}
+              deleteElementAtIndex={deleteElementAtIndex}
+              setRoutes={setRoutes}
+            />
+          )}
+        </>
+      ) : (
+        <div className="w-full grid grid-cols-8 gap-y-8 p-5 bg-neutral-100 rounded-lg h-full ">
+          {fileData.map((data, index) => {
+            return <FileIcon index={index} file={data} />;
+          })}
+        </div>
+      )}
     </div>
   );
 };
 
 export default FilesFolders;
 
+const FoldersContainer = (props) => {
+  const {
+    folderTitle,
+    folderData,
+    prefix,
+    renameFolder,
+    deleteElementAtIndex,
+    setRoutes,
+  } = props;
+
+  const [isOpen, setIsOpen] = useState(true);
+  const contentRef = useRef(null);
+  const [height, setHeight] = useState("auto");
+
+  const toggleFolders = () => {
+    setIsOpen(!isOpen);
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      setHeight(`${contentRef.current.scrollHeight}px`);
+    } else {
+      setHeight("0px");
+    }
+  }, [isOpen]);
+  return (
+    <>
+      <div
+        onClick={toggleFolders}
+        className="w-full h-10 bg-neutral-300 flex gap-2 items-center text-xl font-semibold px-5"
+      >
+        <FaCaretDown
+          className={`transition-transform ${
+            isOpen ? "" : "transform -rotate-90"
+          } `}
+        />{" "}
+        <p>{folderTitle}</p>
+      </div>
+      <div
+        ref={contentRef}
+        style={{ height }}
+        className={`w-full overflow-hidden transition-height  grid grid-cols-8 gap-y-8 bg-neutral-100 rounded-lg ${
+          isOpen ? "p-5" : " ease-in-out duration-100"
+        }`}
+      >
+        {folderData.map((data, index) => {
+          return (
+            <FolderIcon
+              index={index}
+              prefix={prefix}
+              renameFolder={renameFolder}
+              deleteElement={deleteElementAtIndex}
+              setRoutes={setRoutes}
+              folder={data}
+            />
+          );
+        })}
+      </div>
+    </>
+  );
+};
+
 const BreadCrumb = (props) => {
   const { routes, setRoutes } = props;
 
   return (
     <div className="w-full h-10 flex items-center px-7">
-      <div className="flex gap-4 ">
-        <FaRegFolder size={25} className="text-gray-500" />
-        <p onClick={() => setRoutes("")} className="text-gray-500 cursor-pointer hover:text-black">
-          Folders
-        </p>
+      <div className="flex gap-4">
+        <div
+          className={`flex  gap-4 ${
+            routes.trim() ? "text-blue-700" : "text-gray-500"
+          }`}
+        >
+          <FaRegFolder size={25} />
+          <p onClick={() => setRoutes("")} className="">
+            Folders
+          </p>
+        </div>
         {routes &&
           routes.split("/").map((route, index) => {
             return (
@@ -120,15 +208,14 @@ const BreadCrumb = (props) => {
 };
 
 const FolderIcon = (props) => {
-  const { folder, setRoutes, index, deleteElement, renameFolder } = props;
+  const { folder, setRoutes, index, deleteElement, renameFolder, prefix } =
+    props;
   const [isEditing, setIsEditing] = useState(false);
   const [newLabel, setNewLabel] = useState(folder.label);
 
   function handleClick() {
     if (!isEditing) {
-      setRoutes((prev) =>
-        prev ? prev + `/${folder.label}` : `${folder.label}`
-      );
+      setRoutes(`${prefix}/${folder.label}`);
     }
   }
 
@@ -166,12 +253,12 @@ const FolderIcon = (props) => {
           autoFocus
         />
       ) : (
-        <p>{folder.label}</p>
+        <p className="text-center">{folder.label}</p>
       )}
 
       <div
         className="absolute right-2 text-black top-1"
-        onClick={(e) => e.stopPropagation()} // Stop event propagation here
+        onClick={(e) => e.stopPropagation()}
       >
         {folder.isDeleteAllowed && (
           <Menu
@@ -192,9 +279,12 @@ const FolderIcon = (props) => {
 };
 
 const FileIcon = (props) => {
-  const { file } = props;
+  const { file, index } = props;
   return (
-    <div className="cursor-pointer relative flex flex-col gap-2 items-center justify-center w-36 h-36 border border-neutral-300 rounded-xl">
+    <div
+      key={index}
+      className="cursor-pointer relative flex flex-col gap-2 items-center justify-center w-36 h-36 border border-neutral-300 rounded-xl"
+    >
       <FaFile className="text-neutral-500 text-6xl" />
       <p>{file.label}</p>
     </div>

@@ -129,64 +129,71 @@ const CompanyProfile = () => {
                   </p>
                 )}
               </div>
-              <div className="flex flex-col gap-2">
-                <textarea
-                  className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                  type="text"
-                  placeholder="Address"
-                  disabled={isDisabled}
-                  {...register("address", {
-                    required: {
-                      value: true,
-                      message: "Address is a required field",
-                    },
-                  })}
-                />
-                {errors.address && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.address?.message || "Address is a required field"}
-                  </p>
-                )}
+              <div className="grid grid-cols-1 md:grid-cols-2 col-span-2 gap-2">
+                <div className="flex flex-col gap-2 col-span-1 h-full">
+                  <textarea
+                    className="w-full h-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5 resize-none"
+                    type="text"
+                    placeholder="Address"
+                    disabled={isDisabled}
+                    {...register("address", {
+                      required: {
+                        value: true,
+                        message: "Address is a required field",
+                      },
+                    })}
+                  />
+                  {errors.address && (
+                    <p className="text-red-500 mt-1 text-xs">
+                      {errors?.address?.message ||
+                        "Address is a required field"}
+                    </p>
+                  )}
+                </div>
+
+                <div className="col-span-1">
+                  <div className="flex flex-col gap-2">
+                    <input
+                      className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                      type="text"
+                      placeholder="GST No."
+                      disabled={isDisabled}
+                      {...register("gstNo", {
+                        required: {
+                          value: true,
+                          message: "GST No is a required field",
+                        },
+                      })}
+                    />
+                    {errors.gstNo && (
+                      <p className="text-red-500 mt-1 text-xs">
+                        {errors?.gstNo?.message || "GST No is a required field"}
+                      </p>
+                    )}
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <input
+                      className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                      type="text"
+                      placeholder="Company PAN"
+                      disabled={isDisabled}
+                      {...register("companyPan", {
+                        required: {
+                          value: true,
+                          message: "Company PAN is a required field",
+                        },
+                      })}
+                    />
+                    {errors.companyPan && (
+                      <p className="text-red-500 mt-1 text-xs">
+                        {errors?.companyPan?.message ||
+                          "Company PAN is a required field"}
+                      </p>
+                    )}
+                  </div>
+                </div>
               </div>
-              <div className="flex flex-col gap-2">
-                <input
-                  className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                  type="text"
-                  placeholder="GST No."
-                  disabled={isDisabled}
-                  {...register("gstNo", {
-                    required: {
-                      value: true,
-                      message: "GST No is a required field",
-                    },
-                  })}
-                />
-                {errors.gstNo && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.gstNo?.message || "GST No is a required field"}
-                  </p>
-                )}
-              </div>
-              <div className="flex flex-col gap-2">
-                <input
-                  className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                  type="text"
-                  placeholder="Company PAN"
-                  disabled={isDisabled}
-                  {...register("companyPan", {
-                    required: {
-                      value: true,
-                      message: "Company PAN is a required field",
-                    },
-                  })}
-                />
-                {errors.companyPan && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.companyPan?.message ||
-                      "Company PAN is a required field"}
-                  </p>
-                )}
-              </div>
+
               <div className="flex flex-col gap-2">
                 <input
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
@@ -283,8 +290,7 @@ const CompanyProfile = () => {
                   />
                   {errors.name && (
                     <p className="text-red-500 mt-1 text-xs">
-                      {errors?.name?.message ||
-                        "Name is a required field"}
+                      {errors?.name?.message || "Name is a required field"}
                     </p>
                   )}
                 </div>
@@ -304,8 +310,7 @@ const CompanyProfile = () => {
                   />
                   {errors.bank && (
                     <p className="text-red-500 mt-1 text-xs">
-                      {errors?.bank?.message ||
-                        "Bank is a required field"}
+                      {errors?.bank?.message || "Bank is a required field"}
                     </p>
                   )}
                 </div>
@@ -367,8 +372,7 @@ const CompanyProfile = () => {
                   />
                   {errors.url && (
                     <p className="text-red-500 mt-1 text-xs">
-                      {errors?.url?.message ||
-                        "URL is a required field"}
+                      {errors?.url?.message || "URL is a required field"}
                     </p>
                   )}
                 </div>
@@ -388,8 +392,7 @@ const CompanyProfile = () => {
                   />
                   {errors.userId && (
                     <p className="text-red-500 mt-1 text-xs">
-                      {errors?.userId?.message ||
-                        "User ID is a required field"}
+                      {errors?.userId?.message || "User ID is a required field"}
                     </p>
                   )}
                 </div>
@@ -491,8 +494,7 @@ const CompanyProfile = () => {
                   />
                   {errors.ifsc && (
                     <p className="text-red-500 mt-1 text-xs">
-                      {errors?.ifsc?.message ||
-                        "IFSC is a required field"}
+                      {errors?.ifsc?.message || "IFSC is a required field"}
                     </p>
                   )}
                 </div>
@@ -511,8 +513,7 @@ const CompanyProfile = () => {
                   />
                   {errors.cif && (
                     <p className="text-red-500 mt-1 text-xs">
-                      {errors?.cif?.message ||
-                        "CIF is a required field"}
+                      {errors?.cif?.message || "CIF is a required field"}
                     </p>
                   )}
                 </div>
@@ -540,61 +541,87 @@ const CompanyProfile = () => {
                   <input
                     className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                     type="email"
-                    placeholder="Bank E-Mail"
+                    placeholder="E-Mail"
                     disabled={isDisabled}
                     {...register("bankEmail", {
                       required: {
                         value: true,
-                        message: "Bank E-Mail is a required field",
+                        message: "E-Mail is a required field",
                       },
                     })}
                   />
                   {errors.bankEmail && (
                     <p className="text-red-500 mt-1 text-xs">
                       {errors?.bankEmail?.message ||
-                        "Bank E-Mail is a required field"}
+                        "E-Mail is a required field"}
                     </p>
                   )}
                 </div>
-                <div className="flex flex-col gap-2">
-                  <input
-                    className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                    type="text"
-                    placeholder="Debit Card No."
-                    disabled={isDisabled}
-                    {...register("debitCardNo", {
-                      required: {
-                        value: true,
-                        message: "Debit Card No. is a required field",
-                      },
-                    })}
-                  />
-                  {errors.debitCardNo && (
-                    <p className="text-red-500 mt-1 text-xs">
-                      {errors?.debitCardNo?.message ||
-                        "Debit Card No. is a required field"}
-                    </p>
-                  )}
-                </div>
-                <div className="flex flex-col gap-2">
-                  <textarea
-                    className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                    type="text"
-                    placeholder="Bank Address"
-                    disabled={isDisabled}
-                    {...register("bankAddress", {
-                      required: {
-                        value: true,
-                        message: "Bank Address is a required field",
-                      },
-                    })}
-                  />
-                  {errors.bankAddress && (
-                    <p className="text-red-500 mt-1 text-xs">
-                      {errors?.bankAddress?.message ||
-                        "Bank Address is a required field"}
-                    </p>
-                  )}
+
+                <div className="grid grid-cols-1 md:grid-cols-2 col-span-2 gap-2">
+                  <div className="col-span-1">
+                    <div className="flex flex-col gap-2">
+                      <input
+                        className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                        type="text"
+                        placeholder="Mobile No"
+                        disabled={isDisabled}
+                        {...register("bankMobile", {
+                          required: {
+                            value: true,
+                            message: "Mobile No is a required field",
+                          },
+                        })}
+                      />
+                      {errors.bankMobile && (
+                        <p className="text-red-500 mt-1 text-xs">
+                          {errors?.bankMobile?.message ||
+                            "Mobile No is a required field"}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                      <input
+                        className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                        type="text"
+                        placeholder="Debit Card No."
+                        disabled={isDisabled}
+                        {...register("debitCardNo", {
+                          required: {
+                            value: true,
+                            message: "Debit Card No. is a required field",
+                          },
+                        })}
+                      />
+                      {errors.debitCardNo && (
+                        <p className="text-red-500 mt-1 text-xs">
+                          {errors?.debitCardNo?.message ||
+                            "Debit Card No. is a required field"}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-2 col-span-1 h-full">
+                    <textarea
+                      className="w-full h-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5 resize-none"
+                      type="text"
+                      placeholder="Bank Address"
+                      disabled={isDisabled}
+                      {...register("bankAddress", {
+                        required: {
+                          value: true,
+                          message: "Bank Address is a required field",
+                        },
+                      })}
+                    />
+                    {errors.bankAddress && (
+                      <p className="text-red-500 mt-1 text-xs">
+                        {errors?.bankAddress?.message ||
+                          "Bank Address is a required field"}
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

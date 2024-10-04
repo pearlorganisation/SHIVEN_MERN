@@ -12,7 +12,6 @@ import CreateRequest from "../pages/Service/user/complain/CreateRequest";
 import Purchase from "../pages/Service/user/purchase/Purchase";
 import CustomerFeedback from "../pages/Service/consultant/CustomerFeedback";
 import ViewPolicies from "../pages/Service/user/policies/ViewPolicies";
-import ViewConsultantClient from "../pages/Service/consultant/consultantClient/ViewConsultantClient";
 import ViewBikeInsurance from "../pages/ServicePlans/bikeInsurance/ViewBikeInsurance";
 import HealthPlan from "../pages/ServicePlans/healthInsurance/HealthPlan";
 import CreateHealthPlan from "../pages/ServicePlans/healthInsurance/CreateHealthPlan";
@@ -25,6 +24,8 @@ import HomeLoan from "../pages/ServicePlans/homeLoan/HomeLoan";
 import CompanyProfile from "../components/CompanyProfile/CompanyProfile";
 import ViewVehicleLoan from "../pages/ServicePlans/vehicleLoan/ViewVehicleLoan";
 import VehicleLoan from "../pages/ServicePlans/vehicleLoan/VehicleLoan";
+import filesAndFolder from "../pages/Service/consultant/filesAndFolder";
+import ViewServiceRequest from "../pages/Service/consultant/serviceRequest/ViewServiceRequest";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -283,6 +284,11 @@ export const routes = [
     path: "/user/complaint",
   },
   {
+    title: "Consultant service request",
+    component: ViewServiceRequest,
+    path: "/consultant/serviceRequest",
+  },
+  {
     title: "Create Complaint",
     component: CreateRequest,
     path: "/user/complaint/createRequest",
@@ -291,6 +297,11 @@ export const routes = [
     title: "My docs",
     component: FilesPage,
     path: "/clientFiles",
+  },
+  {
+    title: "Files and Folders",
+    component: filesAndFolder,
+    path: "/consultant-filesManagement",
   },
   {
     title: "Files and Folders",

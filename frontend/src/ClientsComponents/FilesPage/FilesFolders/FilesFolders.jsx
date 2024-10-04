@@ -7,11 +7,11 @@ import "@szhsin/react-menu/dist/transitions/zoom.css";
 import { HiDotsVertical } from "react-icons/hi";
 
 const folders = [
-  { id: 1, label: "Documents", type: "folder", isDeleteAllowed: false },
-  { id: 2, label: "Pictures", type: "folder", isDeleteAllowed: false },
-  { id: 3, label: "Music", type: "folder", isDeleteAllowed: false },
-  { id: 4, label: "Videos", type: "folder", isDeleteAllowed: false },
-  { id: 5, label: "Downloads", type: "folder", isDeleteAllowed: false },
+  { id: 1, label: "Health Insurance", type: "folder", isDeleteAllowed: false },
+  { id: 2, label: "Home Loan", type: "folder", isDeleteAllowed: false },
+  { id: 3, label: "Whole Life Insurance", type: "folder", isDeleteAllowed: false },
+  { id: 4, label: "Vehicle Loan", type: "folder", isDeleteAllowed: false },
+  { id: 5, label: "Home Loan", type: "folder", isDeleteAllowed: false },
 ];
 
 const files = [

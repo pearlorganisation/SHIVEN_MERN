@@ -291,17 +291,23 @@ const SideBar = () => {
         path: "/calculatorFunds",
         show: loggedInUserData.role === "1" ,
       },
-      {
-        title: "Investments / Valuation / Portfolio",
-        subMenu: false,
-        path: "/calculatorFunds",
-        show: loggedInUserData.role === "1" ,
-      },
-  
+
       {
         title: "Schedule Management",
         subMenu: false,
         path: "user/scheduleManagement",
+        show: loggedInUserData.role === "1"  ,
+      },
+      {
+        title: "Quotation / Invoices management",
+        subMenu: false,
+        path: "/",
+        show: loggedInUserData.role === "1"  ,
+      },
+      {
+        title: "Investments / Valuation / Portfolio",
+        subMenu: false,
+        path: "/",
         show: loggedInUserData.role === "1"  ,
       },
     {
@@ -311,9 +317,71 @@ const SideBar = () => {
       show: loggedInUserData.role === "1" ,
     },
     {
-      title: "Services Request",
+      title: "Complaint / Services Request",
       subMenu: false,
       path: "consultant/serviceRequest",
+      show: loggedInUserData.role === "1" ,
+    },
+    {
+      title: "Contact Management",
+      subMenu: false,
+      path: "consultant/serviceRequest",
+      show: loggedInUserData.role === "1" ,
+    },
+    {
+      title: "Analytics & Reports",
+      subMenu: false,
+      path: "consultant/serviceRequest",
+      show: loggedInUserData.role === "1" ,
+    },
+    {
+      title: "Task Management",
+      subMenu: false,
+      path: "consultant/serviceRequest",
+      show: loggedInUserData.role === "1" ,
+    },
+    {
+      title: "Income & Expense Management",
+      subMenu: false,
+      path: "consultant/serviceRequest",
+      show: loggedInUserData.role === "1" ,
+    },
+    {
+      title: "Notifications / Circulars ",
+      subMenu: false,
+      path: "/",
+      show: loggedInUserData.role === "1" ,
+    },
+    {
+      title: "Announcements",
+      subMenu: false,
+      path: "/",
+      show: loggedInUserData.role === "1" ,
+    },
+    
+    {
+      title: "Blogs / Articles",
+      subMenu: false,
+      path: "/",
+      show: loggedInUserData.role === "1",
+    },
+    
+    {
+      title: "SMS / Email",
+      subMenu: false,
+      path: "/",
+      show: loggedInUserData.role === "1",
+    },
+    {
+      title: "Enquiry / Leads Management",
+      subMenu: false,
+      path: "/",
+      show: loggedInUserData.role === "1" ,
+    },
+    {
+      title: "CRM",
+      subMenu: false,
+      path: "/",
       show: loggedInUserData.role === "1" ,
     },
 
@@ -391,10 +459,11 @@ const SideBar = () => {
       path: "/",
       show: loggedInUserData.role === "2" ,
     },
+    
     {
       title: "Blogs / Articles",
       subMenu: false,
-      path: "/",
+      path: "/user/blogs",
       show: loggedInUserData.role === "2",
     },
 

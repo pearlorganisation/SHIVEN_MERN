@@ -26,6 +26,8 @@ import ViewVehicleLoan from "../pages/ServicePlans/vehicleLoan/ViewVehicleLoan";
 import VehicleLoan from "../pages/ServicePlans/vehicleLoan/VehicleLoan";
 import filesAndFolder from "../pages/Service/consultant/filesAndFolder";
 import ViewServiceRequest from "../pages/Service/consultant/serviceRequest/ViewServiceRequest";
+import Blogs from "../components/Blogs/Blogs";
+import NotFound from "../components/NotFound";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -319,6 +321,12 @@ export const routes = [
     path: "/user/policies",
   },
 
+  {
+    title: "Blogs / Articles",
+    component: Blogs,
+    path: "/user/blogs",
+  },
+
   /// Consultant Routes ///
   {
     title: "Customer Feedbacks",
@@ -334,5 +342,13 @@ export const routes = [
     title: "Company Profile",
     component: CompanyProfile,
     path: "/companyProfile",
+  },
+
+  //not found
+
+{
+    title: "404 Not Found",
+    component: NotFound,
+    path: "/*",
   },
 ];

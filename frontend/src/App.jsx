@@ -35,7 +35,7 @@ import Healthquote from "./components/insurance_quotation/Healthquote";
 import Motorqoute from "./components/insurance_quotation/Motorqoute";
 import MotorInsurance from "./components/insurance/MotorInsurance/MotorInsurance";
 import AllinsuranceQuote from "./components/insurance_quotation/AllinsuranceQuote";
-import Compnay from "./components/Company/Company";
+
 import InsuranceProvider from "./pages/Insurance/InsuranceProvider/InsuranceProvider";
 import HealthPremium from "./components/CheckPremium/HealthPremium";
 import PlanDetails from "./components/CheckPremium/PlanDetails";
@@ -111,7 +111,7 @@ function App() {
           />
           {/* --------------------------------------------------------------------------------------------- */}
           <Route path="allinsuranceQuote" element={<AllinsuranceQuote />} />
-          <Route path="company" element={<Compnay />} />
+          <Route path="company" element={<></>} />
           <Route path="healthPremium" element={<HealthPremium />} />
           <Route path="planDetails" element={<PlanDetails />} />
           <Route path="enquiry" element={<Enquiry />} />

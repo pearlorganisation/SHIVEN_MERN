@@ -250,10 +250,11 @@ const SideBar = () => {
       path: "/",
       show: loggedInUserData.role === "2" ,
     },
+    
     {
       title: "Blogs / Articles",
       subMenu: false,
-      path: "/",
+      path: "/user/blogs",
       show: loggedInUserData.role === "2",
     },
 

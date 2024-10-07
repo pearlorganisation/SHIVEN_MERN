@@ -322,7 +322,7 @@ export const routes = [
     component: CustomerFeedback,
     path: "/consultant/feedbacks",
   },
-  {
+  { 
     title: "Customer Documents",
     component: Documents,
     path: "/consultant/documents",

@@ -27,7 +27,10 @@ import VehicleLoan from "../pages/ServicePlans/vehicleLoan/VehicleLoan";
 import filesAndFolder from "../pages/Service/consultant/filesAndFolder";
 import ViewServiceRequest from "../pages/Service/consultant/serviceRequest/ViewServiceRequest";
 import Blogs from "../components/Blogs/Blogs";
+import BlogsList from "../components/Blogs/consultant/BlogsList";
+
 import NotFound from "../components/NotFound";
+import ContactManagement from "../components/ContactManagement/ContactManagement";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -328,6 +331,19 @@ export const routes = [
   },
 
   /// Consultant Routes ///
+
+  {
+    title: "Blogs / Articles",
+    component: BlogsList,
+    path: "/consultant/blogs",
+  },
+
+  {
+    title: "Contact Management",
+    component: ContactManagement,
+    path: "/consultant/contactManagement",
+  },
+
   {
     title: "Customer Feedbacks",
     component: CustomerFeedback,

@@ -325,7 +325,7 @@ const SideBar = () => {
     {
       title: "Contact Management",
       subMenu: false,
-      path: "consultant/serviceRequest",
+      path: "consultant/contactManagement",
       show: loggedInUserData.role === "1" ,
     },
     {
@@ -362,7 +362,7 @@ const SideBar = () => {
     {
       title: "Blogs / Articles",
       subMenu: false,
-      path: "/",
+      path: "/consultant/blogs",
       show: loggedInUserData.role === "1",
     },
     

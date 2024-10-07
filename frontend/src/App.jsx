@@ -81,6 +81,7 @@ function App() {
 
           <Route path="/sidebar" element={<SideBar />} />
           <Route path="/blog" element={<Blog />} />
+          
           <Route path="/blogDetails" element={<BlogDetails />} />
           <Route path="/invoice" element={<Invoice />} />
           <Route path="/notification" element={<Notifications />} />

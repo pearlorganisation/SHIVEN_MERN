@@ -138,54 +138,72 @@ const SideBar = () => {
             path: "/dashboard"
           },
       ],
-      show: loggedInUserData.role === "0" ,
+      show: loggedInUserData.role === "0",
     },
-
-/// CONSULTANT PANEL ///
-
-    {
-      title: "Company Profile",
-      subMenu: false,
-      path: "/companyProfile",
-      show: loggedInUserData.role === "1" ,
-    },
-    {
+      {
       title: "Service Providers",
       subMenu: true,
       subMenuArray: [
+        {
+          title: "Life Insurance ",
+          path: "/dashboard"
+        },
+        {
+          title: "Health Insurance ",
+          path: "/dashboard"
+        },
+        {
+          title: "Motor Insurance",
+          path: "/dashboard"
+        },
           { title: "Mutual Fund",
              path: "/" 
             },
+          { title: "Shares",
+             path: "/" 
+            },
+          { title: "FD",
+             path: "/" 
+            },
+          { title: "RD",
+             path: "/" 
+            },
+          { title: "Gold / Bullion",
+             path: "/" 
+            },
+          { title: "Commercial Property",
+             path: "/" 
+            },
             {
-              title: "Loans",
+              title: "Land",
               path: "/dashboard"
             },
             {
-              title: "Health Insurance ",
+              title: "Residential Property",
               path: "/dashboard"
             },
             {
-              title: "Motor Insurance",
+              title: "SGB",
               path: "/dashboard"
             },
             {
-              title: "Fixed Deposit ",
+              title: "Post Office",
               path: "/dashboard"
             },
             {
-              title: "Stocks",
+              title: "EPF / PPF",
               path: "/dashboard"
             },
             {
-              title: "Property",
+              title: "NPS",
               path: "/dashboard"
             },
             {
-              title: "Govt. Insurance",
+              title: "IT Files",
               path: "/dashboard"
             }
         ],
-      show: loggedInUserData.role === "1",
+      show: loggedInUserData.role === "0",
     },
     {
       title: "Plans",
@@ -236,6 +254,89 @@ const SideBar = () => {
             path: "/dashboard"
           },
       ],
+      show: loggedInUserData.role === "0" ,
+    },
+
+/// CONSULTANT PANEL ///
+
+    {
+      title: "Company Profile",
+      subMenu: false,
+      path: "/companyProfile",
+      show: loggedInUserData.role === "1" ,
+    },
+  
+    {
+      title: "Plans",
+      subMenu: true,
+      subMenuArray: [
+        {
+          title: "Life Insurance ",
+          path: "/dashboard"
+        },
+        {
+          title: "Health Insurance ",
+          path: "/dashboard"
+        },
+        {
+          title: "Motor Insurance",
+          path: "/dashboard"
+        },
+        {
+          title: "Home Loan",
+          path: "/dashboard"
+        },
+        {
+          title: "Vehicle Loan",
+          path: "/dashboard"
+        },
+          { title: "Mutual Fund",
+             path: "/" 
+            },
+          { title: "Shares",
+             path: "/" 
+            },
+          { title: "FD",
+             path: "/" 
+            },
+          { title: "RD",
+             path: "/" 
+            },
+          { title: "Gold / Bullion",
+             path: "/" 
+            },
+          { title: "Commercial Property",
+             path: "/" 
+            },
+            {
+              title: "Land",
+              path: "/dashboard"
+            },
+            {
+              title: "Residential Property",
+              path: "/dashboard"
+            },
+            {
+              title: "SGB",
+              path: "/dashboard"
+            },
+            {
+              title: "Post Office",
+              path: "/dashboard"
+            },
+            {
+              title: "EPF / PPF",
+              path: "/dashboard"
+            },
+            {
+              title: "NPS",
+              path: "/dashboard"
+            },
+            {
+              title: "IT Files",
+              path: "/dashboard"
+            }
+        ],
       show: loggedInUserData.role === "1",
     },
     {

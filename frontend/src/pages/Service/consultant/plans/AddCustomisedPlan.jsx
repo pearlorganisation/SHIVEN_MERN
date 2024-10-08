@@ -58,7 +58,7 @@ const AddCustomisedPlan = () => {
                 { value: "SBI General Home Insurance", label: "SBI General Home Insurance" },
               ]}
               onChange={(selectedOption) => field.onChange(selectedOption)}
-              className="mt-2 w-full"
+              className="mt-2 w-full z-50"
               placeholder={`Choose Plan ${index + 1}`}
               styles={{
                 control: (provided) => ({

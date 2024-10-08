@@ -108,7 +108,7 @@ const ContactManagement = () => {
     setTimeout(() => {
       setIsLoading(false);
       setData(sampleData);
-    }, 3000);
+    }, 500);
   }, []);
 
   return (
@@ -184,7 +184,7 @@ const ContactManagement = () => {
 
                     <td className="px-6 py-4 text-center flex gap-4 justify-center">
                       <Link
-                        to={`/consultant/contactManagement/update/${item?._id}`}
+                        to={`/consultant/contactManagement/${item?._id}`}
                         className="font-medium text-blue-600  hover:underline"
                       >
                         Edit

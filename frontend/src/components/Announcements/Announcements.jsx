@@ -15,7 +15,7 @@ import { Modal } from "@mui/material";
 //   },
 // }));
 
-const NotificationCirculars = () => {
+const Announcements = () => {
   const [data, setData] = useState(null);
   //   const [searchParams, setSearchParams] = useSearchParams({ page: 1 });
   //   const [page, setPage] = useState(searchParams.get("page") || 1);
@@ -41,15 +41,15 @@ const NotificationCirculars = () => {
   //       item.content = DOMPurify.sanitize(item.content);
   //       return item;
   //     });
-  //     if(cleanData.length > 0) setnotificationData(cleanData);
+  //     if(cleanData.length > 0) setAnnouncementData(cleanData);
   //   };
 
   //   useEffect(() => {
   //     axios
-  //       .get(`${import.meta.env.VITE_API_URL}/notifications?page=${page}`)
+  //       .get(`${import.meta.env.VITE_API_URL}/Announcements?page=${page}`)
   //       .then((res) => {
   //         setIsLoading(false);
-  //         sanitizeData(res.data.notificationsData);
+  //         sanitizeData(res.data.AnnouncementsData);
   //         setTotalPages(res?.data?.totalPages);
   //       })
   //       .catch((err) => {
@@ -66,7 +66,7 @@ const NotificationCirculars = () => {
   const sampleData = [
     {
       _id: "11dafgdag1",
-      title: "notification 1",
+      title: "Announcement 1",
       banner:
         "https://images.unsplash.com/photo-1640161704729-cbe966a08476?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       content:
@@ -74,7 +74,7 @@ const NotificationCirculars = () => {
     },
     {
       _id: "11dafgdag2",
-      title: "notification 2",
+      title: "Announcement 2",
       banner:
         "https://images.unsplash.com/photo-1640161704729-cbe966a08476?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       content:
@@ -82,7 +82,7 @@ const NotificationCirculars = () => {
     },
     {
       _id: "11dafgdag3",
-      title: "Notification 3",
+      title: "Announcement 3",
       banner:
         "https://images.unsplash.com/photo-1640161704729-cbe966a08476?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       content:
@@ -101,7 +101,7 @@ const NotificationCirculars = () => {
   return (
     <>
       <Helmet>
-        <title>Shiven Notifications / Circulars</title>
+        <title>Shiven Announcements</title>
         {/* <meta
           name="description"
           content="Get free AI Generated images with HeadGen AI’s advanced AI image generator. Create professional photos for resumes, teams, or LinkedIn with our easy-to-use AI headshot generator"
@@ -112,7 +112,7 @@ const NotificationCirculars = () => {
           <div className="container px-4 w-full">
             <div className="mb-8 md:mb-10 lg:mb-12 text-center">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold  text-black">
-                Notifications / Circulars
+                Announcements
               </h2>
               {/* <p className="mt-3 text-gray-500 dark:text-gray-400 max-w-xl mx-auto">
                 Discover the latest insights, trends, and stories from our team
@@ -180,7 +180,7 @@ const NotificationCirculars = () => {
                         className="rounded-2xl w-full group overflow-hidden shadow-lg cursor-pointer transition duration-300"
                       >
                         {/* <LazyLoadImage
-                          alt="notification Post 1"
+                          alt="Announcement Post 1"
                           className="w-full h-56 object-cover"
                           height={400}
                           src={item?.banner}
@@ -203,7 +203,7 @@ const NotificationCirculars = () => {
                   })
                 ) : (
                   <div className="col-span-1 sm:col-span-2 lg:col-span-3 w-full text-center text-2xl">
-                    No Notifications Found.
+                    No Announcement Found.
                   </div>
                 )}
               </div>
@@ -239,4 +239,4 @@ const NotificationCirculars = () => {
   );
 };
 
-export default NotificationCirculars;
+export default Announcements;

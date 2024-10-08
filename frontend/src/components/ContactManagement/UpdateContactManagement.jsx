@@ -395,7 +395,8 @@ const UpdateContactManagement = () => {
 
             {!isDisabled && (
               <button
-                className="mt-5 tracking-wide text-lg font-semibold bg-green-400 text-white w-full md:w-1/3 py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+               className="mt-5 tracking-wide text-base font-semibold bg-green-400 text-white w-full md:w-[200px] py-3 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+
                 type="submit"
                 disabled={isLoading}
               >

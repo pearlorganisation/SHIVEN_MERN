@@ -69,7 +69,7 @@ const QuotationInvoiceList = () => {
   const sampleData = [
     {
       _id: "11dafgdag1",
-      title: "Notification / Circular 1",
+      title: "Quotation 1",
       banner:
         "https://images.unsplash.com/photo-1640161704729-cbe966a08476?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       content:
@@ -77,7 +77,7 @@ const QuotationInvoiceList = () => {
     },
     {
       _id: "11dafgdag2",
-      title: "Notification / Circular 2",
+      title: "Quotation 2",
       banner:
         "https://images.unsplash.com/photo-1640161704729-cbe966a08476?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       content:
@@ -85,7 +85,7 @@ const QuotationInvoiceList = () => {
     },
     {
       _id: "11dafgdag3",
-      title: "Notification / Circular 3",
+      title: "Quotation 3",
       banner:
         "https://images.unsplash.com/photo-1640161704729-cbe966a08476?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       content:
@@ -106,10 +106,10 @@ const QuotationInvoiceList = () => {
       <Toaster />
 
       <div className="p-10 ">
-        <div className="text-2xl">Notification / Circulars</div>
+        <div className="text-2xl">Quotations / Invoices Management</div>
         <div className="flex items-center justify-end flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-8 ">
           <Link
-            to="/consultant/notifications-circulars/add"
+            to="/consultant/quotation-invoice-management/add"
             className="bg-blue-600 rounded-md text-white px-3 py-1 font-semibold "
           >
             Add
@@ -155,7 +155,7 @@ const QuotationInvoiceList = () => {
 
                     <td className="px-6 py-4 text-center flex gap-4 justify-center">
                       <Link
-                        to={`/consultant/notifications-circulars/${item?._id}`}
+                        to={`/consultant/quotation-invoice-management/${item?._id}`}
                         className="font-medium text-blue-600  hover:underline"
                       >
                         Edit

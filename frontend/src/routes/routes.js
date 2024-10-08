@@ -44,6 +44,9 @@ import AddAnnouncement from "../components/Announcements/consultant/AddAnnouncem
 import NotificationsList from "../components/NotificationCirculars/consultant/NotificationsList";
 import AddNotification from "../components/NotificationCirculars/consultant/AddNotification";
 import UpdateNotification from "../components/NotificationCirculars/consultant/UpdateNotification";
+import QuotationInvoiceList from "../components/QuotationInvoiceManagement/consultant/QuotationInvoiceList";
+import AddQuotationInvoice from "../components/QuotationInvoiceManagement/consultant/AddQuotationInvoice";
+import UpdateQuotationInvoice from "../components/QuotationInvoiceManagement/consultant/UpdateQuotationInvoice";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -80,11 +83,9 @@ const MutualFunds = lazy(() => {
   return import("../pages/ServicePlans/mutualFund/MutualFund");
 });
 
-
 const BikeInsurance = lazy(() => {
   return import("../pages/ServicePlans/bikeInsurance/BikeInsurance");
 });
-
 
 const ViewServiceProviders = lazy(() => {
   return import("../pages/Service/admin/ViewServiceProviders");
@@ -386,7 +387,7 @@ export const routes = [
     component: CustomerFeedback,
     path: "/consultant/feedbacks",
   },
-  { 
+  {
     title: "Customer Documents",
     component: Documents,
     path: "/consultant/documents",
@@ -412,14 +413,12 @@ export const routes = [
     path: "/customisedPlan/addPlan",
   },
 
-  
   {
     title: "Announcements",
     component: AnnouncementsList,
     path: "/consultant/announcements",
   },
 
-  
   {
     title: "Add Announcement",
     component: AddAnnouncement,
@@ -431,15 +430,12 @@ export const routes = [
     component: UpdateAnnouncement,
     path: "/consultant/announcements/:id",
   },
-
-
   {
     title: "Notifications",
     component: NotificationsList,
     path: "/consultant/notifications-circulars",
   },
 
-  
   {
     title: "Add Notifications / Circulars",
     component: AddNotification,
@@ -451,9 +447,28 @@ export const routes = [
     component: UpdateNotification,
     path: "/consultant/notifications-circulars/:id",
   },
+
+  {
+    title: "Quotations / Invoices Management",
+    component: QuotationInvoiceList,
+    path: "/consultant/quotation-invoice-management",
+  },
+
+  {
+    title: "Add Quotation / Invoice",
+    component: AddQuotationInvoice,
+    path: "/consultant/quotation-invoice-management/add",
+  },
+
+  {
+    title: "Update Notifications / Circulars",
+    component: UpdateQuotationInvoice,
+    path: "/consultant/quotation-invoice-management/:id",
+  },
+
   //not found
 
-{
+  {
     title: "404 Not Found",
     component: NotFound,
     path: "/*",

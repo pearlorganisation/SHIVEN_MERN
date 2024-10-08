@@ -315,9 +315,10 @@ const SideBar = () => {
     {
       title: "Quotation / Invoices management",
       subMenu: false,
-      path: "/",
+      path: "/consultant/quotation-invoice-management",
       show: loggedInUserData.role === "1",
     },
+    
     {
       title: "Investments / Valuation / Portfolio",
       subMenu: false,
@@ -450,6 +451,7 @@ const SideBar = () => {
       path: "/calculatorFunds",
       show: loggedInUserData.role === "2",
     },
+    
     {
       title: "Investments / Valuation / Portfolio",
       subMenu: false,

@@ -108,7 +108,7 @@ const ContactManagement = () => {
     setTimeout(() => {
       setIsLoading(false);
       setData(sampleData);
-    }, 3000);
+    }, 500);
   }, []);
 
   return (

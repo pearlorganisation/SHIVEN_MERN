@@ -35,6 +35,7 @@ import AddContactManagement from "../components/ContactManagement/AddContactMana
 import UpdateContactManagement from "../components/ContactManagement/UpdateContactManagement";
 import BlogDetails from "../components/Blogs/BlogDetails";
 import NotificationCirculars from "../components/NotificationCirculars/NotificationCirculars";
+import Announcements from "../components/Announcements/Announcements";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -344,6 +345,12 @@ export const routes = [
     title: "Notifications / Circulars",
     component: NotificationCirculars,
     path: "/user/notifications-circulars",
+  },
+
+  {
+    title: "Announcements",
+    component: Announcements,
+    path: "/user/announcements",
   },
 
   /// Consultant Routes ///

@@ -272,69 +272,69 @@ const SideBar = () => {
       subMenuArray: [
         {
           title: "Life Insurance ",
-          path: "/dashboard"
+          path: "/plans/Life Insurance"
         },
         {
           title: "Health Insurance ",
-          path: "/dashboard"
+          path: "/plans/Health Insurance"
         },
         {
           title: "Motor Insurance",
-          path: "/dashboard"
+          path: "/plans/Motor Insurance"
         },
         {
           title: "Home Loan",
-          path: "/dashboard"
+          path: "/plans/Home Loan"
         },
         {
           title: "Vehicle Loan",
-          path: "/dashboard"
+          path: "/plans/Vehicle Loan"
         },
           { title: "Mutual Fund",
-             path: "/" 
+             path: "/plans/Mutual Fund" 
             },
           { title: "Shares",
-             path: "/" 
+             path: "/plans/Shares" 
             },
-          { title: "FD",
-             path: "/" 
+          { title: "Fixed Deposit",
+             path: "/plans/Fixed Deposit" 
             },
-          { title: "RD",
-             path: "/" 
+          { title: "Recurring Deposit",
+             path: "/plans/Recurring Deposit" 
             },
           { title: "Gold / Bullion",
-             path: "/" 
+             path: "/plans/Gold and Bullion" 
             },
           { title: "Commercial Property",
-             path: "/" 
+             path: "/plans/Commercial Property" 
             },
             {
               title: "Land",
-              path: "/dashboard"
+              path: "/plans/Land"
             },
             {
               title: "Residential Property",
-              path: "/dashboard"
+              path: "/plans/Residential Property"
             },
             {
-              title: "SGB",
-              path: "/dashboard"
+              title: "Sovereign Gold Bond",
+              path: "/plans/Sovereign Gold Bond"
             },
             {
               title: "Post Office",
-              path: "/dashboard"
+              path: "/plans/Post Office"
             },
             {
               title: "EPF / PPF",
-              path: "/dashboard"
+              path: "/plans/Employees Provident Fund and Public Provident Fund"
             },
             {
               title: "NPS",
-              path: "/dashboard"
+              path: "/plans/National Pension System"
             },
             {
               title: "IT Files",
-              path: "/dashboard"
+              path: "/plans/IT Files"
             }
         ],
       show: loggedInUserData.role === "1",
@@ -426,25 +426,25 @@ const SideBar = () => {
     {
       title: "Contact Management",
       subMenu: false,
-      path: "consultant/serviceRequest",
+      path: "/",
       show: loggedInUserData.role === "1" ,
     },
     {
       title: "Analytics & Reports",
       subMenu: false,
-      path: "consultant/serviceRequest",
+      path: "/",
       show: loggedInUserData.role === "1" ,
     },
     {
       title: "Task Management",
       subMenu: false,
-      path: "consultant/serviceRequest",
+      path: "/",
       show: loggedInUserData.role === "1" ,
     },
     {
       title: "Income & Expense Management",
       subMenu: false,
-      path: "consultant/serviceRequest",
+      path: "/",
       show: loggedInUserData.role === "1" ,
     },
     {

@@ -43,7 +43,7 @@ const handleViewModal=(itemData)=>{
     <div className="userContainer p-10 ">
       <div className="title p-1">
         <h4 className="font-bold text-blue-500 text-sm sm:text-md md:text-lg">
-           Whole Life Insurance Listing
+            Life Insurance Listing
         </h4>
         <div className="createEmployeeBtn flex justify-end p-4 ">
           <button
@@ -52,7 +52,7 @@ const handleViewModal=(itemData)=>{
               navigate("/servicePlan/whole-life-insurance");
             }}
           >
-          Add Whole Life Insurance Plan
+          Add Life Insurance Plan
           </button>
         </div>
       </div>

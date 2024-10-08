@@ -28,6 +28,7 @@ import filesAndFolder from "../pages/Service/consultant/filesAndFolder";
 import ViewServiceRequest from "../pages/Service/consultant/serviceRequest/ViewServiceRequest";
 import Blogs from "../components/Blogs/Blogs";
 import NotFound from "../components/NotFound";
+import AllPlans from "../pages/Service/consultant/plans/AllPlans";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -342,6 +343,11 @@ export const routes = [
     title: "Company Profile",
     component: CompanyProfile,
     path: "/companyProfile",
+  },
+  {
+    title: "Consultant Plan",
+    component: AllPlans,
+    path: "/plans/:name",
   },
 
   //not found

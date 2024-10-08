@@ -21,7 +21,7 @@ export default function ViewModalWholeLife ({viewData,setModal}) {
       {/*        <!-- Modal header --> */}
       <header id="header-3a" className="flex items-center gap-4">
         <h3 className="flex-1 text-xl font-medium text-slate-700">
-        Whole Life Insurance Plan
+         Life Insurance Plan
         </h3>
         <div>Last Updated : {formattedDate} </div>
         <button
@@ -72,7 +72,7 @@ export default function ViewModalWholeLife ({viewData,setModal}) {
       </tr>
       <tr>
         <td className="py-2 px-4 border border-gray-300">Service Type</td>
-        <td className="py-2 px-4 border border-gray-300">dummy</td>
+        <td className="py-2 px-4 border border-gray-300">Life Insurance</td>
       </tr>
       <tr>
         <td className="py-2 px-4 border border-gray-300">Premium Amount</td>

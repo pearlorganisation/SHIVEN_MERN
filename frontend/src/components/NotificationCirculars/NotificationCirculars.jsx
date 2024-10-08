@@ -14,7 +14,7 @@ import { Helmet } from "react-helmet";
 //   },
 // }));
 
-const Blogs = () => {
+const NotificationCirculars = () => {
   const [data, setData] = useState(null);
   //   const [searchParams, setSearchParams] = useSearchParams({ page: 1 });
   //   const [page, setPage] = useState(searchParams.get("page") || 1);
@@ -53,7 +53,7 @@ const Blogs = () => {
 
   const sampleData = [
     {
-      _id: '11dafgdag1',
+      _id: "11dafgdag1",
       title: "blog 1",
       banner:
         "https://images.unsplash.com/photo-1640161704729-cbe966a08476?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -61,7 +61,7 @@ const Blogs = () => {
         "lorem ipsum dores floren dusk till dawn pillowtalk lied to golden befour its you",
     },
     {
-      _id: '11dafgdag2',
+      _id: "11dafgdag2",
       title: "blog 2",
       banner:
         "https://images.unsplash.com/photo-1640161704729-cbe966a08476?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -69,7 +69,7 @@ const Blogs = () => {
         "lorem ipsum dores floren dusk till dawn pillowtalk lied to golden befour its you",
     },
     {
-      _id: '11dafgdag3',
+      _id: "11dafgdag3",
       title: "blog 3",
       banner:
         "https://images.unsplash.com/photo-1640161704729-cbe966a08476?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -89,85 +89,85 @@ const Blogs = () => {
   return (
     <>
       <Helmet>
-        <title>Shiven Blogs</title>
+        <title>Shiven Notifications / Circulars</title>
         {/* <meta
           name="description"
           content="Get free AI Generated images with HeadGen AI’s advanced AI image generator. Create professional photos for resumes, teams, or LinkedIn with our easy-to-use AI headshot generator"
         /> */}
       </Helmet>
       <div className="min-h-screen grid place-items-center">
-        <section className="py-28 flex flex-col gap-10">
-          <div className="container px-4 md:px-6">
+        <section className="py-28 flex flex-col w-full gap-10">
+          <div className="container px-4 w-full">
             <div className="mb-8 md:mb-10 lg:mb-12 text-center">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold  text-black">
-                Our Latest Blog Posts
+                Notifications / Circulars
               </h2>
-              <p className="mt-3 text-gray-500 dark:text-gray-400 max-w-xl mx-auto">
+              {/* <p className="mt-3 text-gray-500 dark:text-gray-400 max-w-xl mx-auto">
                 Discover the latest insights, trends, and stories from our team
                 of experts.
-              </p>
+              </p> */}
             </div>
             {isLoading ? (
-              <div className="flex flex-wrap justify-center items-center w-full text-center gap-12 px-2 md:px-0">
+              <div className="w-full grid grid-cols-1 md:grid-cols-2  gap-4 px-2 md:px-0">
                 <div className="flex flex-col gap-2">
                   <Skeleton
                     animation="wave"
                     variant="rectangular"
-                    width={350}
+                    width={550}
                     height={250}
-                    className="rounded-t-2xl !bg-emerald-800 after:!bg-gradient-to-r after:!from-emerald-800 after:!via-emerald-700 after:!to-emerald-800 !w-[250px] !h-[150px] sm:!w-[350px] sm:!h-[250px]"
+                    className="w-full rounded-2xl !bg-emerald-800 after:!bg-gradient-to-r after:!from-emerald-800 after:!via-emerald-700 after:!to-emerald-800 !h-[150px] sm:!h-[250px]"
                   />
-                  <Skeleton
+                  {/* <Skeleton
                     animation="wave"
                     variant="rectangular"
                     width={350}
                     height={30}
                     className="rounded-b-2xl !bg-emerald-800 after:!bg-gradient-to-r after:!from-emerald-800 after:!via-emerald-700 after:!to-emerald-800 !w-[250px] !h-[20px] sm:!w-[350px] sm:!h-[30px]"
-                  />
+                  /> */}
                 </div>
                 <div className="flex flex-col gap-2">
                   <Skeleton
                     animation="wave"
                     variant="rectangular"
-                    width={350}
+                    width={550}
                     height={250}
-                    className="rounded-t-2xl !bg-emerald-800 after:!bg-gradient-to-r after:!from-emerald-800 after:!via-emerald-700 after:!to-emerald-800 !w-[250px] !h-[150px] sm:!w-[350px] sm:!h-[250px]"
+                    className="rounded-2xl !bg-emerald-800 after:!bg-gradient-to-r after:!from-emerald-800 after:!via-emerald-700 after:!to-emerald-800 !h-[150px] sm:!h-[250px]"
                   />
-                  <Skeleton
+                  {/* <Skeleton
                     animation="wave"
                     variant="rectangular"
                     width={350}
                     height={30}
                     className="rounded-b-2xl !bg-emerald-800 after:!bg-gradient-to-r after:!from-emerald-800 after:!via-emerald-700 after:!to-emerald-800 !w-[250px] !h-[20px] sm:!w-[350px] sm:!h-[30px]"
-                  />
+                  /> */}
                 </div>
                 <div className="flex flex-col gap-2">
                   <Skeleton
                     animation="wave"
                     variant="rectangular"
-                    width={350}
+                    width={550}
                     height={250}
-                    className="rounded-t-2xl !bg-emerald-800 after:!bg-gradient-to-r after:!from-emerald-800 after:!via-emerald-700 after:!to-emerald-800 !w-[250px] !h-[150px] sm:!w-[350px] sm:!h-[250px]"
+                    className="w-full rounded-2xl !bg-emerald-800 after:!bg-gradient-to-r after:!from-emerald-800 after:!via-emerald-700 after:!to-emerald-800 !h-[150px] sm:!h-[250px]"
                   />
-                  <Skeleton
+                  {/* <Skeleton
                     animation="wave"
                     variant="rectangular"
                     width={350}
                     height={30}
                     className="rounded-b-2xl !bg-emerald-800 after:!bg-gradient-to-r after:!from-emerald-800 after:!via-emerald-700 after:!to-emerald-800 !w-[250px] !h-[20px] sm:!w-[350px] sm:!h-[30px]"
-                  />
+                  /> */}
                 </div>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 {data ? (
                   data.map((item) => {
                     return (
                       <Link
                         to={`/user/blog/${item?._id}`}
-                        className="rounded-lg group overflow-hidden shadow-lg cursor-pointer transition duration-300"
+                        className="rounded-2xl w-full group overflow-hidden shadow-lg cursor-pointer transition duration-300"
                       >
-                        <LazyLoadImage
+                        {/* <LazyLoadImage
                           alt="Blog Post 1"
                           className="w-full h-56 object-cover"
                           height={400}
@@ -177,11 +177,14 @@ const Blogs = () => {
                             objectFit: "cover",
                           }}
                           width={600}
-                        />
-                        <div className="p-4 md:p-6 group-hover:text-white group-hover:bg-gradient-to-tr group-hover:from-[#02AFDC] group-hover:to-[#2563EB] transition duration-300">
+                        /> */}
+                        <div className="p-4 md:p-6 bg-white text-black group-hover:text-white group-hover:bg-gradient-to-tr group-hover:from-[#02AFDC] group-hover:to-[#2563EB] !h-[150px] sm:!h-[250px] transition duration-300">
                           <h3 className="text-xl md:text-2xl font-bold mb-2 line-clamp-2">
                             {item?.title}
                           </h3>
+                          <h4 className="text-lg font-semibold mb-2 line-clamp-6">
+                            {item?.content}
+                          </h4>
                         </div>
                       </Link>
                     );
@@ -210,4 +213,4 @@ const Blogs = () => {
   );
 };
 
-export default Blogs;
+export default NotificationCirculars;

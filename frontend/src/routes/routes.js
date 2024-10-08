@@ -27,18 +27,24 @@ import VehicleLoan from "../pages/ServicePlans/vehicleLoan/VehicleLoan";
 import filesAndFolder from "../pages/Service/consultant/filesAndFolder";
 import ViewServiceRequest from "../pages/Service/consultant/serviceRequest/ViewServiceRequest";
 import Blogs from "../components/Blogs/Blogs";
+import BlogsList from "../components/Blogs/consultant/BlogsList";
 import NotFound from "../components/NotFound";
 import AllPlans from "../pages/Service/consultant/plans/AllPlans";
+import ContactManagement from "../components/ContactManagement/ContactManagement";
+import AddContactManagement from "../components/ContactManagement/AddContactManagement";
+import UpdateContactManagement from "../components/ContactManagement/UpdateContactManagement";
+import BlogDetails from "../components/Blogs/BlogDetails";
+import NotificationCirculars from "../components/NotificationCirculars/NotificationCirculars";
+import CustomizedPlans from "../pages/Service/consultant/plans/CustomizedPlans";
+import AddCustomisedPlan from "../pages/Service/consultant/plans/AddCustomisedPlan";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
   return import("../components/Dashboard/Dashboard");
 });
-
 const CalculatorFunds = lazy(() => {
   return import("../ClientsComponents/CalculatorFunds/CalculatorFunds");
 });
-
 const User = lazy(() => {
   return import("../pages/auth/User/User");
 });
@@ -48,11 +54,9 @@ const CreateUser = lazy(() => {
 const UpdateUser = lazy(() => {
   return import("../pages/auth/User/UpdateUser");
 });
-
 const Plans = lazy(() => {
   return import("../components/Dashboard/Plans");
 });
-
 const ProposalForm = lazy(() => {
   return import("../components/Dashboard/ProposalForm");
 });
@@ -328,7 +332,42 @@ export const routes = [
     path: "/user/blogs",
   },
 
+  {
+    title: "Blogs / Articles",
+    component: BlogDetails,
+    path: "/user/blog/:id",
+  },
+
+  {
+    title: "Notifications / Circulars",
+    component: NotificationCirculars,
+    path: "/user/notifications-circulars",
+  },
+
   /// Consultant Routes ///
+
+  {
+    title: "Blogs / Articles",
+    component: BlogsList,
+    path: "/consultant/blogs",
+  },
+
+  {
+    title: "Contact Management",
+    component: ContactManagement,
+    path: "/consultant/contactManagement",
+  },
+  {
+    title: "Contact Management",
+    component: AddContactManagement,
+    path: "/consultant/contactManagement/add",
+  },
+  {
+    title: "Contact Management",
+    component: UpdateContactManagement,
+    path: "/consultant/contactManagement/update/:id",
+  },
+
   {
     title: "Customer Feedbacks",
     component: CustomerFeedback,
@@ -348,6 +387,16 @@ export const routes = [
     title: "Consultant Plan",
     component: AllPlans,
     path: "/plans/:name",
+  },
+  {
+    title: "Customised Plan",
+    component: CustomizedPlans,
+    path: "/customisedPlan",
+  },
+  {
+    title: "Add Customised Plan",
+    component: AddCustomisedPlan,
+    path: "/customisedPlan/addPlan",
   },
 
   //not found

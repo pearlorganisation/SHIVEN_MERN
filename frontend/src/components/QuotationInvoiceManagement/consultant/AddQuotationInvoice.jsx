@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import { CircleLoader } from "react-spinners";
+import Select from "react-select";
 
 const AddQuotationInvoice = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -11,8 +12,20 @@ const AddQuotationInvoice = () => {
     formState: { errors },
     handleSubmit,
     reset,
+    control,
     setFocus,
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      additionalRows: [
+        { description: "", quantitiy: 0, unitPrice: 0, amount: 0 },
+      ], // Array of objects with multiple fields
+    },
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "additionalRows",
+  });
 
   const onSubmit = (data) => {
     setIsLoading(true); // Simulate loading
@@ -128,15 +141,13 @@ const AddQuotationInvoice = () => {
                   {...register("billTo", {
                     required: {
                       value: true,
-                      message:
-                        "Bill To. is a required field",
+                      message: "Bill To. is a required field",
                     },
                   })}
                 />
                 {errors.billTo && (
                   <p className="text-red-500 mt-1 text-xs">
-                    {errors?.billTo?.message ||
-                      "Bill To. is a required field"}
+                    {errors?.billTo?.message || "Bill To. is a required field"}
                   </p>
                 )}
               </div>
@@ -160,6 +171,85 @@ const AddQuotationInvoice = () => {
                   </p>
                 )}
               </div>
+
+              <div className="col-span-2 my-5">
+                <div className="w-full flex flex-col gap-4">
+                  <label className="font-medium mr-10">Quotation Rows:</label>
+                  {fields.map((item, index) => (
+                    <div
+                      key={item.id}
+                      className="flex items-center space-x-2 mb-2"
+                    >
+                      <input
+                        className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-1"
+                        type="text"
+                        placeholder="Description"
+                        disabled={isDisabled}
+                        {...register("description", {
+                          required: {
+                            value: true,
+                            message: "Description is a required field",
+                          },
+                        })}
+                      />
+                      <input
+                        className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-1"
+                        type="number"
+                        min={0}
+                        placeholder="Quantity"
+                        disabled={isDisabled}
+                        {...register("quantity", {
+                          required: {
+                            value: true,
+                            message: "Quantity is a required field",
+                          },
+                        })}
+                      />
+                      <input
+                        className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-1"
+                        type="number"
+                        min={0}
+                        placeholder="Unit Price"
+                        disabled={isDisabled}
+                        {...register("unitPrice", {
+                          required: {
+                            value: true,
+                            message: "Unit Price is a required field",
+                          },
+                        })}
+                      />
+                      <input
+                        className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-1"
+                        type="number"
+                        min={0}
+                        placeholder="Amount"
+                        disabled={isDisabled}
+                        {...register("amount", {
+                          required: {
+                            value: true,
+                            message: "Amount is a required field",
+                          },
+                        })}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => remove(index)}
+                        className="text-red-500"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={() => append({})} // Append a new object (empty or with default values)
+                    className="text-blue-600"
+                  >
+                    Add Row
+                  </button>
+                </div>
+              </div>
+
               <div className="flex flex-col gap-2">
                 <input
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-1"
@@ -175,7 +265,8 @@ const AddQuotationInvoice = () => {
                 />
                 {errors.shipping && (
                   <p className="text-red-500 mt-1 text-xs">
-                    {errors?.shipping?.message || "Shipping is a required field"}
+                    {errors?.shipping?.message ||
+                      "Shipping is a required field"}
                   </p>
                 )}
               </div>

@@ -449,6 +449,24 @@ export const routes = [
     component: UpdateNotification,
     path: "/consultant/notifications-circulars/:id",
   },
+
+  {
+    title: "Quotation / Invoice Management",
+    component: QuotationInvoiceList,
+    path: "/consultant/quotation-invoice-management",
+  },
+
+  {
+    title: "Quotation / Invoice Management",
+    component: AddQuotationInvoice,
+    path: "/consultant/quotation-invoice-management/add",
+  },
+
+  {
+    title: "Quotation / Invoice Management",
+    component: UpdateQuotationInvoice,
+    path: "/consultant/quotation-invoice-management/:id",
+  },
   //not found
 
   {

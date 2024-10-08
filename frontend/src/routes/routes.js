@@ -46,6 +46,8 @@ import AddNotification from "../components/NotificationCirculars/consultant/AddN
 import UpdateNotification from "../components/NotificationCirculars/consultant/UpdateNotification";
 import ViewCrm from "../pages/Service/consultant/crm/ViewCrm";
 import AddStatus from "../pages/Service/consultant/crm/AddStatus";
+import ViewTaskManagement from "../pages/Service/consultant/taskManagement/ViewTaskManagement";
+import AddTask from "../pages/Service/consultant/taskManagement/AddTask";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -463,6 +465,16 @@ export const routes = [
     title: "CRM add status",
     component: AddStatus,
     path: "/consultant/crm/addStatus",
+  },
+  {
+    title: "Task Management",
+    component: ViewTaskManagement,
+    path: "/consultant/taskManagement",
+  },
+  {
+    title: "Task Management - Add task",
+    component: AddTask,
+    path: "/consultant/taskManagement/addTask",
   },
   //not found
 

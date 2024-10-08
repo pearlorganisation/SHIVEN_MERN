@@ -353,7 +353,7 @@ const SideBar = () => {
     {
       title: "Task Management",
       subMenu: false,
-      path: "/",
+      path: "/consultant/taskManagement",
       show: loggedInUserData.role === "1" ,
     },
     {

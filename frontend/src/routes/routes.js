@@ -49,6 +49,8 @@ import AddStatus from "../pages/Service/consultant/crm/AddStatus";
 import QuotationInvoiceList from "../components/QuotationInvoiceManagement/consultant/QuotationInvoiceList";
 import AddQuotationInvoice from "../components/QuotationInvoiceManagement/consultant/AddQuotationInvoice";
 import UpdateQuotationInvoice from "../components/QuotationInvoiceManagement/consultant/UpdateQuotationInvoice";
+import ViewTaskManagement from "../pages/Service/consultant/taskManagement/ViewTaskManagement";
+import AddTask from "../pages/Service/consultant/taskManagement/AddTask";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -466,6 +468,16 @@ export const routes = [
     title: "Quotation / Invoice Management",
     component: UpdateQuotationInvoice,
     path: "/consultant/quotation-invoice-management/:id",
+  },
+  {
+    title: "Task Management",
+    component: ViewTaskManagement,
+    path: "/consultant/taskManagement",
+  },
+  {
+    title: "Task Management - Add task",
+    component: AddTask,
+    path: "/consultant/taskManagement/addTask",
   },
   //not found
 

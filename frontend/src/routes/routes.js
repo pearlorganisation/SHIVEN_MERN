@@ -44,6 +44,8 @@ import AddAnnouncement from "../components/Announcements/consultant/AddAnnouncem
 import NotificationsList from "../components/NotificationCirculars/consultant/NotificationsList";
 import AddNotification from "../components/NotificationCirculars/consultant/AddNotification";
 import UpdateNotification from "../components/NotificationCirculars/consultant/UpdateNotification";
+import ViewCrm from "../pages/Service/consultant/crm/ViewCrm";
+import AddStatus from "../pages/Service/consultant/crm/AddStatus";
 import QuotationInvoiceList from "../components/QuotationInvoiceManagement/consultant/QuotationInvoiceList";
 import AddQuotationInvoice from "../components/QuotationInvoiceManagement/consultant/AddQuotationInvoice";
 import UpdateQuotationInvoice from "../components/QuotationInvoiceManagement/consultant/UpdateQuotationInvoice";
@@ -447,25 +449,6 @@ export const routes = [
     component: UpdateNotification,
     path: "/consultant/notifications-circulars/:id",
   },
-
-  {
-    title: "Quotations / Invoices Management",
-    component: QuotationInvoiceList,
-    path: "/consultant/quotation-invoice-management",
-  },
-
-  {
-    title: "Add Quotation / Invoice",
-    component: AddQuotationInvoice,
-    path: "/consultant/quotation-invoice-management/add",
-  },
-
-  {
-    title: "Update Notifications / Circulars",
-    component: UpdateQuotationInvoice,
-    path: "/consultant/quotation-invoice-management/:id",
-  },
-
   //not found
 
   {

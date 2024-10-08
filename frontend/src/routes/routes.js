@@ -44,6 +44,8 @@ import AddAnnouncement from "../components/Announcements/consultant/AddAnnouncem
 import NotificationsList from "../components/NotificationCirculars/consultant/NotificationsList";
 import AddNotification from "../components/NotificationCirculars/consultant/AddNotification";
 import UpdateNotification from "../components/NotificationCirculars/consultant/UpdateNotification";
+import ViewCrm from "../pages/Service/consultant/crm/ViewCrm";
+import AddStatus from "../pages/Service/consultant/crm/AddStatus";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -450,6 +452,17 @@ export const routes = [
     title: "Update Notifications / Circulars",
     component: UpdateNotification,
     path: "/consultant/notifications-circulars/:id",
+  },
+
+  {
+    title: "CRM",
+    component: ViewCrm,
+    path: "/consultant/crm",
+  },
+  {
+    title: "CRM add status",
+    component: AddStatus,
+    path: "/consultant/crm/addStatus",
   },
   //not found
 

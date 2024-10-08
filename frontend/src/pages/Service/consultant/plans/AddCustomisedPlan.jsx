@@ -24,8 +24,8 @@ const AddCustomisedPlan = () => {
 
 
   return (
-    <div className="max-w-4xl mx-auto my-5  overflow-hidden rounded-2xl bg-white shadow-lg">
-      <div className="bg-blue-600 px-10 py-4 text-center text-white font-semibold">
+    <div className="max-w-4xl mx-auto my-5  rounded-2xl bg-white shadow-lg">
+      <div className="bg-blue-600 px-10 py-4 rounded-t-2xl text-center text-white font-semibold">
         Customised Plan
       </div>
       <form className="space-y-5 my-4 mx-8 sm:mx-2" onSubmit={handleSubmit(onSubmit)}>
@@ -58,20 +58,9 @@ const AddCustomisedPlan = () => {
                 { value: "SBI General Home Insurance", label: "SBI General Home Insurance" },
               ]}
               onChange={(selectedOption) => field.onChange(selectedOption)}
-              className="mt-2 w-full z-50"
+              className="mt-2 w-full z-[1000]"
               placeholder={`Choose Plan ${index + 1}`}
-              styles={{
-                control: (provided) => ({
-                  ...provided,
-                  border: "1px solid #CBD5E1",
-                  borderRadius: "0.400rem",
-                  height: "40px",
-                }),
-                placeholder: (provided) => ({
-                  ...provided,
-                  color: "#9CA3AF",
-                }),
-              }}
+  
             />
           )}
           rules={{ required: true }}

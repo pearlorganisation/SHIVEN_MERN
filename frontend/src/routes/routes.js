@@ -36,6 +36,12 @@ import UpdateContactManagement from "../components/ContactManagement/UpdateConta
 import BlogDetails from "../components/Blogs/BlogDetails";
 import NotificationCirculars from "../components/NotificationCirculars/NotificationCirculars";
 import Announcements from "../components/Announcements/Announcements";
+import AnnouncementsList from "../components/Announcements/consultant/AnnouncementsList";
+import UpdateAnnouncement from "../components/Announcements/consultant/UpdateAnnouncement";
+import AddAnnouncement from "../components/Announcements/consultant/AddAnnouncement";
+import NotificationsList from "../components/NotificationCirculars/consultant/NotificationsList";
+import AddNotification from "../components/NotificationCirculars/consultant/AddNotification";
+import UpdateNotification from "../components/NotificationCirculars/consultant/UpdateNotification";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -374,7 +380,7 @@ export const routes = [
   {
     title: "Contact Management",
     component: UpdateContactManagement,
-    path: "/consultant/contactManagement/update/:id",
+    path: "/consultant/contactManagement/:id",
   },
 
   {
@@ -393,6 +399,45 @@ export const routes = [
     path: "/companyProfile",
   },
 
+  
+  {
+    title: "Announcements",
+    component: AnnouncementsList,
+    path: "/consultant/announcements",
+  },
+
+  
+  {
+    title: "Add Announcement",
+    component: AddAnnouncement,
+    path: "/consultant/announcements/add",
+  },
+
+  {
+    title: "Update Announcement",
+    component: UpdateAnnouncement,
+    path: "/consultant/announcements/:id",
+  },
+
+
+  {
+    title: "Notifications",
+    component: NotificationsList,
+    path: "/consultant/notifications-circulars",
+  },
+
+  
+  {
+    title: "Add Notifications / Circulars",
+    component: AddNotification,
+    path: "/consultant/notifications-circulars/add",
+  },
+
+  {
+    title: "Update Notifications / Circulars",
+    component: UpdateNotification,
+    path: "/consultant/notifications-circulars/:id",
+  },
   //not found
 
 {

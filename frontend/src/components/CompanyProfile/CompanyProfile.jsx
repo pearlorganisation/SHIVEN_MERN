@@ -38,7 +38,7 @@ const CompanyProfile = () => {
           </h1>
           {isDisabled && (
             <button
-              className="text-white bg-blue-500 hover:bg-blue-700 p-1 px-3 rounded-md transition duration-300"
+              className="text-white text-lg bg-blue-500 hover:bg-blue-700 p-1 px-4 rounded-md transition duration-300"
               onClick={handleEditClick}
             >
               Edit

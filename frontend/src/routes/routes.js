@@ -31,6 +31,10 @@ import BlogsList from "../components/Blogs/consultant/BlogsList";
 
 import NotFound from "../components/NotFound";
 import ContactManagement from "../components/ContactManagement/ContactManagement";
+import AddContactManagement from "../components/ContactManagement/AddContactManagement";
+import UpdateContactManagement from "../components/ContactManagement/UpdateContactManagement";
+import BlogDetails from "../components/Blogs/BlogDetails";
+import NotificationCirculars from "../components/NotificationCirculars/NotificationCirculars";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -330,6 +334,18 @@ export const routes = [
     path: "/user/blogs",
   },
 
+  {
+    title: "Blogs / Articles",
+    component: BlogDetails,
+    path: "/user/blog/:id",
+  },
+
+  {
+    title: "Notifications / Circulars",
+    component: NotificationCirculars,
+    path: "/user/notifications-circulars",
+  },
+
   /// Consultant Routes ///
 
   {
@@ -342,6 +358,16 @@ export const routes = [
     title: "Contact Management",
     component: ContactManagement,
     path: "/consultant/contactManagement",
+  },
+  {
+    title: "Contact Management",
+    component: AddContactManagement,
+    path: "/consultant/contactManagement/add",
+  },
+  {
+    title: "Contact Management",
+    component: UpdateContactManagement,
+    path: "/consultant/contactManagement/update/:id",
   },
 
   {

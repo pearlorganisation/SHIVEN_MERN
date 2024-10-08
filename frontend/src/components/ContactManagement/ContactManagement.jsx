@@ -68,36 +68,39 @@ const ContactManagement = () => {
 
   const sampleData = [
     {
+      _id: "111",
       name: "rex",
-      company: 'companyNamexyz',
-      profession: 'Accountant',
+      company: "companyNamexyz",
+      profession: "Accountant",
       category: "sample category",
-      industry: "Financial"
+      industry: "Financial",
     },
     {
-        name: "rex",
-        company: 'companyNamexyz',
-        profession: 'Accountant',
-        category: "sample category",
-        industry: "Financial"
-      },
-      
-      {
-        name: "rex",
-        company: 'companyNamexyz',
-        profession: 'Accountant',
-        category: "sample category",
-        industry: "Financial"
-      },
-      
-      {
-        name: "rex",
-        company: 'companyNamexyz',
-        profession: 'Accountant',
-        category: "sample category",
-        industry: "Financial"
-      },
-      
+      _id: "112",
+      name: "rex",
+      company: "companyNamexyz",
+      profession: "Accountant",
+      category: "sample category",
+      industry: "Financial",
+    },
+
+    {
+      _id: "113",
+      name: "rex",
+      company: "companyNamexyz",
+      profession: "Accountant",
+      category: "sample category",
+      industry: "Financial",
+    },
+
+    {
+      _id: "114",
+      name: "rex",
+      company: "companyNamexyz",
+      profession: "Accountant",
+      category: "sample category",
+      industry: "Financial",
+    },
   ];
 
   useEffect(() => {
@@ -116,7 +119,7 @@ const ContactManagement = () => {
         <div className="text-2xl">Contact Management</div>
         <div className="flex items-center justify-end flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-8 ">
           <Link
-            to="/blogs/add"
+            to="/consultant/contactManagement/add"
             className="bg-blue-600 rounded-md text-white px-3 py-1 font-semibold "
           >
             Add
@@ -179,10 +182,9 @@ const ContactManagement = () => {
 
                     <td className="px-6 py-4">{item.category}</td>
 
-
                     <td className="px-6 py-4 text-center flex gap-4 justify-center">
                       <Link
-                        to={`/blogs/update/${item?._id}`}
+                        to={`/consultant/contactManagement/update/${item?._id}`}
                         className="font-medium text-blue-600  hover:underline"
                       >
                         Edit
@@ -196,7 +198,6 @@ const ContactManagement = () => {
                         Delete
                       </button>
                     </td>
-                    
                   </tr>
                 ))}
               </tbody>

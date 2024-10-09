@@ -479,6 +479,17 @@ export const routes = [
     component: AddTask,
     path: "/consultant/taskManagement/addTask",
   },
+
+  {
+    title: "CRM",
+    component: ViewCrm,
+    path: "/consultant/crm",
+  },
+  {
+    title: "CRM",
+    component: AddStatus,
+    path: "/consultant/crm/addStatus",
+  },
   //not found
 
   {

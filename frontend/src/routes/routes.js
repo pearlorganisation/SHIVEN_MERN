@@ -51,6 +51,12 @@ import AddQuotationInvoice from "../components/QuotationInvoiceManagement/consul
 import UpdateQuotationInvoice from "../components/QuotationInvoiceManagement/consultant/UpdateQuotationInvoice";
 import ViewTaskManagement from "../pages/Service/consultant/taskManagement/ViewTaskManagement";
 import AddTask from "../pages/Service/consultant/taskManagement/AddTask";
+import MutualFundLumSum from "../pages/Service/user/investment/MutualFundLumSum";
+import MutualFundSIP from "../pages/Service/user/investment/MutualFundSIP";
+import Shares from "../pages/Service/user/investment/Shares";
+import LifeInsurance from "../pages/Service/user/investment/LifeInsurance";
+import HealthInsurance from "../pages/Service/user/investment/HealthInsurance";
+import Loans from "../pages/Service/user/investment/Loans";
 import CustomisedFormList from "../components/CustomisedForm/consultant/CustomisedFormList";
 import AddCustomisedForm from "../components/CustomisedForm/consultant/AddCustomisedForm";
 import UpdateCustomisedForm from "../components/CustomisedForm/consultant/UpdateCustomisedForm";
@@ -364,6 +370,36 @@ export const routes = [
     title: "Announcements",
     component: Announcements,
     path: "/user/announcements",
+  },
+  {
+    title: "Investment / Valuation / Portfolio",
+    component: MutualFundLumSum,
+    path: "/user/investment/mutualFundLumSum",
+  },
+  {
+    title: "Investment / Valuation / Portfolio",
+    component: MutualFundSIP,
+    path: "/user/investment/mutualFundSIP",
+  },
+  {
+    title: "Investment / Valuation / Portfolio",
+    component: Shares,
+    path: "/user/investment/shares",
+  },
+  {
+    title: "Investment / Valuation / Portfolio",
+    component: LifeInsurance ,
+    path: "/user/investment/lifeInsurance",
+  },
+  {
+    title: "Investment / Valuation / Portfolio",
+    component: HealthInsurance,
+    path: "/user/investment/healthInsurance",
+  },
+  {
+    title: "Investment / Valuation / Portfolio",
+    component: Loans,
+    path: "/user/investment/loans",
   },
 
   {

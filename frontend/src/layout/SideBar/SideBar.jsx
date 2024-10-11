@@ -454,8 +454,17 @@ const SideBar = () => {
     
     {
       title: "Investments / Valuation / Portfolio",
-      subMenu: false,
-      path: "/calculatorFunds",
+      subMenu: true,
+      subMenuArray: [
+        { title: "MutualFund LumSum", path: "/user/investment/mutualFundLumSum" },
+        { title: "MutualFund SIP", path: "/user/investment/mutualFundSIP" },
+        { title: "Shares", path: "/user/investment/shares" },
+        { title: "Life Insurance", path: "/user/investment/lifeInsurance"},
+        { title: "Health Insurance", path: "/user/investment/healthInsurance" },
+        { title: "Loans", path: "/user/investment/loans" },
+ 
+      ],
+      path: "/user/investment",
       show: loggedInUserData.role === "2",
     },
 

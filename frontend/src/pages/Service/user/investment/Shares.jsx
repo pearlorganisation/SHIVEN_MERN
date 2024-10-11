@@ -15,10 +15,7 @@ const Shares = () => {
     { name: "scripName", placeholder: "Scrip Name", type: "text" },
     { name: "purchasePrice", placeholder: "Purchase Price", type: "number" },
     { name: "quantity", placeholder: "Quantity", type: "number" },
-    { name: "charges1", placeholder: "Charges", type: "number" },  // Different charges fields have been named uniquely
-    { name: "charges2", placeholder: "Charges", type: "number" },
-    { name: "charges3", placeholder: "Charges", type: "number" },
-    { name: "charges4", placeholder: "Charges", type: "number" },
+    { name: "charges", placeholder: "Charges", type: "number" },  // Different charges fields have been named uniquely
     { name: "purchaseAmount", placeholder: "Purchase Amount", type: "number" },
     { name: "dateOfPurchase", placeholder: "Date of Purchase", type: "date" },
     { name: "currentPrice", placeholder: "Current Price", type: "number" },
@@ -86,9 +83,9 @@ const Shares = () => {
               })} id="floating_outlined" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-nonefocus:outline-none focus:ring-0 focus:border-blue-600 peer" />
             :
             <Select
-            options={[{value:"Delivery",label:"Delivery"},{value:"Intraday",label:"Intraday"}]}
+            options={[{value:"Delivery",label:"Delivery"},{value:"Intra Day",label:"Intra Day"}]}
             placeholder="Type of Purchase" // You can set a placeholder here
-            className="z-50"
+            className="z-50 "
             classNamePrefix="select"
             isClearable // Allow clearing the selected option
           />

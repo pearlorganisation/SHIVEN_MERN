@@ -51,6 +51,10 @@ import AddQuotationInvoice from "../components/QuotationInvoiceManagement/consul
 import UpdateQuotationInvoice from "../components/QuotationInvoiceManagement/consultant/UpdateQuotationInvoice";
 import ViewTaskManagement from "../pages/Service/consultant/taskManagement/ViewTaskManagement";
 import AddTask from "../pages/Service/consultant/taskManagement/AddTask";
+import CustomisedFormList from "../components/CustomisedForm/consultant/CustomisedFormList";
+import AddCustomisedForm from "../components/CustomisedForm/consultant/AddCustomisedForm";
+import UpdateCustomisedForm from "../components/CustomisedForm/consultant/UpdateCustomisedForm";
+import CustomisedForms from "../components/CustomisedForm/CustomisedForm";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -362,6 +366,12 @@ export const routes = [
     path: "/user/announcements",
   },
 
+  {
+    title: "Customised Forms",
+    component: CustomisedForms,
+    path: "/user/customised-forms",
+  },
+
   /// Consultant Routes ///
 
   {
@@ -479,6 +489,27 @@ export const routes = [
     component: AddTask,
     path: "/consultant/taskManagement/addTask",
   },
+
+
+  {
+    title: "Customised Form",
+    component: CustomisedFormList,
+    path: "/consultant/customised-forms",
+  },
+
+  {
+    title: "Customised Form",
+    component: AddCustomisedForm,
+    path: "/consultant/customised-forms/add",
+  },
+
+  {
+    title: "Customised Form",
+    component: UpdateCustomisedForm,
+    path: "/consultant/customised-forms/:id",
+  },
+
+
 
   {
     title: "CRM",

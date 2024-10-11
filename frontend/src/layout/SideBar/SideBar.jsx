@@ -268,7 +268,7 @@ const SideBar = () => {
     {
       title: "Customised Forms",
       subMenu: false,
-      path: "/",
+      path: "/consultant/customised-forms",
       show: loggedInUserData.role === "1",
     },
     {
@@ -420,7 +420,7 @@ const SideBar = () => {
     {
       title: "Customised Forms",
       subMenu: false,
-      path: "/",
+      path: "/user/customised-forms",
       show: loggedInUserData.role === "2",
     },
     {

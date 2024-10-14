@@ -318,11 +318,18 @@ const SideBar = () => {
       path: "/consultant/quotation-invoice-management",
       show: loggedInUserData.role === "1",
     },
-    
     {
       title: "Investments / Valuation / Portfolio",
-      subMenu: false,
-      path: "/",
+      subMenu: true,
+      subMenuArray: [
+        { title: "MutualFund LumSum", path: "/consultant/portfolio/Mutual Fund Lum Sum" },
+        { title: "MutualFund SIP", path: "/consultant/portfolio/Mutual Fund SIP" },
+        { title: "Shares", path: "/consultant/portfolio/Shares" },
+        { title: "Life Insurance", path: "/consultant/portfolio/Life Insurance"},
+        { title: "Health Insurance", path: "/consultant/portfolio/Health Insurance" },
+        { title: "Loans", path: "/consultant/portfolio/Loans" },
+ 
+      ],
       show: loggedInUserData.role === "1",
     },
     {
@@ -359,7 +366,7 @@ const SideBar = () => {
     {
       title: "Income & Expense Management",
       subMenu: false,
-      path: "/",
+      path: "/consultant/incomeAndExpense/year",
       show: loggedInUserData.role === "1" ,
     },
 
@@ -402,6 +409,8 @@ const SideBar = () => {
       path: "/consultant/crm",
       show: loggedInUserData.role === "1",
     },
+
+
 
     /// CUSTOMER PANEL ///
     {
@@ -456,12 +465,12 @@ const SideBar = () => {
       title: "Investments / Valuation / Portfolio",
       subMenu: true,
       subMenuArray: [
-        { title: "MutualFund LumSum", path: "/user/investment/mutualFundLumSum" },
-        { title: "MutualFund SIP", path: "/user/investment/mutualFundSIP" },
-        { title: "Shares", path: "/user/investment/shares" },
-        { title: "Life Insurance", path: "/user/investment/lifeInsurance"},
-        { title: "Health Insurance", path: "/user/investment/healthInsurance" },
-        { title: "Loans", path: "/user/investment/loans" },
+        { title: "MutualFund LumSum", path: "/user/portfolio/Mutual Fund Lum Sum" },
+        { title: "MutualFund SIP", path: "/user/portfolio/Mutual Fund SIP" },
+        { title: "Shares", path: "/user/portfolio/Shares" },
+        { title: "Life Insurance", path: "/user/portfolio/Life Insurance"},
+        { title: "Health Insurance", path: "/user/portfolio/Health Insurance" },
+        { title: "Loans", path: "/user/portfolio/Loans" },
  
       ],
       path: "/user/investment",

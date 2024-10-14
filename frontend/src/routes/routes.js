@@ -61,6 +61,8 @@ import CustomisedFormList from "../components/CustomisedForm/consultant/Customis
 import AddCustomisedForm from "../components/CustomisedForm/consultant/AddCustomisedForm";
 import UpdateCustomisedForm from "../components/CustomisedForm/consultant/UpdateCustomisedForm";
 import CustomisedForms from "../components/CustomisedForm/CustomisedForm";
+import SmsEmail from "../components/SmsEmail/SmsEmail";
+import ComposeEmail from "../components/SmsEmail/ComposeEmail";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -545,8 +547,6 @@ export const routes = [
     path: "/consultant/customised-forms/:id",
   },
 
-
-
   {
     title: "CRM",
     component: ViewCrm,
@@ -556,6 +556,19 @@ export const routes = [
     title: "CRM",
     component: AddStatus,
     path: "/consultant/crm/addStatus",
+  },
+
+  {
+    title: "SMS / E-Mail",
+    component: SmsEmail,
+    path: "/sms-email",
+  },
+
+  
+  {
+    title: "SMS / E-Mail",
+    component: ComposeEmail,
+    path: "/sms-email/add",
   },
   //not found
 

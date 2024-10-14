@@ -387,7 +387,7 @@ const SideBar = () => {
     {
       title: "SMS / Email",
       subMenu: false,
-      path: "/",
+      path: "/sms-email",
       show: loggedInUserData.role === "1",
     },
     {

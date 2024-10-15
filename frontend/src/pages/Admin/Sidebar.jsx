@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/actions/Auth/authActions";
 // ----------------------------------------------------------------------------------------------------------
-const SideBar = () => {
+const Sidebar = () => {
   // -----------------------------------------------States-----------------------------------------------------
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -36,14 +36,15 @@ const SideBar = () => {
 
   const sidebarOptions = [
     {
-      title: "Dashboard",
+      title: "Admin",
       subMenu: false,
-      path: "/dashboard",
+      path: "/admin",
       show:
         loggedInUserData.role === "0" ||
         loggedInUserData.role === "1" ||
         loggedInUserData.role === "2",
     },
+    
     {
       title: "Clients",
       subMenu: false,
@@ -51,135 +52,7 @@ const SideBar = () => {
       show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
     },
 
-
-///  Admin PANEL ///
-    {
-      title: "Admin",
-      subMenu: false,
-      path:  "/users",
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
-    },
-
-    {
-      title: "Manage Listing",
-      subMenu: true,
-      subMenuArray: [
-          { 
-            title: "Categories",
-           path: "/Files & Folders" 
-          },
-          {
-            title: "Services",
-            path: "/servicePlan/view-health-insurance"
-          },
-          { 
-            title: "Services Provides",
-            path: "/servicePlan/view-bike-insurance" 
-          },
-          {
-            title: "Products",
-            path: "/dashboard"
-          },
-          {
-            title: "Customized Plans",
-            path: "/servicePlan/view-whole-life-insurance",
-          },
-          { 
-            title: "Company Plans",
-            path: "/servicePlan/view-home-loan" 
-          },
-          {
-            title: "Sales, Income & Expenses",
-            path: "/servicePlan/view-vehicle-loan",
-          },
-       
-          
-      ],
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
-    },
-
-    {
-      title: " Reports & Graphs",
-      subMenu: true,
-      subMenuArray: [
-          { 
-            title: "Customers added as per products (NFC cards, pdf, cards, etc)",
-           path: "/Files & Folders" 
-          },
-          {
-            title: "Products sold as per category and products",
-            path: "/servicePlan/view-health-insurance"
-          },
-          { 
-            title: "Income generated as per different categories",
-            path: "/servicePlan/view-bike-insurance" 
-          },
-          {
-            title: "customer engagement to blogs & testimonials",
-            path: "/dashboard"
-          },
-          {
-            title: "feedback and complaints", 
-            path: "/servicePlan/view-whole-life-insurance",
-          },
-          {
-            title: "Payment generated from products sales of customers",
-            path: "/servicePlan/view-whole-life-insurance",
-          },  {
-            title: "Payment made to customers",
-            path: "/servicePlan/view-whole-life-insurance",
-          },
-        
-       
-        
-       
-          
-      ],
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
-    },
-
-    {
-      title: "Compliance Documents",
-      subMenu: true,
-      subMenuArray: [
-          { 
-            title: "Contact Us",
-           path: "/Files & Folders" 
-          }       
-          
-      ],
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
-    },
-
-    
-    {
-      title: "Subscribers",
-      subMenu: true,
-      subMenuArray: [
-          { 
-            title: "New Added",
-           path: "/Files & Folders" 
-          },
-          {
-            title: "Renewal Arriving",
-            path: "/servicePlan/view-health-insurance"
-          },
-          { 
-            title: "Renewal Due Passed",
-            path: "/servicePlan/view-bike-insurance" 
-          },
-          {
-            title: "Lapsed",
-            path: "/dashboard"
-          },
-          
-          
-      ],
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
-    },
-
-    
-    /// CONSULTANT PANEL ///
+/// CONSULTANT PANEL ///
 
     {
       title: "Company Profile",
@@ -198,34 +71,34 @@ const SideBar = () => {
               },
               {
                 title: "Loans",
-                path: "/dashboard"
+                path: "/admin"
               },
               {
                 title: "Health Insurance ",
-                path: "/dashboard"
+                path: "/admin"
               },
               {
                 title: "Motor Insurance",
-                path: "/dashboard"
+                path: "/admin"
               },
               {
                 title: "Fixed Deposit ",
-                path: "/dashboard"
+                path: "/admin"
               },
               {
                 title: "Stocks",
-                path: "/dashboard"
+                path: "/admin"
               },
               {
                 title: "Property",
-                path: "/dashboard"
+                path: "/admin"
               },
               {
                 title: "Govt. Insurance",
-                path: "/dashboard"
+                path: "/admin"
               }
           ],
-        show: loggedInUserData.role === "1",
+        show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
       },
       {
         title: "Plans",
@@ -245,7 +118,7 @@ const SideBar = () => {
             },
             {
               title: "Motor Insurance",
-              path: "/dashboard"
+              path: "/admin"
             },
             {
               title: "Whole Life Insurance",
@@ -261,19 +134,19 @@ const SideBar = () => {
             },
             {
               title: "Govt. Insurance",
-              path: "/dashboard"
+              path: "/admin"
             },
             {
               title: "Fixed Deposit ",
-              path: "/dashboard"
+              path: "/admin"
             },
             {
               title: "Stocks",
-              path: "/dashboard"
+              path: "/admin"
             },
             {
               title: "Property",
-              path: "/dashboard"
+              path: "/admin"
             },
         ],
         show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
@@ -291,164 +164,37 @@ const SideBar = () => {
         show: loggedInUserData.role === "1" ,
       },
     {
-      title: "Clients Details",
-      subMenu: false,
-      path: "/users",
-      show: loggedInUserData.role === "1",
-    },
-    {
-      title: "Purchase / Renewal / Invoices",
-      subMenu: true,
-      subMenuArray: [
-        { title: "Purchase", path: "user/purchase" },
-        {
-          title: "Renewal ",
-          path: "purchase/renewal",
-        },
-        {
-          title: "Invoices",
-          path: "purchase/invoices",
-        },
-      ],
-      show: loggedInUserData.role === "1",
-    },
-    {
-      title: "Files / Folder Management",
-      subMenu: false,
-      path: "/consultant-filesManagement",
-      show: loggedInUserData.role === "1",
-    },
-    {
-      title: "Calculator Funds / Interest",
-      subMenu: false,
-      path: "/calculatorFunds",
-      show: loggedInUserData.role === "1",
-    },
-
-    {
-      title: "Schedule Management",
-      subMenu: false,
-      path: "user/scheduleManagement",
-      show: loggedInUserData.role === "1",
-    },
-    {
-      title: "Quotation / Invoices management",
-      subMenu: false,
-      path: "/consultant/quotation-invoice-management",
-      show: loggedInUserData.role === "1",
-    },
-    {
-      title: "Investments / Valuation / Portfolio",
-      subMenu: true,
-      subMenuArray: [
-        { title: "MutualFund LumSum", path: "/consultant/portfolio/Mutual Fund Lum Sum" },
-        { title: "MutualFund SIP", path: "/consultant/portfolio/Mutual Fund SIP" },
-        { title: "Shares", path: "/consultant/portfolio/Shares" },
-        { title: "Life Insurance", path: "/consultant/portfolio/Life Insurance"},
-        { title: "Health Insurance", path: "/consultant/portfolio/Health Insurance" },
-        { title: "Loans", path: "/consultant/portfolio/Loans" },
- 
-      ],
-      show: loggedInUserData.role === "1",
-    },
-    {
-      title: "Customer Review / Feedback",
+      title: "Customer Feedbacks",
       subMenu: false,
       path: "/consultant/feedbacks",
-      show: loggedInUserData.role === "1",
-    },
-    {
-      title: "Complaint / Services Request",
-      subMenu: false,
-      path: "consultant/serviceRequest",
-      show: loggedInUserData.role === "1",
-    },
-    {
-      title: "Contact Management",
-      subMenu: false,
-      path: "/consultant/contactManagement",
-      show: loggedInUserData.role === "1" ,
-    },
-
-    {
-      title: "Analytics & Reports",
-      subMenu: false,
-      path: "/",
       show: loggedInUserData.role === "1" ,
     },
     {
-      title: "Task Management",
+      title: "Customer Documents",
       subMenu: false,
-      path: "/consultant/taskManagement",
-      show: loggedInUserData.role === "1" ,
-    },
-    {
-      title: "Income & Expense Management",
-      subMenu: false,
-      path: "/consultant/incomeAndExpense/year",
+      path: "/clientFiles",
       show: loggedInUserData.role === "1" ,
     },
 
-    {
-      title: "Notifications / Circulars ",
-      subMenu: false,
-      path: "/consultant/notifications-circulars",
-      show: loggedInUserData.role === "1",
-    },
 
-    {
-      title: "Announcements",
-      subMenu: false,
-      path: "/consultant/announcements",
-      show: loggedInUserData.role === "1",
-    },
-
-    {
-      title: "Blogs / Articles",
-      subMenu: false,
-      path: "/consultant/blogs",
-      show: loggedInUserData.role === "1",
-    },
-
-    {
-      title: "SMS / Email",
-      subMenu: false,
-      path: "/sms-email",
-      show: loggedInUserData.role === "1",
-    },
-    {
-      title: "Enquiry / Leads Management",
-      subMenu: false,
-      path: "/",
-      show: loggedInUserData.role === "1",
-    },
-    {
-      title: "CRM",
-      subMenu: false,
-      path: "/consultant/crm",
-      show: loggedInUserData.role === "1",
-    },
-
-
-
-    /// CUSTOMER PANEL ///
+/// CUSTOMER PANEL ///
     {
       title: "Your Profile / Family Profile",
       subMenu: false,
       path: "/profile",
-      show: loggedInUserData.role === "2",
+      show: loggedInUserData.role === "2" ,
     },
-
+ 
     {
       title: "Policies / Plans / Brochures",
       subMenu: false,
-      path: "/user/policies",
+      path:"/user/policies",
       show: loggedInUserData.role === "2",
     },
     {
       title: "Customised Forms",
       subMenu: false,
-      path: "/user/customised-forms",
+      path: "/user/services",
       show: loggedInUserData.role === "2",
     },
     {
@@ -470,66 +216,55 @@ const SideBar = () => {
     {
       title: "Files / Folder Management",
       subMenu: false,
-      path: "/clientFiles",
+      path:"/clientFiles",
       show: loggedInUserData.role === "2",
     },
     {
       title: "Calculator Funds / Interest",
       subMenu: false,
       path: "/calculatorFunds",
-      show: loggedInUserData.role === "2",
+      show: loggedInUserData.role === "2" ,
     },
-    
     {
       title: "Investments / Valuation / Portfolio",
-      subMenu: true,
-      subMenuArray: [
-        { title: "MutualFund LumSum", path: "/user/portfolio/Mutual Fund Lum Sum" },
-        { title: "MutualFund SIP", path: "/user/portfolio/Mutual Fund SIP" },
-        { title: "Shares", path: "/user/portfolio/Shares" },
-        { title: "Life Insurance", path: "/user/portfolio/Life Insurance"},
-        { title: "Health Insurance", path: "/user/portfolio/Health Insurance" },
-        { title: "Loans", path: "/user/portfolio/Loans" },
- 
-      ],
-      path: "/user/investment",
-      show: loggedInUserData.role === "2",
+      subMenu: false,
+      path: "/calculatorFunds",
+      show: loggedInUserData.role === "2" ,
     },
 
     {
       title: "Schedule Management",
       subMenu: false,
       path: "user/scheduleManagement",
-      show: loggedInUserData.role === "2",
+      show: loggedInUserData.role === "2"  ,
     },
-   
     {
       title: "Notifications / Circulars ",
       subMenu: false,
-      path: "/user/notifications-circulars",
-      show: loggedInUserData.role === "2",
+      path: "/",
+      show: loggedInUserData.role === "2" ,
     },
-
     {
       title: "Announcements",
       subMenu: false,
-      path: "/user/announcements",
-      show: loggedInUserData.role === "2",
+      path: "/",
+      show: loggedInUserData.role === "2" ,
     },
-
     {
       title: "Blogs / Articles",
       subMenu: false,
-      path: "/user/blogs",
+      path: "/",
       show: loggedInUserData.role === "2",
     },
+
 
     {
       title: "Services Request",
       subMenu: false,
       path: "user/complaint",
-      show: loggedInUserData.role === "2",
+      show: loggedInUserData.role === "2" ,
     },
+
   ];
   // ----------------------------------------------------------------------------------------------------------
 
@@ -618,7 +353,9 @@ const SideBar = () => {
                   .filter((el) => el.show === true)
                   .map((option, index) => {
                     return option?.subMenu ? (
-                      <li key={index} className="px-3 dropdown relative">
+                      <li 
+                      key={index}
+                      className="px-3 dropdown relative">
                         <div
                           onClick={() => {
                             toggleDropdown(index);
@@ -667,7 +404,9 @@ const SideBar = () => {
                         )}
                       </li>
                     ) : (
-                      <li key={index} className="px-3">
+                      <li 
+                      key={index}
+                      className="px-3">
                         <Link
                           to={`${option?.path}`}
                           className="flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-red-500 aria-[current=page]:bg-emerald-500 aria-[current=page]:text-emerald-500 "
@@ -717,4 +456,4 @@ const SideBar = () => {
   );
 };
 
-export default SideBar;
+export default Sidebar;

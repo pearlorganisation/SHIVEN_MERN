@@ -51,6 +51,7 @@ import CarPremium from "./components/insurance/MotorInsurance/CarInsurance/CarPr
 import CarInsuranceDetails from "./components/insurance/MotorInsurance/CarInsurance/CarInsuranceDetails";
 import MotorEnquiry from "./components/insurance/MotorInsurance/MotorEnquiry";
 import MutualfundDetails from "./components/MutualFund/MutualfundProvider/MutualfundDetails";
+import Sidebar from "./pages/Admin/Sidebar";
 
 
 // -------------------------------------------------------------------------------------------------------------
@@ -131,6 +132,9 @@ function App() {
           <Route path="motorenquiry" element={<MotorEnquiry />} />
 
           {/* Routes defined by shashank */}
+          <Route path="/admin" element={<Sidebar/>} />
+
+
 
           {/* Protected Routes */}
 

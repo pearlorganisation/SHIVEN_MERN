@@ -61,8 +61,15 @@ import CustomisedFormList from "../components/CustomisedForm/consultant/Customis
 import AddCustomisedForm from "../components/CustomisedForm/consultant/AddCustomisedForm";
 import UpdateCustomisedForm from "../components/CustomisedForm/consultant/UpdateCustomisedForm";
 import CustomisedForms from "../components/CustomisedForm/CustomisedForm";
+<<<<<<< HEAD
 import SmsEmail from "../components/SmsEmail/SmsEmail";
 import ComposeEmail from "../components/SmsEmail/ComposeEmail";
+=======
+import ViewPortfolio from "../pages/Service/user/portfolio/ViewPortfolio";
+import ViewAllPortfolio from "../pages/Service/consultant/portfolio/ViewAllPortfolio";
+import YearIncomeExpense from "../pages/Service/consultant/incomeAndExpense/YearIncomeExpense";
+import MonthIncomeExpense from "../pages/Service/consultant/incomeAndExpense/MonthIncomeExpense";
+>>>>>>> dd0bf5cd55bc05de1048727a12055a1e9afb94e7
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -410,6 +417,12 @@ export const routes = [
     path: "/user/customised-forms",
   },
 
+  {
+    title: "Investment / Valuation / Portfolio",
+    component: ViewPortfolio,
+    path: "/user/portfolio/:name",
+  },
+
   /// Consultant Routes ///
 
   {
@@ -528,7 +541,6 @@ export const routes = [
     path: "/consultant/taskManagement/addTask",
   },
 
-
   {
     title: "Customised Form",
     component: CustomisedFormList,
@@ -570,6 +582,23 @@ export const routes = [
     component: ComposeEmail,
     path: "/sms-email/add",
   },
+  {
+    title: "Investment / Valuation / Portfolio",
+    component: ViewAllPortfolio,
+    path: "/consultant/portfolio/:name",
+  },
+  {
+    title: "Income / Expense",
+    component: YearIncomeExpense,
+    path: "/consultant/incomeAndExpense/year",
+  },
+  {
+    title: "Income / Expense",
+    component: MonthIncomeExpense,
+    path: "/consultant/incomeAndExpense/year/month",
+  },
+
+
   //not found
 
   {

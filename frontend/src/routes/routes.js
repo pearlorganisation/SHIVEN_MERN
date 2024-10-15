@@ -45,6 +45,21 @@ const UpdateUser = lazy(() => {
   return import("../pages/auth/User/UpdateUser");
 });
 
+const plans = lazy(() => {
+  return import("../components/Dashboard/Plans");
+});
+
+//consultant
+const Consultant = lazy(() => {
+  return import("../pages/Admin/Consultant");
+});
+// const CreateConsultant = lazy(() => {
+//   return import("../pages/auth/Consultant/CreateConsultant");
+// });
+// const UpdateConsultant = lazy(() => {
+//   return import("../pages/auth/Consultant/UpdateConsultant");
+// });
+
 const Plans = lazy(() => {
   return import("../components/Dashboard/Plans");
 });
@@ -106,6 +121,12 @@ export const routes = [
     path: "/users",
   },
 
+  {
+    title: "Consultant",
+    component: Consultant,
+
+    path: "/consultant",
+  },
   {
     title: "Create User",
     component: CreateUser,

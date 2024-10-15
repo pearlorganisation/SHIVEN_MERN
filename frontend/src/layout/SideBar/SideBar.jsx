@@ -44,140 +44,207 @@ const SideBar = () => {
         loggedInUserData.role === "1" ||
         loggedInUserData.role === "2",
     },
-    
-    {
-      title: "Clients",
-      subMenu: false,
-      path:  "/users",
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
-    },
-
-
-///  Admin PANEL ///
-    {
-      title: "Admin",
-      subMenu: false,
-      path:  "/users",
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
-    },
+    // {
+    //   title: "Clients",
+    //   subMenu: false,
+    //   path:  "/users",
+    //   show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+    // },
 
     {
       title: "Manage Listing",
-      subMenu: true,
-      subMenuArray: [
-          { 
-            title: "Categories",
-           path: "/Files & Folders" 
-          },
-          {
-            title: "Services",
-            path: "/servicePlan/view-health-insurance"
-          },
-          { 
-            title: "Services Provides",
-            path: "/servicePlan/view-bike-insurance" 
-          },
-          {
-            title: "Products",
-            path: "/dashboard"
-          },
-          {
-            title: "Customized Plans",
-            path: "/servicePlan/view-whole-life-insurance",
-          },
-          { 
-            title: "Company Plans",
-            path: "/servicePlan/view-home-loan" 
-          },
-          {
-            title: "Sales, Income & Expenses",
-            path: "/servicePlan/view-vehicle-loan",
-          },
-       
-          
-      ],
+      subMenu: false,
+      path:  "/users",
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+    },
+
+ 
+    {
+      title: "Files & Folders",
+      subMenu: false,
+      path:  "/users",
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+    },
+    
+    {
+      title: "Staff Management",
+      subMenu: false,
+      path:  "/users",
       show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
     },
 
     {
-      title: " Reports & Graphs",
-      subMenu: true,
-      subMenuArray: [
-          { 
-            title: "Customers added as per products (NFC cards, pdf, cards, etc)",
-           path: "/Files & Folders" 
-          },
-          {
-            title: "Products sold as per category and products",
-            path: "/servicePlan/view-health-insurance"
-          },
-          { 
-            title: "Income generated as per different categories",
-            path: "/servicePlan/view-bike-insurance" 
-          },
-          {
-            title: "customer engagement to blogs & testimonials",
-            path: "/dashboard"
-          },
-          {
-            title: "feedback and complaints", 
-            path: "/servicePlan/view-whole-life-insurance",
-          },
-          {
-            title: "Payment generated from products sales of customers",
-            path: "/servicePlan/view-whole-life-insurance",
-          },  {
-            title: "Payment made to customers",
-            path: "/servicePlan/view-whole-life-insurance",
-          },
-        
-       
-        
-       
-          
-      ],
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
-    },
-
-    {
-      title: "Compliance Documents",
-      subMenu: true,
-      subMenuArray: [
-          { 
-            title: "Contact Us",
-           path: "/Files & Folders" 
-          }       
-          
-      ],
+      title: "Customer Profile Management",
+      subMenu: false,
+      path:  "/users",
       show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
     },
 
     
+
+///  Admin PANEL ///
+    // {
+    //   title: "Admin",
+    //   subMenu: false,
+    //   path:  "/users",
+    //   show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+    // },
+   
     {
-      title: "Subscribers",
-      subMenu: true,
-      subMenuArray: [
-          { 
-            title: "New Added",
-           path: "/Files & Folders" 
-          },
-          {
-            title: "Renewal Arriving",
-            path: "/servicePlan/view-health-insurance"
-          },
-          { 
-            title: "Renewal Due Passed",
-            path: "/servicePlan/view-bike-insurance" 
-          },
-          {
-            title: "Lapsed",
-            path: "/dashboard"
-          },
-          
-          
-      ],
+      title: "Consultant Management",
+      subMenu: false,
+      path:  "/consultant",
       show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
     },
+
+
+{
+      title: "Payment Gateway Integration",
+      subMenu: false,
+      path:  "/users",
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+    },
+
+    {
+      title: "Space Management",
+      subMenu: false,
+      path:  "/users",
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+    },
+    {
+      title: "Sales, Income & Expenses",
+      subMenu: false,
+      path:  "/users",
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+    },{
+      title: "Social Media Integration",
+      subMenu: false,
+      path:  "/users",
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+    },
+    {
+      title: "Contact Developer",
+      subMenu: false,
+      path:  "/users",
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+    },  {
+      title: "Contact Developer",
+      subMenu: false,
+      path:  "/users",
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+    },
+    {
+      title: "Feedback",
+      subMenu: false,
+      path:  "/users",
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+    },
+
+    {
+      title: "SMS / WhatsApp Integration",
+      subMenu: false,
+      path:  "/users",
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+    },
+    {
+      title: "Blogs, Testimonials",
+      subMenu: false,
+      path:  "/users",
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+    },
+   
+    {
+      title: " Compliance Documents",
+      subMenu: false,
+      path:  "/users",
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+    },
+
+    {
+      title: " Contact Us",
+      subMenu: false,
+      path:  "/users",
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+    },
+    // {
+    //   title: " Reports & Graphs",
+    //   subMenu: true,
+    //   subMenuArray: [
+    //       { 
+    //         title: "Customers added as per products (NFC cards, pdf, cards, etc)",
+    //        path: "/Files & Folders" 
+    //       },
+    //       {
+    //         title: "Products sold as per category and products",
+    //         path: "/servicePlan/view-health-insurance"
+    //       },
+    //       { 
+    //         title: "Income generated as per different categories",
+    //         path: "/servicePlan/view-bike-insurance" 
+    //       },
+    //       {
+    //         title: "customer engagement to blogs & testimonials",
+    //         path: "/dashboard"
+    //       },
+    //       {
+    //         title: "feedback and complaints", 
+    //         path: "/servicePlan/view-whole-life-insurance",
+    //       },
+    //       {
+    //         title: "Payment generated from products sales of customers",
+    //         path: "/servicePlan/view-whole-life-insurance",
+    //       },  {
+    //         title: "Payment made to customers",
+    //         path: "/servicePlan/view-whole-life-insurance",
+    //       },
+        
+       
+        
+       
+          
+    //   ],
+    //   show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+    // },
+
+    // {
+    //   title: "Compliance Documents",
+    //   subMenu: true,
+    //   subMenuArray: [
+    //       { 
+    //         title: "Contact Us",
+    //        path: "/Files & Folders" 
+    //       }       
+          
+    //   ],
+    //   show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+    // },
+
+    
+    // {
+    //   title: "Subscribers",
+    //   subMenu: true,
+    //   subMenuArray: [
+    //       { 
+    //         title: "New Added",
+    //        path: "/Files & Folders" 
+    //       },
+    //       {
+    //         title: "Renewal Arriving",
+    //         path: "/servicePlan/view-health-insurance"
+    //       },
+    //       { 
+    //         title: "Renewal Due Passed",
+    //         path: "/servicePlan/view-bike-insurance" 
+    //       },
+    //       {
+    //         title: "Lapsed",
+    //         path: "/dashboard"
+    //       },
+          
+          
+    //   ],
+    //   show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+    // },
 
     
     /// CONSULTANT PANEL ///
@@ -228,57 +295,57 @@ const SideBar = () => {
           ],
         show: loggedInUserData.role === "1",
       },
-      {
-        title: "Plans",
-        subMenu: true,
-        subMenuArray: [
-            { 
-              title: "Mutual Fund",
-             path: "/servicePlan/view-mutual-fund" 
-            },
-            {
-              title: "Health Insurance ",
-              path: "/servicePlan/view-health-insurance"
-            },
-            { 
-              title: "Bike Insurance",
-              path: "/servicePlan/view-bike-insurance" 
-            },
-            {
-              title: "Motor Insurance",
-              path: "/dashboard"
-            },
-            {
-              title: "Whole Life Insurance",
-              path: "/servicePlan/view-whole-life-insurance",
-            },
-            { 
-              title: "Home Loan",
-              path: "/servicePlan/view-home-loan" 
-            },
-            {
-              title: "Vehicle Loan",
-              path: "/servicePlan/view-vehicle-loan",
-            },
-            {
-              title: "Govt. Insurance",
-              path: "/dashboard"
-            },
-            {
-              title: "Fixed Deposit ",
-              path: "/dashboard"
-            },
-            {
-              title: "Stocks",
-              path: "/dashboard"
-            },
-            {
-              title: "Property",
-              path: "/dashboard"
-            },
-        ],
-        show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
-      },
+      // {
+      //   title: "Plans",
+      //   subMenu: true,
+      //   subMenuArray: [
+      //       { 
+      //         title: "Mutual Fund",
+      //        path: "/servicePlan/view-mutual-fund" 
+      //       },
+      //       {
+      //         title: "Health Insurance ",
+      //         path: "/servicePlan/view-health-insurance"
+      //       },
+      //       { 
+      //         title: "Bike Insurance",
+      //         path: "/servicePlan/view-bike-insurance" 
+      //       },
+      //       {
+      //         title: "Motor Insurance",
+      //         path: "/dashboard"
+      //       },
+      //       {
+      //         title: "Whole Life Insurance",
+      //         path: "/servicePlan/view-whole-life-insurance",
+      //       },
+      //       { 
+      //         title: "Home Loan",
+      //         path: "/servicePlan/view-home-loan" 
+      //       },
+      //       {
+      //         title: "Vehicle Loan",
+      //         path: "/servicePlan/view-vehicle-loan",
+      //       },
+      //       {
+      //         title: "Govt. Insurance",
+      //         path: "/dashboard"
+      //       },
+      //       {
+      //         title: "Fixed Deposit ",
+      //         path: "/dashboard"
+      //       },
+      //       {
+      //         title: "Stocks",
+      //         path: "/dashboard"
+      //       },
+      //       {
+      //         title: "Property",
+      //         path: "/dashboard"
+      //       },
+      //   ],
+      //   show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
+      // },
       {
         title: "Services",
         subMenu: false,

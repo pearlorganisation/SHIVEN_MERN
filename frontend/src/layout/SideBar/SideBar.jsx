@@ -98,12 +98,12 @@ const SideBar = () => {
     },
 
 
-{
-      title: "Payment Gateway Integration",
-      subMenu: false,
-      path:  "/users",
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
-    },
+// {
+//       title: "Payment Gateway Integration",
+//       subMenu: false,
+//       path:  "/payment-gateway",
+//       show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+//     },
 
     {
       title: "Space Management",
@@ -114,9 +114,10 @@ const SideBar = () => {
     {
       title: "Sales, Income & Expenses",
       subMenu: false,
-      path:  "/users",
+      path:  "/sales-income-expenses",
       show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
-    },{
+    },
+    {
       title: "Social Media Integration",
       subMenu: false,
       path:  "/users",
@@ -125,45 +126,40 @@ const SideBar = () => {
     {
       title: "Contact Developer",
       subMenu: false,
-      path:  "/users",
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
-    },  {
-      title: "Contact Developer",
-      subMenu: false,
-      path:  "/users",
+      path:  "/contact-developer",
       show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
     },
     {
       title: "Feedback",
       subMenu: false,
-      path:  "/users",
+      path:  "/feedback",
       show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
     },
 
     {
       title: "SMS / WhatsApp Integration",
       subMenu: false,
-      path:  "/users",
+      path:  "/sms-whatsapp",
       show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
     },
     {
       title: "Blogs, Testimonials",
       subMenu: false,
-      path:  "/users",
+      path:  "/blogs-testimonials",
       show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
     },
    
     {
       title: " Compliance Documents",
       subMenu: false,
-      path:  "/users",
+      path:  "/compliance-documents",
       show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
     },
 
     {
       title: " Contact Us",
       subMenu: false,
-      path:  "/users",
+      path:  "/contact-us",
       show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
     },
     // {

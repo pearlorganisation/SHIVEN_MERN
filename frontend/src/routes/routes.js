@@ -27,8 +27,7 @@ import ViewVehicleLoan from "../pages/ServicePlans/vehicleLoan/ViewVehicleLoan";
 import VehicleLoan from "../pages/ServicePlans/vehicleLoan/VehicleLoan";
 import { components } from "react-select";
 import SideBar from "../layout/SideBar/SideBar";
-
-
+import NotFound from "../components/NotFound";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -42,7 +41,6 @@ const CalculatorFunds = lazy(() => {
 const User = lazy(() => {
   return import("../pages/auth/User/User");
 });
-
 
 const CreateUser = lazy(() => {
   return import("../pages/auth/User/CreateUser");
@@ -60,10 +58,9 @@ const ProposalForm = lazy(() => {
 });
 //consultant
 
-const Consultant = lazy(() => {
-  return import("../pages/Admin/Consultant");
-});
-
+// const Consultant = lazy(() => {
+//   return import("../pages/Admin/Consultant");
+// });
 
 const SpaceManagment = lazy(() => {
   return import("../pages/Admin/SpaceManagement");
@@ -80,11 +77,9 @@ const MutualFunds = lazy(() => {
   return import("../pages/ServicePlans/mutualFund/MutualFund");
 });
 
-
 const BikeInsurance = lazy(() => {
   return import("../pages/ServicePlans/bikeInsurance/BikeInsurance");
 });
-
 
 const ViewServiceProviders = lazy(() => {
   return import("../pages/Service/admin/ViewServiceProviders");
@@ -111,14 +106,20 @@ const CreateInsuranceServiceProvider = lazy(() => {
 
 export const routes = [
   {
+    title: "Not Found",
+    component: NotFound,
+    path: "*",
+  },
+  {
     title: "Dashboard",
     component: Dashboard,
     path: "/dashboard",
   },
+  
   {
     title: "Users",
     component: User,
-    path: "/users",
+    path: "/consultant",
   },
 
   {
@@ -184,7 +185,7 @@ export const routes = [
   //   component: ViewServiceProviders,
   //   path: "/serviceProvider",
   // },
-  
+
   {
     title: "Create Service Provider",
     component: CreateServiceProvider,
@@ -325,11 +326,11 @@ export const routes = [
   },
 
   /// Consultant Routes ///
-  {
-    title: "Consultant",
-    component: Consultant,
-    path: "/consultant",
-  },
+  // {
+  //   title: "Consultant",
+  //   component: Consultant,
+  //   path: "/consultant",
+  // },
   {
     title: "Customer Feedbacks",
     component: CustomerFeedback,
@@ -345,14 +346,10 @@ export const routes = [
     component: CompanyProfile,
     path: "/companyProfile",
   },
-  {title:"admin",
-    component:SideBar,
-    path:"/admin"
-  },{
+  { title: "admin", component: SideBar, path: "/admin" },
+  {
     title: "Space Managment",
     component: SpaceManagment,
-    path: "/spacemanagment" // Note the spelling: "Managment" instead of "Management"
-  }
+    path: "/spacemanagment", // Note the spelling: "Managment" instead of "Management"
+  },
 ];
-
-

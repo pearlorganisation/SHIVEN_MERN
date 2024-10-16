@@ -119,7 +119,7 @@ export const routes = [
   {
     title: "Users",
     component: User,
-    path: "/consultant",
+    path: "/consultant-management",
   },
 
   {

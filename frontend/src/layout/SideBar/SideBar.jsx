@@ -108,7 +108,7 @@ const SideBar = () => {
     {
       title: "Space Management",
       subMenu: false,
-      path:  "/users",
+      path:  "/spacemanagment",
       show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
     },
     {

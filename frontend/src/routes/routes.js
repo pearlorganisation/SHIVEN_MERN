@@ -25,6 +25,10 @@ import HomeLoan from "../pages/ServicePlans/homeLoan/HomeLoan";
 import CompanyProfile from "../components/CompanyProfile/CompanyProfile";
 import ViewVehicleLoan from "../pages/ServicePlans/vehicleLoan/ViewVehicleLoan";
 import VehicleLoan from "../pages/ServicePlans/vehicleLoan/VehicleLoan";
+import { components } from "react-select";
+import SideBar from "../layout/SideBar/SideBar";
+
+
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -38,27 +42,14 @@ const CalculatorFunds = lazy(() => {
 const User = lazy(() => {
   return import("../pages/auth/User/User");
 });
+
+
 const CreateUser = lazy(() => {
   return import("../pages/auth/User/CreateUser");
 });
 const UpdateUser = lazy(() => {
   return import("../pages/auth/User/UpdateUser");
 });
-
-const plans = lazy(() => {
-  return import("../components/Dashboard/Plans");
-});
-
-//consultant
-const Consultant = lazy(() => {
-  return import("../pages/Admin/Consultant");
-});
-// const CreateConsultant = lazy(() => {
-//   return import("../pages/auth/Consultant/CreateConsultant");
-// });
-// const UpdateConsultant = lazy(() => {
-//   return import("../pages/auth/Consultant/UpdateConsultant");
-// });
 
 const Plans = lazy(() => {
   return import("../components/Dashboard/Plans");
@@ -67,14 +58,23 @@ const Plans = lazy(() => {
 const ProposalForm = lazy(() => {
   return import("../components/Dashboard/ProposalForm");
 });
+//consultant
 
+const Consultant = lazy(() => {
+  return import("../pages/Admin/Consultant");
+});
+
+
+const SpaceManagment = lazy(() => {
+  return import("../pages/Admin/SpaceManagement");
+});
 // Service
-const ViewServices = lazy(() => {
-  return import("../pages/Service/admin/ViewServices");
-});
-const CreateService = lazy(() => {
-  return import("../pages/Service/admin/CreateService");
-});
+// const ViewServices = lazy(() => {
+//   return import("../pages/Service/admin/ViewServices");
+// });
+// const CreateService = lazy(() => {
+//   return import("../pages/Service/admin/CreateService");
+// });
 
 const MutualFunds = lazy(() => {
   return import("../pages/ServicePlans/mutualFund/MutualFund");
@@ -122,12 +122,6 @@ export const routes = [
   },
 
   {
-    title: "Consultant",
-    component: Consultant,
-
-    path: "/consultant",
-  },
-  {
     title: "Create User",
     component: CreateUser,
     path: "/users/create-user",
@@ -174,22 +168,23 @@ export const routes = [
     component: CreateInsuranceServiceProvider,
     path: "/insurances/insurance-service-providers/create-insurance-service-provider",
   },
-  //  Service
-  {
-    title: " Service ",
-    component: ViewServices,
-    path: "/service",
-  },
-  {
-    title: "Create Service",
-    component: CreateService,
-    path: "/service/addService",
-  },
-  {
-    title: " Service Provider ",
-    component: ViewServiceProviders,
-    path: "/serviceProvider",
-  },
+  // //  Service
+  // {
+  //   title: " Service ",
+  //   component: ViewServices,
+  //   path: "/service",
+  // },
+  // {
+  //   title: "Create Service",
+  //   component: CreateService,
+  //   path: "/service/addService",
+  // },
+  // {
+  //   title: " Service Provider ",
+  //   component: ViewServiceProviders,
+  //   path: "/serviceProvider",
+  // },
+  
   {
     title: "Create Service Provider",
     component: CreateServiceProvider,
@@ -331,6 +326,11 @@ export const routes = [
 
   /// Consultant Routes ///
   {
+    title: "Consultant",
+    component: Consultant,
+    path: "/consultant",
+  },
+  {
     title: "Customer Feedbacks",
     component: CustomerFeedback,
     path: "/consultant/feedbacks",
@@ -345,4 +345,14 @@ export const routes = [
     component: CompanyProfile,
     path: "/companyProfile",
   },
+  {title:"admin",
+    component:SideBar,
+    path:"/admin"
+  },{
+    title: "Space Managment",
+    component: SpaceManagment,
+    path: "/spacemanagment" // Note the spelling: "Managment" instead of "Management"
+  }
 ];
+
+

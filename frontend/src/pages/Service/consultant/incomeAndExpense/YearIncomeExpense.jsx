@@ -52,7 +52,7 @@ const YearIncomeExpense = () => {
         <button
             className=" p-2 rounded-lg bg-indigo-600 text-white font-bold tracking-widest"
             onClick={() => {
-              navigate("/");
+              navigate("/consultant/incomeAndExpense/add");
             }}
           >
             Add Daily Expense and Income
@@ -67,6 +67,7 @@ const YearIncomeExpense = () => {
               <th className="py-3 px-6">Month and Year</th>
               <th className="py-3 px-6">Expense</th>
               <th className="py-3 px-6">Income</th>
+              <th className="py-3 px-6">Profit / Loss</th>
               <th className="py-3 px-6">Actions</th>
             </tr>
           </thead>
@@ -98,6 +99,9 @@ const YearIncomeExpense = () => {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap ">
                    ₹  {item.income}
+                  </td>
+                  <td className="px-6 py-4 text-green-700 font-bold whitespace-nowrap ">
+                   ₹  {item.income - item.expense}
                   </td>
     
 

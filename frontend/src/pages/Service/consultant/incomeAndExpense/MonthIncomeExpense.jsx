@@ -11,24 +11,24 @@ const MonthIncomeExpense = () => {
   const servicePlanData= [
     {
     year : "28 October , 2024",
-    expense : 5000,
-    income: 15000
+    expense : 100,
+    income: 1000
   },
     {
     year : "27 October, 2024",
-    expense : 5000,
-    income: 15000
+    expense : 200,
+    income: 2000
   },
 
   {
   year : "26 October, 2024",
-  expense : 10000,
-  income: 50000
+  expense : 1000,
+  income: 5000
 },
   {
   year : "25 October, 2024",
-  expense :6000,
-  income: 40000
+  expense :50,
+  income: 2500
 },
 
 ]
@@ -60,6 +60,7 @@ const MonthIncomeExpense = () => {
               <th className="py-3 px-6">Date</th>
               <th className="py-3 px-6">Expense</th>
               <th className="py-3 px-6">Income</th>
+              <th className="py-3 px-6">Profit / Loss</th>
               <th className="py-3 px-6">Actions</th>
             </tr>
           </thead>
@@ -92,7 +93,9 @@ const MonthIncomeExpense = () => {
                   <td className="px-6 py-4 whitespace-nowrap ">
                    ₹  {item.income}
                   </td>
-    
+                  <td className="px-6 py-4 text-green-700 font-bold whitespace-nowrap ">
+                   ₹  {item.income - item.expense}
+                  </td>
 
                   <td className=" whitespace-nowrap">
 

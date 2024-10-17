@@ -127,11 +127,6 @@ const SideBar = () => {
       subMenu: false,
       path:  "/users",
       show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
-    },  {
-      title: "Contact Developer",
-      subMenu: false,
-      path:  "/users",
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
     },
     {
       title: "Feedback",
@@ -163,7 +158,7 @@ const SideBar = () => {
     {
       title: " Contact Us",
       subMenu: false,
-      path:  "/users",
+      path:  "/contact-us",
       show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
     },
     // {

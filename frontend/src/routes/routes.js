@@ -28,6 +28,7 @@ import VehicleLoan from "../pages/ServicePlans/vehicleLoan/VehicleLoan";
 import { components } from "react-select";
 import SideBar from "../layout/SideBar/SideBar";
 import NotFound from "../components/NotFound";
+import ContactUs from "../components/ContactUs/ContactUs";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -132,6 +133,12 @@ export const routes = [
     title: "Update User",
     component: UpdateUser,
     path: "/users/update-user",
+  },
+
+  {
+    title: "Contact-Us",
+    component: ContactUs,
+    path: "/contact-us",
   },
 
   {

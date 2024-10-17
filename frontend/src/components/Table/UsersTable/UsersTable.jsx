@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { reverseRoleChecker } from "../../../utils";
 import { CiEdit } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
+import { MdDeleteForever } from "react-icons/md";
 // -----------------------------------------------------------------------------------------------------
 
 const UsersTable = () => {
@@ -22,6 +23,12 @@ const UsersTable = () => {
   const editHandler = (userData) => {
     navigate("/users/update-user", { state: { userData } });
   };
+  // 
+  
+  // -----------------------------------------------Functions---------------------------------------------
+  const deleteHandler = (userData) => {
+    confirm(`Are you sure you want to delete ${userData.userName}?`)
+  };
   // -----------------------------------------------------------------------------------------------------
   // -----------------------------------------------useEffect---------------------------------------------
   useEffect(() => {
@@ -33,10 +40,18 @@ const UsersTable = () => {
   const actionButtons = [
     {
       icon: () => {
-        return <CiEdit style={{ color: "black" }} size={actionBtnIconSize} />;
+        return <CiEdit style={{ color: "blue" }} size={actionBtnIconSize} />;
       },
       actionButtonClickHandler: (data) => {
         editHandler(data);
+      },
+    },
+    {
+      icon: () => {
+        return <MdDeleteForever  style={{ color: "red" }} size={actionBtnIconSize} />;
+      },
+      actionButtonClickHandler: (data) => {
+        deleteHandler(data);
       },
     },
   ];
@@ -44,8 +59,8 @@ const UsersTable = () => {
   return (
     <div>
       <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
               <th scope="col" class="px-6 py-3">
                 Full Name
@@ -67,10 +82,10 @@ const UsersTable = () => {
               usersData?.users.map((user) => {
                 return (
                   <>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <tr class="bg-white border-b ">
                       <th
                         scope="row"
-                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
                       >
                         {user?.fullName || "N/A"}
                       </th>
@@ -79,7 +94,7 @@ const UsersTable = () => {
                       {/* <td class="px-6 py-4">
                         {reverseRoleChecker(user?.role) || "N/A"}
                       </td> */}
-                      <td class="px-6 py-4">
+                      <td class="px-6 py-4 flex justify-center gap-4">
                         {actionButtons.map((btn) => {
                           return (
                             <button

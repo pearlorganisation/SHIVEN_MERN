@@ -3,18 +3,10 @@ import React, { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { CircleLoader } from "react-spinners";
 import { Toaster, toast } from "sonner";
-// import { instance } from "../../services/axiosInterceptor";
-
-// const StyledPagination = styled(Pagination)(({ theme }) => ({
-//   "& .MuiPaginationItem-root": {
-//     color: "black",
-//   },
-// }));
 
 const EnquiryLeadsManagement = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [data, setData] = useState(null);
-
   const [open, setOpen] = useState(false);
 
   const handleOpen = (data) => {
@@ -24,92 +16,32 @@ const EnquiryLeadsManagement = () => {
 
   const handleClose = () => setOpen(false);
 
-  //   const [searchParams, setSearchParams] = useSearchParams({ page: 1 });
-  //   const [page, setPage] = useState(searchParams.get("page") || 1);
-  //   const [totalPages, setTotalPages] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSubmitLoading, setIsSubmitLoading] = useState(false);
-
-  //   const getData = () => {
-  //     setIsLoading(true);
-  //     instance
-  //       .get(`/specialTrips`)
-  //       .then((res) => {
-  //         setData(res?.data?.data);
-  //         setTotalPages(res?.data?.totalPages)
-  //         setIsLoading(false);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //         setIsLoading(false);
-  //       });
-  //   };
-
-  //   useEffect(() => {
-  //     getData();
-  //   }, [page]);
-
-  //   const handlePagination = (e, p) => {
-  //     setPage(p);
-  //     setSearchParams({ page: p });
-  //   };
-
-  //   const deleteItem = (item) => {
-  //     if (window.confirm(`Are you sure you want to delete specialTrip`)) {
-  //       instance
-  //         .delete(`${import.meta.env.VITE_API_URL}/specialTrips/${item._id}`)
-  //         .then((res) => {
-  //           toast.success(res.data.message, {
-  //             style: {
-  //               background: "green",
-  //               color: "white",
-  //             },
-  //           });
-  //           getData();
-  //         })
-  //         .catch((err) => {
-  //           console.log(err);
-  //           toast.error("There was some issue deleting the specialTrip", {
-  //             style: {
-  //               background: "red",
-  //               color: "white",
-  //             },
-  //           });
-  //         });
-  //     }
-  //   };
-
   const sampleData = [
     {
-      _id: "111",
-      from: "j@j.com",
-      to: "x@x.com",
-      subject: "mail 1",
-      content: "this is just a sample mail that was sent",
+      _id: "101",
+      sourceOfLead: "Google Ads",
+      typeOfLead: "New Business",
+      typeOfEnquiry: "Product Inquiry",
+      typeOfJob: "Installation",
+      projectLocation: "New York, NY",
+      clientName: "TechCorp",
+      bidsOpen: "2024-10-01",
+      bidCloses: "2024-10-15",
+      action: "In Progress",
+      modalData: {
+        categoryOfLead: "Technology",
+        leadQuality: "High",
+        mainCategory: "Hardware",
+        subCategory: "Networking Equipment",
+        projectDetails: "Setting up network infrastructure for a new office",
+        reasonForNotQuoting: "",
+        clientWebsite: "https://techcorp.com",
+        clientNumber: "+1-555-1234",
+        clientEmailId: "contact@techcorp.com"
+      }
     },
-    {
-      _id: "112",
-      from: "j@j.com",
-      to: "x@x.com",
-      subject: "mail 2",
-      content: "this is just a sample mail that was sent",
-    },
-    {
-      _id: "113",
-      from: "j@j.com",
-      to: "x@x.com",
-      subject: "mail 3",
-      content: "this is just a sample mail that was sent",
-    },
-    {
-      _id: "114",
-      from: "j@j.com",
-      to: "x@x.com",
-      subject: "mail 4",
-      content: "this is just a sample mail that was sent",
-    },
+    // Other items omitted for brevity
   ];
-
 
   useEffect(() => {
     setIsLoading(true);
@@ -122,12 +54,10 @@ const EnquiryLeadsManagement = () => {
   return (
     <div>
       <Toaster />
-
       <div className="p-10 ">
         <div className="text-2xl">Enquiry / Leads Management:</div>
         <div className="mt-10">
           <div className="flex items-center justify-end flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-8 ">
-            
             <Link
               to={"/enquiry-leads-management/add"}
               className="rounded-md text-white p-1 bg-blue-500 hover:bg-blue-600 transition duration-300"
@@ -148,40 +78,27 @@ const EnquiryLeadsManagement = () => {
               <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50  ">
                   <tr>
-                    <th scope="col" className="px-6 py-3">
-                      S.No
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      From
-                    </th>
-                    <th scope="col" className="text-center px-6 py-3">
-                      To
-                    </th>
-                    <th scope="col" className="text-center px-6 py-3">
-                      Subject
-                    </th>
-                    <th scope="col" className="text-center px-6 py-3">
-                      Actions
-                    </th>
+                    <th scope="col" className="px-6 py-3">S.No</th>
+                    <th scope="col" className="px-6 py-3">Source of Lead</th>
+                    <th scope="col" className="px-6 py-3">Type of Lead</th>
+                    <th scope="col" className="px-6 py-3">Type of Enquiry</th>
+                    <th scope="col" className="px-6 py-3">Project Location</th>
+                    <th scope="col" className="px-6 py-3">Client Name</th>
+                    <th scope="col" className="px-6 py-3">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {data.map((item, idx) => (
                     <tr
-                      className="bg-transparent border-b   hover:bg-gray-50 "
+                      className="bg-transparent border-b hover:bg-gray-50"
                       key={item?._id}
                     >
-                      <th
-                        scope="row"
-                        className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap "
-                      >
-                        <div className="ps-3">{idx + 1}</div>
-                      </th>
-                      <td className="px-6 py-4">{item?.from}</td>
-                      <td className="px-6 py-4">{item?.to}</td>
-
-                      <td className="px-6 py-4">{item?.subject}</td>
-
+                      <th scope="row" className="px-6 py-4">{idx + 1}</th>
+                      <td className="px-6 py-4">{item?.sourceOfLead}</td>
+                      <td className="px-6 py-4">{item?.typeOfLead}</td>
+                      <td className="px-6 py-4">{item?.typeOfEnquiry}</td>
+                      <td className="px-6 py-4">{item?.projectLocation}</td>
+                      <td className="px-6 py-4">{item?.clientName}</td>
                       <td className="px-6 py-4 text-center flex gap-2 justify-center">
                         <button
                           type="button"
@@ -204,16 +121,6 @@ const EnquiryLeadsManagement = () => {
             )}
           </div>
         </div>
-        {/* {!isLoading && data && (
-          <div className="flex flex-row justify-center w-full mt-10">
-            <StyledPagination
-              count={totalPages}
-              page={Number(page)}
-              color="primary"
-              onChange={handlePagination}
-            />
-          </div>
-        )} */}
 
         <Modal
           open={open}
@@ -224,20 +131,64 @@ const EnquiryLeadsManagement = () => {
           <div className="relative w-[95vw] md:w-[40vw] bg-white shadow-[0_0_0_1px#ffdd00] rounded-md left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 p-3">
             <div className="flex flex-col gap-4 justify-center items-center">
               <div className="grid grid-cols-2 w-full">
-                <div className="font-semibold">From:</div>
-                <div className="">{selectedItem?.from}</div>
+                <div className="font-semibold">Source of Lead:</div>
+                <div>{selectedItem?.sourceOfLead}</div>
               </div>
               <div className="grid grid-cols-2 w-full">
-                <div className="font-semibold">To:</div>
-                <div className="">{selectedItem?.to}</div>
+                <div className="font-semibold">Type of Lead:</div>
+                <div>{selectedItem?.typeOfLead}</div>
               </div>
               <div className="grid grid-cols-2 w-full">
-                <div className="font-semibold">Subject:</div>
-                <div className="">{selectedItem?.subject}</div>
+                <div className="font-semibold">Type of Enquiry:</div>
+                <div>{selectedItem?.typeOfEnquiry}</div>
               </div>
               <div className="grid grid-cols-2 w-full">
-                <div className="font-semibold">Message:</div>
-                <div className="">{selectedItem?.content}</div>
+                <div className="font-semibold">Client Name:</div>
+                <div>{selectedItem?.clientName}</div>
+              </div>
+              <div className="grid grid-cols-2 w-full">
+                <div className="font-semibold">Project Location:</div>
+                <div>{selectedItem?.projectLocation}</div>
+              </div>
+              <div className="grid grid-cols-2 w-full">
+                <div className="font-semibold">Bids Open:</div>
+                <div>{selectedItem?.bidsOpen}</div>
+              </div>
+              <div className="grid grid-cols-2 w-full">
+                <div className="font-semibold">Bids Close:</div>
+                <div>{selectedItem?.bidCloses}</div>
+              </div>
+              <div className="grid grid-cols-2 w-full">
+                <div className="font-semibold">Category of Lead:</div>
+                <div>{selectedItem?.modalData?.categoryOfLead}</div>
+              </div>
+              <div className="grid grid-cols-2 w-full">
+                <div className="font-semibold">Lead Quality:</div>
+                <div>{selectedItem?.modalData?.leadQuality}</div>
+              </div>
+              <div className="grid grid-cols-2 w-full">
+                <div className="font-semibold">Main Category:</div>
+                <div>{selectedItem?.modalData?.mainCategory}</div>
+              </div>
+              <div className="grid grid-cols-2 w-full">
+                <div className="font-semibold">Sub Category:</div>
+                <div>{selectedItem?.modalData?.subCategory}</div>
+              </div>
+              <div className="grid grid-cols-2 w-full">
+                <div className="font-semibold">Project Details:</div>
+                <div>{selectedItem?.modalData?.projectDetails}</div>
+              </div>
+              <div className="grid grid-cols-2 w-full">
+                <div className="font-semibold">Client Website:</div>
+                <div>{selectedItem?.modalData?.clientWebsite}</div>
+              </div>
+              <div className="grid grid-cols-2 w-full">
+                <div className="font-semibold">Client Email:</div>
+                <div>{selectedItem?.modalData?.clientEmailId}</div>
+              </div>
+              <div className="grid grid-cols-2 w-full">
+                <div className="font-semibold">Client Number:</div>
+                <div>{selectedItem?.modalData?.clientNumber}</div>
               </div>
             </div>
           </div>

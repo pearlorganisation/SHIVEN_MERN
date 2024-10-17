@@ -71,6 +71,7 @@ import ComposeEmail from "../components/SmsEmail/ComposeEmail";
 import AddEnquiryLeads from "../components/EnquiryLeadsManagement/AddEnquiryLeads";
 import EnquiryLeadsManagement from "../components/EnquiryLeadsManagement/EnquiryLeadsManagement";
 import SpaceManagment from "../pages/Admin/SpaceManagement";
+import ContactUs from "../components/ContactUs/ContactUs";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {

@@ -159,6 +159,12 @@ export const routes = [
   },
 
   {
+    title: "Contact-Us",
+    component: ContactUs,
+    path: "/contact-us",
+  },
+
+  {
     title: "Plans",
     component: Plans,
     path: "/plans",

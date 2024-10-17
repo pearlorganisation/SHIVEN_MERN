@@ -47,7 +47,7 @@ export const login = asyncErrorHandler(async (req, res, next) => {
     { otp, expiresAt: new Date(Date.now() + 600000) },
     { $new: true }
   );
-
+console.log(otp)
   if (!otpDoc) {
     let doc = new otpModel({
       email,

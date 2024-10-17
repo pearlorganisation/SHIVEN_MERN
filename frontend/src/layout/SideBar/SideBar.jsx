@@ -47,8 +47,145 @@ const SideBar = () => {
     {
       title: "Clients",
       subMenu: false,
-      path: "/users",
-      show: loggedInUserData.role === "0",
+      path:  "/users",
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
+    },
+
+
+///  Admin PANEL ///
+    {
+      title: "Admin",
+      subMenu: false,
+      path:  "/users",
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+    },
+
+    {
+      title: "Manage Listing",
+      subMenu: true,
+      subMenuArray: [
+          { 
+            title: "Categories",
+           path: "/Files & Folders" 
+          },
+          {
+            title: "Services",
+            path: "/servicePlan/view-health-insurance"
+          },
+          { 
+            title: "Services Provides",
+            path: "/servicePlan/view-bike-insurance" 
+          },
+          {
+            title: "Products",
+            path: "/dashboard"
+          },
+          {
+            title: "Customized Plans",
+            path: "/servicePlan/view-whole-life-insurance",
+          },
+          { 
+            title: "Company Plans",
+            path: "/servicePlan/view-home-loan" 
+          },
+          {
+            title: "Sales, Income & Expenses",
+            path: "/servicePlan/view-vehicle-loan",
+          },
+       
+          
+      ],
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+    },
+
+    {
+      title: " Reports & Graphs",
+      subMenu: true,
+      subMenuArray: [
+          { 
+            title: "Customers added as per products (NFC cards, pdf, cards, etc)",
+           path: "/Files & Folders" 
+          },
+          {
+            title: "Products sold as per category and products",
+            path: "/servicePlan/view-health-insurance"
+          },
+          { 
+            title: "Income generated as per different categories",
+            path: "/servicePlan/view-bike-insurance" 
+          },
+          {
+            title: "customer engagement to blogs & testimonials",
+            path: "/dashboard"
+          },
+          {
+            title: "feedback and complaints", 
+            path: "/servicePlan/view-whole-life-insurance",
+          },
+          {
+            title: "Payment generated from products sales of customers",
+            path: "/servicePlan/view-whole-life-insurance",
+          },  {
+            title: "Payment made to customers",
+            path: "/servicePlan/view-whole-life-insurance",
+          },
+        
+       
+        
+       
+          
+      ],
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+    },
+
+    {
+      title: "Compliance Documents",
+      subMenu: true,
+      subMenuArray: [
+          { 
+            title: "Contact Us",
+           path: "/Files & Folders" 
+          }       
+          
+      ],
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+    },
+
+    
+    {
+      title: "Subscribers",
+      subMenu: true,
+      subMenuArray: [
+          { 
+            title: "New Added",
+           path: "/Files & Folders" 
+          },
+          {
+            title: "Renewal Arriving",
+            path: "/servicePlan/view-health-insurance"
+          },
+          { 
+            title: "Renewal Due Passed",
+            path: "/servicePlan/view-bike-insurance" 
+          },
+          {
+            title: "Lapsed",
+            path: "/dashboard"
+          },
+          
+          
+      ],
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+    },
+
+    
+    /// CONSULTANT PANEL ///
+
+    {
+      title: "Company Profile",
+      subMenu: false,
+      path: "/companyProfile",
+      show: loggedInUserData.role === "1" ,
     },
     {
       title: "Service Providers",

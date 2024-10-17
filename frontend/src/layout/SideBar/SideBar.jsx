@@ -1,3 +1,4 @@
+
 // -----------------------------------------------Imports---------------------------------------------------
 import React, { useState } from "react";
 import { GoTag } from "react-icons/go";
@@ -48,8 +49,9 @@ const SideBar = () => {
       title: "Clients",
       subMenu: false,
       path:  "/users",
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "1",
+      show: loggedInUserData.role === "1",
     },
+
 
 
 ///  Admin PANEL ///
@@ -57,7 +59,21 @@ const SideBar = () => {
       title: "Admin",
       subMenu: false,
       path:  "/users",
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+      show: loggedInUserData.role === "0",
+    },
+    
+    {
+      title: "Consultant Management",
+      subMenu: false,
+      path:  "/consultant-management",
+      show: loggedInUserData.role === "0",
+    },
+
+    {
+      title: "Space Management",
+      subMenu: false,
+      path:  "/space-management",
+      show: loggedInUserData.role === "0",
     },
 
     {
@@ -148,7 +164,7 @@ const SideBar = () => {
           }       
           
       ],
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+      show: loggedInUserData.role === "0",
     },
 
     
@@ -175,7 +191,7 @@ const SideBar = () => {
           
           
       ],
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+      show: loggedInUserData.role === "0",
     },
 
     
@@ -531,13 +547,13 @@ const SideBar = () => {
     {
       title: "SMS / Email",
       subMenu: false,
-      path: "/",
+      path: "/sms-email",
       show: loggedInUserData.role === "1",
     },
     {
       title: "Enquiry / Leads Management",
       subMenu: false,
-      path: "/",
+      path: "/enquiry-leads-management",
       show: loggedInUserData.role === "1",
     },
     {

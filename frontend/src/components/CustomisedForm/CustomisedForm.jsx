@@ -5,11 +5,11 @@ import { CircleLoader } from "react-spinners";
 import { Toaster, toast } from "sonner";
 // import { instance } from "../../services/axiosInterceptor";
 
-const StyledPagination = styled(Pagination)(({ theme }) => ({
-  "& .MuiPaginationItem-root": {
-    color: "black",
-  },
-}));
+// const StyledPagination = styled(Pagination)(({ theme }) => ({
+//   "& .MuiPaginationItem-root": {
+//     color: "black",
+//   },
+// }));
 
 const CustomisedForms = () => {
   const [selectedForm, setSelectedForm] = useState(null);

@@ -66,6 +66,11 @@ import ViewAllPortfolio from "../pages/Service/consultant/portfolio/ViewAllPortf
 import YearIncomeExpense from "../pages/Service/consultant/incomeAndExpense/YearIncomeExpense";
 import MonthIncomeExpense from "../pages/Service/consultant/incomeAndExpense/MonthIncomeExpense";
 import AddDailyExpenseIncome from "../pages/Service/consultant/incomeAndExpense/AddDailyExpenseIncome";
+import SmsEmail from "../components/SmsEmail/SmsEmail";
+import ComposeEmail from "../components/SmsEmail/ComposeEmail";
+import AddEnquiryLeads from "../components/EnquiryLeadsManagement/AddEnquiryLeads";
+import EnquiryLeadsManagement from "../components/EnquiryLeadsManagement/EnquiryLeadsManagement";
+import SpaceManagment from "../pages/Admin/SpaceManagement";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -393,7 +398,7 @@ export const routes = [
   },
   {
     title: "Investment / Valuation / Portfolio",
-    component: LifeInsurance ,
+    component: LifeInsurance,
     path: "/user/investment/lifeInsurance",
   },
   {
@@ -586,6 +591,57 @@ export const routes = [
     path: "/consultant/incomeAndExpense/add",
   },
 
+  {
+    title: "SMS / E-Mails",
+    component: SmsEmail,
+    path: "/sms-email",
+  },
+
+  {
+    title: "SMS / E-Mails",
+    component: ComposeEmail,
+    path: "/sms-email/add",
+  },
+
+  {
+    title: "Enquiry / Leads Management",
+    component: EnquiryLeadsManagement,
+    path: "/enquiry-leads-management",
+  },
+
+  {
+    title: "Enquiry / Leads Management",
+    component: AddEnquiryLeads,
+    path: "/enquiry-leads-management/add",
+  },
+
+  //Admin Routes
+
+  {
+    title: "Consultant Management",
+    component: User,
+    path: "/consultant-management",
+  },
+
+  {
+    title: "Consultant Management",
+    component: CreateUser,
+    path: "/consultant-management/create",
+  },
+
+  {
+    title: "Consultant Management",
+    component: UpdateUser,
+    path: "/consultant-management/update",
+  },
+
+  {
+    title: "Space Management",
+    component: SpaceManagment,
+    path: "/space-management",
+  },
+
+
 
   //not found
 
@@ -594,4 +650,6 @@ export const routes = [
     component: NotFound,
     path: "/*",
   },
+
+  
 ];

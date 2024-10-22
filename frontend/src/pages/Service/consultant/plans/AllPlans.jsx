@@ -11,6 +11,8 @@ const AllPlans = () => {
   const {name} = useParams()
   const servicePlanData= [1]
   
+  const { loggedInUserData } = useSelector((state) => state.auth);
+  
     const [showViewModal, setShowViewModal] = useState(false);
     const [viewData, setViewData] = useState();
 
@@ -19,15 +21,25 @@ const AllPlans = () => {
         setViewData(itemData)
       }
 
-
+console.log(loggedInUserData)
 
   return (
     <div className="userContainer p-10 ">
-      <div className="title p-1">
+    <div className="title p-1">
         <h4 className="font-bold text-blue-500 text-sm sm:text-md md:text-lg">
-          {name} Listing
+        {name} Listing
         </h4>
+        <div className="createEmployeeBtn flex justify-end p-4 ">
+  {loggedInUserData?.role === "1" &&        <button
+            className=" p-2 rounded-lg bg-indigo-600 text-white font-bold tracking-widest"
+            onClick={() => {
+              navigate("/consultant/addPlan");
+            }}
+          >
+           Add Plans
+          </button>}
 
+        </div>
       </div>
       <div className="mt-6 shadow-xl rounded-lg overflow-x-auto">
         <table className="w-full table-auto text-sm text-left">

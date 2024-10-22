@@ -10,7 +10,9 @@ const ViewServiceProviders = () => {
   const dispatch= useDispatch();
   const navigate = useNavigate();
   const {serviceProviderData,isLoading } = useSelector(state => state.serviceProvider)
-
+  
+  const { loggedInUserData } = useSelector((state) => state.auth);
+console.log(loggedInUserData)
   useEffect(()=>{
     dispatch(getAllServiceProviders())
     dispatch(getAllServices())
@@ -23,14 +25,15 @@ const ViewServiceProviders = () => {
           Service Provider Listing
         </h4>
         <div className="createEmployeeBtn flex justify-end p-4 ">
-          <button
+  {loggedInUserData?.role === "0" &&        <button
             className=" p-2 rounded-lg bg-indigo-600 text-white font-bold tracking-widest"
             onClick={() => {
               navigate("/serviceProvider/createServiceProvider");
             }}
           >
            Add Service Provider
-          </button>
+          </button>}
+
         </div>
       </div>
       <div className="mt-6 shadow-xl rounded-lg overflow-x-auto">

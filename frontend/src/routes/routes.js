@@ -66,6 +66,8 @@ import ViewAllPortfolio from "../pages/Service/consultant/portfolio/ViewAllPortf
 import YearIncomeExpense from "../pages/Service/consultant/incomeAndExpense/YearIncomeExpense";
 import MonthIncomeExpense from "../pages/Service/consultant/incomeAndExpense/MonthIncomeExpense";
 import AddDailyExpenseIncome from "../pages/Service/consultant/incomeAndExpense/AddDailyExpenseIncome";
+import AddPlans from "../pages/Service/consultant/plans/AddPlans";
+import ConsultantProfile from "../components/CompanyProfile/ConsultantProfile";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -190,11 +192,6 @@ export const routes = [
   },
   //  Service
   {
-    title: " Service ",
-    component: ViewServices,
-    path: "/service",
-  },
-  {
     title: "Create Service",
     component: CreateService,
     path: "/service/addService",
@@ -202,7 +199,7 @@ export const routes = [
   {
     title: " Service Provider ",
     component: ViewServiceProviders,
-    path: "/serviceProvider",
+    path: "/consultant/serviceProvider",
   },
   {
     title: "Create Service Provider",
@@ -459,6 +456,11 @@ export const routes = [
     path: "/companyProfile",
   },
   {
+    title: "Consultant Profile",
+    component: ConsultantProfile,
+    path: "/consultantProfile",
+  },
+  {
     title: "Consultant Plan",
     component: AllPlans,
     path: "/plans/:name",
@@ -584,6 +586,11 @@ export const routes = [
     title: "Income / Expense",
     component: AddDailyExpenseIncome,
     path: "/consultant/incomeAndExpense/add",
+  },
+  {
+    title: "Add Plans",
+    component: AddPlans,
+    path: "/consultant/addPlan",
   },
 
 

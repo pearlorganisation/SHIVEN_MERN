@@ -194,142 +194,26 @@ const SideBar = () => {
       show: loggedInUserData.role === "0",
     },
 
-    
-    /// CONSULTANT PANEL ///
-
-    {
-      title: "Company Profile",
-      subMenu: false,
-      path: "/companyProfile",
-      show: loggedInUserData.role === "1" ,
-    },
-    {
-      title: "Service Providers",
-      subMenu: true,
-      subMenuArray: [
-        {
-          title: "Life Insurance ",
-          path: "/dashboard"
-        },
-        {
-          title: "Health Insurance ",
-          path: "/dashboard"
-        },
-        {
-          title: "Motor Insurance",
-          path: "/dashboard"
-        },
-          { title: "Mutual Fund",
-             path: "/" 
-            },
-          { title: "Shares",
-             path: "/" 
-            },
-          { title: "FD",
-             path: "/" 
-            },
-          { title: "RD",
-             path: "/" 
-            },
-          { title: "Gold / Bullion",
-             path: "/" 
-            },
-          { title: "Commercial Property",
-             path: "/" 
-            },
-            {
-              title: "Land",
-              path: "/dashboard"
-            },
-            {
-              title: "Residential Property",
-              path: "/dashboard"
-            },
-            {
-              title: "SGB",
-              path: "/dashboard"
-            },
-            {
-              title: "Post Office",
-              path: "/dashboard"
-            },
-            {
-              title: "EPF / PPF",
-              path: "/dashboard"
-            },
-            {
-              title: "NPS",
-              path: "/dashboard"
-            },
-            {
-              title: "IT Files",
-              path: "/dashboard"
-            }
-        ],
-      show: loggedInUserData.role === "0",
-    },
-    {
-      title: "Plans",
-      subMenu: true,
-      subMenuArray: [
-        {
-          title: "Mutual Fund",
-          path: "/servicePlan/view-mutual-fund",
-        },
-        {
-          title: "Health Insurance ",
-          path: "/servicePlan/view-health-insurance",
-        },
-        {
-          title: "Bike Insurance",
-          path: "/servicePlan/view-bike-insurance",
-        },
-        {
-          title: "Motor Insurance",
-          path: "/dashboard",
-        },
-        {
-          title: "Whole Life Insurance",
-          path: "/servicePlan/view-whole-life-insurance",
-        },
-        {
-          title: "Home Loan",
-          path: "/servicePlan/view-home-loan",
-        },
-        {
-          title: "Vehicle Loan",
-          path: "/servicePlan/view-vehicle-loan",
-        },
-        {
-          title: "Govt. Insurance",
-          path: "/dashboard",
-        },
-        {
-          title: "Fixed Deposit ",
-          path: "/dashboard",
-        },
-        {
-          title: "Stocks",
-          path: "/dashboard",
-        },
-        {
-          title: "Property",
-          path: "/dashboard",
-        },
-      ],
-      show: loggedInUserData.role === "0" ,
-    },
 
 /// CONSULTANT PANEL ///
 
     {
-      title: "Company Profile",
-      subMenu: false,
-      path: "/companyProfile",
+      title: "Profile",
+      subMenu: true,
+      subMenuArray: [
+        {
+          title: "Company Profile",
+          path: "/companyProfile"
+        },
+        {
+          title: "Consultant Profile",
+          path: "/consultantProfile"
+        },
+      ],
       show: loggedInUserData.role === "1" ,
     },
     {
-      title: "Plans",
+      title: "Services",
       subMenu: true,
       subMenuArray: [
         {
@@ -413,9 +297,9 @@ const SideBar = () => {
     },
 
     {
-      title: "Services",
+      title: "Services Providers",
       subMenu: false,
-      path: "/service",
+      path: "/consultant/serviceProvider",
       show: loggedInUserData.role === "1",
     },
     {
@@ -518,8 +402,14 @@ const SideBar = () => {
     },
     {
       title: "Income & Expense Management",
-      subMenu: false,
-      path: "/consultant/incomeAndExpense/year",
+      subMenu: true,
+      subMenuArray: [
+        { title: "View Income and Expense", path: "/consultant/incomeAndExpense/year" },
+        { title: "Add Expense Headings", path: "/consultant/incomeAndExpense/addExpenseHeadings"},
+        { title: "Add Income Headings", path: "/consultant/incomeAndExpense/addIncomeHeadings" },
+    
+ 
+      ],
       show: loggedInUserData.role === "1" ,
     },
 

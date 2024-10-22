@@ -114,7 +114,6 @@ function App() {
           />
           {/* --------------------------------------------------------------------------------------------- */}
           <Route path="allinsuranceQuote" element={<AllinsuranceQuote />} />
-          <Route path="company" element={<></>} />
           <Route path="healthPremium" element={<HealthPremium />} />
           <Route path="planDetails" element={<PlanDetails />} />
           <Route path="enquiry" element={<Enquiry />} />

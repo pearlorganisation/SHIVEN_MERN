@@ -110,37 +110,6 @@ const SmsEmail = () => {
     },
   ];
 
-  const sampleData2 = [
-    {
-      _id: "111",
-      from: "j@j.com",
-      to: "x@x.com",
-      subject: "mail 1",
-      content: "this is just a sample mail that was sent",
-    },
-    {
-      _id: "112",
-      from: "j@j.com",
-      to: "x@x.com",
-      subject: "mail 2",
-      content: "this is just a sample mail that was sent",
-    },
-    {
-      _id: "113",
-      from: "j@j.com",
-      to: "x@x.com",
-      subject: "mail 3",
-      content: "this is just a sample mail that was sent",
-    },
-    {
-      _id: "114",
-      from: "j@j.com",
-      to: "x@x.com",
-      subject: "mail 4",
-      content: "this is just a sample mail that was sent",
-    },
-  ];
-
   useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {

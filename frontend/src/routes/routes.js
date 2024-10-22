@@ -65,13 +65,20 @@ import ViewPortfolio from "../pages/Service/user/portfolio/ViewPortfolio";
 import ViewAllPortfolio from "../pages/Service/consultant/portfolio/ViewAllPortfolio";
 import YearIncomeExpense from "../pages/Service/consultant/incomeAndExpense/YearIncomeExpense";
 import MonthIncomeExpense from "../pages/Service/consultant/incomeAndExpense/MonthIncomeExpense";
-import AddDailyExpenseIncome from "../pages/Service/consultant/incomeAndExpense/AddDailyExpenseIncome";
+import AddDailyExpenseIncome from "../pages/Service/consultant/incomeAndExpense/AddDailyIncome";
+import AddPlans from "../pages/Service/consultant/plans/AddPlans";
+import ConsultantProfile from "../components/CompanyProfile/ConsultantProfile";
 import SmsEmail from "../components/SmsEmail/SmsEmail";
 import ComposeEmail from "../components/SmsEmail/ComposeEmail";
 import AddEnquiryLeads from "../components/EnquiryLeadsManagement/AddEnquiryLeads";
 import EnquiryLeadsManagement from "../components/EnquiryLeadsManagement/EnquiryLeadsManagement";
 import SpaceManagment from "../pages/Admin/SpaceManagement";
 import ContactUs from "../components/ContactUs/ContactUs";
+import HeadingForm from "../pages/Service/consultant/incomeAndExpense/HeadingFormExpense";
+import HeadingFormExpense from "../pages/Service/consultant/incomeAndExpense/HeadingFormExpense";
+import HeadingFormIncome from "../pages/Service/consultant/incomeAndExpense/HeadingFormIncome";
+import AddDailyIncome from "../pages/Service/consultant/incomeAndExpense/AddDailyIncome";
+import AddDailyExpense from "../pages/Service/consultant/incomeAndExpense/AddDailyExpense";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -202,11 +209,6 @@ export const routes = [
   },
   //  Service
   {
-    title: " Service ",
-    component: ViewServices,
-    path: "/service",
-  },
-  {
     title: "Create Service",
     component: CreateService,
     path: "/service/addService",
@@ -214,7 +216,7 @@ export const routes = [
   {
     title: " Service Provider ",
     component: ViewServiceProviders,
-    path: "/serviceProvider",
+    path: "/consultant/serviceProvider",
   },
   {
     title: "Create Service Provider",
@@ -471,6 +473,11 @@ export const routes = [
     path: "/companyProfile",
   },
   {
+    title: "Consultant Profile",
+    component: ConsultantProfile,
+    path: "/consultantProfile",
+  },
+  {
     title: "Consultant Plan",
     component: AllPlans,
     path: "/plans/:name",
@@ -594,8 +601,28 @@ export const routes = [
   },
   {
     title: "Income / Expense",
-    component: AddDailyExpenseIncome,
-    path: "/consultant/incomeAndExpense/add",
+    component: AddDailyIncome,
+    path: "/consultant/incomeAndExpense/addIncome",
+  },
+  {
+    title: "Income / Expense",
+    component: AddDailyExpense,
+    path: "/consultant/incomeAndExpense/addExpense",
+  },
+  {
+    title: "Income / Expense",
+    component: HeadingFormExpense,
+    path: "/consultant/incomeAndExpense/addExpenseHeadings",
+  },
+  {
+    title: "Income / Expense",
+    component: HeadingFormIncome,
+    path: "/consultant/incomeAndExpense/addIncomeHeadings",
+  },
+  {
+    title: "Add Plans",
+    component: AddPlans,
+    path: "/consultant/addPlan",
   },
 
   {

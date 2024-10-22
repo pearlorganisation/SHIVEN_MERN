@@ -65,9 +65,20 @@ import ViewPortfolio from "../pages/Service/user/portfolio/ViewPortfolio";
 import ViewAllPortfolio from "../pages/Service/consultant/portfolio/ViewAllPortfolio";
 import YearIncomeExpense from "../pages/Service/consultant/incomeAndExpense/YearIncomeExpense";
 import MonthIncomeExpense from "../pages/Service/consultant/incomeAndExpense/MonthIncomeExpense";
-import AddDailyExpenseIncome from "../pages/Service/consultant/incomeAndExpense/AddDailyExpenseIncome";
+import AddDailyExpenseIncome from "../pages/Service/consultant/incomeAndExpense/AddDailyIncome";
 import AddPlans from "../pages/Service/consultant/plans/AddPlans";
 import ConsultantProfile from "../components/CompanyProfile/ConsultantProfile";
+import SmsEmail from "../components/SmsEmail/SmsEmail";
+import ComposeEmail from "../components/SmsEmail/ComposeEmail";
+import AddEnquiryLeads from "../components/EnquiryLeadsManagement/AddEnquiryLeads";
+import EnquiryLeadsManagement from "../components/EnquiryLeadsManagement/EnquiryLeadsManagement";
+import SpaceManagment from "../pages/Admin/SpaceManagement";
+import ContactUs from "../components/ContactUs/ContactUs";
+import HeadingForm from "../pages/Service/consultant/incomeAndExpense/HeadingFormExpense";
+import HeadingFormExpense from "../pages/Service/consultant/incomeAndExpense/HeadingFormExpense";
+import HeadingFormIncome from "../pages/Service/consultant/incomeAndExpense/HeadingFormIncome";
+import AddDailyIncome from "../pages/Service/consultant/incomeAndExpense/AddDailyIncome";
+import AddDailyExpense from "../pages/Service/consultant/incomeAndExpense/AddDailyExpense";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -153,6 +164,12 @@ export const routes = [
     title: "Update User",
     component: UpdateUser,
     path: "/users/update-user",
+  },
+
+  {
+    title: "Contact-Us",
+    component: ContactUs,
+    path: "/contact-us",
   },
 
   {
@@ -390,7 +407,7 @@ export const routes = [
   },
   {
     title: "Investment / Valuation / Portfolio",
-    component: LifeInsurance ,
+    component: LifeInsurance,
     path: "/user/investment/lifeInsurance",
   },
   {
@@ -584,14 +601,80 @@ export const routes = [
   },
   {
     title: "Income / Expense",
-    component: AddDailyExpenseIncome,
-    path: "/consultant/incomeAndExpense/add",
+    component: AddDailyIncome,
+    path: "/consultant/incomeAndExpense/addIncome",
+  },
+  {
+    title: "Income / Expense",
+    component: AddDailyExpense,
+    path: "/consultant/incomeAndExpense/addExpense",
+  },
+  {
+    title: "Income / Expense",
+    component: HeadingFormExpense,
+    path: "/consultant/incomeAndExpense/addExpenseHeadings",
+  },
+  {
+    title: "Income / Expense",
+    component: HeadingFormIncome,
+    path: "/consultant/incomeAndExpense/addIncomeHeadings",
   },
   {
     title: "Add Plans",
     component: AddPlans,
     path: "/consultant/addPlan",
   },
+
+  {
+    title: "SMS / E-Mails",
+    component: SmsEmail,
+    path: "/sms-email",
+  },
+
+  {
+    title: "SMS / E-Mails",
+    component: ComposeEmail,
+    path: "/sms-email/add",
+  },
+
+  {
+    title: "Enquiry / Leads Management",
+    component: EnquiryLeadsManagement,
+    path: "/enquiry-leads-management",
+  },
+
+  {
+    title: "Enquiry / Leads Management",
+    component: AddEnquiryLeads,
+    path: "/enquiry-leads-management/add",
+  },
+
+  //Admin Routes
+
+  {
+    title: "Consultant Management",
+    component: User,
+    path: "/consultant-management",
+  },
+
+  {
+    title: "Consultant Management",
+    component: CreateUser,
+    path: "/consultant-management/create",
+  },
+
+  {
+    title: "Consultant Management",
+    component: UpdateUser,
+    path: "/consultant-management/update",
+  },
+
+  {
+    title: "Space Management",
+    component: SpaceManagment,
+    path: "/space-management",
+  },
+
 
 
   //not found
@@ -601,4 +684,6 @@ export const routes = [
     component: NotFound,
     path: "/*",
   },
+
+  
 ];

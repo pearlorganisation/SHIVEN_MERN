@@ -49,14 +49,24 @@ const YearIncomeExpense = () => {
         <h4 className="font-bold text-blue-500 text-sm sm:text-md md:text-lg">
           Monthly Income and Expense
         </h4>
+
+       <div className="space-x-5">
+       <button
+            className=" p-2 rounded-lg bg-indigo-600 text-white font-bold tracking-widest"
+            onClick={() => {
+              navigate("/consultant/incomeAndExpense/addIncome");
+            }}
+          >
+            Add Daily Income 
+          </button>
         <button
             className=" p-2 rounded-lg bg-indigo-600 text-white font-bold tracking-widest"
             onClick={() => {
-              navigate("/consultant/incomeAndExpense/add");
+              navigate("/consultant/incomeAndExpense/addExpense");
             }}
           >
-            Add Daily Expense and Income
-          </button>
+            Add Daily Expenses
+          </button></div> 
         </div>
  
       <div className="mt-6 shadow-xl rounded-lg overflow-x-auto">

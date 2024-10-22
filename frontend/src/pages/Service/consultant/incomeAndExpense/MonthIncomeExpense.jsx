@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { Stack, Skeleton } from "@mui/material";
 import ViewModalWholeLife from "../../../ServicePlans/wholeLifeInsurance/ViewModalWholeLife";
+import ViewModalIncome from "./ViewModalIncome";
+import ViewModalExpense from "./ViewModalExpense";
 
 
 const MonthIncomeExpense = () => {
@@ -35,10 +37,17 @@ const MonthIncomeExpense = () => {
   
     const [showViewModal, setShowViewModal] = useState(false);
     const [viewData, setViewData] = useState();
+    const [showViewModal2, setShowViewModal2] = useState(false);
+    const [viewData2, setViewData2] = useState();
 
     const handleViewModal=(itemData)=>{
         setShowViewModal(true)
         setViewData(itemData)
+      }
+
+    const handleViewModal2=(itemData)=>{
+        setShowViewModal2(true)
+        setViewData2(itemData)
       }
 
 
@@ -101,11 +110,19 @@ const MonthIncomeExpense = () => {
 
                     <button
                       onClick={() => {
-                      navigate(`/`)
+                        handleViewModal(item)
                       }}
                       className="py-2 leading-none px-3 font-semibold text-green-500 hover:text-green-600 duration-150 hover:bg-gray-50 rounded-lg"
                     >
-                     View Full Details
+                     View Income
+                    </button>
+                    <button
+                      onClick={() => {
+                        handleViewModal2(item)
+                      }}
+                      className="py-2 leading-none px-3 font-semibold text-green-500 hover:text-green-600 duration-150 hover:bg-gray-50 rounded-lg"
+                    >
+                     View Expenses
                     </button>
                   </td>
                 </tr>
@@ -115,7 +132,12 @@ const MonthIncomeExpense = () => {
         </table>
       </div>
       {showViewModal  && (
-        <ViewModalWholeLife setModal={setShowViewModal} viewData={viewData} />
+        <ViewModalIncome setModal={setShowViewModal} viewData={viewData} />
+      
+      )}
+      {showViewModal2  && (
+         <ViewModalExpense setModal={setShowViewModal2} viewData={viewData2} />
+      
       )}
     </div>
   );

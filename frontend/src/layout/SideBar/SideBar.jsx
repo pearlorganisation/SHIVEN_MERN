@@ -117,11 +117,24 @@ const SideBar = () => {
       path:  "/consultant-management",
       show: loggedInUserData.role === "0",
     },
+    
+    {
+      title: "Payment Gateway Integration",
+      subMenu: false,
+      path:  "/",
+      show: loggedInUserData.role === "0",
+    },
 
     {
       title: "Space Management",
       subMenu: false,
       path:  "/space-management",
+      show: loggedInUserData.role === "0",
+    },
+    {
+      title: "Sales , Income and Expenses",
+      subMenu: false,
+      path:  "/",
       show: loggedInUserData.role === "0",
     },
 
@@ -165,14 +178,53 @@ const SideBar = () => {
       ],
       show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
     },
-
+    {
+      title: "Social Media Integration",
+      subMenu: false,
+      path:  "/",
+      show: loggedInUserData.role === "0",
+    },
+    {
+      title: "Contact Developer",
+      subMenu: false,
+      path:  "/",
+      show: loggedInUserData.role === "0",
+    },
+    {
+      title: "Feedback",
+      subMenu: false,
+      path:  "/",
+      show: loggedInUserData.role === "0",
+    },
+    {
+      title: "SMS / WhatsApp Integration",
+      subMenu: false,
+      path:  "/",
+      show: loggedInUserData.role === "0",
+    },
     {
       title: "Compliance Documents",
       subMenu: true,
       subMenuArray: [
           { 
-            title: "Contact Us",
-           path: "/Files & Folders" 
+            title: "Privacy Policy",
+           path: "/" 
+          },       
+          { 
+            title: "Refund Policy",
+           path: "/" 
+          },       
+          { 
+            title: "Terms & Conditions",
+           path: "/" 
+          },       
+          { 
+            title: "Shipping Policy",
+           path: "/" 
+          },       
+          { 
+            title: "Cancellation Policy",
+           path: "/" 
           }       
           
       ],

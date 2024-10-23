@@ -55,10 +55,59 @@ const SideBar = () => {
 
 
 ///  Admin PANEL ///
+{
+  title: "Manage Listing",
+  subMenu: true,
+  subMenuArray: [
+      { 
+        title: "Categories",
+       path: "/Files & Folders" 
+      },
+      {
+        title: "Services",
+        path: "/servicePlan/view-health-insurance"
+      },
+      { 
+        title: "Services Provides",
+        path: "/servicePlan/view-bike-insurance" 
+      },
+      {
+        title: "Products",
+        path: "/dashboard"
+      },
+      {
+        title: "Customized Plans",
+        path: "/servicePlan/view-whole-life-insurance",
+      },
+      { 
+        title: "Company Plans",
+        path: "/servicePlan/view-home-loan" 
+      },
+      {
+        title: "Sales, Income & Expenses",
+        path: "/servicePlan/view-vehicle-loan",
+      },
+   
+      
+  ],
+  show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+},
     {
-      title: "Admin",
+      title: "Files & Folder",
       subMenu: false,
-      path:  "/users",
+      path:  "/",
+      show: loggedInUserData.role === "0",
+    },
+    {
+      title: "Staff Management",
+      subMenu: false,
+      path:  "/",
+      show: loggedInUserData.role === "0",
+    },
+    {
+      title: "Customer Profile Management",
+      subMenu: false,
+      path:  "/",
       show: loggedInUserData.role === "0",
     },
     
@@ -76,43 +125,6 @@ const SideBar = () => {
       show: loggedInUserData.role === "0",
     },
 
-    {
-      title: "Manage Listing",
-      subMenu: true,
-      subMenuArray: [
-          { 
-            title: "Categories",
-           path: "/Files & Folders" 
-          },
-          {
-            title: "Services",
-            path: "/servicePlan/view-health-insurance"
-          },
-          { 
-            title: "Services Provides",
-            path: "/servicePlan/view-bike-insurance" 
-          },
-          {
-            title: "Products",
-            path: "/dashboard"
-          },
-          {
-            title: "Customized Plans",
-            path: "/servicePlan/view-whole-life-insurance",
-          },
-          { 
-            title: "Company Plans",
-            path: "/servicePlan/view-home-loan" 
-          },
-          {
-            title: "Sales, Income & Expenses",
-            path: "/servicePlan/view-vehicle-loan",
-          },
-       
-          
-      ],
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
-    },
 
     {
       title: " Reports & Graphs",

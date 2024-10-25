@@ -80,6 +80,11 @@ import HeadingFormIncome from "../pages/Service/consultant/incomeAndExpense/Head
 import AddDailyIncome from "../pages/Service/consultant/incomeAndExpense/AddDailyIncome";
 import AddDailyExpense from "../pages/Service/consultant/incomeAndExpense/AddDailyExpense";
 import BlogsTestimonials from "../components/BlogsTestimonials/BlogsTestimonials";
+import RefundPolicy from "../pages/Admin/ComplianceDocuments/RefundPolicy";
+import PrivacyPolicy from "../pages/Admin/ComplianceDocuments/PrivacyPolicy";
+import TermsConditions from "../pages/Admin/ComplianceDocuments/TermsConditions";
+import ShippingPolicy from "../pages/Admin/ComplianceDocuments/ShippingPolicy";
+import CancellationPolicy from "../pages/Admin/ComplianceDocuments/CancellationPolicy";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -681,6 +686,39 @@ export const routes = [
     path: "/blogs-testimonials",
   },
  
+
+  {
+    title: "Privacy Policy",
+    component: PrivacyPolicy,
+    path: "/privacy-policy",
+  },
+
+  {
+    title: "Refund Policy",
+    component: RefundPolicy,
+    path: "/refund-policy",
+  },
+
+  {
+    title: "Terms & Conditions",
+    component: TermsConditions,
+    path: "/terms-conditions",
+  },
+
+  {
+    title: "Shipping Policy",
+    component: ShippingPolicy,
+    path: "/shipping-policy",
+  },
+
+  {
+    title: "Cancellation Policy",
+    component: CancellationPolicy,
+    path: "/cancellation-policy",
+  },
+
+
+
   //not found
 
   {

@@ -92,12 +92,7 @@ const SideBar = () => {
   ],
   show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
 },
-    {
-      title: "Files & Folder",
-      subMenu: false,
-      path:  "/",
-      show: loggedInUserData.role === "0",
-    },
+
     {
       title: "Staff Management",
       subMenu: false,
@@ -203,6 +198,12 @@ const SideBar = () => {
       show: loggedInUserData.role === "0",
     },
     {
+      title: "Blogs / Testimonials",
+      subMenu: false,
+      path:  "/",
+      show: loggedInUserData.role === "0",
+    },
+    {
       title: "Compliance Documents",
       subMenu: true,
       subMenuArray: [
@@ -230,33 +231,13 @@ const SideBar = () => {
       ],
       show: loggedInUserData.role === "0",
     },
-
-    
     {
-      title: "Subscribers",
-      subMenu: true,
-      subMenuArray: [
-          { 
-            title: "New Added",
-           path: "/Files & Folders" 
-          },
-          {
-            title: "Renewal Arriving",
-            path: "/servicePlan/view-health-insurance"
-          },
-          { 
-            title: "Renewal Due Passed",
-            path: "/servicePlan/view-bike-insurance" 
-          },
-          {
-            title: "Lapsed",
-            path: "/dashboard"
-          },
-          
-          
-      ],
+      title: "Contact Us",
+      subMenu: false,
+      path:  "/",
       show: loggedInUserData.role === "0",
     },
+
 
 
 /// CONSULTANT PANEL ///

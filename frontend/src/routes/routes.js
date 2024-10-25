@@ -79,6 +79,7 @@ import HeadingFormExpense from "../pages/Service/consultant/incomeAndExpense/Hea
 import HeadingFormIncome from "../pages/Service/consultant/incomeAndExpense/HeadingFormIncome";
 import AddDailyIncome from "../pages/Service/consultant/incomeAndExpense/AddDailyIncome";
 import AddDailyExpense from "../pages/Service/consultant/incomeAndExpense/AddDailyExpense";
+import BlogsTestimonials from "../components/BlogsTestimonials/BlogsTestimonials";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -674,9 +675,12 @@ export const routes = [
     component: SpaceManagment,
     path: "/space-management",
   },
-
-
-
+  {
+    title: "Blogs & Testimonials",
+    component: BlogsTestimonials,
+    path: "/blogs-testimonials",
+  },
+ 
   //not found
 
   {

@@ -5,10 +5,10 @@ import { getUsers } from "../../../features/actions/Auth/userActions";
 import { useSelector } from "react-redux";
 import { reverseRoleChecker } from "../../../utils";
 import { CiEdit } from "react-icons/ci";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdDeleteForever } from "react-icons/md";
 // -----------------------------------------------------------------------------------------------------
-
+// agar tum yha tk pohoch gye toh best of luck, all credit to pieces of shit here, sbko bolo gand mraye, except mern team
 const UsersTable = () => {
   // -------------------------------------------------States---------------------------------------------
   // -----------------------------------------------------------------------------------------------------
@@ -17,17 +17,19 @@ const UsersTable = () => {
   const navigate = useNavigate();
 
   const { usersData } = useSelector((state) => state?.user);
+  const { loggedInUserData } = useSelector((state) => state.auth);
+
   // const [userData, setUserData] = useState({});
   // -----------------------------------------------------------------------------------------------------
   // -----------------------------------------------Functions---------------------------------------------
   const editHandler = (userData) => {
     navigate("/users/update-user", { state: { userData } });
   };
-  // 
-  
+  //
+
   // -----------------------------------------------Functions---------------------------------------------
   const deleteHandler = (userData) => {
-    confirm(`Are you sure you want to delete ${userData.userName}?`)
+    confirm(`Are you sure you want to delete ${userData.userName}?`);
   };
   // -----------------------------------------------------------------------------------------------------
   // -----------------------------------------------useEffect---------------------------------------------
@@ -48,7 +50,9 @@ const UsersTable = () => {
     },
     {
       icon: () => {
-        return <MdDeleteForever  style={{ color: "red" }} size={actionBtnIconSize} />;
+        return (
+          <MdDeleteForever style={{ color: "red" }} size={actionBtnIconSize} />
+        );
       },
       actionButtonClickHandler: (data) => {
         deleteHandler(data);
@@ -71,6 +75,11 @@ const UsersTable = () => {
               <th scope="col" class="px-6 py-3">
                 Email
               </th>
+              {loggedInUserData?.role === "0" && (
+                <th scope="col" class="px-6 py-3">
+                  Customers
+                </th>
+              )}
               <th scope="col" class="px-6 py-3">
                 Action
               </th>
@@ -94,6 +103,16 @@ const UsersTable = () => {
                       {/* <td class="px-6 py-4">
                         {reverseRoleChecker(user?.role) || "N/A"}
                       </td> */}
+                      {loggedInUserData?.role === "0" && (
+                        <td class="px-6 py-4">
+                          <Link
+                            to="/consultant-filesManagement"
+                            className="text-blue-500 hover:text-blue-700 transition duration-300"
+                          >
+                            View Customers
+                          </Link>
+                        </td>
+                      )}
                       <td class="px-6 py-4 flex justify-center gap-4">
                         {actionButtons.map((btn) => {
                           return (

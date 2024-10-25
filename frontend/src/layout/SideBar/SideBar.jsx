@@ -1,4 +1,3 @@
-
 // -----------------------------------------------Imports---------------------------------------------------
 import React, { useState } from "react";
 import { GoTag } from "react-icons/go";
@@ -48,120 +47,106 @@ const SideBar = () => {
     {
       title: "Clients",
       subMenu: false,
-      path:  "/users",
+      path: "/users",
       show: loggedInUserData.role === "1",
     },
 
-
-
-///  Admin PANEL ///
-{
-  title: "Manage Listing",
-  subMenu: true,
-  subMenuArray: [
-      { 
-        title: "Categories",
-       path: "/Files & Folders" 
-      },
-      {
-        title: "Services",
-        path: "/servicePlan/view-health-insurance"
-      },
-      { 
-        title: "Services Provides",
-        path: "/servicePlan/view-bike-insurance" 
-      },
-      {
-        title: "Products",
-        path: "/dashboard"
-      },
-      {
-        title: "Customized Plans",
-        path: "/servicePlan/view-whole-life-insurance",
-      },
-      { 
-        title: "Company Plans",
-        path: "/servicePlan/view-home-loan" 
-      },
-      {
-        title: "Sales, Income & Expenses",
-        path: "/servicePlan/view-vehicle-loan",
-      },
-   
-      
-  ],
-  show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
-},
+    ///  Admin PANEL ///
     {
-      title: "Files & Folder",
-      subMenu: false,
-      path:  "/",
-      show: loggedInUserData.role === "0",
+      title: "Manage Listing",
+      subMenu: true,
+      subMenuArray: [
+        {
+          title: "Categories",
+          path: "/Files & Folders",
+        },
+        {
+          title: "Services",
+          path: "/servicePlan/view-health-insurance",
+        },
+        {
+          title: "Services Provides",
+          path: "/servicePlan/view-bike-insurance",
+        },
+        {
+          title: "Products",
+          path: "/dashboard",
+        },
+        {
+          title: "Customized Plans",
+          path: "/servicePlan/view-whole-life-insurance",
+        },
+        {
+          title: "Company Plans",
+          path: "/servicePlan/view-home-loan",
+        },
+        {
+          title: "Sales, Income & Expenses",
+          path: "/servicePlan/view-vehicle-loan",
+        },
+      ],
+      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
     },
     {
       title: "Staff Management",
       subMenu: false,
-      path:  "/",
+      path: "/",
       show: loggedInUserData.role === "0",
     },
-    {
-      title: "Customer Profile Management",
-      subMenu: false,
-      path:  "/",
-      show: loggedInUserData.role === "0",
-    },
-    
+
     {
       title: "Consultant Management",
       subMenu: false,
-      path:  "/consultant-management",
+      path: "/consultant-management",
       show: loggedInUserData.role === "0",
     },
 
     {
       title: "Space Management",
       subMenu: false,
-      path:  "/space-management",
+      path: "/space-management",
       show: loggedInUserData.role === "0",
     },
 
+    {
+      title: "Blogs & Testimonails",
+      subMenu: false,
+      path: "/blogs-testimonials",
+      show: loggedInUserData.role === "0",
+    },
 
     {
       title: " Reports & Graphs",
       subMenu: true,
       subMenuArray: [
-          { 
-            title: "Customers added as per products (NFC cards, pdf, cards, etc)",
-           path: "/Files & Folders" 
-          },
-          {
-            title: "Products sold as per category and products",
-            path: "/servicePlan/view-health-insurance"
-          },
-          { 
-            title: "Income generated as per different categories",
-            path: "/servicePlan/view-bike-insurance" 
-          },
-          {
-            title: "customer engagement to blogs & testimonials",
-            path: "/dashboard"
-          },
-          {
-            title: "feedback and complaints", 
-            path: "/servicePlan/view-whole-life-insurance",
-          },
-          {
-            title: "Payment generated from products sales of customers",
-            path: "/servicePlan/view-whole-life-insurance",
-          },  {
-            title: "Payment made to customers",
-            path: "/servicePlan/view-whole-life-insurance",
-          },
-        
-       
-        
-       
-          
+        {
+          title: "Customers added as per products (NFC cards, pdf, cards, etc)",
+          path: "/Files & Folders",
+        },
+        {
+          title: "Products sold as per category and products",
+          path: "/servicePlan/view-health-insurance",
+        },
+        {
+          title: "Income generated as per different categories",
+          path: "/servicePlan/view-bike-insurance",
+        },
+        {
+          title: "customer engagement to blogs & testimonials",
+          path: "/dashboard",
+        },
+        {
+          title: "feedback and complaints",
+          path: "/servicePlan/view-whole-life-insurance",
+        },
+        {
+          title: "Payment generated from products sales of customers",
+          path: "/servicePlan/view-whole-life-insurance",
+        },
+        {
+          title: "Payment made to customers",
+          path: "/servicePlan/view-whole-life-insurance",
+        },
       ],
       show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
     },
@@ -170,44 +155,61 @@ const SideBar = () => {
       title: "Compliance Documents",
       subMenu: true,
       subMenuArray: [
-          { 
-            title: "Contact Us",
-           path: "/Files & Folders" 
-          }       
-          
+        {
+          title: "Privacy policy",
+          path: "/privacy-policy",
+        },
+        {
+          title: "Refund Policy",
+          path: "/refund-policy",
+        },
+        {
+          title: "Terms & Conditions",
+          path: "/terms-conditions",
+        },
+        {
+          title: "Shipping Policy",
+          path: "/shipping-policy",
+        },
+        {
+          title: "Cancellation Policy",
+          path: "/cancellation-policy",
+        },
       ],
       show: loggedInUserData.role === "0",
     },
 
-    
     {
       title: "Subscribers",
       subMenu: true,
       subMenuArray: [
-          { 
-            title: "New Added",
-           path: "/Files & Folders" 
-          },
-          {
-            title: "Renewal Arriving",
-            path: "/servicePlan/view-health-insurance"
-          },
-          { 
-            title: "Renewal Due Passed",
-            path: "/servicePlan/view-bike-insurance" 
-          },
-          {
-            title: "Lapsed",
-            path: "/dashboard"
-          },
-          
-          
+        {
+          title: "New Added",
+          path: "/Files & Folders",
+        },
+        {
+          title: "Renewal Arriving",
+          path: "/servicePlan/view-health-insurance",
+        },
+        {
+          title: "Renewal Due Passed",
+          path: "/servicePlan/view-bike-insurance",
+        },
+        {
+          title: "Lapsed",
+          path: "/dashboard",
+        },
       ],
       show: loggedInUserData.role === "0",
     },
 
-
-/// CONSULTANT PANEL ///
+    {
+      title: "Contact Us",
+      subMenu: false,
+      path: "/contact-us",
+      show: loggedInUserData.role === "0",
+    },
+    /// CONSULTANT PANEL ///
 
     {
       title: "Profile",
@@ -215,14 +217,14 @@ const SideBar = () => {
       subMenuArray: [
         {
           title: "Company Profile",
-          path: "/companyProfile"
+          path: "/companyProfile",
         },
         {
           title: "Consultant Profile",
-          path: "/consultantProfile"
+          path: "/consultantProfile",
         },
       ],
-      show: loggedInUserData.role === "1" ,
+      show: loggedInUserData.role === "1",
     },
     {
       title: "Services",
@@ -230,75 +232,63 @@ const SideBar = () => {
       subMenuArray: [
         {
           title: "Customised Plans",
-          path: "/customisedPlan"
+          path: "/customisedPlan",
         },
         {
           title: "Life Insurance ",
-          path: "/plans/Life Insurance"
+          path: "/plans/Life Insurance",
         },
         {
           title: "Health Insurance ",
-          path: "/plans/Health Insurance"
+          path: "/plans/Health Insurance",
         },
         {
           title: "Motor Insurance",
-          path: "/plans/Motor Insurance"
+          path: "/plans/Motor Insurance",
         },
         {
           title: "Home Loan",
-          path: "/plans/Home Loan"
+          path: "/plans/Home Loan",
         },
         {
           title: "Vehicle Loan",
-          path: "/plans/Vehicle Loan"
+          path: "/plans/Vehicle Loan",
         },
-          { title: "Mutual Fund",
-             path: "/plans/Mutual Fund" 
-            },
-          { title: "Shares",
-             path: "/plans/Shares" 
-            },
-          { title: "Fixed Deposit",
-             path: "/plans/Fixed Deposit" 
-            },
-          { title: "Recurring Deposit",
-             path: "/plans/Recurring Deposit" 
-            },
-          { title: "Gold / Bullion",
-             path: "/plans/Gold and Bullion" 
-            },
-          { title: "Commercial Property",
-             path: "/plans/Commercial Property" 
-            },
-            {
-              title: "Land",
-              path: "/plans/Land"
-            },
-            {
-              title: "Residential Property",
-              path: "/plans/Residential Property"
-            },
-            {
-              title: "Sovereign Gold Bond",
-              path: "/plans/Sovereign Gold Bond"
-            },
-            {
-              title: "Post Office",
-              path: "/plans/Post Office"
-            },
-            {
-              title: "EPF / PPF",
-              path: "/plans/Employees Provident Fund and Public Provident Fund"
-            },
-            {
-              title: "NPS",
-              path: "/plans/National Pension System"
-            },
-            {
-              title: "IT Files",
-              path: "/plans/IT Files"
-            }
-        ],
+        { title: "Mutual Fund", path: "/plans/Mutual Fund" },
+        { title: "Shares", path: "/plans/Shares" },
+        { title: "Fixed Deposit", path: "/plans/Fixed Deposit" },
+        { title: "Recurring Deposit", path: "/plans/Recurring Deposit" },
+        { title: "Gold / Bullion", path: "/plans/Gold and Bullion" },
+        { title: "Commercial Property", path: "/plans/Commercial Property" },
+        {
+          title: "Land",
+          path: "/plans/Land",
+        },
+        {
+          title: "Residential Property",
+          path: "/plans/Residential Property",
+        },
+        {
+          title: "Sovereign Gold Bond",
+          path: "/plans/Sovereign Gold Bond",
+        },
+        {
+          title: "Post Office",
+          path: "/plans/Post Office",
+        },
+        {
+          title: "EPF / PPF",
+          path: "/plans/Employees Provident Fund and Public Provident Fund",
+        },
+        {
+          title: "NPS",
+          path: "/plans/National Pension System",
+        },
+        {
+          title: "IT Files",
+          path: "/plans/IT Files",
+        },
+      ],
       show: loggedInUserData.role === "1",
     },
     {
@@ -371,13 +361,24 @@ const SideBar = () => {
       title: "Investments / Valuation / Portfolio",
       subMenu: true,
       subMenuArray: [
-        { title: "MutualFund LumSum", path: "/consultant/portfolio/Mutual Fund Lum Sum" },
-        { title: "MutualFund SIP", path: "/consultant/portfolio/Mutual Fund SIP" },
+        {
+          title: "MutualFund LumSum",
+          path: "/consultant/portfolio/Mutual Fund Lum Sum",
+        },
+        {
+          title: "MutualFund SIP",
+          path: "/consultant/portfolio/Mutual Fund SIP",
+        },
         { title: "Shares", path: "/consultant/portfolio/Shares" },
-        { title: "Life Insurance", path: "/consultant/portfolio/Life Insurance"},
-        { title: "Health Insurance", path: "/consultant/portfolio/Health Insurance" },
+        {
+          title: "Life Insurance",
+          path: "/consultant/portfolio/Life Insurance",
+        },
+        {
+          title: "Health Insurance",
+          path: "/consultant/portfolio/Health Insurance",
+        },
         { title: "Loans", path: "/consultant/portfolio/Loans" },
- 
       ],
       show: loggedInUserData.role === "1",
     },
@@ -397,32 +398,39 @@ const SideBar = () => {
       title: "Contact Management",
       subMenu: false,
       path: "/consultant/contactManagement",
-      show: loggedInUserData.role === "1" ,
+      show: loggedInUserData.role === "1",
     },
 
     {
       title: "Analytics & Reports",
       subMenu: false,
       path: "/",
-      show: loggedInUserData.role === "1" ,
+      show: loggedInUserData.role === "1",
     },
     {
       title: "Task Management",
       subMenu: false,
       path: "/consultant/taskManagement",
-      show: loggedInUserData.role === "1" ,
+      show: loggedInUserData.role === "1",
     },
     {
       title: "Income & Expense Management",
       subMenu: true,
       subMenuArray: [
-        { title: "View Income and Expense", path: "/consultant/incomeAndExpense/year" },
-        { title: "Add Expense Headings", path: "/consultant/incomeAndExpense/addExpenseHeadings"},
-        { title: "Add Income Headings", path: "/consultant/incomeAndExpense/addIncomeHeadings" },
-    
- 
+        {
+          title: "View Income and Expense",
+          path: "/consultant/incomeAndExpense/year",
+        },
+        {
+          title: "Add Expense Headings",
+          path: "/consultant/incomeAndExpense/addExpenseHeadings",
+        },
+        {
+          title: "Add Income Headings",
+          path: "/consultant/incomeAndExpense/addIncomeHeadings",
+        },
       ],
-      show: loggedInUserData.role === "1" ,
+      show: loggedInUserData.role === "1",
     },
 
     {
@@ -464,8 +472,6 @@ const SideBar = () => {
       path: "/consultant/crm",
       show: loggedInUserData.role === "1",
     },
-
-
 
     /// CUSTOMER PANEL ///
     {
@@ -515,18 +521,20 @@ const SideBar = () => {
       path: "/calculatorFunds",
       show: loggedInUserData.role === "2",
     },
-    
+
     {
       title: "Investments / Valuation / Portfolio",
       subMenu: true,
       subMenuArray: [
-        { title: "MutualFund LumSum", path: "/user/portfolio/Mutual Fund Lum Sum" },
+        {
+          title: "MutualFund LumSum",
+          path: "/user/portfolio/Mutual Fund Lum Sum",
+        },
         { title: "MutualFund SIP", path: "/user/portfolio/Mutual Fund SIP" },
         { title: "Shares", path: "/user/portfolio/Shares" },
-        { title: "Life Insurance", path: "/user/portfolio/Life Insurance"},
+        { title: "Life Insurance", path: "/user/portfolio/Life Insurance" },
         { title: "Health Insurance", path: "/user/portfolio/Health Insurance" },
         { title: "Loans", path: "/user/portfolio/Loans" },
- 
       ],
       path: "/user/investment",
       show: loggedInUserData.role === "2",
@@ -538,7 +546,7 @@ const SideBar = () => {
       path: "user/scheduleManagement",
       show: loggedInUserData.role === "2",
     },
-   
+
     {
       title: "Notifications / Circulars ",
       subMenu: false,

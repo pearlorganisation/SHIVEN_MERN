@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Stack, Skeleton } from "@mui/material";
 
-
 const filesAndFolder = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -25,9 +24,30 @@ const filesAndFolder = () => {
   //   }, []);
 
   const servicePlanData = [
-    { firstName: "John", lastName: "Doe", age: 40, address: "High streets" },
-    { firstName: "Kailyn", lastName: "Doe", age: 35, address: "High streets" },
-    { firstName: "John Jr", lastName: "Doe", age: 14, address: "High streets" },
+    {
+      firstName: "John",
+      lastName: "Doe",
+      email: "x@gmail.com",
+      mobile: "9999999999",
+      mobile2: "8888888888",
+      address: "High streets",
+    },
+    {
+      firstName: "Kailyn",
+      lastName: "Doe",
+      email: "x@gmail.com",
+      mobile: "9999999999",
+      mobile2: "8888888888",
+      address: "High streets",
+    },
+    {
+      firstName: "John Jr",
+      lastName: "Doe",
+      email: "x@gmail.com",
+      mobile: "9999999999",
+      mobile2: "8888888888",
+      address: "High streets",
+    },
   ];
 
   return (
@@ -43,7 +63,11 @@ const filesAndFolder = () => {
             <tr>
               <th className="py-3 px-6">First Name</th>
               <th className="py-3 px-6">Last Name </th>
+
               <th className="py-3 px-6">Address</th>
+              <th className="py-3 px-6">E-Mail</th>
+              <th className="py-3 px-6">Mobile 1</th>
+              <th className="py-3 px-6">Mobile 2</th>
 
               <th className="py-3 px-6">Actions</th>
             </tr>
@@ -78,8 +102,16 @@ const filesAndFolder = () => {
                       {item?.address}
                     </td>
 
+                    <td className="px-6 py-4 whitespace-nowrap ">
+                      {item?.email}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap ">
+                      {item?.mobile}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap ">
+                      {item?.mobile2}
+                    </td>
                     <td className=" whitespace-nowrap">
-
                       <a
                         onClick={() => {
                           navigate("/clientFiles");

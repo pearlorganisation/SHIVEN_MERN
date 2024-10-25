@@ -25,9 +25,27 @@ const Profile = () => {
   //   }, []);
 
   const servicePlanData = [
-    { firstName: "John", lastName: "Doe", age: 40, address: "High streets" },
-    { firstName: "Kailyn", lastName: "Doe", age: 35, address: "High streets" },
-    { firstName: "John Jr", lastName: "Doe", age: 14, address: "High streets" },
+    {
+      firstName: "John",
+      lastName: "Doe",
+      email: "x@gmail.com",
+      mobile: "9999999999",
+      address: "High streets",
+    },
+    {
+      firstName: "Kailyn",
+      lastName: "Doe",
+      email: "x@gmail.com",
+      mobile: "9999999999",
+      address: "High streets",
+    },
+    {
+      firstName: "John Jr",
+      lastName: "Doe",
+      email: "x@gmail.com",
+      mobile: "9999999999",
+      address: "High streets",
+    },
   ];
 
   return (
@@ -53,7 +71,9 @@ const Profile = () => {
             <tr>
               <th className="py-3 px-6">First Name</th>
               <th className="py-3 px-6">Last Name </th>
-              <th className="py-3 px-6">Age</th>
+              <th className="py-3 px-6">E-mail</th>
+              <th className="py-3 px-6">Mobile 1</th>
+
               <th className="py-3 px-6">Address</th>
 
               <th className="py-3 px-6">Actions</th>
@@ -87,8 +107,13 @@ const Profile = () => {
                     </td>
 
                     <td className="px-6 py-4 whitespace-nowrap truncate max-w-56 ">
-                      {item?.age}
+                      {item?.email}
                     </td>
+
+                    <td className="px-6 py-4 whitespace-nowrap truncate max-w-56 ">
+                      {item?.mobile}
+                    </td>
+                    
                     <td className="px-6 py-4 whitespace-nowrap truncate max-w-56 ">
                       {item?.address}
                     </td>

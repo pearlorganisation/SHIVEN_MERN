@@ -140,7 +140,7 @@ const BlogsList = () => {
 
                     <td className="px-6 py-4 text-center flex gap-4 justify-center">
                       <Link
-                        to={`/blogs/update/${item?._id}`}
+                        to={`/blogs/edit/${item?._id}`}
                         className="font-medium text-blue-600  hover:underline"
                       >
                         Edit

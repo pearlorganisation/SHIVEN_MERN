@@ -88,6 +88,7 @@ import TermsConditions from "../pages/Admin/ComplianceDocuments/TermsConditions"
 import ShippingPolicy from "../pages/Admin/ComplianceDocuments/ShippingPolicy";
 import CancellationPolicy from "../pages/Admin/ComplianceDocuments/CancellationPolicy";
 import AddBlog from "../components/Blogs/consultant/AddBlog";
+import EditBlog from "../components/Blogs/consultant/EditBlog";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -482,6 +483,11 @@ export const routes = [
     title: "Blogs / Articles",
     component: AddBlog,
     path: "/blogs/add",
+  },
+  {
+    title: "Blogs / Articles",
+    component: EditBlog,
+    path: "/blogs/edit/:id",
   },
 
 

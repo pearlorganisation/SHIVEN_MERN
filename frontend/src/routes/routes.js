@@ -87,6 +87,7 @@ import PrivacyPolicy from "../pages/Admin/ComplianceDocuments/PrivacyPolicy";
 import TermsConditions from "../pages/Admin/ComplianceDocuments/TermsConditions";
 import ShippingPolicy from "../pages/Admin/ComplianceDocuments/ShippingPolicy";
 import CancellationPolicy from "../pages/Admin/ComplianceDocuments/CancellationPolicy";
+import AddBlog from "../components/Blogs/consultant/AddBlog";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -476,6 +477,13 @@ export const routes = [
     component: BlogsList,
     path: "/consultant/blogs",
   },
+
+  {
+    title: "Blogs / Articles",
+    component: AddBlog,
+    path: "/blogs/add",
+  },
+
 
   {
     title: "Contact Management",

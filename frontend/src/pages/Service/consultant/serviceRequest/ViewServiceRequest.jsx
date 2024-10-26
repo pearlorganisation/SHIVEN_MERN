@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { Stack, Skeleton } from "@mui/material";
@@ -9,9 +9,7 @@ const ViewServiceRequest = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const servicePlanData = [1]
-  //   const { servicePlanData, isLoading } = useSelector(
-  //     (state) => state.servicePlan
-  //   );
+  const { loggedInUserData } = useSelector((state) => state.auth);
 
     const [showViewModal, setShowViewModal] = useState(false);
     const [viewData, setViewData] = useState();
@@ -29,7 +27,7 @@ const ViewServiceRequest = () => {
     <div className="userContainer p-10 ">
       <div className="title p-1">
         <h4 className="font-bold text-blue-500 text-sm sm:text-md md:text-lg">
-          Client Service Requests
+        {loggedInUserData?.role === "0" ? "Consultant Service Requests" : "Client Service Requests"}
         </h4>
         {/* <div className="createEmployeeBtn flex justify-end p-4 ">
    

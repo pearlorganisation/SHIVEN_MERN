@@ -9,12 +9,20 @@ const ViewServices = () => {
   const dispatch= useDispatch();
   const navigate = useNavigate();
   const { loggedInUserData } = useSelector((state) => state.auth);
-  const {serviceData,isLoading } = useSelector(state => state.service)
-
-  useEffect(()=>{
-    dispatch(getAllServices())
+  // const {serviceData,isLoading } = useSelector(state => state.service)
   
-  },[])
+  const serviceData = [ 
+    {name:"Motor Insurance", path:"/servicePlan/bike-insurance",logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnVBWBvkb4oy5Vg3-nwkyM9PeDfxKakeb7Wg&s",serviceDescription:"lorem ispum ipsum lorem ipsi for"},
+    {name:"Whole Life Insurance", path:"/servicePlan/whole-life-insurance",logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnVBWBvkb4oy5Vg3-nwkyM9PeDfxKakeb7Wg&s",serviceDescription:"lorem ispum ipsum lorem ipsi for"},
+    {name:"Home Loan", path:"/servicePlan/home-loan",logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnVBWBvkb4oy5Vg3-nwkyM9PeDfxKakeb7Wg&s",serviceDescription:"lorem ispum ipsum lorem ipsi for"},
+    {name:"Vehicle Loan", path:"/servicePlan/vehicle-loan",logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnVBWBvkb4oy5Vg3-nwkyM9PeDfxKakeb7Wg&s",serviceDescription:"lorem ispum ipsum lorem ipsi for"},
+    {name:"Mutual Fund", path:"/servicePlan/mutual-fund",logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnVBWBvkb4oy5Vg3-nwkyM9PeDfxKakeb7Wg&s",serviceDescription:"lorem ispum ipsum lorem ipsi for"},
+  ]
+
+  // useEffect(()=>{
+  //   dispatch(getAllServices())
+  
+  // },[])
 
   return (
     <div className="userContainer p-10 ">
@@ -26,10 +34,10 @@ const ViewServices = () => {
           <button
             className=" p-2 rounded-lg bg-indigo-600 text-white font-bold tracking-widest"
             onClick={() => {
-              navigate("/policy/addPolicy");
+              navigate("/admin/addService");
             }}
           >
-            Add Policy
+            Add New Service
           </button>
         </div>}
       </div>
@@ -48,7 +56,7 @@ const ViewServices = () => {
                 </tr>
               </thead>
               <tbody className="text-gray-600 divide-y">
-              {isLoading ? (
+              {false ? (
               <tr>
               <td colSpan="6" className="text-center px-6 py-8">
                 <Stack spacing={4}>
@@ -65,7 +73,7 @@ const ViewServices = () => {
                     <tr key={idx}>
                       <td className="px-6 py-4 whitespace-nowrap">{idx+1}</td>
                       <td className="px-6 py-4 whitespace-nowrap ">
-                        {item?.serviceType}
+                        {item?.name}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap ">
                         <img src={item?.logo} className='rounded-lg w-24 h-20' />
@@ -79,12 +87,28 @@ const ViewServices = () => {
                      
                   {  loggedInUserData.role === "0" &&   <td className=" whitespace-nowrap py-3 px-6">
                         <a
+                          onClick={() => {
+                            navigate(item?.path);
+                          }}
+                          className="cursor-pointer py-2 px-3 font-semibold text-blue-600 hover:text-blue-700 duration-150 hover:bg-gray-50 rounded-lg"
+                        >
+                          Create a new Plan
+                        </a>
+                        <a
                           // onClick={() => {
                           //   navigate(`/updateDessert/${item?._id}`, { state: item  });
                           // }}
                           className="cursor-pointer py-2 px-3 font-semibold text-green-600 hover:text-green-700 duration-150 hover:bg-gray-50 rounded-lg"
                         >
                           Edit
+                        </a>
+                        <a
+                          // onClick={() => {
+                          //   navigate(`/updateDessert/${item?._id}`, { state: item  });
+                          // }}
+                          className="cursor-pointer py-2 px-3 font-semibold text-red-600 hover:text-red-700 duration-150 hover:bg-gray-50 rounded-lg"
+                        >
+                          Delete
                         </a>
                       </td>}
                     </tr>

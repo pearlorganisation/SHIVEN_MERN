@@ -6,7 +6,7 @@ import { Stack,Skeleton } from '@mui/material';
 import { getAllServiceProviders } from '../../../features/actions/Service/serviceProvider';
 import { getAllServices } from '../../../features/actions/Service/service';
 
-const ViewServiceProviders = () => {
+const ViewPlans = () => {
   const dispatch= useDispatch();
   const navigate = useNavigate();
   const {serviceProviderData,isLoading } = useSelector(state => state.serviceProvider)
@@ -22,7 +22,7 @@ console.log(loggedInUserData)
     <div className="userContainer p-10 ">
       <div className="title p-1">
         <h4 className="font-bold text-blue-500 text-sm sm:text-md md:text-lg">
-          Service Provider Listing
+          Company Plan Listing
         </h4>
         <div className="createEmployeeBtn flex justify-end p-4 ">
   {loggedInUserData?.role === "0" &&        <button
@@ -31,7 +31,7 @@ console.log(loggedInUserData)
               navigate("/admin/createServiceProvider");
             }}
           >
-           Add Service Provider
+           Add Plan
           </button>}
 
         </div>
@@ -41,8 +41,8 @@ console.log(loggedInUserData)
               <thead className="bg-gray-50 text-gray-600 font-medium border-b">
                 <tr>
                   <th className="py-3 px-6">ID</th>
+                  <th className="py-3 px-6">Plan Name</th>
                   <th className="py-3 px-6">Service Provider </th>
-                  <th className="py-3 px-6">Logo </th>
                   <th className="py-3 px-6">Description </th>
            
                   <th className="py-3 px-6">Actions</th>
@@ -68,10 +68,10 @@ console.log(loggedInUserData)
                     <tr key={idx}>
                       <td className="px-6 py-4 whitespace-nowrap">{idx+1}</td>
                       <td className="px-6 py-4 whitespace-nowrap ">
-                        {item?.serviceProviderName}
+                       Demo Plan
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap ">
-                        <img src={item?.logo} className='rounded-lg w-24 h-20' />
+                      {item?.serviceProviderName}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap truncate max-w-56 ">
                         {item?.description}
@@ -109,4 +109,4 @@ console.log(loggedInUserData)
   )
 }
 
-export default ViewServiceProviders
+export default ViewPlans

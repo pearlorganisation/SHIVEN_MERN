@@ -5,6 +5,7 @@ import { CircleLoader } from "react-spinners";
 import { Toaster, toast } from "sonner";
 
 const EnquiryLeadsManagement = () => {
+  const [isLoading, setIsLoading] = useState(true)
   const [selectedItem, setSelectedItem] = useState(null);
   const [data, setData] = useState(null);
   const [open, setOpen] = useState(false);

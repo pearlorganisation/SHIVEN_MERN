@@ -5,13 +5,11 @@ import { useSelector } from 'react-redux';
 import { Stack,Skeleton } from '@mui/material';
 import { getAllServiceProviders } from '../../../features/actions/Service/serviceProvider';
 import { getAllServices } from '../../../features/actions/Service/service';
-import Select from 'react-select'
 
 const ViewPlans = () => {
   const dispatch= useDispatch();
   const navigate = useNavigate();
   const {serviceProviderData,isLoading } = useSelector(state => state.serviceProvider)
-  const [selectedOption, setSelectedOption] = useState(null);
   
   const { loggedInUserData } = useSelector((state) => state.auth);
 console.log(loggedInUserData)
@@ -20,14 +18,6 @@ console.log(loggedInUserData)
     dispatch(getAllServices())
   },[])
 
-  const servicesForm= [
-    {name:"Health Insurance",path:""},
-    {name:"Whole Life Insurance",path:""},
-    {name:"Motor Insurance",path:""},
-    {name:"Home Loan",path:""},
-    {name:"Vehicle Loan",path:""},
-]
-
   return (
     <div className="userContainer p-10 ">
       <div className="title p-1">
@@ -35,24 +25,14 @@ console.log(loggedInUserData)
           Company Plan Listing
         </h4>
         <div className="createEmployeeBtn flex justify-end p-4 ">
-  {loggedInUserData?.role === "0" &&  
-      <div className='flex gap-3 '>       <Select
-       className='w-64'
-      options={[{value:"Health Insurance",label:"Health Insurance"},{value:"Whole Life Insurance",label:"Whole Life Insurance"},
-        {value:"Motor Insurance",label:"Motor Insurance"},{value:"Home Loan",label:"Home Loan"},{value:"Vehicle Loan",label:"Vehicle Loan"},
-        {value:"Mutual Fund",label:"Mutual Fund"}
-
-      ]}
-      /> <button
+  {loggedInUserData?.role === "0" &&        <button
             className=" p-2 rounded-lg bg-indigo-600 text-white font-bold tracking-widest"
             onClick={() => {
               navigate("/admin/createServiceProvider");
             }}
           >
-      
            Add Plan
-          </button>
-          </div>}
+          </button>}
 
         </div>
       </div>

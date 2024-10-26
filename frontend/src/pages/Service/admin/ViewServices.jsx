@@ -26,10 +26,10 @@ const ViewServices = () => {
           <button
             className=" p-2 rounded-lg bg-indigo-600 text-white font-bold tracking-widest"
             onClick={() => {
-              navigate("/policy/addPolicy");
+              navigate("/admin/addService");
             }}
           >
-            Add Policy
+            Add New Service
           </button>
         </div>}
       </div>
@@ -85,6 +85,14 @@ const ViewServices = () => {
                           className="cursor-pointer py-2 px-3 font-semibold text-green-600 hover:text-green-700 duration-150 hover:bg-gray-50 rounded-lg"
                         >
                           Edit
+                        </a>
+                        <a
+                          // onClick={() => {
+                          //   navigate(`/updateDessert/${item?._id}`, { state: item  });
+                          // }}
+                          className="cursor-pointer py-2 px-3 font-semibold text-red-600 hover:text-red-700 duration-150 hover:bg-gray-50 rounded-lg"
+                        >
+                          Delete
                         </a>
                       </td>}
                     </tr>

@@ -11,6 +11,7 @@ const ViewPlans = () => {
   const dispatch= useDispatch();
   const navigate = useNavigate();
   const {serviceProviderData,isLoading } = useSelector(state => state.serviceProvider)
+  const [selectedOption, setSelectedOption] = useState(null);
   
   const { loggedInUserData } = useSelector((state) => state.auth);
 console.log(loggedInUserData)
@@ -35,10 +36,12 @@ console.log(loggedInUserData)
         </h4>
         <div className="createEmployeeBtn flex justify-end p-4 ">
   {loggedInUserData?.role === "0" &&  
-      <div className='flex gap-3 '>       <Select className='w-64'
+      <div className='flex gap-3 '>       <Select
+       className='w-64'
       options={[{value:"Health Insurance",label:"Health Insurance"},{value:"Whole Life Insurance",label:"Whole Life Insurance"},
         {value:"Motor Insurance",label:"Motor Insurance"},{value:"Home Loan",label:"Home Loan"},{value:"Vehicle Loan",label:"Vehicle Loan"},
         {value:"Mutual Fund",label:"Mutual Fund"}
+
       ]}
       /> <button
             className=" p-2 rounded-lg bg-indigo-600 text-white font-bold tracking-widest"

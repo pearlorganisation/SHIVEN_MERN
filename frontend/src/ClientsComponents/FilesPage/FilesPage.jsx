@@ -8,12 +8,17 @@ import ViewDocumentUploads from "../../components/Modal/ViewDocumentUploads";
 const FilesPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+
   //   const { servicePlanData, isLoading } = useSelector(
   //     (state) => state.servicePlan
   //   );
 
   const [showViewModal, setShowViewModal] = useState(false);
   const [viewData, setViewData] = useState();
+
+  const { loggedInUserData } = useSelector((state) => state.auth);
+  
 
   const handleViewModal = (itemData) => {
     setShowViewModal(true);
@@ -25,9 +30,33 @@ const FilesPage = () => {
   //   }, []);
 
   const servicePlanData = [
-    { firstName: "John", lastName: "Doe", age: 40, address: "High streets" },
-    { firstName: "Kailyn", lastName: "Doe", age: 35, address: "High streets" },
-    { firstName: "John Jr", lastName: "Doe", age: 14, address: "High streets" },
+    {
+      relation: "Wife",
+      firstName: "John",
+      lastName: "Doe",
+      email: "x@gmail.com",
+      mobile: "9999999999",
+      mobile2: "9999999999",
+      address: "High streets",
+    },
+    {
+      relation: "Daughter",
+      firstName: "Kailyn",
+      lastName: "Doe",
+      email: "x@gmail.com",
+      mobile: "9999999999",
+      mobile2: "9999999999",
+      address: "High streets",
+    },
+    {
+      relation: "Son",
+      firstName: "John Jr",
+      lastName: "Doe",
+      email: "x@gmail.com",
+      mobile: "9999999999",
+      mobile2: "9999999999",
+      address: "High streets",
+    },
   ];
 
   return (
@@ -44,8 +73,12 @@ const FilesPage = () => {
               <th className="py-3 px-6">Relation</th>
               <th className="py-3 px-6">First Name</th>
               <th className="py-3 px-6">Last Name </th>
-
-              <th className="py-3 px-6">Actions</th>
+              <th className="py-3 px-6">Address</th>
+              <th className="py-3 px-6">Mobile 1</th>
+              <th className="py-3 px-6">Mobile 2</th>
+              {loggedInUserData?.role === "1" && (
+                <th className="py-3 px-6">Actions</th>
+              )}
             </tr>
           </thead>
           <tbody className="text-gray-600 divide-y">
@@ -68,9 +101,9 @@ const FilesPage = () => {
                 servicePlanData.length > 0 &&
                 servicePlanData?.map((item, idx) => (
                   <tr key={idx}>
-
                     <td className="px-6 py-4 whitespace-nowrap truncate max-w-56 ">
-                    Wife
+                    {item?.relation}
+                      
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap ">
                       {item?.firstName}
@@ -79,17 +112,27 @@ const FilesPage = () => {
                       {item?.lastName}
                     </td>
 
-                    <td className=" whitespace-nowrap">
-
-                      <a
-                        onClick={() => {
-                          navigate("/clientFiles/files-folders");
-                        }}
-                        className="cursor-pointer py-2 px-3 font-semibold text-green-600 hover:text-green-700 duration-150 hover:bg-gray-50 rounded-lg"
-                      >
-                        Files and Folders
-                      </a>
+                    <td className="px-6 py-4 whitespace-nowrap ">
+                      {item?.email}
                     </td>
+                    <td className="px-6 py-4 whitespace-nowrap ">
+                      {item?.mobile}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap ">
+                      {item?.mobile2}
+                    </td>
+                    {loggedInUserData?.role === "1" && (
+                      <td className=" whitespace-nowrap">
+                        <a
+                          onClick={() => {
+                            navigate("/clientFiles/files-folders");
+                          }}
+                          className="cursor-pointer py-2 px-3 font-semibold text-green-600 hover:text-green-700 duration-150 hover:bg-gray-50 rounded-lg"
+                        >
+                          Files and Folders
+                        </a>
+                      </td>
+                    )}
                   </tr>
                 ))
               // )

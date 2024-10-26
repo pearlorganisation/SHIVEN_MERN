@@ -1,7 +1,7 @@
 import { Pagination, Skeleton, styled } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
 import { Toaster, toast } from "sonner";
+import BlogsModal from "./BlogsModal";
 // import { instance } from "../../services/axiosInterceptor";
 
 const StyledPagination = styled(Pagination)(({ theme }) => ({
@@ -10,8 +10,16 @@ const StyledPagination = styled(Pagination)(({ theme }) => ({
   },
 }));
 
+
 const BlogsTestimonials = () => {
   const [data, setData] = useState(null);
+  const [showViewModal, setShowViewModal] = useState(false);
+  const [viewData, setViewData] = useState();
+  
+  const handleViewModal = (itemData) => {
+    setShowViewModal(true);
+    setViewData(itemData);
+  };
   //   const [searchParams, setSearchParams] = useSearchParams({ page: 1 });
   //   const [page, setPage] = useState(searchParams.get("page") || 1);
   //   const [totalPages, setTotalPages] = useState(1);
@@ -93,12 +101,7 @@ const BlogsTestimonials = () => {
       <div className="p-10 ">
         <div className="text-2xl">Blogs & Testimonials</div>
         <div className="flex items-center justify-end flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-8 ">
-          <Link
-            to="/blogs/add"
-            className="bg-blue-600 rounded-md text-white px-3 py-1 font-semibold "
-          >
-            Add
-          </Link>
+     
         </div>
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
           {isLoading && (
@@ -117,7 +120,7 @@ const BlogsTestimonials = () => {
                     S.No
                   </th>
                   <th scope="col" className="px-6 py-3">
-                    Title
+                    Subject
                   </th>
                   <th scope="col" className="text-center px-6 py-3">
                     Actions
@@ -139,17 +142,26 @@ const BlogsTestimonials = () => {
                     <td className="px-6 py-4">{item.title}</td>
 
                     <td className="px-6 py-4 text-center flex gap-4 justify-center">
-                      <Link
-                        to={`/blogs/update/${item?._id}`}
-                        className="font-medium text-blue-600  hover:underline"
+                   
+<select name="cars" id="cars" className="px-6 py-2 rounded-md" >
+  <option  >Choose Status</option>
+  <option value="volvo">Approved</option>
+  <option value="saab">Rejected</option>
+
+</select>
+                      <button
+                        className="font-medium text-green-600  hover:underline"
+                        onClick={() => {
+                          handleViewModal(item)
+                        }}
                       >
-                        Edit
-                      </Link>
+                        View
+                      </button>
                       <button
                         className="font-medium text-red-600  hover:underline"
-                        onClick={() => {
-                          deleteItem(item);
-                        }}
+                        // onClick={() => {
+                        //   deleteItem(item);
+                        // }}
                       >
                         Delete
                       </button>
@@ -171,6 +183,9 @@ const BlogsTestimonials = () => {
             />
           </div>
         )} */}
+            {showViewModal && (
+        <BlogsModal setModal={setShowViewModal} viewData={viewData} />
+      )}
       </div>
     </div>
   );

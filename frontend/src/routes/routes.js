@@ -65,7 +65,6 @@ import ViewPortfolio from "../pages/Service/user/portfolio/ViewPortfolio";
 import ViewAllPortfolio from "../pages/Service/consultant/portfolio/ViewAllPortfolio";
 import YearIncomeExpense from "../pages/Service/consultant/incomeAndExpense/YearIncomeExpense";
 import MonthIncomeExpense from "../pages/Service/consultant/incomeAndExpense/MonthIncomeExpense";
-import AddDailyExpenseIncome from "../pages/Service/consultant/incomeAndExpense/AddDailyIncome";
 import AddPlans from "../pages/Service/consultant/plans/AddPlans";
 import ConsultantProfile from "../components/CompanyProfile/ConsultantProfile";
 import SmsEmail from "../components/SmsEmail/SmsEmail";
@@ -74,12 +73,15 @@ import AddEnquiryLeads from "../components/EnquiryLeadsManagement/AddEnquiryLead
 import EnquiryLeadsManagement from "../components/EnquiryLeadsManagement/EnquiryLeadsManagement";
 import SpaceManagment from "../pages/Admin/SpaceManagement";
 import ContactUs from "../components/ContactUs/ContactUs";
-import HeadingForm from "../pages/Service/consultant/incomeAndExpense/HeadingFormExpense";
 import HeadingFormExpense from "../pages/Service/consultant/incomeAndExpense/HeadingFormExpense";
 import HeadingFormIncome from "../pages/Service/consultant/incomeAndExpense/HeadingFormIncome";
 import AddDailyIncome from "../pages/Service/consultant/incomeAndExpense/AddDailyIncome";
 import AddDailyExpense from "../pages/Service/consultant/incomeAndExpense/AddDailyExpense";
 import BlogsTestimonials from "../components/BlogsTestimonials/BlogsTestimonials";
+import ViewStaffManagement from "../pages/Admin/StaffManagement/ViewStaffManagement";
+import CreateStaff from "../pages/Admin/StaffManagement/CreateStaff";
+import Payments from "../pages/Admin/Payments";
+import ViewPlans from "../pages/Service/admin/ViewPlans";
 import RefundPolicy from "../pages/Admin/ComplianceDocuments/RefundPolicy";
 import PrivacyPolicy from "../pages/Admin/ComplianceDocuments/PrivacyPolicy";
 import TermsConditions from "../pages/Admin/ComplianceDocuments/TermsConditions";
@@ -149,6 +151,47 @@ const CreateInsuranceServiceProvider = lazy(() => {
 // -----------------------------------------------------------------------------------------------------------
 
 export const routes = [
+  //Admin
+  {
+    title: "StaffManagement",
+    component: ViewStaffManagement,
+    path: "/admin/staffManagement",
+  },
+  {
+    title: "StaffManagement",
+    component: CreateStaff,
+    path: "/admin/createEmployee",
+  },
+  {
+    title: "Payment",
+    component: Payments,
+    path: "/admin/payments",
+  },
+  {
+    title: "Services",
+    component: ViewServices,
+    path: "/admin/services",
+  },
+  {
+    title: "Create Service",
+    component: CreateService,
+    path: "/admin/addService",
+  },
+  {
+    title: " Service Provider ",
+    component: ViewServiceProviders,
+    path: "/admin/serviceProviders",
+  },
+  {
+    title: "Create Service Provider",
+    component: CreateServiceProvider,
+    path: "/admin/createServiceProvider",
+  },
+  {
+    title: "Company Plans",
+    component: ViewPlans,
+    path: "/admin/plans",
+  },
   {
     title: "Dashboard",
     component: Dashboard,
@@ -214,21 +257,8 @@ export const routes = [
     path: "/insurances/insurance-service-providers/create-insurance-service-provider",
   },
   //  Service
-  {
-    title: "Create Service",
-    component: CreateService,
-    path: "/service/addService",
-  },
-  {
-    title: " Service Provider ",
-    component: ViewServiceProviders,
-    path: "/consultant/serviceProvider",
-  },
-  {
-    title: "Create Service Provider",
-    component: CreateServiceProvider,
-    path: "/serviceProvider/createServiceProvider",
-  },
+
+
   {
     title: " View Brochures ",
     component: ViewBrochures,

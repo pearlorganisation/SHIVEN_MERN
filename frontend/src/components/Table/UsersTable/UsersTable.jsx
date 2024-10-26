@@ -9,7 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { MdDeleteForever } from "react-icons/md";
 // -----------------------------------------------------------------------------------------------------
 // agar tum yha tk pohoch gye toh best of luck, all credit to pieces of shit here, sbko bolo gand mraye, except mern team
-const UsersTable = () => {
+const UsersTable = ({name}) => {
   // -------------------------------------------------States---------------------------------------------
   // -----------------------------------------------------------------------------------------------------
   // -------------------------------------------------Hooks---------------------------------------------
@@ -62,6 +62,7 @@ const UsersTable = () => {
   // -----------------------------------------------------------------------------------------------------
   return (
     <div>
+
       <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50">
@@ -75,7 +76,7 @@ const UsersTable = () => {
               <th scope="col" class="px-6 py-3">
                 Email
               </th>
-              {loggedInUserData?.role === "0" && (
+              {name !== "Employees" &&  (
                 <th scope="col" class="px-6 py-3">
                   Customers
                 </th>
@@ -103,7 +104,7 @@ const UsersTable = () => {
                       {/* <td class="px-6 py-4">
                         {reverseRoleChecker(user?.role) || "N/A"}
                       </td> */}
-                      {loggedInUserData?.role === "0" && (
+                      {  name !== "Employees"  && (
                         <td class="px-6 py-4">
                           <Link
                             to="/consultant-filesManagement"

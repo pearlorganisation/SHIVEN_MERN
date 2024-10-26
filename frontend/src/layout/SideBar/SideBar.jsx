@@ -49,46 +49,38 @@ const SideBar = () => {
       show: loggedInUserData.role === "1",
     },
 
-    ///  Admin PANEL ///
-    {
-      title: "Manage Listing",
-      subMenu: true,
-      subMenuArray: [
-        {
-          title: "Categories",
-          path: "/Files & Folders",
-        },
-        {
-          title: "Services",
-          path: "/servicePlan/view-health-insurance",
-        },
-        {
-          title: "Services Provides",
-          path: "/servicePlan/view-bike-insurance",
-        },
-        {
-          title: "Products",
-          path: "/dashboard",
-        },
-        {
-          title: "Customized Plans",
-          path: "/servicePlan/view-whole-life-insurance",
-        },
-        {
-          title: "Company Plans",
-          path: "/servicePlan/view-home-loan",
-        },
-        {
-          title: "Sales, Income & Expenses",
-          path: "/servicePlan/view-vehicle-loan",
-        },
-      ],
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
-    },
+
+
+///  Admin PANEL ///
+{
+  title: "Manage Listing",
+  subMenu: true,
+  subMenuArray: [
+      {
+        title: "Categories / Services",
+        path: "/admin/services"
+      },
+      { 
+        title: "Services Providers",
+        path: "/admin/serviceProviders" 
+      },
+      { 
+        title: "Company Plans",
+        path: "/admin/plans" 
+      },      
+      { 
+        title: "Customised Plans",
+        path: "/customisedPlan" 
+      },      
+  
+  ],
+  show: loggedInUserData.role === "0" 
+},
+
     {
       title: "Staff Management",
       subMenu: false,
-      path: "/",
+      path: "/admin/staffManagement",
       show: loggedInUserData.role === "0",
     },
 
@@ -100,6 +92,12 @@ const SideBar = () => {
     },
 
     {
+      title: "Payment Logs",
+      subMenu: false,
+      path:  "/admin/payments",
+      show: loggedInUserData.role === "0",
+    },
+    {
       title: "Space Management",
       subMenu: false,
       path: "/space-management",
@@ -107,12 +105,24 @@ const SideBar = () => {
     },
 
     {
-      title: "Blogs & Testimonails",
-      subMenu: false,
-      path: "/blogs-testimonials",
+      title: "Sales , Income and Expenses",
+      subMenu: true,
+      subMenuArray: [
+        {
+          title: "View Income and Expense",
+          path: "/consultant/incomeAndExpense/year",
+        },
+        {
+          title: "Add Expense Headings",
+          path: "/consultant/incomeAndExpense/addExpenseHeadings",
+        },
+        {
+          title: "Add Income Headings",
+          path: "/consultant/incomeAndExpense/addIncomeHeadings",
+        },
+      ],
       show: loggedInUserData.role === "0",
     },
-
     {
       title: " Reports & Graphs",
       subMenu: true,
@@ -146,68 +156,76 @@ const SideBar = () => {
           path: "/servicePlan/view-whole-life-insurance",
         },
       ],
-      show: loggedInUserData.role === "0" || loggedInUserData.role === "0",
+      show: loggedInUserData.role === "0"
     },
-
+    // {
+    //   title: "Social Media Integration",
+    //   subMenu: false,
+    //   path:  "/",
+    //   show: loggedInUserData.role === "0",
+    // },
+    {
+      title: "Consultant Service Requests",
+      subMenu: false,
+      path:  "/consultant/serviceRequest",
+      show: loggedInUserData.role === "0",
+    },
+    {
+      title: "Feedback",
+      subMenu: false,
+      path:  "/consultant/feedbacks",
+      show: loggedInUserData.role === "0",
+    },
+    {
+      title: "SMS / WhatsApp Integration",
+      subMenu: false,
+      path:  "/",
+      show: loggedInUserData.role === "0",
+    },
+    {
+      title: "Blogs & Testimonails",
+      subMenu: false,
+      path: "/blogs-testimonials",
+      show: loggedInUserData.role === "0",
+    },
     {
       title: "Compliance Documents",
       subMenu: true,
       subMenuArray: [
-        {
-          title: "Privacy policy",
-          path: "/privacy-policy",
-        },
-        {
-          title: "Refund Policy",
-          path: "/refund-policy",
-        },
-        {
-          title: "Terms & Conditions",
-          path: "/terms-conditions",
-        },
-        {
-          title: "Shipping Policy",
-          path: "/shipping-policy",
-        },
-        {
-          title: "Cancellation Policy",
-          path: "/cancellation-policy",
-        },
+          { 
+            title: "Privacy Policy",
+           path: "/privacy-policy" 
+          },       
+          { 
+            title: "Refund Policy",
+           path: "/refund-policy" 
+          },       
+          { 
+            title: "Terms & Conditions",
+           path: "/terms-conditions" 
+          },       
+          { 
+            title: "Shipping Policy",
+           path: "/shipping-policy" 
+          },       
+          { 
+            title: "Cancellation Policy",
+           path: "/cancellation-policy" 
+          }       
+          
       ],
       show: loggedInUserData.role === "0",
     },
-
-    {
-      title: "Subscribers",
-      subMenu: true,
-      subMenuArray: [
-        {
-          title: "New Added",
-          path: "/Files & Folders",
-        },
-        {
-          title: "Renewal Arriving",
-          path: "/servicePlan/view-health-insurance",
-        },
-        {
-          title: "Renewal Due Passed",
-          path: "/servicePlan/view-bike-insurance",
-        },
-        {
-          title: "Lapsed",
-          path: "/dashboard",
-        },
-      ],
-      show: loggedInUserData.role === "0",
-    },
-
     {
       title: "Contact Us",
       subMenu: false,
-      path: "/contact-us",
+      path:  "/",
       show: loggedInUserData.role === "0",
     },
-    /// CONSULTANT PANEL ///
+
+
+
+/// CONSULTANT PANEL ///
 
     {
       title: "Profile",

@@ -60,21 +60,21 @@ const SideBar = () => {
         title: "Categories / Services",
         path: "/admin/services"
       },
-      { 
+      {
         title: "Services Providers",
-        path: "/admin/serviceProviders" 
+        path: "/admin/serviceProviders"
       },
-      { 
+      {
         title: "Company Plans",
-        path: "/admin/plans" 
-      },      
-      { 
+        path: "/admin/plans"
+      },
+      {
         title: "Customised Plans",
-        path: "/customisedPlan" 
-      },      
-  
+        path: "/customisedPlan"
+      },
+
   ],
-  show: loggedInUserData.role === "0" 
+  show: loggedInUserData.role === "0"
 },
 
     {
@@ -129,31 +129,31 @@ const SideBar = () => {
       subMenuArray: [
         {
           title: "Customers added as per products (NFC cards, pdf, cards, etc)",
-          path: "/Files & Folders",
+          path: "/",
         },
         {
           title: "Products sold as per category and products",
-          path: "/servicePlan/view-health-insurance",
+          path: "/",
         },
         {
           title: "Income generated as per different categories",
-          path: "/servicePlan/view-bike-insurance",
+          path: "/",
         },
         {
           title: "customer engagement to blogs & testimonials",
-          path: "/dashboard",
+          path: "/",
         },
         {
           title: "feedback and complaints",
-          path: "/servicePlan/view-whole-life-insurance",
+          path: "/",
         },
         {
           title: "Payment generated from products sales of customers",
-          path: "/servicePlan/view-whole-life-insurance",
+          path: "/",
         },
         {
           title: "Payment made to customers",
-          path: "/servicePlan/view-whole-life-insurance",
+          path: "/",
         },
       ],
       show: loggedInUserData.role === "0"
@@ -192,34 +192,34 @@ const SideBar = () => {
       title: "Compliance Documents",
       subMenu: true,
       subMenuArray: [
-          { 
+          {
             title: "Privacy Policy",
-           path: "/" 
-          },       
-          { 
+           path: "/privacy-policy"
+          },
+          {
             title: "Refund Policy",
-           path: "/" 
-          },       
-          { 
+           path: "/refund-policy"
+          },
+          {
             title: "Terms & Conditions",
-           path: "/" 
-          },       
-          { 
+           path: "/terms-conditions"
+          },
+          {
             title: "Shipping Policy",
-           path: "/" 
-          },       
-          { 
+           path: "/shipping-policy"
+          },
+          {
             title: "Cancellation Policy",
-           path: "/" 
-          }       
-          
+           path: "/cancellation-policy"
+          }
+
       ],
       show: loggedInUserData.role === "0",
     },
     {
       title: "Contact Us",
       subMenu: false,
-      path:  "/",
+      path:  "/contact-us",
       show: loggedInUserData.role === "0",
     },
 

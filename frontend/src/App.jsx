@@ -51,6 +51,7 @@ import CarPremium from "./components/insurance/MotorInsurance/CarInsurance/CarPr
 import CarInsuranceDetails from "./components/insurance/MotorInsurance/CarInsurance/CarInsuranceDetails";
 import MotorEnquiry from "./components/insurance/MotorInsurance/MotorEnquiry";
 import MutualfundDetails from "./components/MutualFund/MutualfundProvider/MutualfundDetails";
+import { CreateConsultant } from "./pages/auth/Consultant/CreateConsultant";
 
 
 
@@ -130,7 +131,8 @@ function App() {
 
           <Route path="carpremium" element={<CarPremium />} />
           <Route path="motorenquiry" element={<MotorEnquiry />} />
-     
+          <Route path="/createConsultant" element={<CreateConsultant />} />
+
 
           {/* Routes defined by shashank */}
           

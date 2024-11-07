@@ -99,7 +99,7 @@ const Login = () => {
         </div>
 
         <div className="flex-1 flex items-center justify-center">
-          <div className="w-full max-w-md space-y-8 bg-white text-gray-600 p-8 md:p-20 rounded-lg ">
+          <div className="w-full max-w-md space-y-8 bg-white text-gray-600 p-8 md:p-10 rounded-lg ">
             <div className="lg:hidden">
               <div className="mt-5 space-y-2 text-center">
                 <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">
@@ -215,12 +215,20 @@ const Login = () => {
                 Create account
               </Link>
             </p> */}
-            <p className="text-center">
+            {/* <p className="text-center">
               <Link
                 to="/forgot-password"
-                className="font-medium text-gray-800 hover:text-gray-500"
+                className="font-medium text-gray-800 hover:text-gray-700"
               >
                 Forgot Password?
+              </Link>
+            </p> */}
+            <p className="text-center">
+              <Link
+                to="/createConsultant"
+                className="font-medium text-blue-700 hover:text-blue-600"
+              >
+               Register as a Consultant here.
               </Link>
             </p>
           </div>

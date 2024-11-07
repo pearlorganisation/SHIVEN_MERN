@@ -5,14 +5,14 @@ import { useForm,Controller } from "react-hook-form"
 import { useNavigate } from 'react-router-dom'
 import { createServiceProvider } from '../../../features/actions/Service/serviceProvider'
 import Select from 'react-select'
-
+import serviceData from "../../../assets/services.json"
 const CreateServiceProvider = () => {
 
     const dispatch = useDispatch()
 const navigate= useNavigate()
 
   const {serviceProviderData,isLoading} = useSelector((state)=>state.serviceProvider)
-  const { serviceData } = useSelector((state) => state.service)
+  // const { serviceData } = useSelector((state) => state.service)
   const [photo, setPhoto] = useState("");
 
     const handlePhotoChange = (e) => {
@@ -37,10 +37,11 @@ const navigate= useNavigate()
 
 const onSubmit = (data) => {
     const { service } = data
+    const serviceArray= service?.map((item)=>item?.value)
     const formData= new FormData()
     formData.append("serviceProviderName",data?.serviceProviderName)
     formData.append("description",data?.description)
-    formData.append("service", service?.value)
+    formData.append("service", JSON.stringify(serviceArray))
     Array.from(data?.logo).forEach((img)=>{
         formData?.append("logo",img)
     })
@@ -50,7 +51,7 @@ const onSubmit = (data) => {
 
 useEffect(() => {
   if(serviceProviderData?.success){
-    navigate("/service")
+    navigate("/admin/serviceProviders")
   }
 }, [serviceProviderData]);
 
@@ -155,23 +156,13 @@ useEffect(() => {
                             render={({ field }) => (
                                 <Select
                                     value={field.value}
-                                    options={Array.isArray(serviceData) && serviceData.length > 0 && serviceData.map(item => ({ value: item?._id, label: item?.serviceType }))}
+                                    options={ serviceData.map(item => ({ value: item, label: item }))}
                                     onChange={(selectedOption) => field.onChange(selectedOption)}
-                                    className="mt-2 "
+                                    className="mt-2 min-w-80"
                                     placeholder="Choose Service Type "
-
-                                    styles={{
-                                        control: (provided) => ({
-                                            ...provided,
-                                            border: '1px solid #CBD5E1', // Set custom border style
-                                            borderRadius: '0.400rem', // Set custom border radius
-                                            height: '40px', // Add height here
-                                        }),
-                                        placeholder: (provided) => ({
-                                            ...provided,
-                                            color: '#9CA3AF', // Set custom placeholder color
-                                        }),
-                                    }}
+                                    isMulti
+                                    closeMenuOnSelect={false}
+                                
 
                                 />
                             )}

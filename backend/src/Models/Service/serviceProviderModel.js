@@ -12,15 +12,13 @@ const serviceProviderSchema = new mongoose.Schema({
     // required: [true, "service Provider Description is a required field"],
   },
   logo: {
-    type: String,
+    type: {},
     required: [true, "Service Provider Icon is a required field"],
   },
-  service: [
-    {
-      type: mongoose.Types.ObjectId,
-      ref: "service",
-    },
-  ],
+  service:{
+    type: [],
+    required: [true, "Service type is a required field"]
+  },
 });
 
 export default mongoose.model("serviceProvider", serviceProviderSchema);

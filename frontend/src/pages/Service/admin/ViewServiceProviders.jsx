@@ -71,7 +71,7 @@ console.log(loggedInUserData)
                         {item?.serviceProviderName}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap ">
-                        <img src={item?.logo} className='rounded-lg w-24 h-20' />
+                        <img src={item?.logo?.secure_url} className='rounded-lg w-24 h-20' />
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap truncate max-w-56 ">
                         {item?.description}

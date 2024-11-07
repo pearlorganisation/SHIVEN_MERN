@@ -87,6 +87,7 @@ import PrivacyPolicy from "../pages/Admin/ComplianceDocuments/PrivacyPolicy";
 import TermsConditions from "../pages/Admin/ComplianceDocuments/TermsConditions";
 import ShippingPolicy from "../pages/Admin/ComplianceDocuments/ShippingPolicy";
 import CancellationPolicy from "../pages/Admin/ComplianceDocuments/CancellationPolicy";
+import { CreateConsultant } from "../pages/auth/Consultant/CreateConsultant";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -326,6 +327,7 @@ export const routes = [
     component: WholeLifeInsurancePlan,
     path: "/servicePlan/whole-life-insurance",
   },
+
   /// Customer routes
   {
     title: "Calculator",
@@ -746,6 +748,8 @@ export const routes = [
     component: CancellationPolicy,
     path: "/cancellation-policy",
   },
+
+
 
 
 

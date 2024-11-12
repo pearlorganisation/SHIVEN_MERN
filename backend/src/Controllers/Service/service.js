@@ -1,18 +1,28 @@
 // ---------------------------------------------Imports--------------------------------------------------------
 import { serviceModel } from "../../Models/Service/serviceModel.js";
 import { asyncErrorHandler } from "../../Utils/Error/asyncErrorHandler.js";
-import { cloudinary } from "../../Configs/Cloudinary/cloudinaryConfig.js";
+import { uploaderCloudinary } from "../../Configs/Cloudinary/cloudinaryConfig.js";
+import { CustomError } from "../../Utils/Error/CustomError.js";
 // ------------------------------------------------------------------------------------------------------------
 
-export const createService = asyncErrorHandler(async (req, res, next) => {
-  const logo = req?.file;
-  const logoResult = await cloudinary.uploader.upload(logo.path); // Upload files to Cloudinary
+export const updateService = asyncErrorHandler(async (req, res, next) => {
+  const {id} = req?.params
+  let logoResult = ""
+  if(req?.file)
+{ logoResult = await uploaderCloudinary(req.file?.path)}
+  const existingData = serviceModel.findById(id)
+if(!existingData){
+  return next(new CustomError("Id is not valid",404))
+}
 
-  const data = new serviceModel({ ...req?.body, logo: logoResult?.secure_url });
-  await data.save();
+  await serviceModel.findByIdAndUpdate(id,{
+    ...req.body,
+    logo: logoResult || existingData?.logo
+  });
+
   return res.status(200).json({
     success: true,
-    message: "Service Created Successfully",
+    message: "Service Updated Successfully",
   });
 });
 

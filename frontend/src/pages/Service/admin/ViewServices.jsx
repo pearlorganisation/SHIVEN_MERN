@@ -9,20 +9,20 @@ const ViewServices = () => {
   const dispatch= useDispatch();
   const navigate = useNavigate();
   const { loggedInUserData } = useSelector((state) => state.auth);
-  // const {serviceData,isLoading } = useSelector(state => state.service)
+  const {serviceData,isLoading } = useSelector(state => state.service)
   
-  const serviceData = [ 
-    {name:"Motor Insurance", path:"/servicePlan/bike-insurance",logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnVBWBvkb4oy5Vg3-nwkyM9PeDfxKakeb7Wg&s",serviceDescription:"lorem ispum ipsum lorem ipsi for"},
-    {name:"Whole Life Insurance", path:"/servicePlan/whole-life-insurance",logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnVBWBvkb4oy5Vg3-nwkyM9PeDfxKakeb7Wg&s",serviceDescription:"lorem ispum ipsum lorem ipsi for"},
-    {name:"Home Loan", path:"/servicePlan/home-loan",logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnVBWBvkb4oy5Vg3-nwkyM9PeDfxKakeb7Wg&s",serviceDescription:"lorem ispum ipsum lorem ipsi for"},
-    {name:"Vehicle Loan", path:"/servicePlan/vehicle-loan",logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnVBWBvkb4oy5Vg3-nwkyM9PeDfxKakeb7Wg&s",serviceDescription:"lorem ispum ipsum lorem ipsi for"},
-    {name:"Mutual Fund", path:"/servicePlan/mutual-fund",logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnVBWBvkb4oy5Vg3-nwkyM9PeDfxKakeb7Wg&s",serviceDescription:"lorem ispum ipsum lorem ipsi for"},
-  ]
+  // const serviceData = [ 
+  //   {name:"Motor Insurance", path:"/servicePlan/bike-insurance",logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnVBWBvkb4oy5Vg3-nwkyM9PeDfxKakeb7Wg&s",serviceDescription:"lorem ispum ipsum lorem ipsi for"},
+  //   {name:"Whole Life Insurance", path:"/servicePlan/whole-life-insurance",logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnVBWBvkb4oy5Vg3-nwkyM9PeDfxKakeb7Wg&s",serviceDescription:"lorem ispum ipsum lorem ipsi for"},
+  //   {name:"Home Loan", path:"/servicePlan/home-loan",logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnVBWBvkb4oy5Vg3-nwkyM9PeDfxKakeb7Wg&s",serviceDescription:"lorem ispum ipsum lorem ipsi for"},
+  //   {name:"Vehicle Loan", path:"/servicePlan/vehicle-loan",logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnVBWBvkb4oy5Vg3-nwkyM9PeDfxKakeb7Wg&s",serviceDescription:"lorem ispum ipsum lorem ipsi for"},
+  //   {name:"Mutual Fund", path:"/servicePlan/mutual-fund",logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnVBWBvkb4oy5Vg3-nwkyM9PeDfxKakeb7Wg&s",serviceDescription:"lorem ispum ipsum lorem ipsi for"},
+  // ]
 
-  // useEffect(()=>{
-  //   dispatch(getAllServices())
+  useEffect(()=>{
+    dispatch(getAllServices())
   
-  // },[])
+  },[])
 
   return (
     <div className="userContainer p-10 ">
@@ -30,7 +30,7 @@ const ViewServices = () => {
         <h4 className="font-bold text-blue-500 text-sm sm:text-md md:text-lg">
           Service Listing
         </h4>
-       { loggedInUserData.role === "0" && <div className="createEmployeeBtn flex justify-end p-4 ">
+       {/* { loggedInUserData.role === "0" && <div className="createEmployeeBtn flex justify-end p-4 ">
           <button
             className=" p-2 rounded-lg bg-indigo-600 text-white font-bold tracking-widest"
             onClick={() => {
@@ -39,7 +39,7 @@ const ViewServices = () => {
           >
             Add New Service
           </button>
-        </div>}
+        </div>} */}
       </div>
       <div className="mt-6 shadow-xl rounded-lg overflow-x-auto">
             <table className="w-full table-auto text-sm text-left">
@@ -73,10 +73,10 @@ const ViewServices = () => {
                     <tr key={idx}>
                       <td className="px-6 py-4 whitespace-nowrap">{idx+1}</td>
                       <td className="px-6 py-4 whitespace-nowrap ">
-                        {item?.name}
+                        {item?.serviceType}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap ">
-                        <img src={item?.logo} className='rounded-lg w-24 h-20' />
+                       <img src={item?.logo?.secure_url} className='rounded-lg w-24 h-20' />
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap truncate max-w-56 ">
                         {item?.serviceDescription}
@@ -86,30 +86,31 @@ const ViewServices = () => {
                       
                      
                   {  loggedInUserData.role === "0" &&   <td className=" whitespace-nowrap py-3 px-6">
+                  
                         <a
                           onClick={() => {
-                            navigate(item?.path);
+                            navigate(`/admin/updateService/${item?._id}`, { state: item  });
+                          }}
+                          className="cursor-pointer py-2 px-3 font-semibold text-green-600 hover:text-green-700 duration-150 hover:bg-gray-50 rounded-lg"
+                        >
+                          Edit Description/Logo
+                        </a>
+                        <a
+                          onClick={() => {
+                            navigate(`/servicePlan/${item?.serviceType}`);
                           }}
                           className="cursor-pointer py-2 px-3 font-semibold text-blue-600 hover:text-blue-700 duration-150 hover:bg-gray-50 rounded-lg"
                         >
-                          Create a new Plan
+                          Create Plan
                         </a>
-                        <a
-                          // onClick={() => {
-                          //   navigate(`/updateDessert/${item?._id}`, { state: item  });
-                          // }}
-                          className="cursor-pointer py-2 px-3 font-semibold text-green-600 hover:text-green-700 duration-150 hover:bg-gray-50 rounded-lg"
-                        >
-                          Edit
-                        </a>
-                        <a
+                        {/* <a
                           // onClick={() => {
                           //   navigate(`/updateDessert/${item?._id}`, { state: item  });
                           // }}
                           className="cursor-pointer py-2 px-3 font-semibold text-red-600 hover:text-red-700 duration-150 hover:bg-gray-50 rounded-lg"
                         >
                           Delete
-                        </a>
+                        </a> */}
                       </td>}
                     </tr>
                   ))

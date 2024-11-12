@@ -13,8 +13,8 @@ const serviceSchema = new mongoose.Schema({
     required: [true, "service Description is a required field"],
   },
   logo: {
-    type: String,
-    default: "",
+    type: {},
+    required:[true,"logo is required"],
   },
 });
 

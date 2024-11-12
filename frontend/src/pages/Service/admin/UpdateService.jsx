@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from 'react-redux';
-import {useNavigate} from 'react-router-dom'
+import {useLocation, useNavigate} from 'react-router-dom'
 import {ClipLoader} from "react-spinners"
 import createServiceBg from "../../../assets/Images/CreateServiceBg.webp";
-import { createService } from '../../../features/actions/Service/service';
+import { updateService } from '../../../features/actions/Service/service';
 
-const CreateService = () => {
+
+export const UpdateService = () => {
 const dispatch = useDispatch()
 const navigate= useNavigate()
 
-  const {serviceData,isLoading} = useSelector((state)=>state.service)
+  const {state:item}= useLocation()
+  const {serviceData,isLoading}= useSelector((state)=>state.service)
 
-console.log(serviceData)
-  const [photo, setPhoto] = useState("");
+  const [photo, setPhoto] = useState(item?.logo?.secure_url);
 
     const handlePhotoChange = (e) => {
       const selectedPhoto = e.target.files[0];
@@ -32,67 +33,54 @@ console.log(serviceData)
     register,
     handleSubmit,
     formState: { errors }
-} = useForm()
+} = useForm({
+  defaultValues:{
+    serviceDescription:item?.serviceDescription,
+  }
+})
 
 
 const onSubmit = (data) => {
-  console.log(data)
 
     const formData= new FormData()
-    formData.append("serviceType",data?.serviceType)
     formData.append("serviceDescription",data?.serviceDescription)
-    Array.from(data?.logo).forEach((img)=>{
+    if(data?.logo)
+  {  Array.from(data?.logo).forEach((img)=>{
         formData?.append("logo",img)
-    })
-    dispatch(createService(formData))
+    })}
+    dispatch(updateService({id:item?._id,payload:formData}))
   
 }
 
 useEffect(() => {
   if(serviceData?.success){
-    navigate("/service")
+    navigate("/admin/services")
   }
 }, [serviceData]);
 
   return (
     <div>
       <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
-        <div className="max-w-screen-xl m-0 sm:m-5 bg-white shadow sm:rounded-lg flex justify-center flex-1">
+        <div className="max-w-screen-2xl m-0 sm:m-5 bg-white shadow sm:rounded-lg flex justify-center flex-1">
           <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
             <h1 className="text-center font-bold text-blue-600 text-sm sm:text-lg md:text-xl">
-              Create New Service
+              Update Service
             </h1>
             <div className="mt-12 flex flex-col items-center">
               <div className="w-full flex-1 mt-8">
                 <form
-                  className="mx-auto max-w-xs"
+                  className="mx-auto "
                   onSubmit={handleSubmit(onSubmit)}
                 >
-                  <input
-                    className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                    type="text"
-                    placeholder="Policy Type"
-                    {...register("serviceType", {
-                      required: {
-                        value: true,
-                        message: "Policy Type is a required field",
-                      },
-                    })}
-                  />
-                  {errors.serviceType && (
-                    <p className="text-red-500 text-xs mt-1">
-                      {errors?.serviceType?.message ||
-                        "Policy Type is a required field"}
-                    </p>
-                  )}
+          
                   <textarea
-                    className="w-full max-h-[200px] px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                    className="w-full py-2 h-[200px] rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                     type="text"
-                    placeholder="Policy Description"
+                    placeholder="Service Description"
                     {...register("serviceDescription", {
                       required: {
                         value: true,
-                        message: "Policy Description is a required field",
+                        message: "Service Description is a required field",
                       },
                     })}
                   />
@@ -114,7 +102,7 @@ useEffect(() => {
                         <span className="text-red-500 font-bold">
                           Select :{" "}
                         </span>
-                        Policy Logo
+                        Service Logo
                       </p>
                     )}
                     {photo && <img src={photo} className=" h-40 w-52" />}
@@ -122,25 +110,19 @@ useEffect(() => {
                   </label>
                   <input
                   id='fileImage'
-                    {...register('logo', { required: true, onChange:(e)=>{handlePhotoChange(e)} })}
+                    {...register('logo', {onChange:(e)=>{handlePhotoChange(e)} })}
                     className="w-full hidden px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                     type="file"
                     placeholder="Service Icon"
                  
                   />
                  
-                  {errors?.logo && (
-                    <p className="text-red-500 text-xs mt-1">
-                      
-                        Policy Logo is a required field
-                    </p>
-                  )}
                 
                     <button
                       className="mt-5 tracking-wide font-semibold bg-green-600 text-white-500 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
                       type="submit"
                     >
-                       {isLoading ? (<ClipLoader color="#c4c2c2" />) : (<>Create Policy</>)}
+                       {isLoading ? (<ClipLoader color="#c4c2c2" />) : (<>Update Service</>)}
                     </button>
                  
                   <p className="mt-6 text-xs text-gray-600 text-center">
@@ -159,4 +141,4 @@ useEffect(() => {
   );
 }
 
-export default CreateService
+

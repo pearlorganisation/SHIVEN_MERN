@@ -97,7 +97,7 @@ const ViewServices = () => {
                         </a>
                         <a
                           onClick={() => {
-                            navigate(`/servicePlan/${item?.serviceType}`);
+                            navigate(`/servicePlan/${item?.serviceType}/${item?._id}`);
                           }}
                           className="cursor-pointer py-2 px-3 font-semibold text-blue-600 hover:text-blue-700 duration-150 hover:bg-gray-50 rounded-lg"
                         >

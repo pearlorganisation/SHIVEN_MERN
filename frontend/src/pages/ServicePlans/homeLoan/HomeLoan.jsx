@@ -1,12 +1,16 @@
-import React,{useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
 import defaultPhoto from "/placeholder.jpg";
 import { MdOutlineInsertPhoto } from "react-icons/md";
 import Input from "../../../components/form/Input";
-
+import { useDispatch, useSelector } from "react-redux";
+import { getAllServiceProviders } from "../../../features/actions/Service/serviceProvider";
 
 const HomeLoan = () => {
+  const { serviceProviderData } = useSelector((state) => state.serviceProvider);
+  console.log("serviceProviderData",serviceProviderData)
+  const dispatch = useDispatch();
   const [photo, setPhoto] = useState("");
   const {
     register,
@@ -31,12 +35,19 @@ const HomeLoan = () => {
     }
   };
 
+  useEffect(() => {
+    dispatch(getAllServiceProviders());
+  }, []);
+
   return (
     <div className="max-w-4xl mx-auto my-5 overflow-hidden rounded-2xl bg-white shadow-lg">
       <div className="bg-blue-600 px-10 py-4 text-center text-white font-semibold">
         Home Loan Plan
       </div>
-      <form className="space-y-5 my-4 mx-8 sm:mx-2" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="space-y-5 my-4 mx-8 sm:mx-2"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <div className="sm:flex space-y-6 sm:space-y-0 justify-between gap-10">
           <Input
             label="Plan Name"

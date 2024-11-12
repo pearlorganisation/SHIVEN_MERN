@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 
 const mutualFundServicePlanSchema = new mongoose.Schema(
   {
-    fundLogo: {
+    serviceProvider: {
       type: mongoose.Types.ObjectId,
       ref: "serviceProvider",
-      required: [true, "Fund logo is required"],
+      required: [true, "Service Provider is required"],
     },
     fundName: {
       type: String,

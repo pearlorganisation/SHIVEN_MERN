@@ -75,7 +75,7 @@ app.use("/api/v1/servicePlan", servicePlanRouter);
 app.use("/api/v1/serviceProvider", serviceProviderRouter);
 
 // Mutual Funds - Routes
-app.use("/api/v1/mutual-funds/service-plans", mutualFundRouter);
+app.use("/api/v1/service-plans/mutual-funds", mutualFundRouter);
 
 //Whole life insurence - Routes
 app.use("/api/v1/whole-life-insurance/service-plans", wholeLifeInsurenceRouter);

@@ -273,7 +273,7 @@ export const routes = [
   {
     title: "Create Mutual Funds",
     component: MutualFunds,
-    path: "/servicePlan/Mutual Fund",
+    path: "/servicePlan/Mutual Fund/:id",
   },
   {
     title: "Bike Insurance",

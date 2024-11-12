@@ -1,11 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import defaultPhoto from "/placeholder.jpg";
 import { MdOutlineInsertPhoto } from "react-icons/md";
 import Select from "react-select";
 import Input from "../../../components/form/Input";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllServiceProviders } from "../../../features/actions/Service/serviceProvider";
+import { useParams } from "react-router-dom";
+import { createMutualFund } from "../../../features/actions/Service/servicePlan/mutualFund";
 
 const MutualFund = () => {
+  const { serviceProviderData } = useSelector((state) => state.serviceProvider);
+  const {id} = useParams();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -13,9 +20,15 @@ const MutualFund = () => {
     control,
   } = useForm();
   const [photo, setPhoto] = useState("");
+  const [providerOptions, setProviderOptions] = useState([]);
 
   const onSubmit = (data) => {
-    console.log(data);
+    data['serviceType'] = id;
+    if(data?.serviceProvider)
+      data.serviceProvider = data.serviceProvider?.value;
+    console.log(data);  
+
+    dispatch(createMutualFund(data));
   };
 
   const handlePhotoChange = (e) => {
@@ -29,6 +42,28 @@ const MutualFund = () => {
       };
     }
   };
+
+  useEffect(() => {
+    dispatch(getAllServiceProviders());
+  }, []);
+
+  useEffect(() => {
+    if (!serviceProviderData || !Array.isArray(serviceProviderData)) return;
+
+    const filteredOptions = serviceProviderData
+      .filter((provider) => {
+        if (!provider?.service || !Array.isArray(provider.service))
+          return false;
+
+        return provider.service.some((service) => service === "Mutual Fund");
+      })
+      .map((provider) => ({
+        label: provider?.serviceProviderName,
+        value: provider?._id,
+      }));
+    console.log("filtered options", filteredOptions);
+    setProviderOptions(filteredOptions);
+  }, [serviceProviderData]);
 
   return (
     <div className="max-w-4xl mx-auto my-5 overflow-hidden rounded-2xl bg-white shadow-lg ">
@@ -48,21 +83,17 @@ const MutualFund = () => {
           />
 
           <div className="w-full">
-            <label className="font-medium">Service Type</label>
+            <label className="font-medium">Service Provider</label>
             <Controller
               control={control}
-              name="serviceType"
+              name="serviceProvider"
               render={({ field }) => (
                 <Select
                   value={field.value}
-                  options={[
-                    { value: "Motor Insurance", label: "Motor Insurance" },
-                    { value: "Life Insurance", label: "Life Insurance" },
-                    { value: "Health Insurance", label: "Health Insurance" },
-                  ]}
+                  options={providerOptions}
                   onChange={(selectedOption) => field.onChange(selectedOption)}
                   className="mt-2 "
-                  placeholder="Choose Service Type "
+                  placeholder="Choose Service Provider "
                   styles={{
                     control: (provided) => ({
                       ...provided,
@@ -79,9 +110,9 @@ const MutualFund = () => {
               )}
               rules={{ required: true }}
             />
-            {errors.serviceType && (
+            {errors.serviceProvider && (
               <span className=" text-sm font-medium text-red-500">
-                Service Type is required
+                Service Provider is required
               </span>
             )}
           </div>
@@ -125,42 +156,7 @@ const MutualFund = () => {
         </div>
 
         <div className="sm:flex space-y-6 sm:space-y-0 justify-between gap-10">
-          <div className="font-medium w-full space-y-6">
-            {" "}
-            Fund Logo
-            <img
-              class="mt-2 w-full h-50 object-cover sm:w-44 sm:h-36 rounded"
-              src={photo || defaultPhoto}
-              alt="No Image"
-            />
-            <label
-              htmlFor="file_input"
-              className="flex gap-1
-           "
-            >
-              {" "}
-              <MdOutlineInsertPhoto size="25" />
-              <div className="px-2 border rounded-md border-slate-300 hover:bg-red-500 hover:text-white hover:border-none">
-                Click here to upload
-              </div>
-            </label>
-            <input
-              {...register("fundLogo", {
-                required: true,
-                onChange: (e) => {
-                  handlePhotoChange(e);
-                },
-              })}
-              className="hidden "
-              id="file_input"
-              type="file"
-            />
-            {errors.fundLogo && (
-              <span className="text-sm font-medium text-red-500">
-                Fund Logo is required
-              </span>
-            )}
-          </div>
+        
 
           <Input label="Risk Factor" {...register("riskFactor")} />
         </div>

@@ -6,10 +6,10 @@ import { createConsultant, verifyConsultant } from "../../Controllers/Auth/consu
 // ------------------------------------------------------------------------------------------------------
 
 const router = Router();
-// -------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
 
 router.route('/').post(createConsultant);
 
-router.route('/verify').post(verifyConsultant);
+router.route('/verify/:id').post(verifyConsultant);
 
 export default router;

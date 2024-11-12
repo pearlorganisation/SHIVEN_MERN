@@ -2,7 +2,8 @@
 import mongoose from "mongoose";
 // -------------------------------------------------------------------------------------------------------------
 
-const consultantSchema = new mongoose.Schema({
+const consultantSchema = new mongoose.Schema(
+  {
     email: {
       type: String,
       required: true,
@@ -14,19 +15,15 @@ const consultantSchema = new mongoose.Schema({
     },
     name: {
       type: String,
-      required: true,
     },
     phone: {
       type: String,
-      required: true,
     },
     specialty: {
       type: String,
-      required: true,
     },
     experience: {
       type: Number,
-      required: true,
     },
     isVerified: {
       type: Boolean,
@@ -38,15 +35,11 @@ const consultantSchema = new mongoose.Schema({
     razorpay_consultant_signature: {
       type: String,
     },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-    },
-    updatedAt: {
-      type: Date,
-      default: Date.now,
-    },
-  });
+  },
+  {
+    timestamps: true,
+  }
+);
 
 const consultantModel = mongoose.model("consultant", consultantSchema);
 export default consultantModel;

@@ -2,11 +2,11 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../../../services/Axios/axiosInterceptor";
 
 
-export const createService = createAsyncThunk(
-  "createService",
-  async (payload, { rejectWithValue }) => {
+export const updateService = createAsyncThunk(
+  "updateService",
+  async ({id,payload}, { rejectWithValue }) => {
     try {
-      const response = await instance.post(`/service`, payload, {
+      const response = await instance.patch(`/service/${id}`, payload, {
         headers: {
           "Content-type": "multipart/form-data",
         },
@@ -30,37 +30,3 @@ export const getAllServices = createAsyncThunk("getService",
 }
 );
 
-//   //updateService api
-//   export const updateService = createAsyncThunk(
-//     'updateService',
-//     async ({id,payload}, { rejectWithValue }) => {
-//       try {
-//         const response = await instance.patch(`/service/${id}`, payload, {
-//           withCredentials: true,
-//           headers: {
-//             "Content-type": "multipart/form-data",
-//           },
-//         });
-//         return response;
-//       } catch (e) {
-//         return rejectWithValue(e);
-//       }
-//     }
-//   );
-
-// //deleteService api
-// export const deleteService = createAsyncThunk(
-//   'deleteService',
-//   async (id, { rejectWithValue }) => {
-//     try {
-//       const response = await instance.delete(
-//         `/service/${id}`,
-        
-//         { withCredentials: true }
-//       );
-//       return response;
-//     } catch (e) {
-//       return rejectWithValue(e);
-//     }
-//   }
-// );

@@ -46,3 +46,29 @@ export const getUsers = createAsyncThunk(
     }
   }
 );
+
+
+export const getConsultants = createAsyncThunk(
+  "consultants/Fetch",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await instance.get("/consultant");
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const updateConsultantStatus = createAsyncThunk(
+  "consultantStatus/update",
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await instance.patch(`/consultant/verify/${id}`);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);

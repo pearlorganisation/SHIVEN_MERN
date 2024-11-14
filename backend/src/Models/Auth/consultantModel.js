@@ -23,10 +23,10 @@ const consultantSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    razorpay_consultant_id: {
+    razorpay_order_id: {
       type: String,
     },
-    razorpay_consultant_signature: {
+    razorpay_payment_id: {
       type: String,
     },
   },

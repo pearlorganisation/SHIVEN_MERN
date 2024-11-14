@@ -4,7 +4,9 @@ import { login, verifyLoginOtp } from "../../actions/Auth/authActions";
 import { toast } from "sonner";
 import {
   createUser,
+  getConsultants,
   getUsers,
+  updateConsultantStatus,
   updateUser,
 } from "../../actions/Auth/userActions";
 //------------------------------------------------------------------------------------------------------------
@@ -14,6 +16,7 @@ const initialState = {
   errorMessage: "",
   usersData: {},
   isUserCreated: false,
+  consultants:[]
 };
 
 const userSlice = createSlice({
@@ -78,6 +81,34 @@ const userSlice = createSlice({
         state.usersData = action?.payload;
       })
       .addCase(getUsers.rejected, (state, action) => {
+        state.isUserLoading = false;
+        state.errorMessage = action?.payload;
+        toast.error(action.payload.message);
+      })
+      .addCase(getConsultants.pending, (state, action) => {
+        state.isUserLoading = true;
+        state.errorMessage = "";
+      })
+      .addCase(getConsultants.fulfilled, (state, action) => {
+        state.isUserLoading = false;
+        state.errorMessage = "";
+        state.consultants = action?.payload?.data;
+      })
+      .addCase(getConsultants.rejected, (state, action) => {
+        state.isUserLoading = false;
+        state.errorMessage = action?.payload;
+        toast.error(action.payload.message);
+      })
+      .addCase(updateConsultantStatus.pending, (state, action) => {
+        state.isUserLoading = true;
+        state.errorMessage = "";
+      })
+      .addCase(updateConsultantStatus.fulfilled, (state, action) => {
+        state.isUserLoading = false;
+        state.errorMessage = "";
+        state.consultants = action?.payload?.data;
+      })
+      .addCase(updateConsultantStatus.rejected, (state, action) => {
         state.isUserLoading = false;
         state.errorMessage = action?.payload;
         toast.error(action.payload.message);

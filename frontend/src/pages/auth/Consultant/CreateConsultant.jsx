@@ -4,15 +4,9 @@ import userBg from "../../../assets/Images/userBg.jpg";
 // import Select from "react-select";
 import { useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
-import { toast } from "sonner";
-import {
-  createUser,
-  getUsers,
-} from "../../../features/actions/Auth/userActions";
 import { useDispatch } from "react-redux";
 import CircleLoader from "../../../components/Loader/ButtonLoaders/CircleLoader";
 import { useSelector } from "react-redux";
-import { resetUserState } from "../../../features/slices/Auth/userSlice";
 import { instance } from "../../../services/Axios/axiosInterceptor";
 import Select from "react-select";
 import { getAllServicePlans } from "../../../features/actions/Service/servicePlan";

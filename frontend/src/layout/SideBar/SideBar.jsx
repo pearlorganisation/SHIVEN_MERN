@@ -45,7 +45,7 @@ const SideBar = () => {
     {
       title: "Clients",
       subMenu: false,
-      path: "/users",
+      path: "/consultant-filesManagement",
       show: loggedInUserData.role === "1",
     },
 
@@ -86,8 +86,17 @@ const SideBar = () => {
 
     {
       title: "Consultant Management",
-      subMenu: false,
-      path: "/consultant-management",
+      subMenu: true,
+      subMenuArray: [
+        {
+          title: "Manage Consultants",
+          path: "/"
+        },
+        {
+          title: "Account Approval",
+          path: "/consultant-management"
+        }
+      ],
       show: loggedInUserData.role === "0",
     },
 

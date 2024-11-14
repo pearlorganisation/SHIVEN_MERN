@@ -78,10 +78,10 @@ app.use("/api/v1/serviceProvider", serviceProviderRouter);
 app.use("/api/v1/service-plans/mutual-funds", mutualFundRouter);
 
 //Whole life insurence - Routes
-app.use("/api/v1/whole-life-insurance/service-plans", wholeLifeInsurenceRouter);
+app.use("/api/v1/service-plans/whole-life-insurance", wholeLifeInsurenceRouter);
 
 //Home Loan - Routes
-app.use("/api/v1/home-loan/service-plans", homeLoanRouter);
+app.use("/api/v1/service-plans/home-loan", homeLoanRouter);
 
 //Motor Insurance - Routes
 app.use("/api/v1/motor-insurance/service-plans", motorInsuranceRouter);

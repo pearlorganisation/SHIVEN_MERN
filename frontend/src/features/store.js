@@ -22,6 +22,7 @@ const persistConfig = {
   key: "Shiven",
   version: 1,
   storage,
+  blacklist: ['servicePlan'],
   transforms: [
     encryptTransform({
       secretKey: `${import.meta.env.VITE_REDUX_PERSIST_SECRET_KEY}`,

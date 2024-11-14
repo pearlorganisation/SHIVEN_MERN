@@ -15,130 +15,8 @@ import { useSelector } from "react-redux";
 import { resetUserState } from "../../../features/slices/Auth/userSlice";
 import { instance } from "../../../services/Axios/axiosInterceptor";
 import Select from "react-select";
+import { getAllServicePlans } from "../../../features/actions/Service/servicePlan";
 // -------------------------------------------------------------------------------------------------
-
-const dummyData = [
-  {
-    service: "Health Insurance",
-    plan: "ICICI Health Plan",
-    serviceProvider: "ICICI",
-  },
-  {
-    service: "Health Insurance",
-    plan: "HDFC Health Plan",
-    serviceProvider: "HDFC",
-  },
-  {
-    service: "Health Insurance",
-    plan: "Max Bupa Health Plan",
-    serviceProvider: "Max Bupa",
-  },
-  {
-    service: "Life Insurance",
-    plan: "ICICI Life Insurance Plan",
-    serviceProvider: "ICICI",
-  },
-  {
-    service: "Life Insurance",
-    plan: "HDFC Life Insurance Plan",
-    serviceProvider: "HDFC",
-  },
-  {
-    service: "Life Insurance",
-    plan: "Bajaj Allianz Life Insurance Plan",
-    serviceProvider: "Bajaj Allianz",
-  },
-  {
-    service: "Vehicle Insurance",
-    plan: "HDFC Vehicle Insurance Plan",
-    serviceProvider: "HDFC",
-  },
-  {
-    service: "Vehicle Insurance",
-    plan: "ICICI Vehicle Insurance Plan",
-    serviceProvider: "ICICI",
-  },
-  {
-    service: "Travel Insurance",
-    plan: "ICICI Travel Insurance Plan",
-    serviceProvider: "ICICI",
-  },
-  {
-    service: "Travel Insurance",
-    plan: "Reliance Travel Insurance Plan",
-    serviceProvider: "Reliance",
-  },
-  {
-    service: "Health Insurance",
-    plan: "Star Health Health Plan",
-    serviceProvider: "Star Health",
-  },
-  {
-    service: "Life Insurance",
-    plan: "LIC Life Insurance Plan",
-    serviceProvider: "LIC",
-  },
-  {
-    service: "Vehicle Insurance",
-    plan: "SBI General Vehicle Insurance Plan",
-    serviceProvider: "SBI General",
-  },
-  {
-    service: "Home Insurance",
-    plan: "HDFC Home Insurance Plan",
-    serviceProvider: "HDFC",
-  },
-  {
-    service: "Home Insurance",
-    plan: "ICICI Home Insurance Plan",
-    serviceProvider: "ICICI",
-  },
-  {
-    service: "Home Insurance",
-    plan: "Tata AIG Home Insurance Plan",
-    serviceProvider: "Tata AIG",
-  },
-  {
-    service: "Home Loan",
-    plan: "ICICI Home Loan Plan",
-    serviceProvider: "ICICI",
-  },
-  {
-    service: "Home Loan",
-    plan: "HDFC Home Loan Plan",
-    serviceProvider: "HDFC",
-  },
-  {
-    service: "Mutual Fund",
-    plan: "SBI Mutual Fund Plan",
-    serviceProvider: "SBI Mutual Fund",
-  },
-  {
-    service: "Mutual Fund",
-    plan: "ICICI Prudential Mutual Fund Plan",
-    serviceProvider: "ICICI Prudential",
-  },
-  {
-    service: "Recurring Deposit (RD)",
-    plan: "HDFC RD Plan",
-    serviceProvider: "HDFC",
-  },
-  {
-    service: "Recurring Deposit (RD)",
-    plan: "ICICI RD Plan",
-    serviceProvider: "ICICI",
-  },
-  {
-    service: "Commercial Property",
-    plan: "HDFC Commercial Property Plan",
-    serviceProvider: "HDFC",
-  },
-  {
-    service: "Commercial Property",
-    plan: "ICICI Commercial Property Plan",
-    serviceProvider: "ICICI",
-  },
-];
 
 export const CreateConsultant = () => {
   const [role, setRole] = useState("");
@@ -147,7 +25,9 @@ export const CreateConsultant = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isUserLoading, isUserCreated } = useSelector((state) => state?.user);
-  const [services, setServices] = useState([]);
+  const { servicePlanData } = useSelector((state) => state.servicePlan);
+
+  const [serviceTypes, setServiceTypes] = useState([]);
   const [serviceProviders, setServiceProviders] = useState([]);
   const [plans, setPlans] = useState([]);
 
@@ -168,6 +48,7 @@ export const CreateConsultant = () => {
   // createUserHandler -- handler to create the user
   const createUserHandler = async (data) => {
     console.log(data);
+ 
 
     try {
       const {
@@ -184,13 +65,21 @@ export const CreateConsultant = () => {
         image: "./ShivenLogo.png",
         order_id: order.id,
         handler: async function (response) {
-          const body = { ...response };
+          const body = { ...response, servicePlan: selectedPlans.map(plan => plan.value) };
           try {
             const validateResponse = await instance.post(
               `/consultant/verify/${consultantId}`,
               body
             );
-            var jsonResponse = validateResponse?.data;
+            reset({
+              email: '',
+              password: '',
+              plans: [],
+              serviceProviders: [],
+              services: []
+            });
+            setSelectedServices([]);
+            navigate("/login");
           } catch (error) {
             console.error("Error verifying payment:", error);
           }
@@ -212,85 +101,107 @@ export const CreateConsultant = () => {
     } catch (error) {
       console.error("Error creating or processing payment:", error);
     }
-
-    try {
-      const { userName, fullName, email, password } = data;
-      const payload = { userName, fullName, email, password, role };
-      if (userName && fullName && email && password) {
-        if (!role) {
-          toast.error("Please Choose a role for the user");
-        } else {
-          dispatch(createUser({ payload }));
-        }
-      }
-    } catch (error) {
-      toast.error(error.message);
-    }
   };
 
   // ------------------------------------------------useEffect----------------------------------------
-  useEffect(() => {
-    if (isUserCreated) {
-      dispatch(resetUserState(false));
-      reset();
-      setRole("");
-      dispatch(getUsers());
-    }
-  }, [isUserCreated]);
+  // useEffect(() => {
+  //   if (isUserCreated) {
+  //     dispatch(resetUserState(false));
+  //     reset();
+  //     setRole("");
+  //     dispatch(getUsers());
+  //   }
+  // }, [isUserCreated]);
 
   useEffect(() => {
-    if (!dummyData || !Array.isArray(dummyData)) return;
-
-    const UniqueServices = Array.from(
-      new Set(dummyData.map((item) => item?.service))
-    );
-    setServices(
-      UniqueServices.map((service) => ({ label: service, value: service }))
-    );
-  }, [dummyData]);
-
-  useEffect(() => {
-    if (!dummyData || !Array.isArray(dummyData)) return;
-    if (!selectedServices || !Array.isArray(selectedServices)) return;
-
-    const filteredServiceProviders = dummyData.filter((item) =>
-      selectedServices.some((service) => service.value === item.service)
-    );
-    const uniqueServiceProviders = Array.from(
-      new Set(filteredServiceProviders.map((item) => item.serviceProvider))
-    ).map((provider) => ({ label: provider, value: provider }));
-
-    setServiceProviders(uniqueServiceProviders);
-
-    const updatedSelectedProviders = selectedProviders.filter((provider) =>
-      uniqueServiceProviders.some(
-        (uniqueProvider) => uniqueProvider.value === provider.value
+    console.log(
+      servicePlanData.filter(
+        (item) =>
+          selectedServices.some(
+            (service) => service.value === item?.serviceType?._id
+          ) &&
+          selectedProviders.some(
+            (provider) => provider.value === item?.serviceProvider?._id
+          )
       )
     );
-    setSelectedProviders(updatedSelectedProviders);
+    const uniqueServicePlans = servicePlanData
+      .filter(
+        (item) =>
+          selectedServices.some(
+            (service) => service.value === item?.serviceType?._id
+          ) &&
+          selectedProviders.some(
+            (provider) => provider.value === item?.serviceProvider?._id
+          )
+      )
+      .map((item) => ({
+        label: item?.planName,
+        value: item?._id,
+      }));
+    setPlans(uniqueServicePlans);
+
+    setSelectedPlans((prevSelectedPlans) =>
+      prevSelectedPlans.filter((plan) =>
+        uniqueServicePlans.some(
+          (servicePlan) => servicePlan.value === plan.value
+        )
+      )
+    );
+  }, [selectedProviders, serviceProviders]);
+
+  useEffect(() => {
+    console.log(servicePlanData);
+    const uniqueServiceProviders = servicePlanData
+      .filter((item) =>
+        selectedServices.some(
+          (service) => service.value === item?.serviceType?._id
+        )
+      )
+      .filter(
+        (item, index, self) =>
+          index ===
+          self.findIndex(
+            (obj) => obj?.serviceProvider?._id === item?.serviceProvider?._id
+          )
+      )
+      .map((item) => ({
+        label: item.serviceProvider?.serviceProviderName,
+        value: item.serviceProvider?._id,
+      }));
+
+    console.log(uniqueServiceProviders);
+    setServiceProviders(uniqueServiceProviders);
+
+    setSelectedProviders((prevSelectedProviders) =>
+      prevSelectedProviders.filter((Provider) =>
+        uniqueServiceProviders.some(
+          (serviceProvider) => serviceProvider.value === Provider.value
+        )
+      )
+    );
   }, [selectedServices]);
 
   useEffect(() => {
-    if (!dummyData || !Array.isArray(dummyData)) return;
-    if (!selectedProviders || !Array.isArray(selectedProviders)) return;
-    if (!selectedServices || !Array.isArray(selectedServices)) return;
-    const filteredPlans = dummyData
+    const uniqueServiceTypes = servicePlanData
       .filter(
-        (item) =>
-          selectedProviders.some(
-            (provider) => provider.value === item.serviceProvider
-          ) &&
-          selectedServices.some((service) => service.value === item.service)
+        (item, index, self) =>
+          index ===
+          self.findIndex(
+            (obj) => obj?.serviceType?._id === item?.serviceType?._id
+          )
       )
-      .map((item) => ({ label: item.plan, value: item.plan }));
+      .map((item) => ({
+        label: item.serviceType.serviceType,
+        value: item.serviceType._id,
+      }));
 
-    setPlans(filteredPlans);
+    setServiceTypes(uniqueServiceTypes);
+  }, [servicePlanData]);
 
-    const updatedSelectedPlans = selectedPlans.filter((plan) =>
-      filteredPlans.some((filteredPlan) => filteredPlan.value === plan.value)
-    );
-    setSelectedPlans(updatedSelectedPlans);
-  }, [selectedProviders]);
+  useEffect(() => {
+    dispatch(getAllServicePlans());
+  }, []);
 
   // -------------------------------------------------------------------------------------------------
   return (
@@ -348,11 +259,12 @@ export const CreateConsultant = () => {
                       <Select
                         {...field}
                         isMulti
-                        options={services}
+                        options={serviceTypes}
                         value={selectedServices}
-                        onChange={(newSelectedServices) =>
-                          setSelectedServices(newSelectedServices)
-                        }
+                        onChange={(newSelectedServices) => {
+                          setSelectedServices(newSelectedServices);
+                          field.onChange(newSelectedServices);
+                        }}
                         placeholder="Select Service(s)"
                         classNames={{
                           control: () =>
@@ -374,9 +286,10 @@ export const CreateConsultant = () => {
                         isMulti
                         options={serviceProviders}
                         value={selectedProviders}
-                        onChange={(newSelectedProviders) =>
-                          setSelectedProviders(newSelectedProviders)
-                        }
+                        onChange={(newSelectedProviders) => {
+                          setSelectedProviders(newSelectedProviders);
+                          field.onChange(newSelectedProviders);
+                        }}
                         placeholder="Select Service Provider(s)"
                         classNames={{
                           control: () =>
@@ -398,9 +311,10 @@ export const CreateConsultant = () => {
                         isMulti
                         options={plans}
                         value={selectedPlans}
-                        onChange={(newSelectedPlans) =>
-                          setSelectedPlans(newSelectedPlans)
-                        }
+                        onChange={(newSelectedPlans) => {
+                          setSelectedPlans(newSelectedPlans);
+                          field.onChange(newSelectedPlans);
+                        }}
                         placeholder="Select Plan(s)"
                         classNames={{
                           control: () =>

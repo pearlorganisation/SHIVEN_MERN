@@ -288,7 +288,7 @@ export const routes = [
   {
     title: "Health Insurance",
     component: CreateHealthPlan,
-    path: "/servicePlan/Health Insurance",
+    path: "/servicePlan/Health Insurance/:id",
   },
   {
     title: "View Health Insurance",
@@ -298,7 +298,7 @@ export const routes = [
   {
     title: "Create Home Loan",
     component: HomeLoan,
-    path: "/servicePlan/Home Loan",
+    path: "/servicePlan/Home Loan/:id",
   },
   {
     title: "View Home Loan",
@@ -313,7 +313,7 @@ export const routes = [
   {
     title: "Vehicle Loan",
     component: VehicleLoan,
-    path: "/servicePlan/Vehicle Loan",
+    path: "/servicePlan/Vehicle Loan/:id",
   },
 
   {
@@ -324,7 +324,7 @@ export const routes = [
   {
     title: "Create Whole Life Insurance",
     component: WholeLifeInsurancePlan,
-    path: "/servicePlan/Life Insurance",
+    path: "/servicePlan/Life Insurance/:id",
   },
 
   /// Customer routes

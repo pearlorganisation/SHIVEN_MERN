@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import defaultPhoto from "/placeholder.jpg";
-import { MdOutlineInsertPhoto } from "react-icons/md";
 import Select from "react-select";
 import Input from "../../../components/form/Input";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllServiceProviders } from "../../../features/actions/Service/serviceProvider";
-import { useParams } from "react-router-dom";
-import { createMutualFund } from "../../../features/actions/Service/servicePlan/mutualFund";
+import {
+  getAllServiceProvidersForDropdown,
+} from "../../../features/actions/Service/serviceProvider";
+import { useNavigate, useParams } from "react-router-dom";
+import { createServicePlan } from "../../../features/actions/Service/servicePlan.js";
+import { ClipLoader } from "react-spinners";
 
 const MutualFund = () => {
-  const { serviceProviderData } = useSelector((state) => state.serviceProvider);
-  const {id} = useParams();
+  const { providerDropdownData } = useSelector(
+    (state) => state.serviceProvider
+  );
+  const { isLoading } = useSelector((state) => state.servicePlan);
+  const { id } = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
     register,
@@ -19,51 +24,21 @@ const MutualFund = () => {
     formState: { errors },
     control,
   } = useForm();
-  const [photo, setPhoto] = useState("");
-  const [providerOptions, setProviderOptions] = useState([]);
 
   const onSubmit = (data) => {
-    data['serviceType'] = id;
-    if(data?.serviceProvider)
+    data["serviceType"] = id;
+    if (data?.serviceProvider)
       data.serviceProvider = data.serviceProvider?.value;
-    console.log(data);  
+    console.log(data);
 
-    dispatch(createMutualFund(data));
-  };
-
-  const handlePhotoChange = (e) => {
-    const selectedPhoto = e.target.files[0];
-
-    if (selectedPhoto) {
-      const reader = new FileReader();
-      reader.readAsDataURL(selectedPhoto);
-      reader.onloadend = () => {
-        setPhoto(reader.result);
-      };
-    }
+    dispatch(createServicePlan(data)).then(() => {
+      navigate("/admin/services");
+    });
   };
 
   useEffect(() => {
-    dispatch(getAllServiceProviders());
+    dispatch(getAllServiceProvidersForDropdown(id));
   }, []);
-
-  useEffect(() => {
-    if (!serviceProviderData || !Array.isArray(serviceProviderData)) return;
-
-    const filteredOptions = serviceProviderData
-      .filter((provider) => {
-        if (!provider?.service || !Array.isArray(provider.service))
-          return false;
-
-        return provider.service.some((service) => service === "Mutual Fund");
-      })
-      .map((provider) => ({
-        label: provider?.serviceProviderName,
-        value: provider?._id,
-      }));
-    console.log("filtered options", filteredOptions);
-    setProviderOptions(filteredOptions);
-  }, [serviceProviderData]);
 
   return (
     <div className="max-w-4xl mx-auto my-5 overflow-hidden rounded-2xl bg-white shadow-lg ">
@@ -76,10 +51,10 @@ const MutualFund = () => {
       >
         <div className="sm:flex space-y-6 sm:space-y-0 justify-between gap-10">
           <Input
-            label="Fund Name"
-            {...register("fundName", { required: true })}
-            isError={errors.fundName}
-            errorMessage="Fund Name is required"
+            label="Plan Name"
+            {...register("planName", { required: true })}
+            isError={errors.planName}
+            errorMessage="Plan Name is required"
           />
 
           <div className="w-full">
@@ -90,7 +65,7 @@ const MutualFund = () => {
               render={({ field }) => (
                 <Select
                   value={field.value}
-                  options={providerOptions}
+                  options={providerDropdownData}
                   onChange={(selectedOption) => field.onChange(selectedOption)}
                   className="mt-2 "
                   placeholder="Choose Service Provider "
@@ -156,18 +131,15 @@ const MutualFund = () => {
         </div>
 
         <div className="sm:flex space-y-6 sm:space-y-0 justify-between gap-10">
-        
-
           <Input label="Risk Factor" {...register("riskFactor")} />
         </div>
 
         <button
           type="submit"
-          className=" w-full rounded-lg bg-gray-700 hover:bg-gray-800 active:bg-gray-700 px-10 py-3 font-semibold text-white"
+          disabled={isLoading}
+          className="w-full rounded-lg bg-gray-700 hover:bg-gray-800 active:bg-gray-700 px-10 py-3 font-semibold text-white"
         >
-          {/* {isLoading ? <ClipLoader color="#c4c2c2" /> : */}
-          <>Create</>
-          {/* } */}
+          {isLoading ? <ClipLoader color="#c4c2c2" /> : <>Create</>}
         </button>
       </form>
     </div>

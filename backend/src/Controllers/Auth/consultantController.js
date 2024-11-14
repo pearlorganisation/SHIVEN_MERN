@@ -31,7 +31,7 @@ export const createConsultant = asyncErrorHandler(async (req, res) => {
 
 export const verifyConsultant = asyncErrorHandler(async (req, res) => {
   try {
-    const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature, servicePlan } =
       await req.body;
 
     console.log(req.body, "bodyy");
@@ -47,21 +47,21 @@ export const verifyConsultant = asyncErrorHandler(async (req, res) => {
     const isAuthentic = expectedSignature === razorpay_signature;
     if (!isAuthentic) {
       await Consultant.findByIdAndDelete(req?.params?.id);
-      return res
-        .status(400)
-        .json({
-          status: false, message: `Signature Authentication Failed expected ${expectedSignature} but got ${razorpay_signature}` }
-        );
+      return res.status(400).json({
+        status: false,
+        message: `Signature Authentication Failed expected ${expectedSignature} but got ${razorpay_signature}`,
+      });
     }
-console.log('authenticated')
+    console.log("authenticated");
     const updateConsultant = await Consultant.findByIdAndUpdate(
       req?.params?.id,
       {
         razorpay_order_id,
-        isVerified: true,
+        servicePlan,
         razorpay_payment_id,
-      },{
-        new: true
+      },
+      {
+        new: true,
       }
     );
 

@@ -13,18 +13,12 @@ const consultantSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    name: {
-      type: String,
-    },
-    phone: {
-      type: String,
-    },
-    specialty: {
-      type: String,
-    },
-    experience: {
-      type: Number,
-    },
+    servicePlan: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "servicePlan",
+      },
+    ],
     isVerified: {
       type: Boolean,
       default: false,

@@ -2,6 +2,7 @@ import Consultant from "../../Models/Auth/consultantModel.js";
 import { asyncErrorHandler } from "../../Utils/Error/asyncErrorHandler.js";
 import crypto from "crypto";
 import { razorpayInstance } from "../../Configs/razorPay.js";
+import { sendAccountVerified, sendConsultantAccountCreated } from "../../Utils/Mail/consultant/consultantEmail.js";
 
 export const createConsultant = asyncErrorHandler(async (req, res) => {
   const newConsultant = await Consultant.create(req?.body);
@@ -37,15 +38,12 @@ export const verifyConsultant = asyncErrorHandler(async (req, res) => {
     servicePlan,
   } = await req.body;
 
-  console.log(req.body, "bodyy");
-
   const body = razorpay_order_id + "|" + razorpay_payment_id;
 
   const expectedSignature = crypto
     .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
     .update(body.toString())
     .digest("hex");
-  console.log(expectedSignature, "bodyyyyyyyy");
 
   const isAuthentic = expectedSignature === razorpay_signature;
   if (!isAuthentic) {
@@ -55,7 +53,6 @@ export const verifyConsultant = asyncErrorHandler(async (req, res) => {
       message: `Signature Authentication Failed expected ${expectedSignature} but got ${razorpay_signature}`,
     });
   }
-  console.log("authenticated");
   const updateConsultant = await Consultant.findByIdAndUpdate(
     req?.params?.id,
     {
@@ -67,6 +64,9 @@ export const verifyConsultant = asyncErrorHandler(async (req, res) => {
       new: true,
     }
   );
+  if(updateConsultant){
+    sendConsultantAccountCreated(updateConsultant?.email);
+  }
 
   res.status(200).json({
     status: true,
@@ -90,6 +90,15 @@ export const updateConsultantStatus = asyncErrorHandler(async (req, res) => {
   const updateConsultant = await Consultant.findByIdAndUpdate(id, {
     isVerified: true,
   });
+
+  if (!updateConsultant) {
+    return res.status(400).json({
+      status: false,
+      message: "Consultant not found!!",
+    });
+  }
+
+  sendAccountVerified(updateConsultant?.email);
 
   const consultans = await Consultant.find()
   .populate("servicePlan")

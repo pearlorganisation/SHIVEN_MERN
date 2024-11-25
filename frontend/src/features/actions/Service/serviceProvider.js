@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../../../services/Axios/axiosInterceptor";
 
-
 export const createServiceProvider = createAsyncThunk(
   "createServiceProvider",
   async (payload, { rejectWithValue }) => {
@@ -18,16 +17,16 @@ export const createServiceProvider = createAsyncThunk(
   }
 );
 
-export const getAllServiceProviders = createAsyncThunk("getServiceProvider",    
+export const getAllServiceProviders = createAsyncThunk(
+  "getServiceProvider",
   async (payload, { rejectWithValue }) => {
-  try {
-    const {data} = await instance.get(`/serviceProvider`);
-    return data;
-
-  } catch (e) {
-    return rejectWithValue(e);
+    try {
+      const { data } = await instance.get(`/serviceProvider`);
+      return data;
+    } catch (e) {
+      return rejectWithValue(e);
+    }
   }
-}
 );
 
 //   //updateServiceProvider api
@@ -55,7 +54,7 @@ export const getAllServiceProviders = createAsyncThunk("getServiceProvider",
 //     try {
 //       const response = await instance.delete(
 //         `/serviceProvider/${id}`,
-        
+
 //         { withCredentials: true }
 //       );
 //       return response;
@@ -64,3 +63,15 @@ export const getAllServiceProviders = createAsyncThunk("getServiceProvider",
 //     }
 //   }
 // );
+
+export const getAllServiceProvidersForDropdown = createAsyncThunk(
+  "serviceProvidersForDropdown/fetchAll",
+  async (id, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.get(`/serviceProvider/dropdown/${id}`);
+      return data;
+    } catch (e) {
+      return rejectWithValue(e);
+    }
+  }
+);

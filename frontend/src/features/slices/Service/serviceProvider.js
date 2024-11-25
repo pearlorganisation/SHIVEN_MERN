@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { toast } from "sonner";
-import { createServiceProvider, getAllServiceProviders } from "../../actions/Service/serviceProvider";
+import { createServiceProvider, getAllServiceProviders, getAllServiceProvidersForDropdown } from "../../actions/Service/serviceProvider";
 
 
 const initialState = {
@@ -9,6 +9,7 @@ const initialState = {
   isSuccess: false,
   isDeleted: false,
   serviceProviderData: [],
+  providerDropdownData: [],
   errorMessage: "",
 };
 
@@ -55,6 +56,25 @@ export const serviceProviderSlice = createSlice({
         state.serviceProviderData = action.payload.data;
       })
       .addCase(getAllServiceProviders.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.errorMessage = action.payload;
+        toast.error(action?.payload || "Something went wrong",{
+            position:"top-center"
+          });
+      })
+      .addCase(getAllServiceProvidersForDropdown.pending, (state, action) => {
+        state.isLoading = true;
+        state.isSuccess = false;
+        state.errorMessage = "";
+      })
+      .addCase(getAllServiceProvidersForDropdown.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.errorMessage = "";
+        state.providerDropdownData = action.payload.data;
+      })
+      .addCase(getAllServiceProvidersForDropdown.rejected, (state, action) => {
         state.isLoading = false;
         state.isSuccess = false;
         state.errorMessage = action.payload;

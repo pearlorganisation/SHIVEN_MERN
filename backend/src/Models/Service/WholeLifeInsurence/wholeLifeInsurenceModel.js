@@ -2,12 +2,16 @@ import mongoose from "mongoose";
 
 const wholeLifeInsuranceServicePlanSchema = new mongoose.Schema(
   {
-    planLogo: {
+    serviceProvider: {
       type: mongoose.Types.ObjectId,
       ref: "serviceProvider",
-      required: [true, "Plan logo is required"],
+      required: [true, "Service Provider is required"],
     },
-    planName: { type: String,  required: [true, "Plan name is required"], unique: true },
+    planName: {
+      type: String,
+      required: [true, "Plan name is required"],
+      unique: true,
+    },
     serviceType: {
       type: mongoose.Types.ObjectId,
       ref: "service",

@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 import { toast } from "sonner";
-import { createService, getAllServices } from "../../actions/Service/service";
+import {  getAllServices, updateService } from "../../actions/Service/service";
 
 const initialState = {
   isLoading: false,
@@ -20,21 +19,21 @@ export const serviceSlice = createSlice({
   extraReducers: (builder) => {
     builder
 
-      .addCase(createService.pending, (state, action) => {
+      .addCase(updateService.pending, (state, action) => {
         state.isLoading = true;
         state.isSuccess = false;
         state.errorMessage = "";
       })
-      .addCase(createService.fulfilled, (state, action) => {
+      .addCase(updateService.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.errorMessage = "";
         state.serviceData = action.payload.data;
-        toast.success("Service Added Successfully",{
+        toast.success("Service Updated Successfully",{
           position:"top-center"
         });
       })
-      .addCase(createService.rejected, (state, action) => {
+      .addCase(updateService.rejected, (state, action) => {
         state.isLoading = false;
         state.isSuccess = false;
         state.errorMessage = action.payload;

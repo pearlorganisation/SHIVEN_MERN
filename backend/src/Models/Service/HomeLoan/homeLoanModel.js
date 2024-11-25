@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 
 const homeLoanPlanSchema = new mongoose.Schema(
   {
-    planLogo: {
+    serviceProvider: {
       type: mongoose.Types.ObjectId,
       ref: "serviceProvider",
-      required: [true, "Plan logo is required"],
+      required: [true, "Service Provider is required"],
     },
     planName: {
       type: String,

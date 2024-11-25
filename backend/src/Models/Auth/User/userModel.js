@@ -4,25 +4,19 @@ import bcrypt from "bcrypt";
 // -------------------------------------------------------------------------------------------------------------
 
 const userSchema = new mongoose.Schema({
-  userName: {
-    type: String,
-    required: [true, "User Name is a required field"],
-    trim: true,
-  },
   fullName: {
     type: String,
-    required: [true, "Name is a required field"],
     trim: true,
   },
   email: {
     type: String,
-    required: [true, "Name is a required field"],
+    required: [true, "Email is a required field"],
     trim: true,
     unique: true,
   },
   password: {
     type: String,
-    required: [true, "Name is a required field"],
+    required: [true, "Password is a required field"],
     trim: true,
   },
   role: {
@@ -30,6 +24,12 @@ const userSchema = new mongoose.Schema({
     enum: ["1", "2", "3"],
     default: "2",
   },
+  servicePlan:{
+    type:[mongoose.Types.ObjectId]
+  },
+  isVerified:{
+    type: Boolean
+  }
 });
 
 userSchema.pre("save", async function (next) {

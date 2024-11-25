@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "sonner";
 import { createServicePlan, getAllServicePlans } from "../../actions/Service/servicePlan";
 
-
 const initialState = {
   isLoading: false,
   isSuccess: false,
@@ -20,7 +19,6 @@ export const servicePlanSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-
       .addCase(createServicePlan.pending, (state, action) => {
         state.isLoading = true;
         state.isSuccess = false;
@@ -31,16 +29,16 @@ export const servicePlanSlice = createSlice({
         state.isSuccess = true;
         state.errorMessage = "";
         state.servicePlanData = action.payload.data;
-        toast.success("Service Plan Added Successfully",{
-          position:"top-center"
+        toast.success("Service Plan Added Successfully", {
+          position: "top-center",
         });
       })
       .addCase(createServicePlan.rejected, (state, action) => {
         state.isLoading = false;
         state.isSuccess = false;
         state.errorMessage = action.payload;
-        toast.error(action?.payload || "Something went wrong",{
-          position:"top-center"
+        toast.error(action?.payload || "Something went wrong", {
+          position: "top-center",
         });
       })
       .addCase(getAllServicePlans.pending, (state, action) => {
@@ -58,9 +56,9 @@ export const servicePlanSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = false;
         state.errorMessage = action.payload;
-        toast.error(action?.payload || "Something went wrong",{
-            position:"top-center"
-          });
+        toast.error(action?.payload || "Something went wrong", {
+          position: "top-center",
+        });
       });
   },
 });

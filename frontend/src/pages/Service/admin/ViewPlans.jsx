@@ -24,7 +24,7 @@ console.log(loggedInUserData)
         <h4 className="font-bold text-blue-500 text-sm sm:text-md md:text-lg">
           Company Plan Listing
         </h4>
-        <div className="createEmployeeBtn flex justify-end p-4 ">
+        {/* <div className="createEmployeeBtn flex justify-end p-4 ">
   {loggedInUserData?.role === "0" &&        <button
             className=" p-2 rounded-lg bg-indigo-600 text-white font-bold tracking-widest"
             onClick={() => {
@@ -34,7 +34,7 @@ console.log(loggedInUserData)
            Add Plan
           </button>}
 
-        </div>
+        </div> */}
       </div>
       <div className="mt-6 shadow-xl rounded-lg overflow-x-auto">
             <table className="w-full table-auto text-sm text-left">

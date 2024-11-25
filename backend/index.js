@@ -64,6 +64,7 @@ import wholeLifeInsurenceRouter from "./src/Routes/Service/WholeLifeInsurence/wh
 import homeLoanRouter from "./src/Routes/Service/HomeLoan/homeLoanRoutes.js";
 import motorInsuranceRouter from "./src/Routes/Service/MotorInsurance/BikeInsurance/bikeInsuranceRoutes.js";
 import vehicleLoanRouter from "./src/Routes/Service/VehicleLoan/vehicleLoanRoutes.js";
+import consultantRouter from "./src/Routes/Auth/consultantRoutes.js";
 
 // Route Middlewares
 app.use("/api/v1/auth/user", userRouter);
@@ -74,19 +75,22 @@ app.use("/api/v1/servicePlan", servicePlanRouter);
 app.use("/api/v1/serviceProvider", serviceProviderRouter);
 
 // Mutual Funds - Routes
-app.use("/api/v1/mutual-funds/service-plans", mutualFundRouter);
+app.use("/api/v1/service-plans/mutual-funds", mutualFundRouter);
 
 //Whole life insurence - Routes
-app.use("/api/v1/whole-life-insurance/service-plans", wholeLifeInsurenceRouter);
+app.use("/api/v1/service-plans/whole-life-insurance", wholeLifeInsurenceRouter);
 
 //Home Loan - Routes
-app.use("/api/v1/home-loan/service-plans", homeLoanRouter);
+app.use("/api/v1/service-plans/home-loan", homeLoanRouter);
 
 //Motor Insurance - Routes
 app.use("/api/v1/motor-insurance/service-plans", motorInsuranceRouter);
 
 //Vehicle Loan - Routes
 app.use("/api/v1/service-plans/vehicle-loan", vehicleLoanRouter);
+
+//consultant - Routes
+app.use("/api/v1/consultant", consultantRouter);
 
 
 app.all(["/", "/api", "/api/v1"], (req, res, next) => {

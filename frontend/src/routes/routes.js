@@ -88,6 +88,9 @@ import TermsConditions from "../pages/Admin/ComplianceDocuments/TermsConditions"
 import ShippingPolicy from "../pages/Admin/ComplianceDocuments/ShippingPolicy";
 import CancellationPolicy from "../pages/Admin/ComplianceDocuments/CancellationPolicy";
 import { CreateConsultant } from "../pages/auth/Consultant/CreateConsultant";
+import { UpdateService } from "../pages/Service/admin/UpdateService";
+import { ViewConsultants } from "../pages/Service/admin/ViewConsultants";
+import ManageConsultant from "../pages/Service/admin/ManageConsultant";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -116,9 +119,7 @@ const ProposalForm = lazy(() => {
 const ViewServices = lazy(() => {
   return import("../pages/Service/admin/ViewServices");
 });
-const CreateService = lazy(() => {
-  return import("../pages/Service/admin/CreateService");
-});
+
 
 const MutualFunds = lazy(() => {
   return import("../pages/ServicePlans/mutualFund/MutualFund");
@@ -174,9 +175,9 @@ export const routes = [
     path: "/admin/services",
   },
   {
-    title: "Create Service",
-    component: CreateService,
-    path: "/admin/addService",
+    title: "Update Service",
+    component: UpdateService,
+    path: "/admin/updateService/:id",
   },
   {
     title: " Service Provider ",
@@ -274,12 +275,12 @@ export const routes = [
   {
     title: "Create Mutual Funds",
     component: MutualFunds,
-    path: "/servicePlan/mutual-fund",
+    path: "/servicePlan/Mutual Fund/:id",
   },
   {
     title: "Bike Insurance",
     component: BikeInsurance,
-    path: "/servicePlan/bike-insurance",
+    path: "/servicePlan/Motor Insurance",
   },
   {
     title: "View Bike Insurance",
@@ -289,7 +290,7 @@ export const routes = [
   {
     title: "Health Insurance",
     component: CreateHealthPlan,
-    path: "/servicePlan/health-insurance",
+    path: "/servicePlan/Health Insurance/:id",
   },
   {
     title: "View Health Insurance",
@@ -299,7 +300,7 @@ export const routes = [
   {
     title: "Create Home Loan",
     component: HomeLoan,
-    path: "/servicePlan/home-loan",
+    path: "/servicePlan/Home Loan/:id",
   },
   {
     title: "View Home Loan",
@@ -314,7 +315,7 @@ export const routes = [
   {
     title: "Vehicle Loan",
     component: VehicleLoan,
-    path: "/servicePlan/vehicle-loan",
+    path: "/servicePlan/Vehicle Loan/:id",
   },
 
   {
@@ -325,7 +326,7 @@ export const routes = [
   {
     title: "Create Whole Life Insurance",
     component: WholeLifeInsurancePlan,
-    path: "/servicePlan/whole-life-insurance",
+    path: "/servicePlan/Life Insurance/:id",
   },
 
   /// Customer routes
@@ -691,8 +692,14 @@ export const routes = [
 
   {
     title: "Consultant Management",
-    component: User,
+    component: ViewConsultants,
     path: "/consultant-management",
+  },
+
+  {
+    title: "Consultant Management",
+    component: ManageConsultant,
+    path: "/manage-consultant",
   },
 
   {

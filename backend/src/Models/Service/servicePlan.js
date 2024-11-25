@@ -1,48 +1,96 @@
 import mongoose from "mongoose";
 
-const servicePlanSchema= new mongoose.Schema({
+const servicePlanSchema = new mongoose.Schema(
+  // global Fields
+  {
+    serviceProvider: {
+      type: mongoose.Types.ObjectId,
+      ref: "serviceProvider",
+      required: [true, "Service Provider is required"],
+    },
+    planName: {
+      type: String,
+      required: [true, "Plan name is required"],
+      unique: true,
+    },
+    serviceType: {
+      type: mongoose.Types.ObjectId,
+      ref: "service",
+      required: [true, "Service type is required"],
+    },
 
-    serviceName:{
-        type:String,
-        required:[true,"serviceName is required"]
+    // whole life insurance fields ---------------------------------------------------------------------
+    lifeCover: { type: Number },
+    premiumAmount: { type: Number },
+    premiumFrequency: {
+      type: String,
+      enum: ["Monthly", "Quarterly", "Semi-Annual", "Annual"],
     },
-    serviceType:{
-        type:mongoose.Types.ObjectId,
-        ref:"service",
-        required:[true,"service type is required"]
-    },
-    serviceProvider:{
-        type:mongoose.Types.ObjectId,
-        ref:"serviceProvider",
-        required:[true,"ServiceProviderName is required"]
-    },
-    mainPoints:{              // like Room rent upto 1.5% of SI
-        type:[String]
-    },
-    coverAmount:{
-        type:String,
-        required:[true,"cover is required"]
-    },
-    claimSettlementRatio:{
-        type:String,
-        required:[true,"claimSettlementRatio is required"]
-    },
-    includes:{
-        type:[String]
-    },
-    excludes:{
-        type:[String]
-    },
-    cashlessHospitals:{
-        type:[String]
-    },
-    claimProcess:{
-        type:String
-    },
-    basePremiumPerMonth:{
-        type:Number
-    }
+    minimumAge: { type: Number },
+    maximumAge: { type: Number },
+    additionalBenefits: [String],
 
-},{timestamps:true})
+    // home loan fields -----------------------------------------------------------------------------
+    bestRate: {
+      type: Number,
+    },
+    processingFee: {
+      // multi
+      type: String,
+    },
+    tenure: {
+      type: Number, // multi
+    },
+    upTo: {
+      type: Number, // multi
+    },
+    yearRange: {
+      minYear: {
+        type: String,
+      },
+      maxYear: {
+        type: String,
+      },
+    },
 
-export default mongoose.model("servicePlan",servicePlanSchema)
+    // mutual funds fields ----------------------------------------------------------------------------
+    fundSize: {
+      type: String,
+    },
+    category: {
+      type: String,
+    },
+    minSIPAmount: {
+      type: Number,
+    },
+    expenseRatio: {
+      type: Number,
+      // validate: {
+      //   validator: function (value) {
+      //     return value >= 0 && value <= 100;
+      //   },
+      //   message: "Expense ratio must be between 0 and 100",
+      // },
+    },
+    fiveYearsAnnualisedReturns: {
+      type: Number,
+    },
+    oneYearsAnnualisedReturns: {
+      type: Number,
+    },
+    riskFactor: {
+      type: String,
+    },
+
+    // Vehicle loan fields -----------------------------------------------------------------------------
+    interestRate: {
+      type: Number,
+    },
+    vehicleType: {
+      type: String,
+    },
+  },
+  { timestamps: true }
+);
+
+export default mongoose.model("servicePlan", servicePlanSchema);

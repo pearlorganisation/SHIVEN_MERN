@@ -3,6 +3,7 @@ import { asyncErrorHandler } from "../../Utils/Error/asyncErrorHandler.js";
 import crypto from "crypto";
 import { razorpayInstance } from "../../Configs/razorPay.js";
 import { sendAccountVerified, sendConsultantAccountCreated } from "../../Utils/Mail/consultant/consultantEmail.js";
+import { userModel } from "../../Models/Auth/User/userModel.js";
 
 export const createConsultant = asyncErrorHandler(async (req, res) => {
   const newConsultant = await Consultant.create(req?.body);
@@ -76,7 +77,9 @@ export const verifyConsultant = asyncErrorHandler(async (req, res) => {
 });
 
 export const getConsultants = asyncErrorHandler(async (req, res) => {
-  const consultans = await Consultant.find().populate("servicePlan").select(" -password ");
+  const query = req?.query || null
+  
+  const consultans = await Consultant.find(query).populate("servicePlan").select(" -password ");
   res.status(200).json({
     status: true,
     message: "Consultants fetched successfully!!",
@@ -89,15 +92,18 @@ export const updateConsultantStatus = asyncErrorHandler(async (req, res) => {
 
   const updateConsultant = await Consultant.findByIdAndUpdate(id, {
     isVerified: true,
-  });
+    },
+  {new:true}).lean();
+
 
   if (!updateConsultant) {
     return res.status(400).json({
       status: false,
       message: "Consultant not found!!",
     });
-  }
-
+  }  
+  const user = await userModel.create({role:2,...updateConsultant})
+console.log(user)
   sendAccountVerified(updateConsultant?.email);
 
   const consultans = await Consultant.find()
@@ -110,3 +116,7 @@ export const updateConsultantStatus = asyncErrorHandler(async (req, res) => {
     data: consultans,
   });
 });
+
+// export const getVerfiedConsultants= asyncErrorHandler(async(req,res)=>{
+//   const data = await Consultant.find(isVerified:true)
+// })

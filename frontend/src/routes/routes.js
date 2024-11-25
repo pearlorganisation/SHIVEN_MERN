@@ -90,6 +90,7 @@ import CancellationPolicy from "../pages/Admin/ComplianceDocuments/CancellationP
 import { CreateConsultant } from "../pages/auth/Consultant/CreateConsultant";
 import { UpdateService } from "../pages/Service/admin/UpdateService";
 import { ViewConsultants } from "../pages/Service/admin/ViewConsultants";
+import ManageConsultant from "../pages/Service/admin/ManageConsultant";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -693,6 +694,12 @@ export const routes = [
     title: "Consultant Management",
     component: ViewConsultants,
     path: "/consultant-management",
+  },
+
+  {
+    title: "Consultant Management",
+    component: ManageConsultant,
+    path: "/manage-consultant",
   },
 
   {

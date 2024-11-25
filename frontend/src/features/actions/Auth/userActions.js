@@ -50,9 +50,15 @@ export const getUsers = createAsyncThunk(
 
 export const getConsultants = createAsyncThunk(
   "consultants/Fetch",
-  async (_, { rejectWithValue }) => {
+  async (payload, { rejectWithValue }) => {
+
     try {
-      const response = await instance.get("/consultant");
+      let response
+      if(payload)
+     {  response = await instance.get(`/consultant?${payload.key}=${payload.value}`);}
+     else{
+       response = await instance.get(`/consultant`);
+     }
 
       return response.data;
     } catch (error) {
@@ -60,6 +66,8 @@ export const getConsultants = createAsyncThunk(
     }
   }
 );
+
+
 
 export const updateConsultantStatus = createAsyncThunk(
   "consultantStatus/update",

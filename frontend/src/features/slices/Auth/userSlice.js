@@ -93,6 +93,7 @@ const userSlice = createSlice({
         state.isUserLoading = false;
         state.errorMessage = "";
         state.consultants = action?.payload?.data;
+        state.usersData.users = action?.payload?.data;
       })
       .addCase(getConsultants.rejected, (state, action) => {
         state.isUserLoading = false;

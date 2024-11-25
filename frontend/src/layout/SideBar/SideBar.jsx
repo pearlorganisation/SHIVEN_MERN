@@ -90,7 +90,7 @@ const SideBar = () => {
       subMenuArray: [
         {
           title: "Manage Consultants",
-          path: "/"
+          path: "/manage-consultant"
         },
         {
           title: "Account Approval",

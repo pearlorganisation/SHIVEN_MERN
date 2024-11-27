@@ -102,8 +102,8 @@ export const updateConsultantStatus = asyncErrorHandler(async (req, res) => {
       message: "Consultant not found!!",
     });
   }  
+  console.log({...updateConsultant})
   const user = await userModel.create({role:2,...updateConsultant})
-console.log(user)
   sendAccountVerified(updateConsultant?.email);
 
   const consultans = await Consultant.find()

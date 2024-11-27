@@ -23,12 +23,15 @@ export const createUser = asyncErrorHandler(async (req, res, next) => {
     const error = new CustomError("Please Fill Complete Details", 400);
     return next(error);
   }
+  const salt = await bcrypt.genSalt(10);
+
+  const hashPassword = await bcrypt.hash(password, salt);
 
   const userDoc = new userModel({
     userName,
     fullName,
     email,
-    password,
+    password:hashPassword,
     role,
   });
 

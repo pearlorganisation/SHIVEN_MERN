@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import { sendOtp } from "../../../Utils/Mail/Otp/sendOtp.js";
 import { generateOTP } from "../../../Utils/Mail/Otp/generateOTP.js";
-import moment from "moment";
+
 // ------------------------------------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ export const createUser = asyncErrorHandler(async (req, res, next) => {
 // @method- GET
 // @url - auth/user
 export const getUsers = asyncErrorHandler(async (req, res, next) => {
-  const users = await userModel.find();
+  const users = await userModel.find().populate("servicePlan").populate("servicePlan.serviceType");
 
   return res.status(200).json({
     success: true,

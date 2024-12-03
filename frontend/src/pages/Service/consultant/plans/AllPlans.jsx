@@ -3,25 +3,37 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { Stack, Skeleton } from "@mui/material";
 import ViewModalWholeLife from "../../../ServicePlans/wholeLifeInsurance/ViewModalWholeLife";
+import ViewModalHomeLoan from "../../../ServicePlans/homeLoan/ViewModalHomeLoan";
+import HealthModal from "../../../ServicePlans/healthInsurance/HealthModal";
+import ViewModalMutual from "../../../ServicePlans/mutualFund/ViewModalMutual";
+import ViewModalVehicleLoan from "../../../ServicePlans/vehicleLoan/ViewModalVehicleLoan";
 
 
 const AllPlans = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const {name} = useParams()
-  const servicePlanData= [1]
-  
   const { loggedInUserData } = useSelector((state) => state.auth);
-  
-    const [showViewModal, setShowViewModal] = useState(false);
-    const [viewData, setViewData] = useState();
+  const [showViewModal, setShowViewModal] = useState(false);
+  const [viewData, setViewData] = useState();
+  const { consultants } = useSelector((state) => state.user);
+
+    let particularPlans= []
+    if (
+      consultants.servicePlan &&
+      Array.isArray(consultants.servicePlan) &&
+      loggedInUserData.role == "1"
+    ) {
+      particularPlans = consultants.servicePlan
+        .filter((item) => {
+         return item?.serviceType?.serviceType === name
+        })  
+    }
+
 
     const handleViewModal=(itemData)=>{
         setShowViewModal(true)
         setViewData(itemData)
       }
-
-console.log(loggedInUserData)
 
   return (
     <div className="userContainer p-10 ">
@@ -29,7 +41,7 @@ console.log(loggedInUserData)
         <h4 className="font-bold text-blue-500 text-sm sm:text-md md:text-lg">
         {name} Listing
         </h4>
-        <div className="createEmployeeBtn flex justify-end p-4 ">
+        {/* <div className="createEmployeeBtn flex justify-end p-4 ">
   {loggedInUserData?.role === "1" &&        <button
             className=" p-2 rounded-lg bg-indigo-600 text-white font-bold tracking-widest"
             onClick={() => {
@@ -39,7 +51,7 @@ console.log(loggedInUserData)
            Add Plans
           </button>}
 
-        </div>
+        </div> */}
       </div>
       <div className="mt-6 shadow-xl rounded-lg overflow-x-auto">
         <table className="w-full table-auto text-sm text-left">
@@ -49,6 +61,7 @@ console.log(loggedInUserData)
               <th className="py-3 px-6">Plan Name</th>
               <th className="py-3 px-6">Service Provider</th>
               <th className="py-3 px-6">Service Type</th>
+              <th className="py-3 px-6">Logo</th>
               <th className="py-3 px-6">Actions</th>
             </tr>
           </thead>
@@ -66,20 +79,24 @@ console.log(loggedInUserData)
                 </td>
               </tr>
             ) : (
-              Array.isArray(servicePlanData) &&
-              servicePlanData.length > 0 &&
-              servicePlanData?.map((item, idx) => (
+              Array.isArray(particularPlans) &&
+              particularPlans.length > 0 &&
+              particularPlans?.map((item, idx) => (
                 <tr key={idx}>
                   <td className="px-6 py-4 whitespace-nowrap">{idx + 1}</td>
                   <td className="px-6 py-4 whitespace-nowrap ">
-                  LIC's New Jeevan Anand
+                  {item?.planName}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap ">
-                   LIC
+                 {item?.serviceProvider?.serviceProviderName}
                   </td>
 
                   <td className="px-6 py-4 whitespace-nowrap truncate max-w-56 ">
                    {name}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap truncate max-w-56 ">
+                  <img src={item?.serviceProvider?.logo?.secure_url} className='rounded-lg w-24 h-20' />
+                   
                   </td>
     
 
@@ -103,6 +120,20 @@ console.log(loggedInUserData)
       {showViewModal && name === "Life Insurance" && (
         <ViewModalWholeLife setModal={setShowViewModal} viewData={viewData} />
       )}
+      {showViewModal && name === "Home Loan" && (
+        <ViewModalHomeLoan setModal={setShowViewModal} viewData={viewData} />
+      )}
+      {showViewModal && name === "Health Insurance" && (
+        <HealthModal setModal={setShowViewModal} viewData={viewData} />
+      )}
+      {showViewModal && name === "Mutual Fund" && (
+        <ViewModalMutual setModal={setShowViewModal} viewData={viewData} />
+      )}
+      {showViewModal && name === "Vehicle Loan" && (
+        <ViewModalVehicleLoan setModal={setShowViewModal} viewData={viewData} />
+      )}
+     
+   
     </div>
   );
 };

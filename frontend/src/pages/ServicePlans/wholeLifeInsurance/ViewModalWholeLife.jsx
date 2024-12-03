@@ -60,44 +60,48 @@ export default function ViewModalWholeLife ({viewData,setModal}) {
     <tbody className="text-gray-600">
       <tr>
         <td className="py-2 px-4 border border-gray-300">Plan Name</td>
-        <td className="py-2 px-4 border border-gray-300">dummy</td>
+        <td className="py-2 px-4 border border-gray-300">{viewData?.planName}</td>
       </tr>
       <tr>
         <td className="py-2 px-4 border border-gray-300">Plan Image</td>
-        <td className="py-2 px-4 border border-gray-300">dummy</td>
+        <td className="py-2 px-4 border border-gray-300"> <img src={viewData?.serviceProvider?.logo?.secure_url} className='rounded-lg w-24 h-20' /></td>
       </tr>
       <tr>
         <td className="py-2 px-4 border border-gray-300">Service Provider</td>
-        <td className="py-2 px-4 border border-gray-300">dummy</td>
+        <td className="py-2 px-4 border border-gray-300">{viewData?.serviceProvider?.serviceProviderName}</td>
       </tr>
       <tr>
         <td className="py-2 px-4 border border-gray-300">Service Type</td>
-        <td className="py-2 px-4 border border-gray-300">Life Insurance</td>
+        <td className="py-2 px-4 border border-gray-300">{viewData?.serviceType?.serviceType}</td>
       </tr>
       <tr>
         <td className="py-2 px-4 border border-gray-300">Premium Amount</td>
-        <td className="py-2 px-4 border border-gray-300">₹ dummy</td>
+        <td className="py-2 px-4 border border-gray-300">₹ {viewData?.premiumAmount}</td>
       </tr>
       <tr>
         <td className="py-2 px-4 border border-gray-300">Life Cover</td>
-        <td className="py-2 px-4 border border-gray-300">dummy</td>
+        <td className="py-2 px-4 border border-gray-300">{viewData?.lifeCover}</td>
       </tr>
       <tr>
         <td className="py-2 px-4 border border-gray-300">Minimum Age</td>
-        <td className="py-2 px-4 border border-gray-300">dummy</td>
+        <td className="py-2 px-4 border border-gray-300">{viewData?.minimumAge}</td>
       </tr>
       <tr>
         <td className="py-2 px-4 border border-gray-300">Maximum Age</td>
-        <td className="py-2 px-4 border border-gray-300">dummy</td>
-      </tr>
-      <tr>
-        <td className="py-2 px-4 border border-gray-300">Premium Frequency</td>
-        <td className="py-2 px-4 border border-gray-300">dummy</td>
+        <td className="py-2 px-4 border border-gray-300">{viewData?.maximumAge}</td>
       </tr>
       
       <tr>
         <td className="py-2 px-4 border border-gray-300">Additional Benefits</td>
-        <td className="py-2 px-4 border border-gray-300">dummy</td>
+        <td className="py-2 px-4 border border-gray-300">
+        <div className=' bg-slate-100 flex mb-2 rounded-md px-2 gap-2 w-fit' >
+<div className=''>
+{Array.isArray(viewData?.additionalBenefits) && viewData?.additionalBenefits?.map((item,idx) =>
+( <div className='my-2'><span className='bg-white rounded-md px-2  '> {item}</span></div>))
+}  
+         </div>
+           </div>
+        </td>
       </tr>
       
     </tbody>

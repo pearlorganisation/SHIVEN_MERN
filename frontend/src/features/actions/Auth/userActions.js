@@ -80,3 +80,15 @@ export const updateConsultantStatus = createAsyncThunk(
     }
   }
 );
+
+export const getConsultantWithPopulated = createAsyncThunk(
+  "getConsultantWithPopulated",
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await instance.get(`/consultant/${id}`);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);

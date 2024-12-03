@@ -12,17 +12,11 @@ import CreateRequest from "../pages/Service/user/complain/CreateRequest";
 import Purchase from "../pages/Service/user/purchase/Purchase";
 import CustomerFeedback from "../pages/Service/consultant/CustomerFeedback";
 import ViewPolicies from "../pages/Service/user/policies/ViewPolicies";
-import ViewBikeInsurance from "../pages/ServicePlans/bikeInsurance/ViewBikeInsurance";
-import HealthPlan from "../pages/ServicePlans/healthInsurance/HealthPlan";
 import CreateHealthPlan from "../pages/ServicePlans/healthInsurance/CreateHealthPlan";
 import ViewBrochures from "../pages/Service/consultant/ViewBrochures";
-import ViewMutualFund from "../pages/ServicePlans/mutualFund/ViewMutualFund";
-import ViewWholeLifeInsurance from "../pages/ServicePlans/wholeLifeInsurance/ViewWholeLifeInsurance";
 import WholeLifeInsurancePlan from "../pages/ServicePlans/wholeLifeInsurance/WholeLifeInsurance";
-import ViewHomeLoan from "../pages/ServicePlans/homeLoan/ViewHomeLoan";
 import HomeLoan from "../pages/ServicePlans/homeLoan/HomeLoan";
 import CompanyProfile from "../components/CompanyProfile/CompanyProfile";
-import ViewVehicleLoan from "../pages/ServicePlans/vehicleLoan/ViewVehicleLoan";
 import VehicleLoan from "../pages/ServicePlans/vehicleLoan/VehicleLoan";
 import filesAndFolder from "../pages/Service/consultant/filesAndFolder";
 import ViewServiceRequest from "../pages/Service/consultant/serviceRequest/ViewServiceRequest";
@@ -91,6 +85,7 @@ import { CreateConsultant } from "../pages/auth/Consultant/CreateConsultant";
 import { UpdateService } from "../pages/Service/admin/UpdateService";
 import { ViewConsultants } from "../pages/Service/admin/ViewConsultants";
 import ManageConsultant from "../pages/Service/admin/ManageConsultant";
+import { ConsultantServiceProviders } from "../pages/Service/consultant/serviceProvider/ViewServiceProviders";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -126,7 +121,7 @@ const MutualFunds = lazy(() => {
 });
 
 const BikeInsurance = lazy(() => {
-  return import("../pages/ServicePlans/bikeInsurance/BikeInsurance");
+  return import("../pages/ServicePlans/motorInsurance/MotorInsurance");
 });
 
 const ViewServiceProviders = lazy(() => {
@@ -266,12 +261,6 @@ export const routes = [
     component: ViewBrochures,
     path: "/brochure",
   },
-
-  {
-    title: "Mutual Funds",
-    component: ViewMutualFund,
-    path: "/servicePlan/view-mutual-fund",
-  },
   {
     title: "Create Mutual Funds",
     component: MutualFunds,
@@ -283,19 +272,9 @@ export const routes = [
     path: "/servicePlan/Motor Insurance",
   },
   {
-    title: "View Bike Insurance",
-    component: ViewBikeInsurance,
-    path: "/servicePlan/view-bike-insurance",
-  },
-  {
     title: "Health Insurance",
     component: CreateHealthPlan,
     path: "/servicePlan/Health Insurance/:id",
-  },
-  {
-    title: "View Health Insurance",
-    component: HealthPlan,
-    path: "/servicePlan/view-health-insurance",
   },
   {
     title: "Create Home Loan",
@@ -303,25 +282,9 @@ export const routes = [
     path: "/servicePlan/Home Loan/:id",
   },
   {
-    title: "View Home Loan",
-    component: ViewHomeLoan,
-    path: "/servicePlan/view-home-loan",
-  },
-  {
-    title: "View Vehicle Loan",
-    component: ViewVehicleLoan,
-    path: "/servicePlan/view-vehicle-loan",
-  },
-  {
     title: "Vehicle Loan",
     component: VehicleLoan,
     path: "/servicePlan/Vehicle Loan/:id",
-  },
-
-  {
-    title: "View Whole Life Insurance",
-    component: ViewWholeLifeInsurance,
-    path: "/servicePlan/view-whole-life-insurance",
   },
   {
     title: "Create Whole Life Insurance",
@@ -754,6 +717,11 @@ export const routes = [
     title: "Cancellation Policy",
     component: CancellationPolicy,
     path: "/cancellation-policy",
+  },
+  {
+    title: "Consultant Service Provider",
+    component: ConsultantServiceProviders,
+    path: "/consultant/serviceProvider",
   },
 
 

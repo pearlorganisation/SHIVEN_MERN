@@ -59,11 +59,6 @@ import { enquiryRouter } from "./src/Routes/Enquiry/enquiryRoutes.js";
 import serviceRouter from "./src/Routes/Service/service.js";
 import servicePlanRouter from "./src/Routes/Service/servicePlan.js";
 import serviceProviderRouter from "./src/Routes/Service/serviceProvider.js";
-import mutualFundRouter from "./src/Routes/Service/MutualFund/mutualFundRoutes.js";
-import wholeLifeInsurenceRouter from "./src/Routes/Service/WholeLifeInsurence/wholeLifeInsurenceRoutes.js";
-import homeLoanRouter from "./src/Routes/Service/HomeLoan/homeLoanRoutes.js";
-import motorInsuranceRouter from "./src/Routes/Service/MotorInsurance/BikeInsurance/bikeInsuranceRoutes.js";
-import vehicleLoanRouter from "./src/Routes/Service/VehicleLoan/vehicleLoanRoutes.js";
 import consultantRouter from "./src/Routes/Auth/consultantRoutes.js";
 
 // Route Middlewares
@@ -73,21 +68,6 @@ app.use("/api/v1/enquiry", enquiryRouter);
 app.use("/api/v1/service", serviceRouter);
 app.use("/api/v1/servicePlan", servicePlanRouter);
 app.use("/api/v1/serviceProvider", serviceProviderRouter);
-
-// Mutual Funds - Routes
-app.use("/api/v1/service-plans/mutual-funds", mutualFundRouter);
-
-//Whole life insurence - Routes
-app.use("/api/v1/service-plans/whole-life-insurance", wholeLifeInsurenceRouter);
-
-//Home Loan - Routes
-app.use("/api/v1/service-plans/home-loan", homeLoanRouter);
-
-//Motor Insurance - Routes
-app.use("/api/v1/motor-insurance/service-plans", motorInsuranceRouter);
-
-//Vehicle Loan - Routes
-app.use("/api/v1/service-plans/vehicle-loan", vehicleLoanRouter);
 
 //consultant - Routes
 app.use("/api/v1/consultant", consultantRouter);

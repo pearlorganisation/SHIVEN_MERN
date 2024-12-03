@@ -12,5 +12,6 @@ router
   .route("/")
   .get(getAllServiceProviders)
   .post(upload.single("logo"), createServiceProvider);
+  
 
 export default router;

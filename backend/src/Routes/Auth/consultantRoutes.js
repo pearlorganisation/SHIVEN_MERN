@@ -5,6 +5,7 @@ import {
   verifyConsultant,
   getConsultants,
   updateConsultantStatus,
+  getConsultantWithPopulated,
 } from "../../Controllers/Auth/consultantController.js";
 import { verifyTokenMiddleware } from "../../Middlewares/Token/verifyTokenMiddleware.js";
 
@@ -19,5 +20,7 @@ router
   .route("/verify/:id")
   .post(verifyConsultant)
   .patch(updateConsultantStatus);
+
+  router.route("/:id").get(getConsultantWithPopulated)
 
 export default router;

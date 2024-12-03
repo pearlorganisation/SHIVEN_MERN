@@ -65,12 +65,7 @@ const servicePlanSchema = new mongoose.Schema(
     },
     expenseRatio: {
       type: Number,
-      // validate: {
-      //   validator: function (value) {
-      //     return value >= 0 && value <= 100;
-      //   },
-      //   message: "Expense ratio must be between 0 and 100",
-      // },
+
     },
     fiveYearsAnnualisedReturns: {
       type: Number,

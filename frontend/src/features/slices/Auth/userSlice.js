@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import {
   createUser,
   getConsultants,
+  getConsultantWithPopulated,
   getUsers,
   updateConsultantStatus,
   updateUser,
@@ -110,6 +111,20 @@ const userSlice = createSlice({
         state.consultants = action?.payload?.data;
       })
       .addCase(updateConsultantStatus.rejected, (state, action) => {
+        state.isUserLoading = false;
+        state.errorMessage = action?.payload;
+        toast.error(action.payload.message);
+      })
+      .addCase(getConsultantWithPopulated.pending, (state, action) => {
+        state.isUserLoading = true;
+        state.errorMessage = "";
+      })
+      .addCase(getConsultantWithPopulated.fulfilled, (state, action) => {
+        state.isUserLoading = false;
+        state.errorMessage = "";
+        state.consultants = action?.payload?.data;
+      })
+      .addCase(getConsultantWithPopulated.rejected, (state, action) => {
         state.isUserLoading = false;
         state.errorMessage = action?.payload;
         toast.error(action.payload.message);

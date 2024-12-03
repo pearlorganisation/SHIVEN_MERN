@@ -6,7 +6,7 @@ import { MdOutlineInsertPhoto } from "react-icons/md";
 import Input from "../../../components/form/Input";
 
 
-const BikeInsurance = () => {
+const MotorInsurance = () => {
   const [photo, setPhoto] = useState("");
   const {
     register,

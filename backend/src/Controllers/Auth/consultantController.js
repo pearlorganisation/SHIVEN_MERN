@@ -102,8 +102,8 @@ export const updateConsultantStatus = asyncErrorHandler(async (req, res) => {
       message: "Consultant not found!!",
     });
   }  
-  console.log({...updateConsultant})
-  const user = await userModel.create({role:2,...updateConsultant})
+
+  const user = await userModel.create({role:1,...updateConsultant})
   sendAccountVerified(updateConsultant?.email);
 
   const consultans = await Consultant.find()
@@ -117,6 +117,17 @@ export const updateConsultantStatus = asyncErrorHandler(async (req, res) => {
   });
 });
 
-// export const getVerfiedConsultants= asyncErrorHandler(async(req,res)=>{
-//   const data = await Consultant.find(isVerified:true)
-// })
+export const getConsultantWithPopulated= asyncErrorHandler(async(req,res)=>{
+
+  const {id}= req?.params
+
+  const data = await Consultant.findOne({_id:id, isVerified:true}).populate({
+    path: "servicePlan",
+    populate: [
+      { path: "serviceType", model: "service" }, // Populate serviceType inside servicePlan
+      { path: "serviceProvider", model: "serviceProvider" }, // Populate serviceProvider inside servicePlan
+    ],
+  });
+
+  res.status(200).json({status:true,data})
+})

@@ -3,6 +3,7 @@ import { asyncErrorHandler } from "../../Utils/Error/asyncErrorHandler.js";
 
 export const createServicePlan = asyncErrorHandler(async (req, res, next) => {
   const data = new servicePlan(req?.body);
+  
 
   await data.save();
 
@@ -27,3 +28,4 @@ export const getAllServicePlan = asyncErrorHandler(async (req, res, next) => {
     data,
   });
 });
+

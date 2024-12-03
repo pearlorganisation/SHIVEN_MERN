@@ -1,17 +1,17 @@
 // -----------------------------------------------Imports---------------------------------------------------
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GoTag } from "react-icons/go";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/actions/Auth/authActions";
+import { getConsultantWithPopulated } from "../../features/actions/Auth/userActions";
 // ----------------------------------------------------------------------------------------------------------
 const SideBar = () => {
   // -----------------------------------------------States-----------------------------------------------------
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
   const [subMenuIndex, setSubMenuIndex] = useState([]);
-
   const { loggedInUserData } = useSelector((state) => state.auth);
+  const { consultants } = useSelector((state) => state.user);
 
 
   // ----------------------------------------------------------------------------------------------------------
@@ -28,9 +28,43 @@ const SideBar = () => {
       console.error(error.message);
     }
   };
+
+let getAllOptedServices = []
+
+
+if(consultants.servicePlan && Array.isArray(consultants.servicePlan) && loggedInUserData.role == "1")
+    {  
+      const seenServiceNames = new Set(); // To track unique serviceProviderName
+      getAllOptedServices = consultants.servicePlan
+      .filter((item) => {
+        const serviceName = item?.serviceType?.serviceType;
+        if (serviceName && !seenServiceNames.has(serviceName)) {
+          seenServiceNames.add(serviceName); // Add to set if not already present
+          return true;
+        }
+        return false;
+      })
+      .map((item) => ({
+        title: item?.serviceType?.serviceType,    
+        path: `/plans/${item?.serviceType?.serviceType}`,
+        _id: item?.serviceType?._id
+      }));
+  }
+ 
+
+   console.log(getAllOptedServices)
+
   // ----------------------------------------------------------------------------------------------------------
   // --------------------------------------------useEffect-----------------------------------------------------
+  useEffect(() => {
+   
+if(loggedInUserData.role == "1")
+  dispatch(getConsultantWithPopulated(loggedInUserData?._id))
+  }, [])
+  
   // ----------------------------------------------------------------------------------------------------------
+
+
 
   const sidebarOptions = [
     {
@@ -259,74 +293,21 @@ const SideBar = () => {
           title: "Customised Plans",
           path: "/customisedPlan",
         },
-        {
-          title: "Life Insurance ",
-          path: "/plans/Life Insurance",
-        },
-        {
-          title: "Health Insurance ",
-          path: "/plans/Health Insurance",
-        },
-        {
-          title: "Motor Insurance",
-          path: "/plans/Motor Insurance",
-        },
-        {
-          title: "Home Loan",
-          path: "/plans/Home Loan",
-        },
-        {
-          title: "Vehicle Loan",
-          path: "/plans/Vehicle Loan",
-        },
-        { title: "Mutual Fund", path: "/plans/Mutual Fund" },
-        { title: "Shares", path: "/plans/Shares" },
-        { title: "Fixed Deposit", path: "/plans/Fixed Deposit" },
-        { title: "Recurring Deposit", path: "/plans/Recurring Deposit" },
-        { title: "Gold / Bullion", path: "/plans/Gold and Bullion" },
-        { title: "Commercial Property", path: "/plans/Commercial Property" },
-        {
-          title: "Land",
-          path: "/plans/Land",
-        },
-        {
-          title: "Residential Property",
-          path: "/plans/Residential Property",
-        },
-        {
-          title: "Sovereign Gold Bond",
-          path: "/plans/Sovereign Gold Bond",
-        },
-        {
-          title: "Post Office",
-          path: "/plans/Post Office",
-        },
-        {
-          title: "EPF / PPF",
-          path: "/plans/Employees Provident Fund and Public Provident Fund",
-        },
-        {
-          title: "NPS",
-          path: "/plans/National Pension System",
-        },
-        {
-          title: "IT Files",
-          path: "/plans/IT Files",
-        },
+        ...getAllOptedServices
       ],
+      show: loggedInUserData.role === "1",
+    },
+    
+    {
+      title: "Services Providers",
+      subMenu: false,
+      path: "/consultant/serviceProvider",
       show: loggedInUserData.role === "1",
     },
     {
       title: "Brochures",
       subMenu: false,
       path: "/brochure",
-      show: loggedInUserData.role === "1",
-    },
-
-    {
-      title: "Services Providers",
-      subMenu: false,
-      path: "/consultant/serviceProvider",
       show: loggedInUserData.role === "1",
     },
     {

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function ViewBikeModal ({viewData,setModal}) {
+export default function ViewMotorInsuranceModal ({viewData,setModal}) {
     const createdAtDate = viewData?.updatedAt ? new Date(viewData?.updatedAt) : null;
   const formattedDate = createdAtDate ? createdAtDate.toISOString().split('T')[0] : '';
 
@@ -21,7 +21,7 @@ export default function ViewBikeModal ({viewData,setModal}) {
       {/*        <!-- Modal header --> */}
       <header id="header-3a" className="flex items-center gap-4">
         <h3 className="flex-1 text-xl font-medium text-slate-700">
-        Bike Insurance Plan
+        Motor Insurance Plan
         </h3>
         <div>Last Updated : {formattedDate} </div>
         <button

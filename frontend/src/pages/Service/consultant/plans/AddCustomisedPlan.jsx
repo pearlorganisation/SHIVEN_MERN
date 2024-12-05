@@ -39,58 +39,81 @@ const AddCustomisedPlan = () => {
           />
         </div>
 
-        <div className="sm:flex space-y-6 sm:space-y-0 justify-between gap-10">
-          <div className="w-full">
-            <label className="font-medium mr-10">Clubbed Plans</label>
-            {fields.map((item, index) => (
-              <div key={item.id} className="flex items-center space-x-2 mb-2">
-                <Controller
-                  control={control}
-                  name={`plan${index}`}
-                  render={({ field }) => (
-                    <Select
-                      value={field.value}
-                      options={[
-                        {
-                          value: "LIC's New Jeevan Anand",
-                          label: "LIC's New Jeevan Anand",
-                        },
-                        {
-                          value: "Bajaj Allianz Motor Insurance",
-                          label: "Bajaj Allianz Motor Insurance",
-                        },
-                        {
-                          value: "SBI General Home Insurance",
-                          label: "SBI General Home Insurance",
-                        },
-                      ]}
-                      onChange={(selectedOption) =>
-                        field.onChange(selectedOption)
-                      }
-                      className="mt-2 w-full z-[1000]"
-                      placeholder={`Choose Plan ${index + 1}`}
-                    />
-                  )}
-                  rules={{ required: true }}
-                />
-                <button
-                  type="button"
-                  onClick={() => remove(index)}
-                  className="text-red-500"
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
-            <button
-              type="button"
-              onClick={() => append({})} // Append a new object (empty or with default values)
-              className="text-blue-600"
-            >
-              Add Plans
-            </button>
-          </div>
-        </div>
+        <Controller
+                    name="services"
+                    control={control}
+                    render={({ field }) => (
+                      <Select
+                        {...field}
+                        isMulti
+                        // options={serviceTypes}
+                        // value={selectedServices}
+                        // onChange={(newSelectedServices) => {
+                        //   setSelectedServices(newSelectedServices);
+                        //   field.onChange(newSelectedServices);
+                        // }}
+                        placeholder="Select Service(s)"
+                        classNames={{
+                          control: () =>
+                            "w-full px-3 py-2 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5",
+                          placeholder: () => "text-gray-500",
+                          multiValue: () => "bg-gray-100 text-gray-500",
+                          multiValueLabel: () => "text-gray-500",
+                        }}
+                      />
+                    )}
+                  />
+
+                  <Controller
+                    name="serviceProviders"
+                    control={control}
+                    render={({ field }) => (
+                      <Select
+                        {...field}
+                        isMulti
+                        // options={serviceProviders}
+                        // value={selectedProviders}
+                        // onChange={(newSelectedProviders) => {
+                        //   setSelectedProviders(newSelectedProviders);
+                        //   field.onChange(newSelectedProviders);
+                        // }}
+                        placeholder="Select Service Provider(s)"
+                        classNames={{
+                          control: () =>
+                            "w-full px-3 py-2 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5",
+                          placeholder: () => "text-gray-500",
+                          multiValue: () => "bg-gray-100 text-gray-500",
+                          multiValueLabel: () => "text-gray-500",
+                        }}
+                      />
+                    )}
+                  />
+
+                  <Controller
+                    name="plans"
+                    control={control}
+                    render={({ field }) => (
+                      <Select
+                        {...field}
+                        isMulti
+                        // options={plans}
+                        // value={selectedPlans}
+                        // onChange={(newSelectedPlans) => {
+                        //   setSelectedPlans(newSelectedPlans);
+                        //   field.onChange(newSelectedPlans);
+                        // }}
+                        placeholder="Select Plan(s)"
+                        classNames={{
+                          control: () =>
+                            "w-full px-3 py-2 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5",
+                          placeholder: () => "text-gray-500",
+                          multiValue: () => "bg-gray-100 text-gray-500",
+                          multiValueLabel: () => "text-gray-500",
+                        }}
+                      />
+                    )}
+                  />
+
 
         <button
           type="submit"

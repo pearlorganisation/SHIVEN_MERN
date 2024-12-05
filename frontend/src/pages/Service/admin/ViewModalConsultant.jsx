@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function ViewModalMutual ({viewData,setModal}) {
-    const createdAtDate = viewData?.updatedAt ? new Date(viewData?.updatedAt) : null;
+export default function ViewModalConsultant ({viewData,setModal}) {
+    const createdAtDate = viewData?.createdAt ? new Date(viewData?.createdAt) : null;
   const formattedDate = createdAtDate ? createdAtDate.toISOString().split('T')[0] : '';
 
   return (
@@ -21,9 +21,9 @@ export default function ViewModalMutual ({viewData,setModal}) {
       {/*        <!-- Modal header --> */}
       <header id="header-3a" className="flex items-center gap-4">
         <h3 className="flex-1 text-xl font-medium text-slate-700">
-        Mutual Fund Plan
+       Consultant Details
         </h3>
-        <div>Last Updated : {formattedDate} </div>
+        <div>Created On : {formattedDate} </div>
         <button
           onClick={() => setModal(false)}
           className="inline-flex h-10 items-center justify-center gap-2 justify-self-center whitespace-nowrap rounded-full px-5 text-sm font-medium tracking-wide text-emerald-500 transition duration-300 hover:bg-emerald-100 hover:text-emerald-600 focus:bg-emerald-200 focus:text-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:text-emerald-300 disabled:shadow-none disabled:hover:bg-transparent"
@@ -59,52 +59,32 @@ export default function ViewModalMutual ({viewData,setModal}) {
       <table className="w-full table-auto text-sm">
     <tbody className="text-gray-600">
       <tr>
-        <td className="py-2 px-4 border border-gray-300">Plan Name</td>
-        <td className="py-2 px-4 border border-gray-300">{viewData?.planName}</td>
+        <td className="py-2 px-4 border border-gray-300">Email</td>
+        <td className="py-2 px-4 border border-gray-300">{viewData?.email}</td>
       </tr>
       <tr>
-        <td className="py-2 px-4 border border-gray-300">Plan Image</td>
-        <td className="py-2 px-4 border border-gray-300"> <img src={viewData?.serviceProvider?.logo?.secure_url} className='rounded-lg w-24 h-20' /></td>
+        <td className="py-2 px-4 border border-gray-300">Status</td>
+        <td className="py-2 px-4 border border-gray-300">{viewData?.isVerified ? "Verified" : "Not Verified"}</td>
 
       </tr>
       <tr>
-        <td className="py-2 px-4 border border-gray-300">Service Provider</td>
-        <td className="py-2 px-4 border border-gray-300">{viewData?.serviceProvider?.serviceProviderName}</td>
+        <td className="py-2 px-4 border border-gray-300">Razorpayment Id</td>
+        <td className="py-2 px-4 border border-gray-300">{viewData?.razorpay_payment_id}</td>
 
       </tr>
       <tr>
-        <td className="py-2 px-4 border border-gray-300">Service Type</td>
-        <td className="py-2 px-4 border border-gray-300">{viewData?.serviceType?.serviceType}</td>
-
+        <td className="py-2 px-4 border border-gray-300">Service Plans</td>
+        <td className="py-2 px-4 border border-gray-300">
+        <div className=' bg-slate-100 flex mb-2 rounded-md px-2 gap-2 w-fit' >
+<div className=''>
+{Array.isArray(viewData?.servicePlan) && viewData?.servicePlan?.map((item,idx) =>
+( <div className='my-2'><span className='bg-white rounded-md px-2  '> {item.planName}</span></div>))
+}  
+         </div>
+           </div>
+        </td>
       </tr>
-      <tr>
-        <td className="py-2 px-4 border border-gray-300">Fund Size</td>
-        <td className="py-2 px-4 border border-gray-300">{viewData?.fundSize}</td>
-      </tr>
-      <tr>
-        <td className="py-2 px-4 border border-gray-300">Category</td>
-        <td className="py-2 px-4 border border-gray-300">{viewData?.category}</td>
-      </tr>
-      <tr>
-        <td className="py-2 px-4 border border-gray-300">Minimum SIP Amount</td>
-        <td className="py-2 px-4 border border-gray-300">{viewData?.minSIPAmount}</td>
-      </tr>
-      <tr>
-        <td className="py-2 px-4 border border-gray-300">Expense Ratio</td>
-        <td className="py-2 px-4 border border-gray-300">{viewData?.expenseRatio}</td>
-      </tr>
-      <tr>
-        <td className="py-2 px-4 border border-gray-300">Five Years Annualised Returns </td>
-        <td className="py-2 px-4 border border-gray-300">{viewData?.fiveYearsAnnualisedReturns}</td>
-      </tr>
-      <tr>
-        <td className="py-2 px-4 border border-gray-300">One Year Annualised Returns</td>
-        <td className="py-2 px-4 border border-gray-300">{viewData?.oneYearsAnnualisedReturns}</td>
-      </tr>
-      <tr>
-        <td className="py-2 px-4 border border-gray-300">Risk Factor</td>
-        <td className="py-2 px-4 border border-gray-300">{viewData?.riskFactor}</td>
-      </tr>
+   
       
     </tbody>
   </table>

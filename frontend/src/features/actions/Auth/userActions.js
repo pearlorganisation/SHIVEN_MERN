@@ -92,3 +92,16 @@ export const getConsultantWithPopulated = createAsyncThunk(
     }
   }
 );
+
+export const updateConsultant = createAsyncThunk(
+  "consultant/updateConsultant",
+  async ({ payload, userId }, { rejectWithValue }) => {
+    try {
+      const response = await instance.patch(`/consultant/${userId}`,payload);
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);

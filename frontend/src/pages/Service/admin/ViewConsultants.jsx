@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Skeleton, Stack, Modal, Box, Button, Tooltip } from "@mui/material";
-import {
-  getConsultants,
-  updateConsultantStatus,
-} from "../../../features/actions/Auth/userActions";
+import {getConsultants,updateConsultantStatus} from "../../../features/actions/Auth/userActions";
+import ViewModalConsultant from "./ViewModalConsultant";
 
 // ------------------------------------------------------------------------------------------------------------
 
@@ -15,14 +12,20 @@ export const ViewConsultants = () => {
   // -----------------------------------------------------States---------------------------------------------
   const [openModal, setOpenModal] = useState(false);
   const [selectedConsultantId, setSelectedConsultantId] = useState(null);
+  const [showViewModal, setShowViewModal] = useState(false);
+  const [viewData, setViewData] = useState();
   // ---------------------------------------------------------------------------------------------------------
 
   // -----------------------------------------------------Hooks---------------------------------------------
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   // ---------------------------------------------------------------------------------------------------------
 
   // ---------------------------------------------------Functions---------------------------------------------
+  const handleViewModal=(itemData)=>{
+    setShowViewModal(true)
+    setViewData(itemData)
+  }
+
   const handleOpenModal = (id) => {
     setSelectedConsultantId(id);
     setOpenModal(true);
@@ -39,7 +42,7 @@ export const ViewConsultants = () => {
       handleCloseModal(); // Close modal after confirming
     }
   };
-  // ---------------------------------------------------------------------------------------------------------
+
 
   // ---------------------------------------------------useEffect---------------------------------------------
   useEffect(() => {
@@ -62,9 +65,10 @@ export const ViewConsultants = () => {
               <th className="py-3 px-6">ID</th>
               <th className="py-3 px-6">Email</th>
               <th className="py-3 px-6">Status</th>
-              <th className="py-3 px-6">Services</th>
               <th className="py-3 px-6">Razorpay Payment Id</th>
-              <th className="py-3 px-6">Actions</th>
+              <th className="py-3 px-6">Created Date</th>
+              <th className="py-3 px-6">Verified Date</th>
+              <th className="py-3 px-6 text-center" colSpan={2}>Actions</th>
             </tr>
           </thead>
           <tbody className="text-gray-600 divide-y">
@@ -83,7 +87,13 @@ export const ViewConsultants = () => {
             ) : (
               Array.isArray(consultants) &&
               consultants.length > 0 &&
-              consultants.map((item, idx) => (
+              consultants.map((item, idx) =>
+            {   
+              const createdAtDate = item?.createdAt ? new Date(item?.createdAt) : null
+              const updatedAtDate = item?.updatedAt ? new Date(item?.updatedAt) : null
+              const formattedCreatedAt = createdAtDate ? createdAtDate.toISOString().split('T')[0] : '';
+              const formattedUpdatedAt = updatedAtDate ? updatedAtDate.toISOString().split('T')[0] : '';
+              return  (
                 <tr key={idx}>
                   <td className="px-6 py-4 whitespace-nowrap">{idx + 1}</td>
                   <td className="px-6 py-4 whitespace-nowrap max-w-56 truncate">
@@ -97,37 +107,29 @@ export const ViewConsultants = () => {
                   <td className="px-6 py-4 whitespace-nowrap truncate max-w-56">
                     {item?.isVerified ? "Verified" : "Not Verified"}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap truncate max-w-56">
-                    {item?.servicePlan && item?.servicePlan.length > 0 ? (
-                      <div className="flex items-center space-x-1">
-                        {item.servicePlan.slice(0, 2).map((planObj, i) => (
-                          <Tooltip key={i} title={planObj.planName} arrow>
-                            <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs whitespace-nowrap">
-                              {planObj.planName}
-                            </span>
-                          </Tooltip>
-                        ))}
-                        {item.servicePlan.length > 2 && (
-                          <Tooltip
-                            title={item.servicePlan
-                              .slice(2)
-                              .map((p) => p.planName)
-                              .join(", ")}
-                            arrow
-                          >
-                            <span className="text-gray-500 ml-1 cursor-pointer text-xs">
-                              +{item.servicePlan.length - 2} more
-                            </span>
-                          </Tooltip>
-                        )}
-                      </div>
-                    ) : (
-                      "-"
-                    )}
-                  </td>
+      
 
                   <td className="px-6 py-4 whitespace-nowrap truncate max-w-56">
                     {item?.razorpay_payment_id}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap truncate max-w-56">
+                    {formattedCreatedAt}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap truncate max-w-56">
+                    {item?.isVerified? formattedUpdatedAt : "--"}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap truncate max-w-56">
+                    <div className="flex gap-5">
+                    <button
+                      onClick={() => {
+                        handleViewModal(item);
+                      }}
+                      className="py-2 leading-none px-3 font-semibold text-green-500 hover:text-green-600 duration-150 hover:bg-gray-50 rounded-lg"
+                    >
+                     View Consultant Details
+                    </button>
+                    </div>
+                        
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap truncate max-w-56">
                     <div className="flex gap-5">
@@ -141,13 +143,18 @@ export const ViewConsultants = () => {
                         Verify
                       </button>
                     </div>
+                        
                   </td>
                 </tr>
-              ))
+              )}
+            )
             )}
           </tbody>
         </table>
       </div>
+      {showViewModal &&  (
+        <ViewModalConsultant setModal={setShowViewModal} viewData={viewData} />
+      )}
 
       {/* Modal for Confirming Verification */}
       <Modal open={openModal} onClose={handleCloseModal}>

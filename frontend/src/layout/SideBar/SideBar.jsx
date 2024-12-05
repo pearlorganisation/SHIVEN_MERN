@@ -52,8 +52,6 @@ if(consultants.servicePlan && Array.isArray(consultants.servicePlan) && loggedIn
   }
  
 
-   console.log(getAllOptedServices)
-
   // ----------------------------------------------------------------------------------------------------------
   // --------------------------------------------useEffect-----------------------------------------------------
   useEffect(() => {

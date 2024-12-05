@@ -16,6 +16,8 @@ const UsersTable = ({name}) => {
   const navigate = useNavigate();
 
   const { usersData } = useSelector((state) => state?.user);
+
+  
   // -----------------------------------------------------------------------------------------------------
   // -----------------------------------------------Functions---------------------------------------------
   const editHandler = (userData) => {
@@ -49,16 +51,16 @@ const UsersTable = ({name}) => {
         editHandler(data);
       },
     },
-    {
-      icon: () => {
-        return (
-          <MdDeleteForever style={{ color: "red" }} size={actionBtnIconSize} />
-        );
-      },
-      actionButtonClickHandler: (data) => {
-        deleteHandler(data);
-      },
-    },
+    // {
+    //   icon: () => {
+    //     return (
+    //       <MdDeleteForever style={{ color: "red" }} size={actionBtnIconSize} />
+    //     );
+    //   },
+    //   actionButtonClickHandler: (data) => {
+    //     deleteHandler(data);
+    //   },
+    // },
   ];
   // -----------------------------------------------------------------------------------------------------
   return (
@@ -74,6 +76,9 @@ const UsersTable = ({name}) => {
               <th scope="col" class="px-6 py-3">
                 Email
               </th>
+              <th scope="col" class="px-6 py-3">
+                Created Date
+              </th>
               {name !== "Employees" && name !== "Consultants" && (
                 <th scope="col" class="px-6 py-3">
                   Customers
@@ -88,6 +93,8 @@ const UsersTable = ({name}) => {
             {Array.isArray(usersData?.users) &&
               usersData?.users.length > 0 &&
               usersData?.users.map((user) => {
+                const createdAtDate = user?.createdAt ? new Date(user?.createdAt) : null;
+                const formattedDate = createdAtDate ? createdAtDate.toISOString().split('T')[0] : '';
                 return (
                   <>
                     <tr class="bg-white border-b ">
@@ -99,28 +106,29 @@ const UsersTable = ({name}) => {
                       </th>
            
                       <td class="px-6 py-4">{user?.email || "N/A"}</td>
-                      {/* <td class="px-6 py-4">
-                        {reverseRoleChecker(user?.role) || "N/A"}
-                      </td> */}
+                      <td class="px-6 py-4">
+                        {formattedDate}
+                      </td>
                       {  name !== "Employees"  && (
-                        <td class="px-6 py-4">
+                        <td class=" py-4">
                           <Link
                             to="/consultant-filesManagement"
-                            className="text-blue-500 hover:text-blue-700 transition duration-300"
+                            className="hover:bg-blue-500 bg-blue-600 rounded-md py-1 text-white px-2"
                           >
                             View Customers
                           </Link>
                         </td>
                       )}
-                      <td class="px-6 py-4 flex justify-center gap-4">
+                      <td class="py-4 flex justify-center ">
                         {actionButtons.map((btn) => {
                           return (
                             <button
+                            className=" hover:bg-green-600 bg-green-700 rounded-md py-1 text-white px-2"
                               onClick={() => {
                                 btn.actionButtonClickHandler(user);
                               }}
                             >
-                              {btn.icon()}
+                              Change Password
                             </button>
                           );
                         })}

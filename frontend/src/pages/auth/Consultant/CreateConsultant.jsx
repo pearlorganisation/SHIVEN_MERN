@@ -100,15 +100,15 @@ export const CreateConsultant = () => {
     }
   };
 
-  // ------------------------------------------------useEffect----------------------------------------
-  // useEffect(() => {
-  //   if (isUserCreated) {
-  //     dispatch(resetUserState(false));
-  //     reset();
-  //     setRole("");
-  //     dispatch(getUsers());
-  //   }
-  // }, [isUserCreated]);
+    // ------------------------------------------------useEffect----------------------------------------
+    // useEffect(() => {
+    //   if (isUserCreated) {
+    //     dispatch(resetUserState(false));
+    //     reset();
+    //     setRole("");
+    //     dispatch(getUsers());
+    //   }
+    // }, [isUserCreated]);
 
   useEffect(() => {
     console.log(

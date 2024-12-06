@@ -5,6 +5,10 @@ import bcrypt from "bcrypt";
 
 const consultantSchema = new mongoose.Schema(
   {
+    fullName: {
+      type: String,
+      required: true,
+    },
     email: {
       type: String,
       required: true,

@@ -1,3 +1,4 @@
+import customisedPlan from "../../Models/Service/customisedPlan.js";
 import servicePlan from "../../Models/Service/servicePlan.js";
 import { asyncErrorHandler } from "../../Utils/Error/asyncErrorHandler.js";
 
@@ -29,3 +30,14 @@ export const getAllServicePlan = asyncErrorHandler(async (req, res, next) => {
   });
 });
 
+export const createCustomisedPlan = asyncErrorHandler(async (req, res, next) => {
+  const data = new customisedPlan(req?.body);
+  
+
+  await data.save();
+
+  return res.status(200).json({
+    success: true,
+    message: "Customised Service Plan Created Successfully",
+  });
+});

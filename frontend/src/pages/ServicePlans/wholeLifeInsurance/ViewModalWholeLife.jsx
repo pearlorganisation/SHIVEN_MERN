@@ -64,7 +64,7 @@ export default function ViewModalWholeLife ({viewData,setModal}) {
       </tr>
       <tr>
         <td className="py-2 px-4 border border-gray-300">Plan Image</td>
-        <td className="py-2 px-4 border border-gray-300"> <img src={viewData?.serviceProvider?.logo?.secure_url} className='rounded-lg w-24 h-20' /></td>
+          <td className="py-2 px-4 border border-gray-300"> <img src={viewData?.serviceProvider?.logo?.secure_url} className='rounded-lg w-24 h-20' /></td>
       </tr>
       <tr>
         <td className="py-2 px-4 border border-gray-300">Service Provider</td>

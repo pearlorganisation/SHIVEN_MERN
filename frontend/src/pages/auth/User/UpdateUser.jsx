@@ -5,7 +5,7 @@ import { reverseRoleChecker, roleChecker } from "../../../utils";
 import { useLocation } from "react-router-dom";
 import { useForm, useFormContext } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { updateUser } from "../../../features/actions/Auth/userActions";
+import { updateConsultant, updateUser } from "../../../features/actions/Auth/userActions";
 import { useSelector } from "react-redux";
 import CircleLoader from "../../../components/Loader/ButtonLoaders/CircleLoader";
 
@@ -13,16 +13,8 @@ import CircleLoader from "../../../components/Loader/ButtonLoaders/CircleLoader"
 
 const UpdateUser = () => {
   // ------------------------------------------------States--------------------------------------------------
-  const roleOptions = [
-    {
-      label: "Consultant",
-      value: roleChecker("CONSULTANT"),
-    },
-    {
-      label: "Customer",
-      value: roleChecker("CUSTOMER"),
-    },
-  ];
+
+  const { loggedInUserData } = useSelector((state) => state.auth);
   // ---------------------------------------------------------------------------------------------------------
   // ------------------------------------------------Hooks--------------------------------------------------
   const location = useLocation();
@@ -46,18 +38,17 @@ const UpdateUser = () => {
 
   // ---------------------------------------------------------------------------------------------------------
   // ----------------------------------------------Functions--------------------------------------------------
-  const defaultRoleValue = (role) => {
-    let assignedRole = reverseRoleChecker(role);
 
-    return { label: assignedRole, value: role };
-  };
 
+  // const saveHandler = (data) => {
+  //   const payload = {
+  //     ...data,
+  //     role: role ? role : userData?.role,
+  //   };
+  //   dispatch(updateUser({ payload: data, userId: userData?._id }));
+  // };
   const saveHandler = (data) => {
-    const payload = {
-      ...data,
-      role: role ? role : userData?.role,
-    };
-    dispatch(updateUser({ payload: data, userId: userData?._id }));
+    dispatch(updateConsultant({ payload: data, userId: userData?._id }));
   };
   // ---------------------------------------------------------------------------------------------------------
   // ---------------------------------------------useEffects--------------------------------------------------
@@ -67,11 +58,13 @@ const UpdateUser = () => {
   return (
     <div>
       <div class="p-8 rounded border border-gray-200">
-        <h1 class="font-medium text-3xl">Update User</h1>
-        <p class="text-gray-600 mt-6">
+ {  loggedInUserData.role == "0"  ? <h1 class="font-medium text-3xl">Change Consultant Password</h1>:
+  <h1 class="font-medium text-3xl">Update User</h1>
+ }
+        {/* <p class="text-gray-600 mt-6">
           <span className={"text-red-500 font-bold text-lg"}>Note!</span>
-          <p className="text-blue-700">Email and Username cannot be changed</p>
-        </p>
+          <p className="text-blue-700">Email cannot be changed</p>
+        </p> */}
         <form onSubmit={handleSubmit(saveHandler)}>
           <div class="mt-8 grid lg:grid-cols-2 gap-4">
             <div>
@@ -85,30 +78,13 @@ const UpdateUser = () => {
                 type="text"
                 name="name"
                 id="name"
-                class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
+                class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full opacity-50 cursor-not-allowed"
                 placeholder="Enter your Full Name"
-                {...register("fullName")}
+                disabled={true}
                 defaultValue={userData?.fullName || "N/A"}
               />
             </div>
-            <div>
-              <label
-                for="email"
-                class="text-sm text-gray-700 block mb-1 font-medium"
-              >
-                User Name
-              </label>
-              <input
-                type="text"
-                name="email"
-                id="email"
-                class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full opacity-50 cursor-not-allowed"
-                placeholder="Enter User Name"
-                disabled={true}
-                defaultValue={userData?.userName || "N/A"}
-                value={userData?.userName}
-              />
-            </div>
+
             <div>
               <label
                 for="job"
@@ -163,19 +139,7 @@ const UpdateUser = () => {
                 </p>
               )}
             </div>
-            <div>
-              <label
-                for="brithday"
-                class="text-sm text-gray-700 block mb-1 font-medium"
-              >
-                Role
-              </label>
-              <Select
-                options={roleOptions}
-                defaultValue={defaultRoleValue(userData?.role)}
-                onChange={(role) => setRole(role?.value)}
-              />
-            </div>
+     
           </div>
           <div class="space-x-4 mt-8">
             {isUserLoading ? (

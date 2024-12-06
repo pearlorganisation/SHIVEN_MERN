@@ -42,7 +42,6 @@ export const CreateConsultant = () => {
   // createUserHandler -- handler to create the user
   const createUserHandler = async (data) => {
     console.log(data);
- 
 
     try {
       const {
@@ -59,18 +58,22 @@ export const CreateConsultant = () => {
         image: "./ShivenLogo.png",
         order_id: order.id,
         handler: async function (response) {
-          const body = { ...response, servicePlan: selectedPlans.map(plan => plan.value) };
+          const body = {
+            ...response,
+            servicePlan: selectedPlans.map((plan) => plan.value),
+          };
           try {
             const validateResponse = await instance.post(
               `/consultant/verify/${consultantId}`,
               body
             );
             reset({
-              email: '',
-              password: '',
+              email: "",
+              fullName: "",
+              password: "",
               plans: [],
               serviceProviders: [],
-              services: []
+              services: [],
             });
             setSelectedServices([]);
             navigate("/login");
@@ -97,15 +100,15 @@ export const CreateConsultant = () => {
     }
   };
 
-  // ------------------------------------------------useEffect----------------------------------------
-  // useEffect(() => {
-  //   if (isUserCreated) {
-  //     dispatch(resetUserState(false));
-  //     reset();
-  //     setRole("");
-  //     dispatch(getUsers());
-  //   }
-  // }, [isUserCreated]);
+    // ------------------------------------------------useEffect----------------------------------------
+    // useEffect(() => {
+    //   if (isUserCreated) {
+    //     dispatch(resetUserState(false));
+    //     reset();
+    //     setRole("");
+    //     dispatch(getUsers());
+    //   }
+    // }, [isUserCreated]);
 
   useEffect(() => {
     console.log(
@@ -212,6 +215,23 @@ export const CreateConsultant = () => {
                   class="mx-auto max-w-xs"
                   onSubmit={handleSubmit(createUserHandler)}
                 >
+                  <input
+                    class="w-full px-6 py-4 rounded-lg font-medium border border-gray-300 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                    type="text"
+                    placeholder="Full Name"
+                    {...register("fullName", {
+                      required: {
+                        value: true,
+                        message: "Full Name is a required field",
+                      },
+                    })}
+                  />
+                  {errors.fullName && (
+                    <p className="text-red-500 mt-1">
+                      {errors?.fullName?.message ||
+                        "Full Name is a required field"}
+                    </p>
+                  )}
                   <input
                     class="w-full px-6 py-4 rounded-lg font-medium border border-gray-300 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                     type="email"

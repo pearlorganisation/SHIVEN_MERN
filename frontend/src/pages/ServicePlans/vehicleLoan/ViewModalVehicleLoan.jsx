@@ -60,39 +60,42 @@ export default function ViewModalVehicleLoan ({viewData,setModal}) {
     <tbody className="text-gray-600">
       <tr>
         <td className="py-2 px-4 border border-gray-300">Plan Name</td>
-        <td className="py-2 px-4 border border-gray-300">dummy</td>
+        <td className="py-2 px-4 border border-gray-300">{viewData?.planName}</td>
       </tr>
       <tr>
         <td className="py-2 px-4 border border-gray-300">Plan Image</td>
-        <td className="py-2 px-4 border border-gray-300">dummy</td>
+        <td className="py-2 px-4 border border-gray-300"> <img src={viewData?.serviceProvider?.logo?.secure_url} className='rounded-lg w-24 h-20' /></td>
+
       </tr>
       <tr>
         <td className="py-2 px-4 border border-gray-300">Service Provider</td>
-        <td className="py-2 px-4 border border-gray-300">dummy</td>
+        <td className="py-2 px-4 border border-gray-300">{viewData?.serviceProvider?.serviceProviderName}</td>
+
       </tr>
       <tr>
         <td className="py-2 px-4 border border-gray-300">Service Type</td>
-        <td className="py-2 px-4 border border-gray-300">dummy</td>
+        <td className="py-2 px-4 border border-gray-300">{viewData?.serviceType?.serviceType}</td>
+
       </tr>
       <tr>
         <td className="py-2 px-4 border border-gray-300">Interest Rate (%)</td>
-        <td className="py-2 px-4 border border-gray-300">dummy</td>
+        <td className="py-2 px-4 border border-gray-300">{viewData?.interestRate}</td>
       </tr>
       <tr>
         <td className="py-2 px-4 border border-gray-300">Processing Fee</td>
-        <td className="py-2 px-4 border border-gray-300">dummy</td>
+        <td className="py-2 px-4 border border-gray-300">{viewData?.processingFee}</td>
       </tr>
       <tr>
         <td className="py-2 px-4 border border-gray-300">Tenure (years)</td>
-        <td className="py-2 px-4 border border-gray-300">dummy</td>
+        <td className="py-2 px-4 border border-gray-300">{viewData?.tenure}</td>
       </tr>
       <tr>
         <td className="py-2 px-4 border border-gray-300">Loan Upper Limit</td>
-        <td className="py-2 px-4 border border-gray-300">dummy</td>
+        <td className="py-2 px-4 border border-gray-300">{viewData?.upTo}</td>
       </tr>
       <tr>
         <td className="py-2 px-4 border border-gray-300">Vehicle Type</td>
-        <td className="py-2 px-4 border border-gray-300">dummy</td>
+        <td className="py-2 px-4 border border-gray-300">{viewData?.vehicleType}</td>
       </tr>
 
       

@@ -1,6 +1,7 @@
 import Consultant from "../../Models/Auth/consultantModel.js";
 import { asyncErrorHandler } from "../../Utils/Error/asyncErrorHandler.js";
 import crypto from "crypto";
+import bcrypt from "bcrypt"
 import { razorpayInstance } from "../../Configs/razorPay.js";
 import { sendAccountVerified, sendConsultantAccountCreated } from "../../Utils/Mail/consultant/consultantEmail.js";
 import { userModel } from "../../Models/Auth/User/userModel.js";
@@ -131,3 +132,37 @@ export const getConsultantWithPopulated= asyncErrorHandler(async(req,res)=>{
 
   res.status(200).json({status:true,data})
 })
+
+export const updateConsultant = asyncErrorHandler(async (req, res) => {
+  const { id } = req.params;
+  console.log(req?.body)
+
+  const {password} = req?.body
+
+  const salt = await bcrypt.genSalt(10);
+  console.log(salt)
+
+  const hashPassword = await bcrypt.hash(password, salt);
+
+
+  const updateConsultant = await Consultant.findByIdAndUpdate(id, {
+    ...req?.body,
+    password:hashPassword
+    },
+  {new:true}).lean();
+
+
+  if (!updateConsultant) {
+    return res.status(400).json({
+      status: false,
+      message: "Consultant not found!!",
+    });
+  }  
+
+  res.status(200).json({
+    status: true,
+    message: "Consultant Status Updated successfully!!",
+    data: updateConsultant,
+  });
+});
+

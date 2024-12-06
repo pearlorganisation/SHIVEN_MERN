@@ -117,9 +117,9 @@ const AllPlans = () => {
           </tbody>
         </table>
       </div>
-      {showViewModal && name === "Life Insurance" && (
-        <ViewModalWholeLife setModal={setShowViewModal} viewData={viewData} />
-      )}
+        {showViewModal && name === "Life Insurance" && (
+          <ViewModalWholeLife setModal={setShowViewModal} viewData={viewData} />
+        )}
       {showViewModal && name === "Home Loan" && (
         <ViewModalHomeLoan setModal={setShowViewModal} viewData={viewData} />
       )}

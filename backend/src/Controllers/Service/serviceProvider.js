@@ -6,7 +6,7 @@ import {
 } from "../../Configs/Cloudinary/cloudinaryConfig.js";
 import serviceProviderModel from "../../Models/Service/serviceProviderModel.js";
 import { CustomError } from "../../Utils/Error/CustomError.js";
-
+import { serviceModel } from "../../Models/Service/serviceModel.js";
 // ------------------------------------------------------------------------------------------------------------
 
 export const createServiceProvider = asyncErrorHandler(
@@ -37,6 +37,45 @@ export const getAllServiceProviders = asyncErrorHandler(
       success: true,
       message: "Service Provider Data Found Successfully",
       data,
+    });
+  }
+);
+
+export const getAllServiceProvidersForDropdown = asyncErrorHandler(
+  async (req, res, next) => {
+    const data = await serviceProviderModel.find().lean();
+    if (!data) {
+      return res.status(400).json({
+        success: false,
+        message: "Service Providers not found",
+      });
+    }
+
+    const { id } = req.params;
+    const serviceType = await serviceModel.findById(id);
+    if (!serviceType) {
+      return res.status(400).json({
+        success: false,
+        message: "Service Type is not found",
+      });
+    }
+
+    const filteredData = data
+      .filter((item) => {
+        if(Array.isArray(item?.service))
+          return item?.service.includes(serviceType?.serviceType);
+        return false;
+      })
+      .map((item) => {
+        return { label: item?.serviceProviderName, value: item?._id };
+      });
+
+    console.log(serviceType);
+
+    return res.status(200).json({
+      success: true,
+      message: "Service Provider Data Found Successfully",
+      data: filteredData,
     });
   }
 );

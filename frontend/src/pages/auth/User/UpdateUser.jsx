@@ -1,10 +1,9 @@
 // ------------------------------------------------Imports--------------------------------------------------
 import React, { useState } from "react";
-import Select from "react-select";
-import { reverseRoleChecker, roleChecker } from "../../../utils";
 import { useLocation } from "react-router-dom";
-import { useForm, useFormContext } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { updateConsultant, updateUser } from "../../../features/actions/Auth/userActions";
 import { useSelector } from "react-redux";
 import CircleLoader from "../../../components/Loader/ButtonLoaders/CircleLoader";
@@ -17,20 +16,17 @@ const UpdateUser = () => {
   const { loggedInUserData } = useSelector((state) => state.auth);
   // ---------------------------------------------------------------------------------------------------------
   // ------------------------------------------------Hooks--------------------------------------------------
-  const location = useLocation();
-
-  const userData = location?.state?.userData || {};
+  const {state:userData} = useLocation();
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+ 
 
   const dispatch = useDispatch();
 
   const [passDisabled, setPassDisabled] = useState(true);
 
-  const [role, setRole] = useState("");
-
   const {
     register,
     formState: { errors },
-    reset,
     handleSubmit,
   } = useForm();
 
@@ -39,16 +35,12 @@ const UpdateUser = () => {
   // ---------------------------------------------------------------------------------------------------------
   // ----------------------------------------------Functions--------------------------------------------------
 
-
-  // const saveHandler = (data) => {
-  //   const payload = {
-  //     ...data,
-  //     role: role ? role : userData?.role,
-  //   };
-  //   dispatch(updateUser({ payload: data, userId: userData?._id }));
-  // };
   const saveHandler = (data) => {
-    dispatch(updateConsultant({ payload: data, userId: userData?._id }));
+    if(userData?.pageFor==="Employees"){
+dispatch(updateUser({payload:data,userId: userData?._id} ))
+    }
+    else
+   { dispatch(updateConsultant({ payload: data, userId: userData?._id }));}
   };
   // ---------------------------------------------------------------------------------------------------------
   // ---------------------------------------------useEffects--------------------------------------------------
@@ -58,13 +50,10 @@ const UpdateUser = () => {
   return (
     <div>
       <div class="p-8 rounded border border-gray-200">
- {  loggedInUserData.role == "0"  ? <h1 class="font-medium text-3xl">Change Consultant Password</h1>:
-  <h1 class="font-medium text-3xl">Update User</h1>
+ {  loggedInUserData.role == "0" && userData?.pageFor === "Employees"  ? <h1 class="font-medium text-3xl">Change Employee Password </h1>:
+  <h1 class="font-medium text-3xl">Change Consultant Password </h1>
  }
-        {/* <p class="text-gray-600 mt-6">
-          <span className={"text-red-500 font-bold text-lg"}>Note!</span>
-          <p className="text-blue-700">Email cannot be changed</p>
-        </p> */}
+    
         <form onSubmit={handleSubmit(saveHandler)}>
           <div class="mt-8 grid lg:grid-cols-2 gap-4">
             <div>
@@ -110,9 +99,10 @@ const UpdateUser = () => {
               >
                 Password
               </label>
-              <div className="w-[full] flex gap-2 ">
-                <input
-                  type="password"
+              <div className="w-[full]  flex gap-2 ">
+              <div className="relative">
+              <input
+                  type={showConfirmPassword ? "text" : "password"}
                   name="brithday"
                   id="brithday"
                   className={`bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-[80%] ${
@@ -125,6 +115,13 @@ const UpdateUser = () => {
                     }))}
                   disabled={passDisabled ? true : false}
                 />
+              <span
+                className="absolute inset-y-2  right-0 pr-14  cursor-pointer "
+                onClick={() => setShowConfirmPassword((prev) => !prev)}
+              >
+                {showConfirmPassword ? <FaEye /> : <FaEyeSlash /> }
+              </span></div>  
+           
                 <button
                   type="button"
                   onClick={() => setPassDisabled(false)}
@@ -132,6 +129,7 @@ const UpdateUser = () => {
                 >
                   Change Password
                 </button>
+            
               </div>
               {errors.password && (
                 <p className="text-red-500">

@@ -21,7 +21,7 @@ const UsersTable = ({name}) => {
   // -----------------------------------------------------------------------------------------------------
   // -----------------------------------------------Functions---------------------------------------------
   const editHandler = (userData) => {
-    navigate("/users/update-user", { state: { userData } });
+    navigate("/users/update-user", { state: { ...userData,pageFor:name } });
   };
   //
 
@@ -35,8 +35,8 @@ const UsersTable = ({name}) => {
     if(name === "Consultants"){
      dispatch(getConsultants({key:"isVerified",value:true}))
     }
-    else{
-    dispatch(getUsers());
+    else if (name === "Employees"){
+    dispatch(getUsers(`?role=4`));
     }
   }, []);
 

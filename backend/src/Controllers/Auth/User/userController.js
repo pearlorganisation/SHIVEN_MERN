@@ -17,9 +17,9 @@ import { generateOTP } from "../../../Utils/Mail/Otp/generateOTP.js";
 // @method- POST
 // @url - auth/user
 export const createUser = asyncErrorHandler(async (req, res, next) => {
-  const { userName, fullName, email, password, role } = req?.body?.payload;
+  const { fullName, email, password, role } = req?.body?.payload;
 
-  if (!userName && !fullName && !email && !password && !role) {
+  if (!fullName && !email && !password && !role) {
     const error = new CustomError("Please Fill Complete Details", 400);
     return next(error);
   }
@@ -28,7 +28,6 @@ export const createUser = asyncErrorHandler(async (req, res, next) => {
   const hashPassword = await bcrypt.hash(password, salt);
 
   const userDoc = new userModel({
-    userName,
     fullName,
     email,
     password:hashPassword,
@@ -47,7 +46,9 @@ export const createUser = asyncErrorHandler(async (req, res, next) => {
 // @method- GET
 // @url - auth/user
 export const getUsers = asyncErrorHandler(async (req, res, next) => {
-  const users = await userModel.find().populate("servicePlan").populate("servicePlan.serviceType");
+  console.log(req?.query)
+  const queryObject= req?.query
+  const users = await userModel.find(queryObject).populate("servicePlan").populate("servicePlan.serviceType");
 
   return res.status(200).json({
     success: true,

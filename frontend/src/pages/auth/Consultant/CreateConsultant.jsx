@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { instance } from "../../../services/Axios/axiosInterceptor";
 import Select from "react-select";
 import { getAllServicePlans } from "../../../features/actions/Service/servicePlan";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 // -------------------------------------------------------------------------------------------------
 
 export const CreateConsultant = () => {
@@ -28,6 +29,14 @@ export const CreateConsultant = () => {
   const [selectedServices, setSelectedServices] = useState([]);
   const [selectedProviders, setSelectedProviders] = useState([]);
   const [selectedPlans, setSelectedPlans] = useState([]);
+
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email) || "Please enter a valid email address";
+  };
 
   const {
     register,
@@ -209,6 +218,7 @@ export const CreateConsultant = () => {
             <h1 className="text-center font-bold text-blue-600 text-sm sm:text-lg md:text-xl">
               Consultant Registeration
             </h1>
+
             <div class="mt-12 flex flex-col items-center">
               <div class="w-full flex-1 mt-8">
                 <form
@@ -241,6 +251,7 @@ export const CreateConsultant = () => {
                         value: true,
                         message: "Email is a required field",
                       },
+                      validate: validateEmail,
                     })}
                   />
                   {errors.email && (
@@ -266,6 +277,35 @@ export const CreateConsultant = () => {
                     </p>
                   )}
 
+                  <div className="relative">
+                  <input
+                    class="w-full px-6 py-4 rounded-lg font-medium  border border-gray-300 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                   type={showConfirmPassword ? "text" : "password"}
+                    placeholder="Confirm Password"
+                    {...register("confirmPassword", {
+                      required: {
+                        value: true,
+                        message: "Confirm Password is a required field",         
+                      },
+                      validate: (value) =>
+                        value === watch("password") || "The passwords does not match",
+                    })}
+                  />
+                      <span
+                className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer pt-5 "
+                onClick={() => setShowConfirmPassword((prev) => !prev)}
+              >
+                {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
+              </span>
+                  </div>
+              
+
+  {errors.confirmPassword && (
+                    <p className="text-red-500 mt-1">
+                      {errors?.confirmPassword?.message ||
+                        "Confirm Password is a required field"}
+                    </p>
+                  )}
                   <Controller
                     name="services"
                     control={control}
@@ -340,9 +380,7 @@ export const CreateConsultant = () => {
                       />
                     )}
                   />
-                  {/* <div class="w-full rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5">
-                    <Select options={roleOptions} onChange={roleHandler} />
-                  </div> */}
+     
                   {isUserLoading ? (
                     <button
                       class="mt-5 tracking-wide font-semibold bg-green-400 text-white-500 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"

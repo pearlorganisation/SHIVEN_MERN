@@ -38,7 +38,7 @@ export const getUsers = createAsyncThunk(
   "auth/user/getUsers",
   async (payload, { rejectWithValue }) => {
     try {
-      const response = await instance.get("/auth/user");
+      const response = await instance.get(payload ? `/auth/user${payload}` :`/auth/user`);
 
       return response.data;
     } catch (error) {

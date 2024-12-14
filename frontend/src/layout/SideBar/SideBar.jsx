@@ -32,7 +32,7 @@ const SideBar = () => {
 let getAllOptedServices = []
 
 
-if(consultants.servicePlan && Array.isArray(consultants.servicePlan) && loggedInUserData.role == "1")
+if( consultants?.servicePlan && Array.isArray(consultants.servicePlan) && loggedInUserData.role == "1")
     {  
       const seenServiceNames = new Set(); // To track unique serviceProviderName
       getAllOptedServices = consultants.servicePlan

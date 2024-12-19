@@ -72,7 +72,7 @@ export default function ViewModalConsultant ({viewData,setModal}) {
         <td className="py-2 px-4 border border-gray-300">{viewData?.razorpay_payment_id}</td>
 
       </tr>
-      <tr>
+      {/* <tr>
         <td className="py-2 px-4 border border-gray-300">Service Plans</td>
         <td className="py-2 px-4 border border-gray-300">
         <div className=' bg-slate-100 flex mb-2 rounded-md px-2 gap-2 w-fit' >
@@ -83,7 +83,7 @@ export default function ViewModalConsultant ({viewData,setModal}) {
          </div>
            </div>
         </td>
-      </tr>
+      </tr> */}
    
       
     </tbody>

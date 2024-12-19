@@ -42,20 +42,19 @@ export const login = asyncErrorHandler(async (req, res, next) => {
     return next(error);
   }
   const otp = generateOTP();
-  const otpDoc = await otpModel.findOneAndUpdate(
+  let otpDoc = await otpModel.findOneAndUpdate(
     { email, type: "LOGIN" },
     { otp, expiresAt: new Date(Date.now() + 600000) },
     { $new: true }
   );
-console.log(otp)
+
   if (!otpDoc) {
-    let doc = new otpModel({
+     otpDoc = new otpModel({
       email,
       type: "LOGIN",
       otp,
       expiresAt: new Date(Date.now() + 600000), //10min
     });
-    await doc.save();
   }
   await sendOtp(email, otp, "LOGIN");
   await otpDoc.save();

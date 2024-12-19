@@ -25,7 +25,8 @@ const userSchema = new mongoose.Schema({
     default: "2",
   },
   servicePlan:{
-    type:[mongoose.Types.ObjectId]
+    type:[mongoose.Types.ObjectId],
+    ref:"servicePlan"
   },
   isVerified:{
     type: Boolean

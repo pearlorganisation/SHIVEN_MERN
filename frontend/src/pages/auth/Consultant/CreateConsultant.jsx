@@ -119,95 +119,95 @@ export const CreateConsultant = () => {
     //   }
     // }, [isUserCreated]);
 
-  useEffect(() => {
-    console.log(
-      servicePlanData.filter(
-        (item) =>
-          selectedServices.some(
-            (service) => service.value === item?.serviceType?._id
-          ) &&
-          selectedProviders.some(
-            (provider) => provider.value === item?.serviceProvider?._id
-          )
-      )
-    );
-    const uniqueServicePlans = servicePlanData
-      .filter(
-        (item) =>
-          selectedServices.some(
-            (service) => service.value === item?.serviceType?._id
-          ) &&
-          selectedProviders.some(
-            (provider) => provider.value === item?.serviceProvider?._id
-          )
-      )
-      .map((item) => ({
-        label: item?.planName,
-        value: item?._id,
-      }));
-    setPlans(uniqueServicePlans);
+  // useEffect(() => {
+  //   console.log(
+  //     servicePlanData.filter(
+  //       (item) =>
+  //         selectedServices.some(
+  //           (service) => service.value === item?.serviceType?._id
+  //         ) &&
+  //         selectedProviders.some(
+  //           (provider) => provider.value === item?.serviceProvider?._id
+  //         )
+  //     )
+  //   );
+  //   const uniqueServicePlans = servicePlanData
+  //     .filter(
+  //       (item) =>
+  //         selectedServices.some(
+  //           (service) => service.value === item?.serviceType?._id
+  //         ) &&
+  //         selectedProviders.some(
+  //           (provider) => provider.value === item?.serviceProvider?._id
+  //         )
+  //     )
+  //     .map((item) => ({
+  //       label: item?.planName,
+  //       value: item?._id,
+  //     }));
+  //   setPlans(uniqueServicePlans);
 
-    setSelectedPlans((prevSelectedPlans) =>
-      prevSelectedPlans.filter((plan) =>
-        uniqueServicePlans.some(
-          (servicePlan) => servicePlan.value === plan.value
-        )
-      )
-    );
-  }, [selectedProviders, serviceProviders]);
+  //   setSelectedPlans((prevSelectedPlans) =>
+  //     prevSelectedPlans.filter((plan) =>
+  //       uniqueServicePlans.some(
+  //         (servicePlan) => servicePlan.value === plan.value
+  //       )
+  //     )
+  //   );
+  // }, [selectedProviders, serviceProviders]);
 
-  useEffect(() => {
-    console.log(servicePlanData);
-    const uniqueServiceProviders = servicePlanData
-      .filter((item) =>
-        selectedServices.some(
-          (service) => service.value === item?.serviceType?._id
-        )
-      )
-      .filter(
-        (item, index, self) =>
-          index ===
-          self.findIndex(
-            (obj) => obj?.serviceProvider?._id === item?.serviceProvider?._id
-          )
-      )
-      .map((item) => ({
-        label: item.serviceProvider?.serviceProviderName,
-        value: item.serviceProvider?._id,
-      }));
+  // useEffect(() => {
+  //   console.log(servicePlanData);
+  //   const uniqueServiceProviders = servicePlanData
+  //     .filter((item) =>
+  //       selectedServices.some(
+  //         (service) => service.value === item?.serviceType?._id
+  //       )
+  //     )
+  //     .filter(
+  //       (item, index, self) =>
+  //         index ===
+  //         self.findIndex(
+  //           (obj) => obj?.serviceProvider?._id === item?.serviceProvider?._id
+  //         )
+  //     )
+  //     .map((item) => ({
+  //       label: item.serviceProvider?.serviceProviderName,
+  //       value: item.serviceProvider?._id,
+  //     }));
 
-    console.log(uniqueServiceProviders);
-    setServiceProviders(uniqueServiceProviders);
+  //   console.log(uniqueServiceProviders);
+  //   setServiceProviders(uniqueServiceProviders);
 
-    setSelectedProviders((prevSelectedProviders) =>
-      prevSelectedProviders.filter((Provider) =>
-        uniqueServiceProviders.some(
-          (serviceProvider) => serviceProvider.value === Provider.value
-        )
-      )
-    );
-  }, [selectedServices]);
+  //   setSelectedProviders((prevSelectedProviders) =>
+  //     prevSelectedProviders.filter((Provider) =>
+  //       uniqueServiceProviders.some(
+  //         (serviceProvider) => serviceProvider.value === Provider.value
+  //       )
+  //     )
+  //   );
+  // }, [selectedServices]);
 
-  useEffect(() => {
-    const uniqueServiceTypes = servicePlanData
-      .filter(
-        (item, index, self) =>
-          index ===
-          self.findIndex(
-            (obj) => obj?.serviceType?._id === item?.serviceType?._id
-          )
-      )
-      .map((item) => ({
-        label: item.serviceType.serviceType,
-        value: item.serviceType._id,
-      }));
+  // useEffect(() => {
+  //   const uniqueServiceTypes = servicePlanData
+  //     .filter(
+  //       (item, index, self) =>
+  //         index ===
+  //         self.findIndex(
+  //           (obj) => obj?.serviceType?._id === item?.serviceType?._id
+  //         )
+  //     )
+  //     .map((item) => ({
+  //       label: item.serviceType.serviceType,
+  //       value: item.serviceType._id,
+  //     }));
 
-    setServiceTypes(uniqueServiceTypes);
-  }, [servicePlanData]);
+  //   setServiceTypes(uniqueServiceTypes);
+  // }, [servicePlanData]);
 
-  useEffect(() => {
-    dispatch(getAllServicePlans());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getAllServicePlans());
+  // }, []);
 
   // -------------------------------------------------------------------------------------------------
   return (
@@ -306,7 +306,7 @@ export const CreateConsultant = () => {
                         "Confirm Password is a required field"}
                     </p>
                   )}
-                  <Controller
+                  {/* <Controller
                     name="services"
                     control={control}
                     render={({ field }) => (
@@ -379,7 +379,7 @@ export const CreateConsultant = () => {
                         }}
                       />
                     )}
-                  />
+                  /> */}
      
                   {isUserLoading ? (
                     <button

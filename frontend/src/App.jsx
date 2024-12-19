@@ -56,6 +56,7 @@ import { CreateConsultant } from "./pages/auth/Consultant/CreateConsultant";
 
 
 
+
 // -------------------------------------------------------------------------------------------------------------
 
 function App() {
@@ -132,6 +133,7 @@ function App() {
           <Route path="carpremium" element={<CarPremium />} />
           <Route path="motorenquiry" element={<MotorEnquiry />} />
           <Route path="/createConsultant" element={<CreateConsultant />} />
+ 
 
 
           {/* Routes defined by shashank */}

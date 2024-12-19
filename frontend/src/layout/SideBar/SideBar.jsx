@@ -11,7 +11,6 @@ const SideBar = () => {
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
   const [subMenuIndex, setSubMenuIndex] = useState([]);
   const { loggedInUserData } = useSelector((state) => state.auth);
-  const { consultants } = useSelector((state) => state.user);
 
 
   // ----------------------------------------------------------------------------------------------------------
@@ -29,33 +28,10 @@ const SideBar = () => {
     }
   };
 
-let getAllOptedServices = []
-
-
-if(consultants.servicePlan && Array.isArray(consultants.servicePlan) && loggedInUserData.role == "1")
-    {  
-      const seenServiceNames = new Set(); // To track unique serviceProviderName
-      getAllOptedServices = consultants.servicePlan
-      .filter((item) => {
-        const serviceName = item?.serviceType?.serviceType;
-        if (serviceName && !seenServiceNames.has(serviceName)) {
-          seenServiceNames.add(serviceName); // Add to set if not already present
-          return true;
-        }
-        return false;
-      })
-      .map((item) => ({
-        title: item?.serviceType?.serviceType,    
-        path: `/plans/${item?.serviceType?.serviceType}`,
-        _id: item?.serviceType?._id
-      }));
-  }
- 
 
   // ----------------------------------------------------------------------------------------------------------
   // --------------------------------------------useEffect-----------------------------------------------------
   useEffect(() => {
-   
 if(loggedInUserData.role == "1")
   dispatch(getConsultantWithPopulated(loggedInUserData?._id))
   }, [])
@@ -288,10 +264,17 @@ if(loggedInUserData.role == "1")
       subMenu: true,
       subMenuArray: [
         {
+          title: "Add Services",
+          path: "/consultant/add-service-plan",
+        },
+        {
           title: "Customised Plans",
           path: "/customisedPlan",
         },
-        ...getAllOptedServices
+        {
+          title: "View All Services",
+          path: "/consultant/services",
+        }
       ],
       show: loggedInUserData.role === "1",
     },

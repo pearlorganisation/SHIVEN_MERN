@@ -55,6 +55,8 @@ const AddServicePlan = () => {
   // Handlers for stepper navigation
   const handleSubmit = () => {
    dispatch(updateConsultantPlans({userId:loggedInUserData?._id,payload:{servicePlan:plans.map((item)=>item?.value)}}))
+   
+
   };
   
   const handleNext = () => {

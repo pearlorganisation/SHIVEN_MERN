@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Stack, Skeleton } from "@mui/material";
+import { getConsultantWithPopulated } from "../../../../features/actions/Auth/userActions";
 
 const Services = () => {
   const dispatch = useDispatch();
@@ -30,21 +30,10 @@ if( consultants?.servicePlan && Array.isArray(consultants.servicePlan) && logged
       }));
   }
 
-  //   const { servicePlanData, isLoading } = useSelector(
-  //     (state) => state.servicePlan
-  //   );
 
-  //   const [showViewModal, setShowViewModal] = useState(false);
-  //   const [viewData, setViewData] = useState();
-
-  //   const handleViewModal = (itemData) => {
-  //     setShowViewModal(true);
-  //     setViewData(itemData);
-  //   };
-
-  //   useEffect(() => {
-  //     dispatch(getAllServicePlans());
-  //   }, []);
+    useEffect(() => {
+      dispatch(getConsultantWithPopulated(loggedInUserData?._id))
+    }, []);
 
   return (
     <div className="userContainer p-10 ">

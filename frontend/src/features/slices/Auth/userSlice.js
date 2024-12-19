@@ -1,6 +1,5 @@
 // ----------------------------------------------Imports-----------------------------------------------------
 import { createSlice } from "@reduxjs/toolkit";
-import { login, verifyLoginOtp } from "../../actions/Auth/authActions";
 import { toast } from "sonner";
 import {
   createUser,
@@ -153,6 +152,7 @@ const userSlice = createSlice({
         state.isUserLoading = false;
         state.errorMessage = "";
         state.consultants = action?.payload?.data;
+        toast.success("Consultant Plans Updated Sucessfully.")
       })
       .addCase(updateConsultantPlans.rejected, (state, action) => {
         state.isUserLoading = false;

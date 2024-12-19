@@ -108,7 +108,6 @@ export const updateConsultantStatus = asyncErrorHandler(async (req, res) => {
   sendAccountVerified(updateConsultant?.email);
 
   const consultans = await Consultant.find()
-  .populate("servicePlan")
   .select(" -password ");
 
   res.status(200).json({

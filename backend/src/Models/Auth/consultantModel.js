@@ -18,12 +18,6 @@ const consultantSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    servicePlan: [
-      {
-        type: mongoose.Types.ObjectId,
-        ref: "servicePlan",
-      },
-    ],
     isVerified: {
       type: Boolean,
       default: false,

@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { getAllServicePlans } from "../../features/actions/Service/servicePlan";
 import { useDispatch, useSelector } from "react-redux";
+import { updateConsultantPlans } from "../../features/actions/Auth/userActions";
 
 const steps = ["Service Types", "Service Providers", "Service Plans"];
 
@@ -25,6 +26,8 @@ const AddServicePlan = () => {
   const [checkedItemsStep2, setCheckedItemsStep2] = useState([]);
   const [checkedItemsStep3, setCheckedItemsStep3] = useState([]);
   const [activeStep, setActiveStep] = useState(0);
+
+  const { loggedInUserData } = useSelector((state) => state.auth);
 
   // Handle checkbox change
   const handleCheckboxChange = (stepIndex, value) => {
@@ -50,6 +53,10 @@ const AddServicePlan = () => {
   };
 
   // Handlers for stepper navigation
+  const handleSubmit = () => {
+   dispatch(updateConsultantPlans({userId:loggedInUserData?._id,payload:{servicePlan:plans.map((item)=>item?.value)}}))
+  };
+  
   const handleNext = () => {
     if (activeStep < steps.length - 1) {
       setActiveStep((prev) => prev + 1);
@@ -59,7 +66,6 @@ const AddServicePlan = () => {
       console.log("Selections for Step 3:", checkedItemsStep3);
     }
   };
-
   const handleBack = () => {
     if (activeStep > 0) {
       setActiveStep((prev) => prev - 1);
@@ -221,7 +227,7 @@ const AddServicePlan = () => {
           </Button>
           <Button
             variant="contained"
-            onClick={handleNext}
+            onClick={activeStep === steps.length - 1 ? handleSubmit : handleNext}
             className="bg-blue-600 hover:bg-blue-700"
           >
             {activeStep === steps.length - 1 ? "Finish" : "Next"}

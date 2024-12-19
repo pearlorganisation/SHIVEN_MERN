@@ -80,7 +80,7 @@ export const verifyConsultant = asyncErrorHandler(async (req, res) => {
 export const getConsultants = asyncErrorHandler(async (req, res) => {
   const query = req?.query || null
   
-  const consultans = await Consultant.find(query).populate("servicePlan").select(" -password ");
+  const consultans = await Consultant.find(query).select(" -password ");
   res.status(200).json({
     status: true,
     message: "Consultants fetched successfully!!",
@@ -122,7 +122,7 @@ export const getConsultantWithPopulated= asyncErrorHandler(async(req,res)=>{
 
   const {id}= req?.params
 
-  const data = await Consultant.findOne({_id:id, isVerified:true}).populate({
+  const data = await userModel.findOne({_id:id, isVerified:true}).populate({
     path: "servicePlan",
     populate: [
       { path: "serviceType", model: "service" }, // Populate serviceType inside servicePlan
@@ -166,3 +166,27 @@ export const updateConsultant = asyncErrorHandler(async (req, res) => {
   });
 });
 
+export const updateConsultantPlans = asyncErrorHandler(async (req, res) => {
+  const { id } = req.params;
+  console.log(req?.body)
+
+
+  const updateConsultant = await userModel.findByIdAndUpdate(id, {
+    servicePlan:req?.body?.servicePlan
+    },
+  {new:true}).lean();
+
+
+  if (!updateConsultant) {
+    return res.status(400).json({
+      status: false,
+      message: "Consultant not found!!",
+    });
+  }  
+
+  res.status(200).json({
+    status: true,
+    message: "Consultant Plans Updated successfully!!",
+    data: updateConsultant,
+  });
+});

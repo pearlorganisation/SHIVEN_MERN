@@ -8,6 +8,7 @@ import {
   getConsultantWithPopulated,
   getUsers,
   updateConsultant,
+  updateConsultantPlans,
   updateConsultantStatus,
   updateUser,
 } from "../../actions/Auth/userActions";
@@ -140,6 +141,20 @@ const userSlice = createSlice({
         state.consultants = action?.payload?.data;
       })
       .addCase(updateConsultant.rejected, (state, action) => {
+        state.isUserLoading = false;
+        state.errorMessage = action?.payload;
+        toast.error(action.payload.message);
+      })
+      .addCase(updateConsultantPlans.pending, (state, action) => {
+        state.isUserLoading = true;
+        state.errorMessage = "";
+      })
+      .addCase(updateConsultantPlans.fulfilled, (state, action) => {
+        state.isUserLoading = false;
+        state.errorMessage = "";
+        state.consultants = action?.payload?.data;
+      })
+      .addCase(updateConsultantPlans.rejected, (state, action) => {
         state.isUserLoading = false;
         state.errorMessage = action?.payload;
         toast.error(action.payload.message);

@@ -81,11 +81,12 @@ import PrivacyPolicy from "../pages/Admin/ComplianceDocuments/PrivacyPolicy";
 import TermsConditions from "../pages/Admin/ComplianceDocuments/TermsConditions";
 import ShippingPolicy from "../pages/Admin/ComplianceDocuments/ShippingPolicy";
 import CancellationPolicy from "../pages/Admin/ComplianceDocuments/CancellationPolicy";
-import { CreateConsultant } from "../pages/auth/Consultant/CreateConsultant";
+import ViewConsultantServices from "../pages/Service/consultant/services/ViewServices";
 import { UpdateService } from "../pages/Service/admin/UpdateService";
 import { ViewConsultants } from "../pages/Service/admin/ViewConsultants";
 import ManageConsultant from "../pages/Service/admin/ManageConsultant";
 import { ConsultantServiceProviders } from "../pages/Service/consultant/serviceProvider/ViewServiceProviders";
+import AddServicePlan from "../pages/ServicePlans/AddServicePlan";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -722,6 +723,16 @@ export const routes = [
     title: "Consultant Service Provider",
     component: ConsultantServiceProviders,
     path: "/consultant/serviceProvider",
+  },
+  {
+    title: "Consultant Service Provider",
+    component: ViewConsultantServices,
+    path: "/consultant/services",
+  },
+  {
+    title: "Consultant Service Provider",
+    component: AddServicePlan,
+    path: "/consultant/add-service-plan",
   },
 
 

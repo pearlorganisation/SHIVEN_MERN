@@ -5,7 +5,7 @@ import { Stack,Skeleton } from '@mui/material';
 import { getAllTemplates } from '../../../../features/actions/brochure';
 import BrochureModal from '../../../../components/Modal/BrochureModal';
 import EditBrochure from '../../../../components/Modal/EditBrochure';
-import { clearIsCreated } from '../../../../features/slices/brochure';
+
 
 const ViewBrochures = () => {
   const dispatch= useDispatch();
@@ -17,9 +17,10 @@ const ViewBrochures = () => {
   const [showViewModal2,setShowViewModal2] = useState(false)
 const [viewData2,setViewData2]= useState()
 
-const handleViewModal=(itemData)=>{
+const handleViewModal=()=>{
   setShowViewModal(true)
 }
+
 const handleViewModal2=(itemData)=>{
   setShowViewModal2(true)
   setViewData2(itemData)
@@ -27,7 +28,6 @@ const handleViewModal2=(itemData)=>{
 
   useEffect(()=>{
     dispatch(getAllTemplates())
-    dispatch(clearIsCreated())
   },[])
 
   return (
@@ -39,10 +39,8 @@ const handleViewModal2=(itemData)=>{
    { loggedInUserData.role==="0" &&    <div className="createEmployeeBtn flex justify-end p-4 ">
           <button
             className=" p-2 rounded-lg bg-indigo-600 text-white font-bold tracking-widest"
-            onClick={() => {
-              console.log("first")
-              handleViewModal("item")
-            }}
+            onClick={
+              handleViewModal}
           >
           Add New Brochures Template
           </button>

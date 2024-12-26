@@ -61,6 +61,7 @@ import servicePlanRouter from "./src/Routes/Service/servicePlan.js";
 import serviceProviderRouter from "./src/Routes/Service/serviceProvider.js";
 import consultantRouter from "./src/Routes/Auth/consultantRoutes.js";
 import brochureRouter from "./src/Routes/brochure.js";
+import customisedFormRouter from "./src/Routes/customisedForm.js";
 
 // Route Middlewares
 app.use("/api/v1/auth/user", userRouter);
@@ -70,6 +71,7 @@ app.use("/api/v1/service", serviceRouter);
 app.use("/api/v1/servicePlan", servicePlanRouter);
 app.use("/api/v1/serviceProvider", serviceProviderRouter);
 app.use("/api/v1/brochure", brochureRouter);
+app.use("/api/v1/customisedForm", customisedFormRouter);
 
 //consultant - Routes
 app.use("/api/v1/consultant", consultantRouter);

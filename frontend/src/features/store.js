@@ -14,6 +14,7 @@ import service from "./slices/Service/service";
 import serviceProvider from "./slices/Service/serviceProvider";
 import servicePlan from "./slices/Service/servicePlan";
 import brochure from "./slices/brochure";
+import customisedForm from "./slices/customisedForm";
 
 // ------------------------------------------------------------------------------------------------------------
 
@@ -43,7 +44,8 @@ const reducers = combineReducers({
   serviceProvider,
   servicePlan,
   motorenquiry: motorenquiryReducer,
-  brochure
+  brochure,
+  customisedForm
 });
 
 const rootReducer = (state, action) => {

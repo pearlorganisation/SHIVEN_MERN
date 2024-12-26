@@ -121,7 +121,7 @@ export const getConsultantWithPopulated= asyncErrorHandler(async(req,res)=>{
 
   const {id}= req?.params
 
-  const data = await userModel.findOne({_id:id, isVerified:true}).populate({
+  const data = await userModel.findById(id).populate({
     path: "servicePlan",
     populate: [
       { path: "serviceType", model: "service" }, // Populate serviceType inside servicePlan

@@ -84,12 +84,7 @@ if(loggedInUserData.role == "1")
   ],
   show: loggedInUserData.role === "0"
 },
-{
-  title: "Brochures",
-  subMenu: false,
-  path: "/brochure",
-  show: loggedInUserData.role === "0",
-},
+
     {
       title: "Staff Management",
       subMenu: false,
@@ -112,7 +107,18 @@ if(loggedInUserData.role == "1")
       ],
       show: loggedInUserData.role === "0",
     },
-
+    {
+      title: "Brochures",
+      subMenu: false,
+      path: "/brochure",
+      show: loggedInUserData.role === "0",
+    },
+    {
+      title: "Customised Forms",
+      subMenu: false,
+      path: "/customised-forms",
+      show: loggedInUserData.role === "0",
+    },
     {
       title: "Payment Logs",
       subMenu: false,
@@ -299,7 +305,7 @@ if(loggedInUserData.role == "1")
     {
       title: "Customised Forms",
       subMenu: false,
-      path: "/consultant/customised-forms",
+      path: "/customised-forms",
       show: loggedInUserData.role === "1",
     },
     {

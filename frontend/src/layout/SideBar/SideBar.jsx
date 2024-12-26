@@ -84,7 +84,12 @@ if(loggedInUserData.role == "1")
   ],
   show: loggedInUserData.role === "0"
 },
-
+{
+  title: "Brochures",
+  subMenu: false,
+  path: "/brochure",
+  show: loggedInUserData.role === "0",
+},
     {
       title: "Staff Management",
       subMenu: false,
@@ -469,11 +474,12 @@ if(loggedInUserData.role == "1")
     },
 
     {
-      title: "Policies / Plans / Brochures",
+      title: "Policies / Plans",
       subMenu: false,
       path: "/user/policies",
       show: loggedInUserData.role === "2",
     },
+
     {
       title: "Customised Forms",
       subMenu: false,

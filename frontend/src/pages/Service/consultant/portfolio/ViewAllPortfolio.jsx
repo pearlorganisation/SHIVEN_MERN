@@ -26,7 +26,7 @@ const ViewAllPortfolio = () => {
         <div className="createEmployeeBtn flex justify-between ">
         <h4 className="font-bold text-blue-500 text-sm sm:text-md md:text-lg">
           {name} <span>Customers Portfolio</span>
-        </h4>
+        </h4>   
 
         </div>
  

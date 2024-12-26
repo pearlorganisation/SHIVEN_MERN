@@ -1,7 +1,44 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { addTemplate } from '../../features/actions/brochure';
+import { clearIsCreated } from '../../features/slices/brochure';
 
-export default function BrochureModal ({viewData,setModal}) {
+export default function BrochureModal ({setModal}) {
   
+  const dispatch = useDispatch();
+  const {isCreated} = useSelector((state)=>state.brochure);
+
+  const handleFileChange = (e)=>{
+    try {
+      if (e.target.files) {
+        const { files } = e.target;
+        const file = files[0];
+        
+        // Create a new FormData object
+        const formData = new FormData();
+        
+        // Append the file to the FormData (binary data)
+        formData.append("template", file);
+        
+        // You can now send the formData with a POST request
+        dispatch(addTemplate(formData));
+  
+      }
+    } catch (error) {
+      console.error("Error handling file change:", error);
+    }
+  }
+
+  useEffect(()=>{
+  if(isCreated){
+    setModal(false)
+    dispatch(clearIsCreated())
+    dispatch(getAllTemplates())
+  }
+  },[isCreated])
+
+  
+
 
     return (
     
@@ -30,7 +67,8 @@ export default function BrochureModal ({viewData,setModal}) {
                     </svg>
                     <p className="mt-3 text-gray-700 max-w-xs mx-auto"> <span  className="font-medium text-indigo-600">Select a file</span> or drag and drop a file here</p>
                 </label>
-                <input id="file" accept=".csv" type="file" className="hidden"  />
+                <input id="file" accept=".png, .jpg, .jpeg, .webp" type="file" className="hidden" onChange={handleFileChange
+                }/>
             </div>
             </div>
           

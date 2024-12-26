@@ -13,7 +13,7 @@ import Purchase from "../pages/Service/user/purchase/Purchase";
 import CustomerFeedback from "../pages/Service/consultant/CustomerFeedback";
 import ViewPolicies from "../pages/Service/user/policies/ViewPolicies";
 import CreateHealthPlan from "../pages/ServicePlans/healthInsurance/CreateHealthPlan";
-import ViewBrochures from "../pages/Service/consultant/ViewBrochures";
+import ViewBrochures from "../pages/Service/consultant/brochures/ViewBrochures";
 import WholeLifeInsurancePlan from "../pages/ServicePlans/wholeLifeInsurance/WholeLifeInsurance";
 import HomeLoan from "../pages/ServicePlans/homeLoan/HomeLoan";
 import CompanyProfile from "../components/CompanyProfile/CompanyProfile";

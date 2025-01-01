@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
-import { verifyLoginOtp } from "../../../features/actions/Auth/authActions";
+import { login, verifyForgotPassword, verifyLoginOtp } from "../../../features/actions/Auth/authActions";
 import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
+import CircleLoader from "../../../components/Loader/ButtonLoaders/CircleLoader";
 
 const OtpVerification = () => {
   const {
@@ -13,11 +14,12 @@ const OtpVerification = () => {
     formState: { errors },
   } = useForm();
 
+  const { isUserLoggedIn ,isLoginOtpSent,isForgotPasswordOtpSent,isVerifiedOTP,isLoading} = useSelector((state) => state?.auth);
   const navigate = useNavigate();
   const location = useLocation();
-  const email = location?.state?.email || "";
+  const {email,password} = location.state
   const dispatch = useDispatch();
-  const { isUserLoggedIn } = useSelector((state) => state?.auth);
+  
 
   const onInputChange = (event, index) => {
     const inputName = `otp${index + 1}`;
@@ -47,10 +49,17 @@ const OtpVerification = () => {
 
     if (!email) {
       toast.error("Email is required");
-    } else {
-      dispatch(verifyLoginOtp({ email, otp }));
+    } else if(isLoginOtpSent){
+      dispatch(verifyLoginOtp({ email, otp }))
+      }
+      else{dispatch(verifyForgotPassword({email,otp}))}
     }
-  };
+
+    const handleResend = ()=>{ if(isLoginOtpSent){
+      dispatch(login({email,password}))
+    }  
+    else
+      {dispatch(forgotPassword({email:email}))} }
 
   useEffect(() => {
     if (isUserLoggedIn) {
@@ -58,8 +67,16 @@ const OtpVerification = () => {
     }
   }, [isUserLoggedIn]);
 
+  useEffect(() => {
+    if (isVerifiedOTP) {
+      navigate("/changePassword", { state: { email: email } })
+    }
+  }, [isVerifiedOTP]);
+ 
+
+
   return (
-    <div className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-12">
+    <div className="relative flex h-[80vh] flex-col justify-center overflow-hidden bg-gray-50 py-12">
       <div className="relative bg-white px-6 pt-10 pb-9 shadow-xl mx-auto w-full max-w-lg rounded-2xl">
         <div className="mx-auto flex w-full max-w-md flex-col space-y-16">
           <div className="flex flex-col items-center justify-center text-center space-y-2">
@@ -103,20 +120,19 @@ const OtpVerification = () => {
                     className="flex flex-row items-center justify-center text-center w-full border rounded-xl outline-none py-5 bg-[#4F46E5] border-none text-white text-sm shadow-sm"
                     type="submit"
                   >
-                    Verify Account
+                      { isLoading ? <CircleLoader/> :  "Verify Account"}
                   </button>
                 </div>
 
                 <div className="flex flex-row items-center justify-center text-center text-sm font-medium space-x-1 text-gray-500">
                   <p>Didn't receive code?</p>
-                  <a
-                    className="flex flex-row items-center "
-                    href="http://"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                  type="button"
+                    className="flex flex-row items-center hover:underline hover:text-indigo-600 "
+                    onClick={handleResend}
                   >
                     Resend
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>

@@ -41,11 +41,6 @@ export const ConsultantServiceProviders = () => {
   }
   
 
-console.log(allServiceProviders)
-
-  useEffect(()=>{
-  },[])
-
   return (
     <div className="userContainer p-10 ">
       <div className="title p-1">

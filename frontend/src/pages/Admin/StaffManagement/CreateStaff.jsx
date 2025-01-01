@@ -3,10 +3,7 @@ import React, { useEffect, useState } from "react";
 import userBg from "../../../assets/Images/userBg.jpg";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import {
-  createUser,
-  getUsers,
-} from "../../../features/actions/Auth/userActions";
+
 import { useDispatch } from "react-redux";
 import CircleLoader from "../../../components/Loader/ButtonLoaders/CircleLoader";
 import { useSelector } from "react-redux";
@@ -58,7 +55,7 @@ const CreateStaff
         if (!role) {
           toast.error("Please Choose a role for the user");
         } else {
-          dispatch(createUser({ payload }));
+          // dispatch(createUser({ payload }));
         }
       }
     } catch (error) {
@@ -78,7 +75,7 @@ const CreateStaff
       dispatch(resetUserState(false));
       reset();
       setRole("");
-      dispatch(getUsers());
+
     }
   }, [isUserCreated]);
 

@@ -4,8 +4,7 @@ import nodemailer from "nodemailer";
 
 // sendConsultantAccountCreated -- function to notify the consultant of successful account creation and payment
 export const sendConsultantAccountCreated = (email) => {
-    console.log(email);
-  const subject = "Consultant Account Created Successfully";
+  const subject = "Your Consultant Account Created Successfully";
   const html = `
     <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: auto;">
       <h1 style="color: #4CAF50;">Congratulations!</h1>

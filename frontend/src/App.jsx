@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 import Home from "./pages/Home/Home";
 
 import Login from "./pages/auth/Login/Login";
-import GetOtp from "./pages/auth/GetOtp/GetOtp";
+
 import Verification from "./pages/auth/verification/Verification";
 import NewPassword from "./pages/NewPassword/NewPassword";
 
@@ -52,6 +52,7 @@ import CarInsuranceDetails from "./components/insurance/MotorInsurance/CarInsura
 import MotorEnquiry from "./components/insurance/MotorInsurance/MotorEnquiry";
 import MutualfundDetails from "./components/MutualFund/MutualfundProvider/MutualfundDetails";
 import { CreateConsultant } from "./pages/auth/Consultant/CreateConsultant";
+import ForgotPassword from "./pages/auth/ForgotPassword/ForgotPassword";
 
 
 
@@ -61,7 +62,7 @@ import { CreateConsultant } from "./pages/auth/Consultant/CreateConsultant";
 
 function App() {
   // ---------------------------------------------Hooks--------------------------------------------------------
-  const { isUserLoggedIn } = useSelector((state) => state?.auth);
+  const { isUserLoggedIn , isForgotPasswordOtpSent,isLoginOtpSent,isVerifiedOTP } = useSelector((state) => state?.auth);
   // -----------------------------------------------------------------------------------------------------------
 
   return (
@@ -74,9 +75,9 @@ function App() {
             element={isUserLoggedIn ? <Navigate to="/dashboard" /> : <Home />}
           />
           <Route path="/login" element={<Login />} />
-          <Route path="/getotp" element={<GetOtp />} />
-          <Route path="/verification" element={<Verification />} />
-          <Route path="/newpassword" element={<NewPassword />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+       { (isLoginOtpSent || isForgotPasswordOtpSent ) &&  <Route path="/verification" element={<Verification />} />}
+     {  isVerifiedOTP && <Route path="/changePassword" element={<NewPassword />} />}
 
           <Route
             path="/single_healthinsurance"

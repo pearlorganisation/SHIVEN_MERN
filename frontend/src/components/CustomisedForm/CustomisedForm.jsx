@@ -1,21 +1,15 @@
-import { Modal, Pagination, Skeleton, styled } from "@mui/material";
+import { Modal,Skeleton } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
 import { CircleLoader } from "react-spinners";
 import { Toaster, toast } from "sonner";
-// import { instance } from "../../services/axiosInterceptor";
 
-// const StyledPagination = styled(Pagination)(({ theme }) => ({
-//   "& .MuiPaginationItem-root": {
-//     color: "black",
-//   },
-// }));
 
 const CustomisedForms = () => {
   const [selectedForm, setSelectedForm] = useState(null);
   const [data, setData] = useState(null);
 
   const [open, setOpen] = useState(false);
+  const { loggedInUserData } = useSelector((state) => state.auth);
 
   const handleOpen = (data) => {
     setSelectedForm(data);
@@ -24,61 +18,9 @@ const CustomisedForms = () => {
 
   const handleClose = () => setOpen(false);
 
-  //   const [searchParams, setSearchParams] = useSearchParams({ page: 1 });
-  //   const [page, setPage] = useState(searchParams.get("page") || 1);
-  //   const [totalPages, setTotalPages] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitLoading, setIsSubmitLoading] = useState(false);
 
-
-  //   const getData = () => {
-  //     setIsLoading(true);
-  //     instance
-  //       .get(`/specialTrips`)
-  //       .then((res) => {
-  //         setData(res?.data?.data);
-  //         setTotalPages(res?.data?.totalPages)
-  //         setIsLoading(false);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //         setIsLoading(false);
-  //       });
-  //   };
-
-  //   useEffect(() => {
-  //     getData();
-  //   }, [page]);
-
-  //   const handlePagination = (e, p) => {
-  //     setPage(p);
-  //     setSearchParams({ page: p });
-  //   };
-
-  //   const deleteItem = (item) => {
-  //     if (window.confirm(`Are you sure you want to delete specialTrip`)) {
-  //       instance
-  //         .delete(`${import.meta.env.VITE_API_URL}/specialTrips/${item._id}`)
-  //         .then((res) => {
-  //           toast.success(res.data.message, {
-  //             style: {
-  //               background: "green",
-  //               color: "white",
-  //             },
-  //           });
-  //           getData();
-  //         })
-  //         .catch((err) => {
-  //           console.log(err);
-  //           toast.error("There was some issue deleting the specialTrip", {
-  //             style: {
-  //               background: "red",
-  //               color: "white",
-  //             },
-  //           });
-  //         });
-  //     }
-  //   };
 
   const sampleData = [
     {

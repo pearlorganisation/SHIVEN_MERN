@@ -562,19 +562,19 @@ export const routes = [
   {
     title: "Customised Form",
     component: CustomisedFormList,
-    path: "/consultant/customised-forms",
+    path: "/customised-forms",
   },
 
   {
     title: "Customised Form",
     component: AddCustomisedForm,
-    path: "/consultant/customised-forms/add",
+    path: "/admin/customised-forms/add",
   },
 
   {
     title: "Customised Form",
     component: UpdateCustomisedForm,
-    path: "/consultant/customised-forms/:id",
+    path: "/admin/customised-forms/:id",
   },
 
   {

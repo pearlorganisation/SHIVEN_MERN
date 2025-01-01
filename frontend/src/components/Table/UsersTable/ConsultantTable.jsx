@@ -1,14 +1,13 @@
 // -------------------------------------------------Imports---------------------------------------------
 import React, { memo, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getConsultants, getUsers } from "../../../features/actions/Auth/userActions";
+import { getConsultants } from "../../../features/actions/Auth/userActions";
 import { useSelector } from "react-redux";
 import { CiEdit } from "react-icons/ci";
 import { Link, useNavigate } from "react-router-dom";
-import { MdDeleteForever } from "react-icons/md";
 // -----------------------------------------------------------------------------------------------------
-// agar tum yha tk pohoch gye toh best of luck, all credit to pieces of shit here, sbko bolo gand mraye, except mern team
-const UsersTable = ({name}) => {
+
+const ConsultantTable = ({name}) => {
   // -------------------------------------------------States---------------------------------------------
   // -----------------------------------------------------------------------------------------------------
   // -------------------------------------------------Hooks---------------------------------------------
@@ -25,10 +24,6 @@ const UsersTable = ({name}) => {
   };
   //
 
-  // -----------------------------------------------Functions---------------------------------------------
-  const deleteHandler = (userData) => {
-    confirm(`Are you sure you want to delete ${userData.userName}?`);
-  };
   // -----------------------------------------------------------------------------------------------------
   // -----------------------------------------------useEffect---------------------------------------------
   useEffect(() => {
@@ -36,7 +31,6 @@ const UsersTable = ({name}) => {
      dispatch(getConsultants({key:"isVerified",value:true}))
     }
     else if (name === "Employees"){
-    dispatch(getUsers(`?role=4`));
     }
   }, []);
 
@@ -50,17 +44,7 @@ const UsersTable = ({name}) => {
       actionButtonClickHandler: (data) => {
         editHandler(data);
       },
-    },
-    // {
-    //   icon: () => {
-    //     return (
-    //       <MdDeleteForever style={{ color: "red" }} size={actionBtnIconSize} />
-    //     );
-    //   },
-    //   actionButtonClickHandler: (data) => {
-    //     deleteHandler(data);
-    //   },
-    // },
+    }
   ];
   // -----------------------------------------------------------------------------------------------------
   return (
@@ -144,4 +128,4 @@ const UsersTable = ({name}) => {
   );
 };
 
-export default memo(UsersTable);
+export default memo(ConsultantTable);

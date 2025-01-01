@@ -19,6 +19,7 @@ const upload = multer({
       "image/jpg",
       "image/webp",
       "image/jpeg",
+      "application/pdf"
     ];
     if (allowedMimeTypes.includes(file?.mimetype)) {
       cb(null, true);

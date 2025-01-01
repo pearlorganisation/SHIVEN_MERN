@@ -32,7 +32,7 @@ const SideBar = () => {
   // ----------------------------------------------------------------------------------------------------------
   // --------------------------------------------useEffect-----------------------------------------------------
   useEffect(() => {
-if(loggedInUserData.role == "1")
+if(loggedInUserData.role === "1")
   dispatch(getConsultantWithPopulated(loggedInUserData?._id))
   }, [])
   
@@ -46,15 +46,10 @@ if(loggedInUserData.role == "1")
       subMenu: false,
       path: "/dashboard",
       show:
-        loggedInUserData.role === "0" ||
-        loggedInUserData.role === "1" ||
-        loggedInUserData.role === "2",
-    },
-    {
-      title: "Clients",
-      subMenu: false,
-      path: "/consultant-filesManagement",
-      show: loggedInUserData.role === "1",
+        loggedInUserData.role === "0"
+        //  ||
+        // loggedInUserData.role === "1" ||
+        // loggedInUserData.role === "2",
     },
 
 
@@ -84,12 +79,7 @@ if(loggedInUserData.role == "1")
   ],
   show: loggedInUserData.role === "0"
 },
-{
-  title: "Brochures",
-  subMenu: false,
-  path: "/brochure",
-  show: loggedInUserData.role === "0",
-},
+
     {
       title: "Staff Management",
       subMenu: false,
@@ -112,7 +102,18 @@ if(loggedInUserData.role == "1")
       ],
       show: loggedInUserData.role === "0",
     },
-
+    {
+      title: "Brochures",
+      subMenu: false,
+      path: "/brochure",
+      show: loggedInUserData.role === "0",
+    },
+    {
+      title: "Customised Forms",
+      subMenu: false,
+      path: "/customised-forms",
+      show: loggedInUserData.role === "0",
+    },
     {
       title: "Payment Logs",
       subMenu: false,
@@ -248,7 +249,12 @@ if(loggedInUserData.role == "1")
 
 
 /// CONSULTANT PANEL ///
-
+{
+  title: "Clients Details",
+  subMenu: false,
+  path: "/users",
+  show: loggedInUserData.role === "1",
+},
     {
       title: "Profile",
       subMenu: true,
@@ -291,40 +297,6 @@ if(loggedInUserData.role == "1")
       show: loggedInUserData.role === "1",
     },
     {
-      title: "Brochures",
-      subMenu: false,
-      path: "/brochure",
-      show: loggedInUserData.role === "1",
-    },
-    {
-      title: "Customised Forms",
-      subMenu: false,
-      path: "/consultant/customised-forms",
-      show: loggedInUserData.role === "1",
-    },
-    {
-      title: "Clients Details",
-      subMenu: false,
-      path: "/users",
-      show: loggedInUserData.role === "1",
-    },
-    {
-      title: "Purchase / Renewal / Invoices",
-      subMenu: true,
-      subMenuArray: [
-        { title: "Purchase", path: "user/purchase" },
-        {
-          title: "Renewal ",
-          path: "purchase/renewal",
-        },
-        {
-          title: "Invoices",
-          path: "purchase/invoices",
-        },
-      ],
-      show: loggedInUserData.role === "1",
-    },
-    {
       title: "Files / Folder Management",
       subMenu: false,
       path: "/consultant-filesManagement",
@@ -336,134 +308,163 @@ if(loggedInUserData.role == "1")
       path: "/calculatorFunds",
       show: loggedInUserData.role === "1",
     },
+    // {
+    //   title: "Brochures",
+    //   subMenu: false,
+    //   path: "/brochure",
+    //   show: loggedInUserData.role === "1",
+    // },
+    // {
+    //   title: "Customised Forms",
+    //   subMenu: false,
+    //   path: "/customised-forms",
+    //   show: loggedInUserData.role === "1",
+    // },
 
-    {
-      title: "Schedule Management",
-      subMenu: false,
-      path: "user/scheduleManagement",
-      show: loggedInUserData.role === "1",
-    },
-    {
-      title: "Quotation / Invoices management",
-      subMenu: false,
-      path: "/consultant/quotation-invoice-management",
-      show: loggedInUserData.role === "1",
-    },
-    {
-      title: "Investments / Valuation / Portfolio",
-      subMenu: true,
-      subMenuArray: [
-        {
-          title: "MutualFund LumSum",
-          path: "/consultant/portfolio/Mutual Fund Lum Sum",
-        },
-        {
-          title: "MutualFund SIP",
-          path: "/consultant/portfolio/Mutual Fund SIP",
-        },
-        { title: "Shares", path: "/consultant/portfolio/Shares" },
-        {
-          title: "Life Insurance",
-          path: "/consultant/portfolio/Life Insurance",
-        },
-        {
-          title: "Health Insurance",
-          path: "/consultant/portfolio/Health Insurance",
-        },
-        { title: "Loans", path: "/consultant/portfolio/Loans" },
-      ],
-      show: loggedInUserData.role === "1",
-    },
-    {
-      title: "Customer Review / Feedback",
-      subMenu: false,
-      path: "/consultant/feedbacks",
-      show: loggedInUserData.role === "1",
-    },
-    {
-      title: "Complaint / Services Request",
-      subMenu: false,
-      path: "consultant/serviceRequest",
-      show: loggedInUserData.role === "1",
-    },
-    {
-      title: "Contact Management",
-      subMenu: false,
-      path: "/consultant/contactManagement",
-      show: loggedInUserData.role === "1",
-    },
+    // {
+    //   title: "Purchase / Renewal / Invoices",
+    //   subMenu: true,
+    //   subMenuArray: [
+    //     { title: "Purchase", path: "user/purchase" },
+    //     {
+    //       title: "Renewal ",
+    //       path: "purchase/renewal",
+    //     },
+    //     {
+    //       title: "Invoices",
+    //       path: "purchase/invoices",
+    //     },
+    //   ],
+    //   show: loggedInUserData.role === "1",
+    // },
 
-    {
-      title: "Analytics & Reports",
-      subMenu: false,
-      path: "/",
-      show: loggedInUserData.role === "1",
-    },
-    {
-      title: "Task Management",
-      subMenu: false,
-      path: "/consultant/taskManagement",
-      show: loggedInUserData.role === "1",
-    },
-    {
-      title: "Income & Expense Management",
-      subMenu: true,
-      subMenuArray: [
-        {
-          title: "View Income and Expense",
-          path: "/consultant/incomeAndExpense/year",
-        },
-        {
-          title: "Add Expense Headings",
-          path: "/consultant/incomeAndExpense/addExpenseHeadings",
-        },
-        {
-          title: "Add Income Headings",
-          path: "/consultant/incomeAndExpense/addIncomeHeadings",
-        },
-      ],
-      show: loggedInUserData.role === "1",
-    },
+    // {
+    //   title: "Schedule Management",
+    //   subMenu: false,
+    //   path: "user/scheduleManagement",
+    //   show: loggedInUserData.role === "1",
+    // },
+    // {
+    //   title: "Quotation / Invoices management",
+    //   subMenu: false,
+    //   path: "/consultant/quotation-invoice-management",
+    //   show: loggedInUserData.role === "1",
+    // },
+    // {
+    //   title: "Investments / Valuation / Portfolio",
+    //   subMenu: true,
+    //   subMenuArray: [
+    //     {
+    //       title: "MutualFund LumSum",
+    //       path: "/consultant/portfolio/Mutual Fund Lum Sum",
+    //     },
+    //     {
+    //       title: "MutualFund SIP",
+    //       path: "/consultant/portfolio/Mutual Fund SIP",
+    //     },
+    //     { title: "Shares", path: "/consultant/portfolio/Shares" },
+    //     {
+    //       title: "Life Insurance",
+    //       path: "/consultant/portfolio/Life Insurance",
+    //     },
+    //     {
+    //       title: "Health Insurance",
+    //       path: "/consultant/portfolio/Health Insurance",
+    //     },
+    //     { title: "Loans", path: "/consultant/portfolio/Loans" },
+    //   ],
+    //   show: loggedInUserData.role === "1",
+    // },
+    // {
+    //   title: "Customer Review / Feedback",
+    //   subMenu: false,
+    //   path: "/consultant/feedbacks",
+    //   show: loggedInUserData.role === "1",
+    // },
+    // {
+    //   title: "Complaint / Services Request",
+    //   subMenu: false,
+    //   path: "consultant/serviceRequest",
+    //   show: loggedInUserData.role === "1",
+    // },
+    // {
+    //   title: "Contact Management",
+    //   subMenu: false,
+    //   path: "/consultant/contactManagement",
+    //   show: loggedInUserData.role === "1",
+    // },
 
-    {
-      title: "Notifications / Circulars ",
-      subMenu: false,
-      path: "/consultant/notifications-circulars",
-      show: loggedInUserData.role === "1",
-    },
+    // {
+    //   title: "Analytics & Reports",
+    //   subMenu: false,
+    //   path: "/",
+    //   show: loggedInUserData.role === "1",
+    // },
+    // {
+    //   title: "Task Management",
+    //   subMenu: false,
+    //   path: "/consultant/taskManagement",
+    //   show: loggedInUserData.role === "1",
+    // },
+    // {
+    //   title: "Income & Expense Management",
+    //   subMenu: true,
+    //   subMenuArray: [
+    //     {
+    //       title: "View Income and Expense",
+    //       path: "/consultant/incomeAndExpense/year",
+    //     },
+    //     {
+    //       title: "Add Expense Headings",
+    //       path: "/consultant/incomeAndExpense/addExpenseHeadings",
+    //     },
+    //     {
+    //       title: "Add Income Headings",
+    //       path: "/consultant/incomeAndExpense/addIncomeHeadings",
+    //     },
+    //   ],
+    //   show: loggedInUserData.role === "1",
+    // },
 
-    {
-      title: "Announcements",
-      subMenu: false,
-      path: "/consultant/announcements",
-      show: loggedInUserData.role === "1",
-    },
+    // {
+    //   title: "Notifications / Circulars ",
+    //   subMenu: false,
+    //   path: "/consultant/notifications-circulars",
+    //   show: loggedInUserData.role === "1",
+    // },
 
-    {
-      title: "Blogs / Articles",
-      subMenu: false,
-      path: "/consultant/blogs",
-      show: loggedInUserData.role === "1",
-    },
+    // {
+    //   title: "Announcements",
+    //   subMenu: false,
+    //   path: "/consultant/announcements",
+    //   show: loggedInUserData.role === "1",
+    // },
 
-    {
-      title: "SMS / Email",
-      subMenu: false,
-      path: "/sms-email",
-      show: loggedInUserData.role === "1",
-    },
-    {
-      title: "Enquiry / Leads Management",
-      subMenu: false,
-      path: "/enquiry-leads-management",
-      show: loggedInUserData.role === "1",
-    },
-    {
-      title: "CRM",
-      subMenu: false,
-      path: "/consultant/crm",
-      show: loggedInUserData.role === "1",
-    },
+    // {
+    //   title: "Blogs / Articles",
+    //   subMenu: false,
+    //   path: "/consultant/blogs",
+    //   show: loggedInUserData.role === "1",
+    // },
+
+    // {
+    //   title: "SMS / Email",
+    //   subMenu: false,
+    //   path: "/sms-email",
+    //   show: loggedInUserData.role === "1",
+    // },
+    // {
+    //   title: "Enquiry / Leads Management",
+    //   subMenu: false,
+    //   path: "/enquiry-leads-management",
+    //   show: loggedInUserData.role === "1",
+    // },
+    // {
+    //   title: "CRM",
+    //   subMenu: false,
+    //   path: "/consultant/crm",
+    //   show: loggedInUserData.role === "1",
+    // },
 
     /// CUSTOMER PANEL ///
     {
@@ -481,28 +482,6 @@ if(loggedInUserData.role == "1")
     },
 
     {
-      title: "Customised Forms",
-      subMenu: false,
-      path: "/user/customised-forms",
-      show: loggedInUserData.role === "2",
-    },
-    {
-      title: "Purchase / Renewal / Invoices",
-      subMenu: true,
-      subMenuArray: [
-        { title: "Purchase", path: "user/purchase" },
-        {
-          title: "Renewal ",
-          path: "purchase/renewal",
-        },
-        {
-          title: "Invoices",
-          path: "purchase/invoices",
-        },
-      ],
-      show: loggedInUserData.role === "2",
-    },
-    {
       title: "Files / Folder Management",
       subMenu: false,
       path: "/clientFiles",
@@ -515,58 +494,82 @@ if(loggedInUserData.role == "1")
       show: loggedInUserData.role === "2",
     },
 
-    {
-      title: "Investments / Valuation / Portfolio",
-      subMenu: true,
-      subMenuArray: [
-        {
-          title: "MutualFund LumSum",
-          path: "/user/portfolio/Mutual Fund Lum Sum",
-        },
-        { title: "MutualFund SIP", path: "/user/portfolio/Mutual Fund SIP" },
-        { title: "Shares", path: "/user/portfolio/Shares" },
-        { title: "Life Insurance", path: "/user/portfolio/Life Insurance" },
-        { title: "Health Insurance", path: "/user/portfolio/Health Insurance" },
-        { title: "Loans", path: "/user/portfolio/Loans" },
-      ],
-      path: "/user/investment",
-      show: loggedInUserData.role === "2",
-    },
+    // {
+    //   title: "Customised Forms",
+    //   subMenu: false,
+    //   path: "/user/customised-forms",
+    //   show: loggedInUserData.role === "2",
+    // },
+    // {
+    //   title: "Purchase / Renewal / Invoices",
+    //   subMenu: true,
+    //   subMenuArray: [
+    //     { title: "Purchase", path: "user/purchase" },
+    //     {
+    //       title: "Renewal ",
+    //       path: "purchase/renewal",
+    //     },
+    //     {
+    //       title: "Invoices",
+    //       path: "purchase/invoices",
+    //     },
+    //   ],
+    //   show: loggedInUserData.role === "2",
+    // },
 
-    {
-      title: "Schedule Management",
-      subMenu: false,
-      path: "user/scheduleManagement",
-      show: loggedInUserData.role === "2",
-    },
 
-    {
-      title: "Notifications / Circulars ",
-      subMenu: false,
-      path: "/user/notifications-circulars",
-      show: loggedInUserData.role === "2",
-    },
+    // {
+    //   title: "Investments / Valuation / Portfolio",
+    //   subMenu: true,
+    //   subMenuArray: [
+    //     {
+    //       title: "MutualFund LumSum",
+    //       path: "/user/portfolio/Mutual Fund Lum Sum",
+    //     },
+    //     { title: "MutualFund SIP", path: "/user/portfolio/Mutual Fund SIP" },
+    //     { title: "Shares", path: "/user/portfolio/Shares" },
+    //     { title: "Life Insurance", path: "/user/portfolio/Life Insurance" },
+    //     { title: "Health Insurance", path: "/user/portfolio/Health Insurance" },
+    //     { title: "Loans", path: "/user/portfolio/Loans" },
+    //   ],
+    //   path: "/user/investment",
+    //   show: loggedInUserData.role === "2",
+    // },
 
-    {
-      title: "Announcements",
-      subMenu: false,
-      path: "/user/announcements",
-      show: loggedInUserData.role === "2",
-    },
+    // {
+    //   title: "Schedule Management",
+    //   subMenu: false,
+    //   path: "user/scheduleManagement",
+    //   show: loggedInUserData.role === "2",
+    // },
 
-    {
-      title: "Blogs / Articles",
-      subMenu: false,
-      path: "/user/blogs",
-      show: loggedInUserData.role === "2",
-    },
+    // {
+    //   title: "Notifications / Circulars ",
+    //   subMenu: false,
+    //   path: "/user/notifications-circulars",
+    //   show: loggedInUserData.role === "2",
+    // },
 
-    {
-      title: "Services Request",
-      subMenu: false,
-      path: "user/complaint",
-      show: loggedInUserData.role === "2",
-    },
+    // {
+    //   title: "Announcements",
+    //   subMenu: false,
+    //   path: "/user/announcements",
+    //   show: loggedInUserData.role === "2",
+    // },
+
+    // {
+    //   title: "Blogs / Articles",
+    //   subMenu: false,
+    //   path: "/user/blogs",
+    //   show: loggedInUserData.role === "2",
+    // },
+
+    // {
+    //   title: "Services Request",
+    //   subMenu: false,
+    //   path: "user/complaint",
+    //   show: loggedInUserData.role === "2",
+    // },
   ];
   // ----------------------------------------------------------------------------------------------------------
 

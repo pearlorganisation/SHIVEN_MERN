@@ -1,119 +1,35 @@
-import { Pagination, Skeleton, styled } from "@mui/material";
+import { Skeleton } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
-import { Toaster, toast } from "sonner";
-// import { instance } from "../../services/axiosInterceptor";
+import { Link } from "react-router-dom";
+  import {  useDispatch, useSelector } from "react-redux";
+import { getAllCustomisedForm } from "../../../features/actions/customisedForm";
 
-const StyledPagination = styled(Pagination)(({ theme }) => ({
-  "& .MuiPaginationItem-root": {
-    color: "black",
-  },
-}));
 
 const CustomisedFormList = () => {
   const [data, setData] = useState(null);
-  //   const [searchParams, setSearchParams] = useSearchParams({ page: 1 });
-  //   const [page, setPage] = useState(searchParams.get("page") || 1);
-  //   const [totalPages, setTotalPages] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch()
+  const { loggedInUserData } = useSelector((state) => state.auth);
+  const { isLoading, customisedFormData } = useSelector((state) => state.customisedForm);
 
-  //   const getData = () => {
-  //     setIsLoading(true);
-  //     instance
-  //       .get(`/specialTrips`)
-  //       .then((res) => {
-  //         setData(res?.data?.data);
-  //         setTotalPages(res?.data?.totalPages)
-  //         setIsLoading(false);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //         setIsLoading(false);
-  //       });
-  //   };
 
-  //   useEffect(() => {
-  //     getData();
-  //   }, [page]);
-
-  //   const handlePagination = (e, p) => {
-  //     setPage(p);
-  //     setSearchParams({ page: p });
-  //   };
-
-  //   const deleteItem = (item) => {
-  //     if (window.confirm(`Are you sure you want to delete specialTrip`)) {
-  //       instance
-  //         .delete(`${import.meta.env.VITE_API_URL}/specialTrips/${item._id}`)
-  //         .then((res) => {
-  //           toast.success(res.data.message, {
-  //             style: {
-  //               background: "green",
-  //               color: "white",
-  //             },
-  //           });
-  //           getData();
-  //         })
-  //         .catch((err) => {
-  //           console.log(err);
-  //           toast.error("There was some issue deleting the specialTrip", {
-  //             style: {
-  //               background: "red",
-  //               color: "white",
-  //             },
-  //           });
-  //         });
-  //     }
-  //   };
-
-  const sampleData = [
-    {
-      _id: "111",
-      name: "Form 1",
-      url: "",
-      file: "/sample.pdf",
-    },
-    {
-      _id: "112",
-      name: "Form 2",
-      url: "",
-      file: "/sample.pdf",
-    },
-    {
-      _id: "113",
-      name: "Form 3",
-      url: "https://google.com",
-      file: "",
-    },
-    {
-      _id: "114",
-      name: "Form 4",
-      url: "https://facebook.com",
-      file: "",
-    },
-  ];
+ 
 
   useEffect(() => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      setData(sampleData);
-    }, 500);
+dispatch(getAllCustomisedForm())
   }, []);
 
   return (
     <div>
-      <Toaster />
 
       <div className="p-10 ">
-        <div className="text-2xl">Customised Forms</div>
-        <div className="flex items-center justify-end flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-8 ">
-          <Link
-            to="/consultant/customised-forms/add"
+        <div className="text-2xl ">Customised Forms</div>
+      <div className="flex items-center justify-end flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-8 ">
+        { loggedInUserData.role === "0" &&   <Link
+            to="/admin/customised-forms/add"
             className="bg-blue-600 rounded-md text-white px-3 py-1 font-semibold "
           >
-            Add
-          </Link>
+            Add New Form
+          </Link>}
         </div>
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
           {isLoading && (
@@ -124,7 +40,7 @@ const CustomisedFormList = () => {
               <Skeleton animation="wave" height={50} />
             </>
           )}
-          {data && (
+          {customisedFormData && Array.isArray(customisedFormData)  && (
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50  ">
                 <tr>
@@ -137,13 +53,13 @@ const CustomisedFormList = () => {
                   <th scope="col" className="text-center px-6 py-3">
                     Link/File
                   </th>
-                  <th scope="col" className="text-center px-6 py-3">
+                { loggedInUserData.role === "0" &&   <th scope="col" className="text-center px-6 py-3">
                     Actions
-                  </th>
+                  </th>}
                 </tr>
               </thead>
               <tbody>
-                {data.map((item, idx) => (
+                {customisedFormData.map((item, idx) => (
                   <tr
                     className="bg-transparent border-b   hover:bg-gray-50 "
                     key={item?._id}
@@ -158,7 +74,7 @@ const CustomisedFormList = () => {
                     <td className="px-6 py-4 text-center">
                       <a
                         href={`${
-                          item?.url?.length > 0 ? item?.url : item?.file
+                          item?.url?.length > 0 ? item?.url : item?.pdf?.secure_url
                         }`}
                         target="_blank"
                         className="text-blue-500 hover:text-blue-600 transition duration-300"
@@ -169,9 +85,9 @@ const CustomisedFormList = () => {
                       </a>
                     </td>
 
-                    <td className="px-6 py-4 text-center flex gap-4 justify-center">
+                {  loggedInUserData.role === "0" &&    <td className="px-6 py-4 text-center flex gap-4 justify-center">
                       <Link
-                        to={`/consultant/customised-forms/${item?._id}`}
+                        to={`/admin/customised-forms/${item?._id}`}
                         className="font-medium text-blue-600  hover:underline"
                       >
                         Edit
@@ -184,7 +100,7 @@ const CustomisedFormList = () => {
                       >
                         Delete
                       </button>
-                    </td>
+                    </td>}
                   </tr>
                 ))}
               </tbody>

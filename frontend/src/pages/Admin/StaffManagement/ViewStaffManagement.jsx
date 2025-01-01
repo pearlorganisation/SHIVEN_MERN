@@ -2,7 +2,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import UsersTable from "../../../components/Table/UsersTable/UsersTable";
+import ConsultantTable from "../../../components/Table/UsersTable/ConsultantTable";
 // ------------------------------------------------------------------------------------------------------------
 
 const ViewStaffManagement = () => {
@@ -34,7 +34,7 @@ const ViewStaffManagement = () => {
           </button>
         </div>
       </div>
-      <UsersTable name="Employees"/>
+      <ConsultantTable name="Employees"/>
     </div>
   );
 };

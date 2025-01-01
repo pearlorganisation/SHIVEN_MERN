@@ -1,20 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "sonner";
-import { addTemplate, getAllTemplates } from "../actions/brochure";
+import { addCustomisedForm, getAllCustomisedForm } from "../actions/customisedForm";
 
 
 const initialState = {
   isLoading: false,
   isCreated: false,
   isDeleted: false,
-  templateData: [],
+  customisedFormData: [],
   errorMessage: "",
 };
 
 // ---------------------------------------------------------------------------------------
 
-export const brochureSlice = createSlice({
-  name: "brochure",
+export const customisedFormSlice = createSlice({
+  name: "customisedForm",
   initialState,
   reducers: {
     clearIsCreated : (state)=> {state.isCreated = false}
@@ -22,20 +22,20 @@ export const brochureSlice = createSlice({
   extraReducers: (builder) => {
     builder
 
-      .addCase(addTemplate.pending, (state, action) => {
+      .addCase(addCustomisedForm.pending, (state, action) => {
         state.isLoading = true;
         state.isCreated = false;
         state.errorMessage = "";
       })
-      .addCase(addTemplate.fulfilled, (state, action) => {
+      .addCase(addCustomisedForm.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isCreated = true;
         state.errorMessage = "";
-        toast.success("Template Added Successfully",{
+        toast.success("Customised Form Added Successfully",{
           position:"top-center"
         });
       })
-      .addCase(addTemplate.rejected, (state, action) => {
+      .addCase(addCustomisedForm.rejected, (state, action) => {
         state.isLoading = false;
         state.isCreated = false;
         state.errorMessage = action.payload;
@@ -43,18 +43,18 @@ export const brochureSlice = createSlice({
           position:"top-center"
         });
       })
-      .addCase(getAllTemplates.pending, (state, action) => {
+      .addCase(getAllCustomisedForm.pending, (state, action) => {
         state.isLoading = true;
         state.isCreated = false;
         state.errorMessage = "";
       })
-      .addCase(getAllTemplates.fulfilled, (state, action) => {
+      .addCase(getAllCustomisedForm.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isCreated = false;
         state.errorMessage = "";
-        state.templateData = action.payload.data;
+        state.customisedFormData = action.payload.data;
       })
-      .addCase(getAllTemplates.rejected, (state, action) => {
+      .addCase(getAllCustomisedForm.rejected, (state, action) => {
         state.isLoading = false;
         state.isCreated = false;
         state.errorMessage = action.payload;
@@ -68,5 +68,5 @@ export const brochureSlice = createSlice({
 // -------------------------------------------------------------------------
 
 // Action creators are generated for each case reducer function
-export const {clearIsCreated} = brochureSlice.actions;
-export default brochureSlice.reducer;
+export const {clearIsCreated} = customisedFormSlice.actions;
+export default customisedFormSlice.reducer;

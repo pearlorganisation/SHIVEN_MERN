@@ -1,34 +1,19 @@
 // --------------------------------------------------Imports----------------------------------------
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import userBg from "../../../assets/Images/userBg.jpg";
-// import Select from "react-select";
 import { useNavigate } from "react-router-dom";
-import { useForm, Controller } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
 import CircleLoader from "../../../components/Loader/ButtonLoaders/CircleLoader";
 import { useSelector } from "react-redux";
 import { instance } from "../../../services/Axios/axiosInterceptor";
-import Select from "react-select";
-import { getAllServicePlans } from "../../../features/actions/Service/servicePlan";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 // -------------------------------------------------------------------------------------------------
 
 export const CreateConsultant = () => {
-  const [role, setRole] = useState("");
   // -------------------------------------------------------------------------------------------------
   // --------------------------------------------------Hooks----------------------------------------
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { isUserLoading, isUserCreated } = useSelector((state) => state?.user);
-  const { servicePlanData } = useSelector((state) => state.servicePlan);
-
-  const [serviceTypes, setServiceTypes] = useState([]);
-  const [serviceProviders, setServiceProviders] = useState([]);
-  const [plans, setPlans] = useState([]);
-
-  const [selectedServices, setSelectedServices] = useState([]);
-  const [selectedProviders, setSelectedProviders] = useState([]);
-  const [selectedPlans, setSelectedPlans] = useState([]);
+  const { isUserLoading } = useSelector((state) => state?.user);
 
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -50,14 +35,11 @@ export const CreateConsultant = () => {
   // ------------------------------------------------Functions----------------------------------------
   // createUserHandler -- handler to create the user
   const createUserHandler = async (data) => {
-    console.log(data);
 
     try {
       const {
         data: { consultantId, order },
       } = await instance.post(`/consultant`, data);
-      console.log(consultantId, order);
-
       const options = {
         key: import.meta.env.VITE_APP_RAZORPAY_KEY,
         amount: order.amount,
@@ -80,11 +62,7 @@ export const CreateConsultant = () => {
               email: "",
               fullName: "",
               password: "",
-              plans: [],
-              serviceProviders: [],
-              services: [],
             });
-            setSelectedServices([]);
             navigate("/login");
           } catch (error) {
             console.error("Error verifying payment:", error);
@@ -109,105 +87,6 @@ export const CreateConsultant = () => {
     }
   };
 
-    // ------------------------------------------------useEffect----------------------------------------
-    // useEffect(() => {
-    //   if (isUserCreated) {
-    //     dispatch(resetUserState(false));
-    //     reset();
-    //     setRole("");
-    //     dispatch(getUsers());
-    //   }
-    // }, [isUserCreated]);
-
-  // useEffect(() => {
-  //   console.log(
-  //     servicePlanData.filter(
-  //       (item) =>
-  //         selectedServices.some(
-  //           (service) => service.value === item?.serviceType?._id
-  //         ) &&
-  //         selectedProviders.some(
-  //           (provider) => provider.value === item?.serviceProvider?._id
-  //         )
-  //     )
-  //   );
-  //   const uniqueServicePlans = servicePlanData
-  //     .filter(
-  //       (item) =>
-  //         selectedServices.some(
-  //           (service) => service.value === item?.serviceType?._id
-  //         ) &&
-  //         selectedProviders.some(
-  //           (provider) => provider.value === item?.serviceProvider?._id
-  //         )
-  //     )
-  //     .map((item) => ({
-  //       label: item?.planName,
-  //       value: item?._id,
-  //     }));
-  //   setPlans(uniqueServicePlans);
-
-  //   setSelectedPlans((prevSelectedPlans) =>
-  //     prevSelectedPlans.filter((plan) =>
-  //       uniqueServicePlans.some(
-  //         (servicePlan) => servicePlan.value === plan.value
-  //       )
-  //     )
-  //   );
-  // }, [selectedProviders, serviceProviders]);
-
-  // useEffect(() => {
-  //   console.log(servicePlanData);
-  //   const uniqueServiceProviders = servicePlanData
-  //     .filter((item) =>
-  //       selectedServices.some(
-  //         (service) => service.value === item?.serviceType?._id
-  //       )
-  //     )
-  //     .filter(
-  //       (item, index, self) =>
-  //         index ===
-  //         self.findIndex(
-  //           (obj) => obj?.serviceProvider?._id === item?.serviceProvider?._id
-  //         )
-  //     )
-  //     .map((item) => ({
-  //       label: item.serviceProvider?.serviceProviderName,
-  //       value: item.serviceProvider?._id,
-  //     }));
-
-  //   console.log(uniqueServiceProviders);
-  //   setServiceProviders(uniqueServiceProviders);
-
-  //   setSelectedProviders((prevSelectedProviders) =>
-  //     prevSelectedProviders.filter((Provider) =>
-  //       uniqueServiceProviders.some(
-  //         (serviceProvider) => serviceProvider.value === Provider.value
-  //       )
-  //     )
-  //   );
-  // }, [selectedServices]);
-
-  // useEffect(() => {
-  //   const uniqueServiceTypes = servicePlanData
-  //     .filter(
-  //       (item, index, self) =>
-  //         index ===
-  //         self.findIndex(
-  //           (obj) => obj?.serviceType?._id === item?.serviceType?._id
-  //         )
-  //     )
-  //     .map((item) => ({
-  //       label: item.serviceType.serviceType,
-  //       value: item.serviceType._id,
-  //     }));
-
-  //   setServiceTypes(uniqueServiceTypes);
-  // }, [servicePlanData]);
-
-  // useEffect(() => {
-  //   dispatch(getAllServicePlans());
-  // }, []);
 
   // -------------------------------------------------------------------------------------------------
   return (

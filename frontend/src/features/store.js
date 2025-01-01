@@ -14,6 +14,9 @@ import service from "./slices/Service/service";
 import serviceProvider from "./slices/Service/serviceProvider";
 import servicePlan from "./slices/Service/servicePlan";
 import brochure from "./slices/brochure";
+import customisedForm from "./slices/customisedForm";
+import { customerReducer } from "./slices/Auth/customer";
+import customerProfile from "./slices/customerProfile";
 
 // ------------------------------------------------------------------------------------------------------------
 
@@ -37,13 +40,16 @@ const persistConfig = {
 const reducers = combineReducers({
   auth: authReducer,
   user: userReducer,
+  customer:customerReducer,
   enquiry: enquiryReducer,
   insurance: insuranceReducer,
   service,
   serviceProvider,
   servicePlan,
   motorenquiry: motorenquiryReducer,
-  brochure
+  brochure,
+  customisedForm,
+  customerProfile
 });
 
 const rootReducer = (state, action) => {

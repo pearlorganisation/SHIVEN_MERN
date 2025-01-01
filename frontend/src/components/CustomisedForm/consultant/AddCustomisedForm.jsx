@@ -1,37 +1,49 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { CircleLoader } from "react-spinners";
+import { addCustomisedForm } from "../../../features/actions/customisedForm";
+import { useDispatch, useSelector } from "react-redux";
 
 const AddCustomisedForm = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+  const { isLoading } = useSelector((state) => state.customisedForm);
   const [isDisabled, setIsDisabled] = useState(false);
   const [inputType, setInputType] = useState("url"); // State to track input type
+  const [pdfFile, setPdfFile] = useState(null); // State to store PDF file
 
   const {
     register,
     formState: { errors },
     handleSubmit,
-    reset,
-    setFocus,
   } = useForm();
 
+  // Handle form submission
   const onSubmit = (data) => {
-    setIsLoading(true); // Simulate loading
-    setTimeout(() => {
-      console.log(data);
-      setIsLoading(false); // Stop loading after submission
-    }, 2000); // Simulate form processing delay
+    const formData = new FormData();
+
+    formData.append("name", data.name);
+
+    if (inputType === "url") {
+      formData.append("url", data.url);
+    } else if (inputType === "file" && pdfFile) {
+      formData.append("pdf", pdfFile);
+    }
+
+    dispatch(addCustomisedForm(formData));
   };
 
-  const handleEditClick = () => {
-    setIsDisabled(false); // Enable the input fields
-    setTimeout(() => {
-      setFocus("name"); // Focus on the first field after enabling
-    }, 10); // Delay to allow the re-render to complete
+  // Handle file input change
+  const handlePdf = (event) => {
+    const { files } = event.target;
+    if (files && files[0]) {
+      setPdfFile(files[0]);
+    }
   };
 
+  // Handle radio button changes
   const handleInputTypeChange = (event) => {
-    setInputType(event.target.value); // Update the input type
+    setInputType(event.target.value);
+    setPdfFile(null); // Clear previous PDF file when switching input type
   };
 
   return (
@@ -39,7 +51,7 @@ const AddCustomisedForm = () => {
       <div className="w-full p-4 m-0 sm:m-5 bg-white shadow sm:rounded-lg">
         <div className="w-full flex justify-between">
           <h1 className="font-bold text-blue-600 text-sm sm:text-lg md:text-xl">
-            Add Customised form
+            Add Customised Form
           </h1>
         </div>
 
@@ -49,6 +61,7 @@ const AddCustomisedForm = () => {
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="grid grid-cols-1 gap-2">
+              {/* Form Name Input */}
               <div className="flex flex-col gap-2">
                 <input
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
@@ -69,6 +82,7 @@ const AddCustomisedForm = () => {
                 )}
               </div>
 
+              {/* Radio Buttons for Input Type */}
               <div className="flex flex-col gap-2">
                 <label className="font-medium">Select Input Type:</label>
                 <div className="flex gap-4">
@@ -89,11 +103,12 @@ const AddCustomisedForm = () => {
                       checked={inputType === "file"}
                       onChange={handleInputTypeChange}
                     />
-                    <label>Upload a file</label>
+                    <label>Upload a File</label>
                   </div>
                 </div>
               </div>
 
+              {/* URL Input */}
               {inputType === "url" && (
                 <div className="flex flex-col gap-2">
                   <input
@@ -116,36 +131,33 @@ const AddCustomisedForm = () => {
                 </div>
               )}
 
+              {/* File Input */}
               {inputType === "file" && (
                 <div className="flex flex-col gap-2">
                   <input
                     className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                     type="file"
-                    placeholder="Upload File"
+                    accept=".pdf"
                     disabled={isDisabled}
-                    {...register("file", {
-                      required: {
-                        value: true,
-                        message: "File is a required field",
-                      },
-                    })}
+                    onChange={handlePdf}
                   />
-                  {errors.file && (
+                  {errors.pdf && (
                     <p className="text-red-500 mt-1 text-xs">
-                      {errors?.file?.message || "File is a required field"}
+                      {errors?.pdf?.message || "PDF File is a required field"}
                     </p>
                   )}
                 </div>
               )}
             </div>
 
+            {/* Submit Button */}
             <button
               className="mt-5 tracking-wide text-base font-semibold bg-green-400 text-white w-full md:w-[200px] py-3 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
               type="submit"
               disabled={isLoading}
             >
               {isLoading ? (
-                <CircleLoader />
+                <CircleLoader size={20} color="#fff" />
               ) : (
                 <span className="ml-3">Save</span>
               )}

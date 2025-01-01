@@ -43,3 +43,39 @@ export const logout = createAsyncThunk(
     }
   }
 );
+
+export const forgotPassword = createAsyncThunk(
+  "auth/forgotPassword",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await instance.post("/auth/forgotPassword",{payload});
+      return response;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const verifyForgotPassword = createAsyncThunk(
+  "auth/verifyForgotPasswordn",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await instance.post("/auth/verifyForgotPassword",{payload});
+      return response;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const changePassword = createAsyncThunk(
+  "auth/changePassword",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await instance.post("/auth/changePassword",{payload});
+      return response;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);

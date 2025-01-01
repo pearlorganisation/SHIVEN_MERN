@@ -6,107 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearReduxStoreData } from "../../features/slices/Auth/authSlice";
 //---------------------------------------------------------------------------------------------------
 
-const policiesNavs = [
-  {
-    label: "Life Insurance",
-    path: "/lifeinsurance",
-  },
-  {
-    label: "General Insurance",
-    path: "/generalInsurance",
-  },
-  {
-    label: "Motor Insurance",
-    path: "/motorInsurance",
-  },
-  {
-    label: "Mutual Funds",
-    path: "/mutualFunds",
-  },
-  {
-    label: "Loans",
-    path: "/loans",
-  },
-];
-
-const financialConsultantNavs = [
-  {
-    label: "Dashboard",
-    path: "/dashboard",
-  },
-  {
-    label: "Customised Forms",
-    path: "/customisedForms",
-  },
-  {
-    label: "Centralised Database",
-    path: "/centralisedDatabase",
-  },
-  {
-    label: "CRM / Enquiry / Leads Management",
-    path: "/crmEnquireLeadsManagement",
-  },
-  {
-    label: "Quotation / Invoices Management",
-    path: "/quotationInvoicesManagement",
-  },
-  {
-    label: "Social Media Posts",
-    path: "/socialMediaPosts",
-  },
-  {
-    label: "Contact Management",
-    path: "/contactManagement",
-  },
-  {
-    label: "Bulk Messaging",
-    path: "/bulkMessaging",
-  },
-  {
-    label: "Analytics & Reports",
-    path: "/analyticsReports",
-  },
-  {
-    label: "Team Management",
-    path: "/teamManagement",
-  },
-  {
-    label: "Accounting",
-    path: "/accounting",
-  },
-];
-
-const featureForCustomer = [
-  {
-    label: "Dashboard",
-    path: "/lifeInsurance",
-  },
-  {
-    label: "Investment Valuation",
-    path: "/generalInsurance",
-  },
-  {
-    label: "Files / Folder Management",
-    path: "/motorInsurance",
-  },
-  {
-    label: "Customer / Family Profile ",
-    path: "/mutualFunds",
-  },
-  {
-    label: "Schedule Management",
-    path: "/loans",
-  },
-  {
-    label: "Purchase / Renewal / Invoices",
-    path: "/purchaseRenewalInvoices",
-  },
-  {
-    label: "Calculator Funds / Interest / Premium",
-    path: "/calculatorInterestPremium",
-  },
-];
-
 const Header = () => {
   // -------------------------------------------States------------------------------------------------
   //  -------------------------------------------------------------------------------------------------
@@ -132,29 +31,6 @@ const Header = () => {
     {
       title: "About Us",
       path: "javascript:void(0)",
-      isDrapdown: false,
-    },
-    {
-      title: "Service",
-      path: "javascript:void(0)",
-      isDrapdown: true,
-      navs: policiesNavs,
-    },
-    {
-      title: "Features for Financial Consultant",
-      path: "javascript:void(0)",
-      isDrapdown: true,
-      navs: financialConsultantNavs,
-    },
-    {
-      title: "Features for Customer",
-      path: "javascript:void(0)",
-      isDrapdown: true,
-      navs: featureForCustomer,
-    },
-    {
-      title: "What's new",
-      path: "/whatsnew",
       isDrapdown: false,
     },
     { title: "Contact Us", path: "javascript:void(0)", isDrapdown: false },

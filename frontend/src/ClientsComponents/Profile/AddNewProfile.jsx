@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-// import defaultPhoto from "/placeholder.jpg";
 import { useNavigate } from "react-router-dom";
-// import { MdOutlineInsertPhoto } from "react-icons/md";
 import { CircleLoader } from "react-spinners";
+import { addCustomerProfile } from "../../features/actions/customerProfile";
+import { useEffect } from "react";
 
 const AddNewProfile = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const { loggedInUserData } = useSelector((state) => state.auth);
+  const { customerProfileData, isLoading } = useSelector((state) => state.customerProfile);
   const [showBankDetails, setShowBankDetails] = useState(false);
   const [showCreditCard, setShowCreditCard] = useState(false);
 
@@ -21,28 +22,31 @@ const AddNewProfile = () => {
     control,
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    let finalData  ;
+
+    if(!showBankDetails && !showCreditCard){
+      let {creditCardDetails,bankDetails,...rest} = data;
+     finalData = rest
+    }else
+{    if(!showBankDetails){
+     let {bankDetails,...rest} = data;
+     finalData = rest
+    }
+    if(!showCreditCard){
+     let {creditCardDetails,...rest} = data;
+     finalData = rest
+    }
+  }
+
+    dispatch(addCustomerProfile({customerId:loggedInUserData?._id ,...finalData}))
   };
 
-  // const [photo, setPhoto] = useState("");
-
-  // const handlePhotoChange = (e) => {
-  //   const selectedPhoto = e.target.files[0];
-
-  //   if (selectedPhoto) {
-  //     const reader = new FileReader();
-  //     reader.readAsDataURL(selectedPhoto);
-  //     reader.onloadend = () => {
-  //       setPhoto(reader.result);
-  //     };
-  //   }
-  // };
-
-  //   useEffect(() => {
-  //     if (dipData?.status) {
-  //       navigate("/dip");
-  //     }
-  //   }, [dipData]);
+useEffect(()=>{
+  if(customerProfileData?.status){
+    navigate("/profile")
+  }
+},[customerProfileData])
+  
 
   return (
     <div className="max-w-4xl mx-auto my-5 overflow-hidden rounded-2xl bg-white shadow-lg ">
@@ -76,17 +80,22 @@ const AddNewProfile = () => {
             <input
               className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
               type="text"
+               maxLength={10}
               placeholder="Mobile No."
-              {...register("mobile", {
+              {...register("mobile1", {
                 required: {
                   value: true,
                   message: "Mobile No. is a required field",
                 },
+                 pattern: {
+                  value: /^[0-9]{10}$/,
+                  message: "Must be a number",
+                },
               })}
             />
-            {errors.mobile && (
+            {errors.mobile1 && (
               <p className="text-red-500 mt-1 text-xs">
-                {errors?.mobile?.message || "Mobile is a required field"}
+                {errors?.mobile1?.message || "Mobile is a required field"}
               </p>
             )}
           </div>
@@ -94,17 +103,18 @@ const AddNewProfile = () => {
             <input
               className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
               type="text"
+               maxLength={10}
               placeholder="Mobile No. 2"
               {...register("mobile2", {
-                required: {
-                  value: true,
-                  message: "Mobile No. 2 is a required field",
+                 pattern: {
+                  value: /^[0-9]{10}$/,
+                  message: "Must be a number",
                 },
               })}
             />
-            {errors.mobile2 && (
+           {errors.mobile2 && (
               <p className="text-red-500 mt-1 text-xs">
-                {errors?.mobile2?.message || "Mobile No. 2 is a required field"}
+                {errors?.mobile2?.message }
               </p>
             )}
           </div>
@@ -128,44 +138,42 @@ const AddNewProfile = () => {
             )}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 col-span-2 gap-2">
-            <div className="col-span-1">
-              <div className="flex flex-col gap-2">
-                <input
-                  className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                  type="date"
-                  placeholder="DOB"
-                  {...register("dob", {
-                    required: {
-                      value: true,
-                      message: "DOB is a required field",
-                    },
-                  })}
-                />
+            <div className="col-span-1 space-y-5">
+            <div class="relative">
+    <input id="floating_outlined" class="block px-2.5 pb-2.5 pt-4 mt-5 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+    type="date"
+    placeholder="DOB"
+    {...register("dob", {
+      required: {
+        value: true,
+        message: "DOB is a required field",
+      },
+    })} />
+
+    <label for="floating_outlined" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Date of Birth</label>
+</div>
+         
                 {errors.dob && (
                   <p className="text-red-500 mt-1 text-xs">
                     {errors?.dob?.message || "DOB is a required field"}
                   </p>
                 )}
-              </div>
-              <div className="flex flex-col gap-2">
-                <input
-                  className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                  type="date"
-                  placeholder="Anniversary"
-                  {...register("anniversary", {
-                    required: {
-                      value: true,
-                      message: "Anniversary is a required field",
-                    },
-                  })}
-                />
+            <div class="relative">
+    <input id="floating_outlined" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+    type="date"
+    placeholder="Marriage Anniversary"
+    {...register("anniversary")} />
+
+    <label for="floating_outlined" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Date of Marriage Anniversary</label>
+</div>
+         
                 {errors.anniversary && (
                   <p className="text-red-500 mt-1 text-xs">
-                    {errors?.anniversary?.message ||
-                      "Anniversary is a required field"}
+                    {errors?.anniversary?.message || "DOB is a required field"}
                   </p>
                 )}
-              </div>
+     
+     
             </div>
             <div className="flex flex-col gap-2 col-span-1 h-full">
               <textarea
@@ -230,16 +238,21 @@ const AddNewProfile = () => {
               className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
               type="text"
               placeholder="PIN Code"
-              {...register("pinCode", {
+               maxLength={6}
+              {...register("pincode", {
                 required: {
                   value: true,
-                  message: "PIN Code is a required field",
+                  message: "PIN Code is a required field",   
+                },
+                pattern: {
+                  value: /^[0-9]{6}$/,
+                  message: "PIN Code must be a 6-digit number",
                 },
               })}
             />
-            {errors.pinCode && (
+            {errors.pincode && (
               <p className="text-red-500 mt-1 text-xs">
-                {errors?.pinCode?.message || "PIN Code is a required field"}
+                {errors?.pincode?.message || "PIN Code is a required field"}
               </p>
             )}
           </div>
@@ -248,74 +261,91 @@ const AddNewProfile = () => {
             <input
               className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
               type="text"
-              placeholder="Adhaar No."
-              {...register("adhaarNo", {
+              maxLength={12} 
+              placeholder="Aadhaar No."
+              {...register("aadhaarNumber", {
                 required: {
                   value: true,
-                  message: "Adhaar No. is a required field",
+                  message: "Aadhaar No. is a required field",
+                },
+                pattern: {
+                  value: /^[0-9]{12}$/,
+                  message: "Aadhaar No. must be a 12-digit number",
                 },
               })}
             />
-            {errors.adhaarNo && (
+            {errors.aadhaarNumber && (
               <p className="text-red-500 mt-1 text-xs">
-                {errors?.adhaarNo?.message || "Adhaar No. is a required field"}
+                {errors?.aadhaarNumber?.message }
               </p>
             )}
           </div>
 
           <div className="flex flex-col gap-2">
-            <input
-              className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-              type="text"
-              placeholder="PAN No."
-              {...register("panNo", {
-                required: {
-                  value: true,
-                  message: "PAN No. is a required field",
-                },
-              })}
-            />
-            {errors.panNo && (
+          <input
+  className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+  type="text"
+  placeholder="PAN No."
+  maxLength={10}
+  {...register("panNumber", {
+    pattern: {
+      value: /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/,
+      message: "PAN No. must be in the format: ABCDE1234F",
+    },
+  })}
+  onInput={(e) => {
+    e.target.value = e.target.value.toUpperCase();
+  }}
+/>
+
+            {errors.panNumber && (
               <p className="text-red-500 mt-1 text-xs">
-                {errors?.panNo?.message || "PAN No. is a required field"}
+                {errors?.panNumber?.message }
               </p>
             )}
           </div>
           <div className="flex flex-col gap-2">
             <input
+             onInput={(e) => {
+              e.target.value = e.target.value.toUpperCase();
+            }}
               className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
               type="text"
               placeholder="Driving License No."
-              {...register("drivingLicenseNo", {
-                required: {
-                  value: true,
-                  message: "Driving License No. is a required field",
-                },
+               maxLength={16}
+              {...register("drivingLicenseNumber", {
+                 pattern: {
+      value: /^[A-Z0-9]{16}$/,
+      message: "Driving License No. must be exactly 16 alphanumeric characters",
+    },
               })}
             />
-            {errors.drivingLicenseNo && (
+            {errors.drivingLicenseNumber && (
               <p className="text-red-500 mt-1 text-xs">
-                {errors?.drivingLicenseNo?.message ||
-                  "Driving License No. is a required field"}
+                {errors?.drivingLicenseNumber?.message}
               </p>
             )}
           </div>
           <div className="flex flex-col gap-2">
-            <input
-              className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-              type="text"
-              placeholder="Passport No."
-              {...register("passportNo", {
-                required: {
-                  value: true,
-                  message: "Passport No. is a required field",
-                },
-              })}
-            />
-            {errors.passportNo && (
+          <input
+  onInput={(e) => {
+    e.target.value = e.target.value.toUpperCase();
+  }}
+  className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+  type="text"
+  placeholder="Passport No."
+  maxLength={9}
+  {...register("passportNumber", {
+    pattern: {
+      value: /^[A-Z0-9]{8,9}$/,
+      message: "Passport No. must be 8 to 9 alphanumeric uppercase characters",
+    },
+  })}
+/>
+
+            {errors.passportNumber && (
               <p className="text-red-500 mt-1 text-xs">
-                {errors?.passportNo?.message ||
-                  "Passport No. is a required field"}
+                {errors?.passportNumber?.message}
               </p>
             )}
           </div>
@@ -347,18 +377,9 @@ const AddNewProfile = () => {
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="text"
                   placeholder="Name"
-                  {...register("name", {
-                    required: {
-                      value: true,
-                      message: "Name is a required field",
-                    },
-                  })}
+                  {...register("bankDetails.name")}
                 />
-                {errors.name && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.name?.message || "Name is a required field"}
-                  </p>
-                )}
+
               </div>
 
               <div className="flex flex-col gap-2">
@@ -366,18 +387,9 @@ const AddNewProfile = () => {
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="text"
                   placeholder="Bank"
-                  {...register("bank", {
-                    required: {
-                      value: true,
-                      message: "Bank is a required field",
-                    },
-                  })}
+                  {...register("bankDetails.bank")}
                 />
-                {errors.bank && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.bank?.message || "Bank is a required field"}
-                  </p>
-                )}
+               
               </div>
 
               <div className="flex flex-col gap-2">
@@ -385,19 +397,9 @@ const AddNewProfile = () => {
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="text"
                   placeholder="Savings / Current"
-                  {...register("savingsCurrent", {
-                    required: {
-                      value: true,
-                      message: "Savings / Current is a required field",
-                    },
-                  })}
+                  {...register("bankDetails.savingsCurrent")}
                 />
-                {errors.savingsCurrent && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.savingsCurrent?.message ||
-                      "Savings / Current is a required field"}
-                  </p>
-                )}
+               
               </div>
 
               <div className="flex flex-col gap-2">
@@ -405,19 +407,9 @@ const AddNewProfile = () => {
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="text"
                   placeholder="Account Number"
-                  {...register("accountNumber", {
-                    required: {
-                      value: true,
-                      message: "Account Number is a required field",
-                    },
-                  })}
+                  {...register("bankDetails.accountNumber")}
                 />
-                {errors.accountNumber && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.accountNumber?.message ||
-                      "Account Number is a required field"}
-                  </p>
-                )}
+
               </div>
 
               <div className="flex flex-col gap-2">
@@ -425,18 +417,9 @@ const AddNewProfile = () => {
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="text"
                   placeholder="URL"
-                  {...register("url", {
-                    required: {
-                      value: true,
-                      message: "URL is a required field",
-                    },
-                  })}
+                  {...register("bankDetails.url")}
                 />
-                {errors.url && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.url?.message || "URL is a required field"}
-                  </p>
-                )}
+                
               </div>
 
               <div className="flex flex-col gap-2">
@@ -444,18 +427,9 @@ const AddNewProfile = () => {
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="text"
                   placeholder="User ID"
-                  {...register("userId", {
-                    required: {
-                      value: true,
-                      message: "User ID is a required field",
-                    },
-                  })}
+                  {...register("bankDetails.userId")}
                 />
-                {errors.userId && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.userId?.message || "User ID is a required field"}
-                  </p>
-                )}
+               
               </div>
 
               <div className="flex flex-col gap-2">
@@ -463,19 +437,9 @@ const AddNewProfile = () => {
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="password"
                   placeholder="Password"
-                  {...register("password", {
-                    required: {
-                      value: true,
-                      message: "Password is a required field",
-                    },
-                  })}
+                  {...register("bankDetails.password")}
                 />
-                {errors.password && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.password?.message ||
-                      "Password is a required field"}
-                  </p>
-                )}
+            
               </div>
 
               <div className="flex flex-col gap-2">
@@ -483,38 +447,18 @@ const AddNewProfile = () => {
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="password"
                   placeholder="Transaction Password"
-                  {...register("transactionPassword", {
-                    required: {
-                      value: true,
-                      message: "Transaction Password is a required field",
-                    },
-                  })}
+                  {...register("bankDetails.transactionPassword")}
                 />
-                {errors.transactionPassword && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.transactionPassword?.message ||
-                      "Transaction Password is a required field"}
-                  </p>
-                )}
+              
               </div>
               <div className="flex flex-col gap-2">
                 <input
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="text"
                   placeholder="Debit Card No."
-                  {...register("debitCardNo", {
-                    required: {
-                      value: true,
-                      message: "Debit Card No. is a required field",
-                    },
-                  })}
+                  {...register("bankDetails.debitCardNo")}
                 />
-                {errors.debitCardNo && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.debitCardNo?.message ||
-                      "Debit Card No. is a required field"}
-                  </p>
-                )}
+               
               </div>
 
               <div className="flex flex-col gap-2">
@@ -522,91 +466,45 @@ const AddNewProfile = () => {
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="text"
                   placeholder="Debit Card PIN"
-                  {...register("debitCardPin", {
-                    required: {
-                      value: true,
-                      message: "Debit Card PIN is a required field",
-                    },
-                  })}
+                  {...register("bankDetails.debitCardPin")}
                 />
-                {errors.debitCardPin && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.debitCardPin?.message ||
-                      "Debit Card PIN is a required field"}
-                  </p>
-                )}
+                
               </div>
               <div className="flex flex-col gap-2">
                 <input
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="text"
                   placeholder="IFSC"
-                  {...register("ifsc", {
-                    required: {
-                      value: true,
-                      message: "IFSC is a required field",
-                    },
-                  })}
+                  {...register("bankDetails.ifsc")}
                 />
-                {errors.ifsc && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.ifsc?.message || "IFSC is a required field"}
-                  </p>
-                )}
+               
               </div>
               <div className="flex flex-col gap-2">
                 <input
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="text"
                   placeholder="CIF"
-                  {...register("cif", {
-                    required: {
-                      value: true,
-                      message: "CIF is a required field",
-                    },
-                  })}
+                  {...register("bankDetails.cif")}
                 />
-                {errors.cif && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.cif?.message || "CIF is a required field"}
-                  </p>
-                )}
+                
               </div>
               <div className="flex flex-col gap-2">
                 <input
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="text"
                   placeholder="Nominee"
-                  {...register("nominee", {
-                    required: {
-                      value: true,
-                      message: "Nominee is a required field",
-                    },
-                  })}
+                  {...register("bankDetails.nominee")}
                 />
-                {errors.nominee && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.nominee?.message || "Nominee is a required field"}
-                  </p>
-                )}
+                
               </div>
               <div className="flex flex-col gap-2">
                 <input
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="email"
                   placeholder="E-Mail"
-                  {...register("bankEmail", {
-                    required: {
-                      value: true,
-                      message: "E-Mail is a required field",
-                    },
-                  })}
+                  {...register("bankDetails.bankEmail")}
                 />
-                {errors.bankEmail && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.bankEmail?.message || "E-Mail is a required field"}
-                  </p>
-                )}
+               
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 col-span-2 gap-2">
@@ -616,19 +514,9 @@ const AddNewProfile = () => {
                       className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                       type="text"
                       placeholder="Mobile No"
-                      {...register("bankMobile", {
-                        required: {
-                          value: true,
-                          message: "Mobile No is a required field",
-                        },
-                      })}
+                      {...register("bankDetails.bankMobile")}
                     />
-                    {errors.bankMobile && (
-                      <p className="text-red-500 mt-1 text-xs">
-                        {errors?.bankMobile?.message ||
-                          "Mobile No is a required field"}
-                      </p>
-                    )}
+                  
                   </div>
 
                   <div className="flex flex-col gap-2">
@@ -636,19 +524,9 @@ const AddNewProfile = () => {
                       className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                       type="text"
                       placeholder="Debit Card No."
-                      {...register("debitCardNo", {
-                        required: {
-                          value: true,
-                          message: "Debit Card No. is a required field",
-                        },
-                      })}
+                      {...register("bankDetails.debitCardNo")}
                     />
-                    {errors.debitCardNo && (
-                      <p className="text-red-500 mt-1 text-xs">
-                        {errors?.debitCardNo?.message ||
-                          "Debit Card No. is a required field"}
-                      </p>
-                    )}
+                    
                   </div>
                 </div>
                 <div className="flex flex-col gap-2 col-span-1 h-full">
@@ -656,19 +534,9 @@ const AddNewProfile = () => {
                     className="w-full h-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5 resize-none"
                     type="text"
                     placeholder="Bank Address"
-                    {...register("bankAddress", {
-                      required: {
-                        value: true,
-                        message: "Bank Address is a required field",
-                      },
-                    })}
+                    {...register("bankDetails.bankAddress")}
                   />
-                  {errors.bankAddress && (
-                    <p className="text-red-500 mt-1 text-xs">
-                      {errors?.bankAddress?.message ||
-                        "Bank Address is a required field"}
-                    </p>
-                  )}
+                
                 </div>
               </div>
             </div>
@@ -698,42 +566,15 @@ const AddNewProfile = () => {
               Credit Card Details:
             </div>
             <div className="grid grid-cols-2 gap-2">
-              {/* <div className="flex flex-col gap-2">
-                <input
-                  className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                  type="text"
-                  placeholder="Name"
-                  {...register("name", {
-                    required: {
-                      value: true,
-                      message: "Name is a required field",
-                    },
-                  })}
-                />
-                {errors.name && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.name?.message || "Name is a required field"}
-                  </p>
-                )}
-              </div> */}
 
               <div className="flex flex-col gap-2">
                 <input
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="text"
                   placeholder="Bank"
-                  {...register("bank", {
-                    required: {
-                      value: true,
-                      message: "Bank is a required field",
-                    },
-                  })}
+                  {...register("creditCardDetails.bank")}
                 />
-                {errors.bank && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.bank?.message || "Bank is a required field"}
-                  </p>
-                )}
+        
               </div>
 
               <div className="flex flex-col gap-2">
@@ -741,19 +582,9 @@ const AddNewProfile = () => {
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="text"
                   placeholder="Savings / Current"
-                  {...register("savingsCurrent", {
-                    required: {
-                      value: true,
-                      message: "Savings / Current is a required field",
-                    },
-                  })}
+                  {...register("creditCardDetails.savingsCurrent")}
                 />
-                {errors.savingsCurrent && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.savingsCurrent?.message ||
-                      "Savings / Current is a required field"}
-                  </p>
-                )}
+      
               </div>
 
               <div className="flex flex-col gap-2">
@@ -761,19 +592,9 @@ const AddNewProfile = () => {
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="text"
                   placeholder="Account Number"
-                  {...register("accountNumber", {
-                    required: {
-                      value: true,
-                      message: "Account Number is a required field",
-                    },
-                  })}
+                  {...register("creditCardDetails.accountNumber")}
                 />
-                {errors.accountNumber && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.accountNumber?.message ||
-                      "Account Number is a required field"}
-                  </p>
-                )}
+    
               </div>
 
               <div className="flex flex-col gap-2">
@@ -781,18 +602,9 @@ const AddNewProfile = () => {
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="text"
                   placeholder="URL"
-                  {...register("url", {
-                    required: {
-                      value: true,
-                      message: "URL is a required field",
-                    },
-                  })}
+                  {...register("creditCardDetails.url")}
                 />
-                {errors.url && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.url?.message || "URL is a required field"}
-                  </p>
-                )}
+          
               </div>
 
               <div className="flex flex-col gap-2">
@@ -800,18 +612,9 @@ const AddNewProfile = () => {
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="text"
                   placeholder="User ID"
-                  {...register("userId", {
-                    required: {
-                      value: true,
-                      message: "User ID is a required field",
-                    },
-                  })}
+                  {...register("creditCardDetails.userId")}
                 />
-                {errors.userId && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.userId?.message || "User ID is a required field"}
-                  </p>
-                )}
+     
               </div>
 
               <div className="flex flex-col gap-2">
@@ -819,19 +622,9 @@ const AddNewProfile = () => {
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="password"
                   placeholder="Password"
-                  {...register("password", {
-                    required: {
-                      value: true,
-                      message: "Password is a required field",
-                    },
-                  })}
+                  {...register("creditCardDetails.password")}
                 />
-                {errors.password && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.password?.message ||
-                      "Password is a required field"}
-                  </p>
-                )}
+      
               </div>
 
               <div className="flex flex-col gap-2">
@@ -839,38 +632,18 @@ const AddNewProfile = () => {
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="password"
                   placeholder="Transaction Password"
-                  {...register("transactionPassword", {
-                    required: {
-                      value: true,
-                      message: "Transaction Password is a required field",
-                    },
-                  })}
+                  {...register("creditCardDetails.transactionPassword")}
                 />
-                {errors.transactionPassword && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.transactionPassword?.message ||
-                      "Transaction Password is a required field"}
-                  </p>
-                )}
+      
               </div>
               <div className="flex flex-col gap-2">
                 <input
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="text"
                   placeholder="Credit Card No."
-                  {...register("creditCardNo", {
-                    required: {
-                      value: true,
-                      message: "Credit Card No. is a required field",
-                    },
-                  })}
+                  {...register("creditCardDetails.creditCardNo")}
                 />
-                {errors.creditCardNo && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.creditCardNo?.message ||
-                      "Credit Card No. is a required field"}
-                  </p>
-                )}
+       
               </div>
 
               <div className="flex flex-col gap-2">
@@ -878,19 +651,9 @@ const AddNewProfile = () => {
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="text"
                   placeholder="Credit Card PIN"
-                  {...register("creditCardPin", {
-                    required: {
-                      value: true,
-                      message: "Credit Card PIN is a required field",
-                    },
-                  })}
+                  {...register("creditCardDetails.creditCardPin")}
                 />
-                {errors.creditCardPin && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.creditCardPin?.message ||
-                      "Credit Card PIN is a required field"}
-                  </p>
-                )}
+         
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 col-span-2 gap-2">
@@ -900,38 +663,18 @@ const AddNewProfile = () => {
                       className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                       type="email"
                       placeholder="E-Mail"
-                      {...register("bankEmail", {
-                        required: {
-                          value: true,
-                          message: "E-Mail is a required field",
-                        },
-                      })}
+                      {...register("creditCardDetails.bankEmail")}
                     />
-                    {errors.bankEmail && (
-                      <p className="text-red-500 mt-1 text-xs">
-                        {errors?.bankEmail?.message ||
-                          "E-Mail is a required field"}
-                      </p>
-                    )}
+                 
                   </div>
                   <div className="flex flex-col gap-2">
                     <input
                       className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                       type="text"
                       placeholder="Mobile No"
-                      {...register("bankMobile", {
-                        required: {
-                          value: true,
-                          message: "Mobile No is a required field",
-                        },
-                      })}
+                      {...register("creditCardDetails.bankMobile")}
                     />
-                    {errors.bankMobile && (
-                      <p className="text-red-500 mt-1 text-xs">
-                        {errors?.bankMobile?.message ||
-                          "Mobile No is a required field"}
-                      </p>
-                    )}
+            
                   </div>
                 </div>
                 <div className="flex flex-col gap-2 col-span-1 h-full">
@@ -939,19 +682,9 @@ const AddNewProfile = () => {
                     className="w-full h-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5 resize-none"
                     type="text"
                     placeholder="Bank Address"
-                    {...register("bankAddress", {
-                      required: {
-                        value: true,
-                        message: "Bank Address is a required field",
-                      },
-                    })}
+                    {...register("creditCardDetails.bankAddress")}
                   />
-                  {errors.bankAddress && (
-                    <p className="text-red-500 mt-1 text-xs">
-                      {errors?.bankAddress?.message ||
-                        "Bank Address is a required field"}
-                    </p>
-                  )}
+    
                 </div>
               </div>
             </div>

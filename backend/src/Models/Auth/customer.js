@@ -3,8 +3,10 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 // -------------------------------------------------------------------------------------------------------------
 
-const consultantSchema = new mongoose.Schema(
-  {
+const customerSchema = new mongoose.Schema(
+  { consultantId:{
+    type:mongoose.Types.ObjectId
+      },
     fullName: {
       type: String,
       required: true,
@@ -18,32 +20,22 @@ const consultantSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    isVerified: {
-      type: Boolean,
-      default: false,
-    },
-    servicePlan:{
-      type:[mongoose.Types.ObjectId],
-      ref:"servicePlan"
-    },
-    razorpay_order_id: {
-      type: String,
-    },
-    razorpay_payment_id: {
-      type: String,
-    },
+    role:{
+      type:String,
+      default:"2"
+    }
   },
   {
     timestamps: true,
   }
 );
 
-consultantSchema.pre("save", async function (next) {
+customerSchema.pre("save", async function (next) {
   const salt = await bcrypt.genSalt(10);
 
   this.password = await bcrypt.hash(this.password, salt);
   next();
 });
 
-const consultantModel = mongoose.model("consultant", consultantSchema);
-export default consultantModel;
+const customerModel = mongoose.model("customer", customerSchema);
+export default customerModel;

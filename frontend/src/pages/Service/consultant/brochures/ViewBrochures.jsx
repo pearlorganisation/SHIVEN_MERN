@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { Stack, Skeleton } from "@mui/material";
-import { getAllTemplates } from "../../../../features/actions/brochure";
-import BrochureModal from "../../../../components/Modal/BrochureModal";
-import EditBrochure from "../../../../components/Modal/EditBrochure";
-import { clearIsCreated } from "../../../../features/slices/brochure";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Stack, Skeleton } from '@mui/material';
+import { getAllTemplates } from '../../../../features/actions/brochure';
+import BrochureModal from '../../../../components/Modal/BrochureModal';
+import EditBrochure from '../../../../components/Modal/EditBrochure';
+import { clearIsCreated } from '../../../../features/slices/brochure';
 import { MdDelete } from "react-icons/md";
-import Delete from "../../../../components/delete";
+import Delete from '../../../../components/delete';
 
 const ViewBrochures = () => {
   const dispatch = useDispatch();
@@ -15,32 +14,37 @@ const ViewBrochures = () => {
   const { loggedInUserData } = useSelector((state) => state.auth);
 
   const [showViewModal, setShowViewModal] = useState(false);
-
   const [showViewModal2, setShowViewModal2] = useState(false);
-
   const [viewData2, setViewData2] = useState();
   const [deleteModal, setDeleteModal] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
 
   const handleViewModal = () => {
     setShowViewModal(true);
   };
+
   const handleViewModal2 = (itemData) => {
     setShowViewModal2(true);
     setViewData2(itemData);
   };
 
-  useEffect(() => {
-    dispatch(getAllTemplates());
-    dispatch(clearIsCreated());
-  }, []);
+  const handleDeleteConfirm = (id) => {
+    setDeleteModal(true);
+    setDeleteId(id);
+  };
 
-  const handleDelete = (id) => {
-console.log("id",id)
+  const handleDelete = () => {
+    dispatch(clearIsCreated(deleteId));
     setDeleteModal(false);
   };
 
+  useEffect(() => {
+    dispatch(getAllTemplates());
+    dispatch(clearIsCreated());
+  }, [dispatch]);
+
   return (
-    <div className="userContainer p-10 ">
+    <div className="userContainer p-10">
       <div className="title p-1">
         <h4 className="font-bold text-blue-500 text-sm sm:text-md md:text-lg">
           Brochures Templates
@@ -85,22 +89,14 @@ console.log("id",id)
                     className="rounded-lg w-auto max-w-[450px] h-[300px] object-cover"
                     onClick={() => handleViewModal2(item?.template?.secure_url)}
                   />
-
                   <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button onClick={() =>{
-                      setDeleteModal(true)
-                      }}>
+                    <button
+                      onClick={() => handleDeleteConfirm(item?._id)}
+                    >
                       <MdDelete
                         size={40}
                         className="bg-red-500 text-white px-3 py-1 rounded-full hover:bg-red-600 transition-colors"
-               
                       />
-                      {deleteModal && (
-                        <Delete
-                        setModal={setDeleteModal}
-                        handleDelete={handleDelete}
-                        />
-                      )}
                     </button>
                   </div>
                 </div>
@@ -112,6 +108,12 @@ console.log("id",id)
       {showViewModal && <BrochureModal setModal={setShowViewModal} />}
       {showViewModal2 && (
         <EditBrochure setModal={setShowViewModal2} viewData={viewData2} />
+      )}
+      {deleteModal && (
+        <Delete
+          setModal={setDeleteModal}
+          handleDelete={handleDelete}
+        />
       )}
     </div>
   );

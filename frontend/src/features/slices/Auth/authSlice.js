@@ -1,8 +1,8 @@
 // ----------------------------------------------Imports-----------------------------------------------------
 import { createSlice } from "@reduxjs/toolkit";
-import { login, logout, verifyLoginOtp } from "../../actions/Auth/authActions";
+import { changePassword, forgotPassword, login, logout, verifyForgotPassword, verifyLoginOtp } from "../../actions/Auth/authActions";
 import { toast } from "sonner";
-import { persistor } from "../../../main";
+
 //------------------------------------------------------------------------------------------------------------
 
 const initialState = {
@@ -12,19 +12,28 @@ const initialState = {
   errorMessage: "",
   isLoginOtpSent: false,
   isLoading: false,
+  response:{},
+  isForgotPasswordOtpSent:false,
+  isVerifiedOTP:false,
+  isPasswordChanged:false,
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    resetIsLoading: (state) => {
-      state.isLoading = false;
-    },
     resetLoginState: (state, action) => {
-      state.isLoginOtpSent = action.payload;
+      state.isLoading = false;
+      state.isLoginOtpSent = false
+      state.isForgotPasswordOtpSent= false
+      state.isVerifiedOTP=false
+      state.isPasswordChanged=false
     },
     clearReduxStoreData: (state, action) => {},
+     isUserLoggedInTrue : (state, action) => {
+      state.isUserLoggedIn = true,
+      state.isLoginOtpSent = false;
+     }
   },
   extraReducers: (builder) => {
     builder
@@ -32,14 +41,15 @@ const authSlice = createSlice({
       .addCase(login.pending, (state, action) => {
         state.isLoading = true;
         state.errorMessage = "";
-        state.isLoginOtpSent = false;
       })
       .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
         state.errorMessage = "";
-        state.loggedInUserData = action?.payload;
+        state.loggedInUserData = action?.payload?.data;
+        state.response = action?.payload;
         state.isLoginOtpSent = true;
         toast.success("OTP for verification sent successfully");
+     
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
@@ -58,7 +68,6 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.errorMessage = "";
         state.loggedInUserData = action?.payload.data;
-        console.log("Hey im from auth slice here is user's data and role",state.loggedInUserData);
         state.isUserLoggedIn = true;
         toast.success("Logged In successfully");
       })
@@ -74,21 +83,77 @@ const authSlice = createSlice({
         state.isLoading = true;
         state.errorMessage = "";
         state.isUserLoggedIn = false;
+        state.response ={}
       })
       .addCase(logout.fulfilled, (state, action) => {
         state.isLoading = false;
         state.errorMessage = "";
         state.isUserLoggedIn = false;
-        // persistor.purge();
+        state.response ={}
         toast.success("Logout successfully");
       })
       .addCase(logout.rejected, (state, action) => {
         state.isLoading = false;
         state.errorMessage = action?.payload;
         toast.error(action?.payload?.response?.data?.message || "Error!");
-      });
+        state.response ={}
+      })
+      .addCase(forgotPassword.pending, (state, action) => {
+        state.isLoading = true;
+        state.errorMessage = "";
+        state.isForgotPasswordOtpSent= false;
+      })
+      .addCase(forgotPassword.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = "";
+        state.isLoginOtpSent = false;
+        state.isForgotPasswordOtpSent= true;
+        toast.success("OTP for verification sent successfully");
+      })
+      .addCase(forgotPassword.rejected, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = action?.payload;
+        state.isForgotPasswordOtpSent= false
+        toast.error(action.payload.response.data.message);
+        console.log(state.errorMessage);
+      })
+      .addCase(verifyForgotPassword.pending, (state, action) => {
+        state.isLoading = true;
+        state.isVerifiedOTP = false;
+        state.errorMessage = "";
+      })
+      .addCase(verifyForgotPassword.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isVerifiedOTP = true;
+        state.errorMessage = "";
+        toast.success("OTP Verified Successfully");
+      })
+      .addCase(verifyForgotPassword.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isVerifiedOTP = false;
+        state.errorMessage = action?.payload;
+        toast.error(action?.payload?.response?.data?.message || "Error!");
+      })
+      .addCase(changePassword.pending, (state, action) => {
+        state.isLoading = true;
+        state.isPasswordChanged = false;
+        state.errorMessage = "";
+      })
+      .addCase(changePassword.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isVerifiedOTP = false;
+        state.isPasswordChanged = true;
+        state.errorMessage = "";
+        toast.success("Password Changed Successfully");
+      })
+      .addCase(changePassword.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isPasswordChanged = false;
+        state.errorMessage = action?.payload;
+        toast.error(action?.payload?.response?.data?.message || "Error!");
+      })
   },
 });
 
 export const authReducer = authSlice.reducer;
-export const { resetLoginState, clearReduxStoreData, resetIsLoading } = authSlice.actions;
+export const { resetLoginState, clearReduxStoreData ,isUserLoggedInTrue} = authSlice.actions;

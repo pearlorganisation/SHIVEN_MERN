@@ -19,6 +19,7 @@ const otpSchema = new mongoose.Schema({
   expiresAt: {
     type: Date,
     required: [true, "Otp Expiry Time is a required field"],
+    index: { expires: '20m' }, // Automatically delete after 20 minutes TTL (TIME TO LIVE)
   },
 });
 

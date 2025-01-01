@@ -104,7 +104,7 @@ export const updateConsultantStatus = asyncErrorHandler(async (req, res) => {
     });
   }  
 
-  const user = await userModel.create({role:1,...updateConsultant})
+  const user = await userModel.create({role:"1",...updateConsultant})
   sendAccountVerified(updateConsultant?.email);
 
   const consultans = await Consultant.find()
@@ -121,7 +121,7 @@ export const getConsultantWithPopulated= asyncErrorHandler(async(req,res)=>{
 
   const {id}= req?.params
 
-  const data = await userModel.findById(id).populate({
+  const data = await Consultant.findById(id).populate({
     path: "servicePlan",
     populate: [
       { path: "serviceType", model: "service" }, // Populate serviceType inside servicePlan
@@ -144,7 +144,7 @@ export const updateConsultant = asyncErrorHandler(async (req, res) => {
   const hashPassword = await bcrypt.hash(password, salt);
 
 
-  const updateConsultant = await Consultant.findByIdAndUpdate(id, {
+  const updateConsultant = await userModel.findByIdAndUpdate(id, {
     ...req?.body,
     password:hashPassword
     },
@@ -170,7 +170,7 @@ export const updateConsultantPlans = asyncErrorHandler(async (req, res) => {
   console.log(req?.body)
 
 
-  const updateConsultant = await userModel.findByIdAndUpdate(id, {
+  const updateConsultant = await Consultant.findByIdAndUpdate(id, {
     servicePlan:req?.body?.servicePlan
     },
   {new:true}).lean();

@@ -4,11 +4,11 @@ import nodemailer from "nodemailer";
 
 // sendLoginOtp -- function to send the otp in the specified mail
 export const sendOtp = (email, otp, type) => {
-  const subject = type === "LOGIN" ? "Login OTP" : "Password reset request";
+  const subject = type === "LOGIN" ? "Login OTP" : "Password Reset Request";
   const html =
     type === "LOGIN"
       ? `<h1>Login OTP is <br/>  ${otp}</h1>`
-      : `<h1>Reset OTP is <br/>  ${otp}</h1>`;
+      : `<h1>Password Reset OTP is <br/>  ${otp}</h1>`;
   // transporter -- creating transporter with the mail configurations
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",

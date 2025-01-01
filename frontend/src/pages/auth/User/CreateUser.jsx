@@ -1,66 +1,47 @@
 // --------------------------------------------------Imports----------------------------------------
 import React, { useEffect, useState } from "react";
 import userBg from "../../../assets/Images/userBg.jpg";
-// import Select from "react-select";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import {
-  createUser,
-  getUsers,
-} from "../../../features/actions/Auth/userActions";
 import { useDispatch } from "react-redux";
 import CircleLoader from "../../../components/Loader/ButtonLoaders/CircleLoader";
 import { useSelector } from "react-redux";
-import { roleChecker } from "../../../utils";
-import { resetUserState } from "../../../features/slices/Auth/userSlice";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { createCustomer } from "../../../features/actions/Auth/customer";
+import { useNavigate } from "react-router-dom";
+
 // -------------------------------------------------------------------------------------------------
 
 const CreateUser = () => {
   const { loggedInUserData } = useSelector((state) => state.auth);
-  const [role, setRole] = useState("");
-  // -------------------------------------------------------------------------------------------------
-  // --------------------------------------------------Hooks----------------------------------------
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isUserLoading, isUserCreated } = useSelector((state) => state?.user);
+  const navigate = useNavigate();
+  const { isLoading, customerData } = useSelector((state) => state?.customer);
+
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email) || "Please enter a valid email address";
+  };
 
   const {
     register,
     formState: { errors },
     handleSubmit,
-    reset,
+    watch
   } = useForm();
   // -------------------------------------------------------------------------------------------------
-  // ------------------------------------------------Functions----------------------------------------
-  // createUserHandler -- handler to create the user
-  const createUserHandler = (data) => {
 
-    try {
-      const { userName, fullName, email, password } = data;
-      const payload = { userName, fullName, email, password, role };
-      if (userName && fullName && email && password) {
-        if (!role) {
-          toast.error("Please Choose a role for the user");
-        } else {
-          dispatch(createUser({ payload }));
-        }
-      }
-    } catch (error) {
-      toast.error(error.message);
-    }
+  const createUserHandler = (data) => {
+dispatch(createCustomer({...data,consultantId:loggedInUserData?._id}))
   };
 
 
   // ------------------------------------------------useEffect----------------------------------------
   useEffect(() => {
-    if (isUserCreated) {
-      dispatch(resetUserState(false));
-      reset();
-      setRole("");
-      dispatch(getUsers());
+ if(customerData?.status){
+  navigate("/users")
     }
-  }, [isUserCreated]);
+  }, [customerData]);
 
   // -------------------------------------------------------------------------------------------------
   return (
@@ -69,8 +50,9 @@ const CreateUser = () => {
         <div class="max-w-screen-xl m-0 sm:m-5 bg-white shadow sm:rounded-lg flex justify-center flex-1">
           <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
             <h1 className="text-center font-bold text-blue-600 text-sm sm:text-lg md:text-xl">
-            {    loggedInUserData.role === "0" ? "Create Consultant Account" : "Create Client Account" }  
+            {    loggedInUserData.role === "1" ? "Create Client Account" : "Create Staff Account" }  
             </h1>
+
             <div class="mt-12 flex flex-col items-center">
               <div class="w-full flex-1 mt-8">
                 <form
@@ -78,24 +60,7 @@ const CreateUser = () => {
                   onSubmit={handleSubmit(createUserHandler)}
                 >
                   <input
-                    class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                    type="text"
-                    placeholder="Username"
-                    {...register("userName", {
-                      required: {
-                        value: true,
-                        message: "User Name is a required field",
-                      },
-                    })}
-                  />
-                  {errors.userName && (
-                    <p className="text-red-500 mt-1">
-                      {errors?.userName?.message ||
-                        "User Name is a required field"}
-                    </p>
-                  )}
-                  <input
-                    class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                    class="w-full px-6 py-4 rounded-lg font-medium border border-gray-300 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                     type="text"
                     placeholder="Full Name"
                     {...register("fullName", {
@@ -112,7 +77,7 @@ const CreateUser = () => {
                     </p>
                   )}
                   <input
-                    class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                    class="w-full px-6 py-4 rounded-lg font-medium border border-gray-300 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                     type="email"
                     placeholder="Email"
                     {...register("email", {
@@ -120,6 +85,7 @@ const CreateUser = () => {
                         value: true,
                         message: "Email is a required field",
                       },
+                      validate: validateEmail,
                     })}
                   />
                   {errors.email && (
@@ -128,7 +94,7 @@ const CreateUser = () => {
                     </p>
                   )}
                   <input
-                    class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                    class="w-full px-6 py-4 rounded-lg font-medium  border border-gray-300 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                     type="password"
                     placeholder="Password"
                     {...register("password", {
@@ -144,10 +110,39 @@ const CreateUser = () => {
                         "Password is a required field"}
                     </p>
                   )}
-                  {/* <div class="w-full rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5">
-                    <Select options={roleOptions} onChange={roleHandler} />
-                  </div> */}
-                  {isUserLoading ? (
+
+                  <div className="relative">
+                  <input
+                    class="w-full px-6 py-4 rounded-lg font-medium  border border-gray-300 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                   type={showConfirmPassword ? "text" : "password"}
+                    placeholder="Confirm Password"
+                    {...register("confirmPassword", {
+                      required: {
+                        value: true,
+                        message: "Confirm Password is a required field",         
+                      },
+                      validate: (value) =>
+                        value === watch("password") || "The passwords does not match",
+                    })}
+                  />
+                      <span
+                className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer pt-5 "
+                onClick={() => setShowConfirmPassword((prev) => !prev)}
+              >
+                {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
+              </span>
+                  </div>
+              
+
+  {errors.confirmPassword && (
+                    <p className="text-red-500 mt-1">
+                      {errors?.confirmPassword?.message ||
+                        "Confirm Password is a required field"}
+                    </p>
+                  )}
+      
+     
+                  {isLoading ? (
                     <button
                       class="mt-5 tracking-wide font-semibold bg-green-400 text-white-500 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
                       type="submit"

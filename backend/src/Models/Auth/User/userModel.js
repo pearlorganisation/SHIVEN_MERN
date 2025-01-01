@@ -1,6 +1,5 @@
 // -----------------------------------------------Imports-------------------------------------------------------
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
 // -------------------------------------------------------------------------------------------------------------
 
 const userSchema = new mongoose.Schema({
@@ -21,12 +20,7 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ["0","1", "2", "3"],
-    default: "2",
-  },
-  servicePlan:{
-    type:[mongoose.Types.ObjectId],
-    ref:"servicePlan"
+    enum: ["0","1", "2", "3"]
   },
   isVerified:{
     type: Boolean

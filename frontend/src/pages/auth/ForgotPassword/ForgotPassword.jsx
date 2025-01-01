@@ -1,10 +1,18 @@
 "use client"
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { forgotPassword } from "../../../features/actions/Auth/authActions";
+import CircleLoader from "../../../components/Loader/ButtonLoaders/CircleLoader";
 
-const GetOtp = () => {
+const ForgotPassword = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [userEmail, setUserEmail] = useState("");
+
+  const {isForgotPasswordOtpSent ,isLoading } = useSelector((state) => state?.auth);
+
   const {
     register,
     handleSubmit,
@@ -12,15 +20,16 @@ const GetOtp = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    if (Object.keys(errors).length === 0) {
-      // No validation errors, proceed with form submission
-      console.log(data); // Log the form data
-      navigate("/verification"); // Navigate to the next page
-    } else {
-      // Validation errors present, do not submit the form
-      console.log("Form has errors");
-    }
+    setUserEmail(data?.email)
+dispatch(forgotPassword(data))
   };
+
+  useEffect(()=>{
+    if (isForgotPasswordOtpSent) {
+      navigate("/verification", { state: { email: userEmail } });
+    }
+  },[isForgotPasswordOtpSent])
+
 
   return (
     <div className="max-w-lg mx-auto my-20 bg-white p-8 rounded-xl shadow shadow-slate-300 py-10 ">
@@ -44,11 +53,13 @@ const GetOtp = () => {
             {errors.email && <span className="text-[red]">This field is required</span>}
           </label>
 
-          <button
+  <button
             className="w-full py-3 font-medium rounded-lg text-white bg-[#4F46E5] hover:shadow inline-flex space-x-2 items-center justify-center"
             type="submit"
+            disabled={isLoading}
           >
-            <svg
+                { isLoading ? <CircleLoader/> :  
+        <>    <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -63,36 +74,13 @@ const GetOtp = () => {
               />
             </svg>
             <span>Reset password</span>
+            </>  }
           </button>
-          <p className="text-center">
-            Not registered yet?{" "}
-            <a
-              href="/signup"
-              className="text-[#4F46E5] font-medium inline-flex space-x-1 items-center"
-            >
-              <span>Register now </span>
-              <span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  />
-                </svg>
-              </span>
-            </a>
-          </p>
+     
         </div>
       </form>
     </div>
   );
 };
 
-export default GetOtp;
+export default ForgotPassword;

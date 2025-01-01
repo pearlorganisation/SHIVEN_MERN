@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { updateConsultant, updateUser } from "../../../features/actions/Auth/userActions";
+import { updateConsultant } from "../../../features/actions/Auth/userActions";
 import { useSelector } from "react-redux";
 import CircleLoader from "../../../components/Loader/ButtonLoaders/CircleLoader";
 
@@ -37,7 +37,6 @@ const UpdateUser = () => {
 
   const saveHandler = (data) => {
     if(userData?.pageFor==="Employees"){
-dispatch(updateUser({payload:data,userId: userData?._id} ))
     }
     else
    { dispatch(updateConsultant({ payload: data, userId: userData?._id }));}

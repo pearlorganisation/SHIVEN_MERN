@@ -1,22 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { changePassword } from '../../features/actions/Auth/authActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetLoginState } from '../../features/slices/Auth/authSlice';
 
 const NewPassword = () => {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const {isPasswordChanged}= useSelector((state)=>state.auth)
+  const email = location?.state?.email || "";
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm()
-  const onSubmit = (data) => console.log(data)
+  
+  const onSubmit = (data) => {
+    dispatch(changePassword({password:data?.password1,email}))
+  }
+
+useEffect(() => {
+if(isPasswordChanged){
+  navigate("/login")
+}
+}, [isPasswordChanged])
+
   return (
    <>
     <section class="bg-gray-50 dark:bg-gray-900">
-  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-      <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
-          <img class="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo"/>
-         Shiven  
-      </a>
+  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[80vh] lg:py-0">
+
       <div class="w-full p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-gray-800 dark:border-gray-700 sm:p-8">
           <h2 class="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Change Password
@@ -43,14 +59,22 @@ const NewPassword = () => {
                     <input 
                       {...register("password2", { required: true })}
                     id="newsletter" aria-describedby="newsletter" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required=""/>
-                    {errors.password2 && <span className='text-red-600'>This field is required</span>}
                   </div>
                   <div class="ml-3 text-sm">
                     <label for="newsletter" class="font-light text-gray-500 dark:text-gray-300">I accept the <a class="font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">Terms and Conditions</a></label>
                   </div>
               </div>
-              <button type="submit" class="w-full text-white bg-[#4F46E5] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Reset passwod</button>
+                    {errors.password2 && <span className='text-red-600 text-sm'>Please accept the terms and conditions</span>}
+              <button type="submit" class="w-full text-white bg-[#4F46E5] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Reset password</button>
           </form>
+      <div className="text-center pt-4">
+              <Link
+                to="/login"
+                className="font-medium hover:underline text-indigo-600 hover:text-indigo-700"
+              >
+                Go back to login page
+              </Link>
+            </div>
       </div>
   </div>
 </section>

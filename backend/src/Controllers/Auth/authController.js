@@ -54,7 +54,7 @@ if(customer){
 
   saveAccessTokenToCookie(res, token);
 
-  res.status(200).json({status:true,login:true,message:"Login Successful",data:customer});
+ return res.status(200).json({status:true,login:true,message:"Login Successful",data:customer});
 
 }
   const otp = generateOTP();

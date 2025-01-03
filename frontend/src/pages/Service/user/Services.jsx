@@ -47,7 +47,6 @@ const Services = () => {
               <th className="py-3 px-6">ID</th>
               <th className="py-3 px-6">Service Plan </th>
               <th className="py-3 px-6">Service Provider </th>
-              {/* <th className="py-3 px-6">Cover </th> */}
               <th className="py-3 px-6">Service Type </th>
 
               <th className="py-3 px-6">Actions</th>

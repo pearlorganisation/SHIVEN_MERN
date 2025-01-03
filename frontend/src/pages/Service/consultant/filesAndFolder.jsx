@@ -63,12 +63,10 @@ const filesAndFolder = () => {
             <tr>
               <th className="py-3 px-6">First Name</th>
               <th className="py-3 px-6">Last Name </th>
-
               <th className="py-3 px-6">Address</th>
               <th className="py-3 px-6">E-Mail</th>
               <th className="py-3 px-6">Mobile 1</th>
               <th className="py-3 px-6">Mobile 2</th>
-
               <th className="py-3 px-6">Actions</th>
             </tr>
           </thead>

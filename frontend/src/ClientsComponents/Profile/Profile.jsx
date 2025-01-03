@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Stack, Skeleton } from "@mui/material";
 import ViewProfileModal from "../../components/Modal/ViewProfileModal";
@@ -10,6 +10,8 @@ import Delete from "../../components/delete";
 const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {state:idState} = useLocation();
+
     const { customerProfileData, isLoading,isDeleted } = useSelector(
       (state) => state.customerProfile
     );
@@ -36,26 +38,29 @@ const Profile = () => {
   };
 
     useEffect(() => {
-      if(isDeleted)
-     { dispatch(getParticularCustomerProfile(loggedInUserData?._id));}
+      if(loggedInUserData?.role === "2")
+     { dispatch(getParticularCustomerProfile(loggedInUserData?._id))}
+      else{
+        dispatch(getParticularCustomerProfile(idState))
+      }
     }, [isDeleted]);
 
 
   return (
     <div className="userContainer p-10 ">
-      <div className="title p-1">
+      <div className="title ">
         <h4 className="font-bold text-blue-500 text-sm sm:text-md md:text-lg">
       Your Profiles
         </h4>
-        <div className="createEmployeeBtn flex justify-end p-4 ">
-          <button
+        <div className="createEmployeeBtn flex justify-end ">
+      { loggedInUserData?.role === "2" &&   <button
             className=" p-2 rounded-lg bg-indigo-600 text-white font-bold tracking-widest"
             onClick={() => {
               navigate("/profile/createProfile");
             }}
           >
             Add New Profile
-          </button>
+          </button>}
         </div>
       </div>
       <div className="mt-6 shadow-xl rounded-lg overflow-x-auto">
@@ -104,7 +109,7 @@ const Profile = () => {
                       {item?.address}
                     </td>
 
-                    <td className=" whitespace-nowrap">
+                    <td className="px-6 py-4 whitespace-nowrap">
                       <button
                         onClick={() => {
                           handleViewModal(item);
@@ -114,14 +119,14 @@ const Profile = () => {
                         View
                       </button>
 
-                      <button
+                {  loggedInUserData?.role === "2" &&       <button
                         onClick={() => {
                           handleDeleteModal(item?._id);
                         }}
                         className="py-2 leading-none px-3 font-semibold text-red-500 hover:text-red-600 duration-150 hover:bg-gray-50 rounded-lg"
                       >
                         Delete
-                      </button>
+                      </button>}
                     </td>
                   </tr>
                 ))

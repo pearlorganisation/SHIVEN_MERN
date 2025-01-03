@@ -8,6 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { login } from "../../../features/actions/Auth/authActions";
 import { isUserLoggedInTrue, resetLoginState } from "../../../features/slices/Auth/authSlice";
 import CircleLoader from "../../../components/Loader/ButtonLoaders/CircleLoader";
+import { toast } from "sonner";
 // ----------------------------------------------------------------------------------------------------------
 
 const Login = () => {
@@ -56,6 +57,7 @@ const Login = () => {
       navigate("/");
     }
     else if (isLoginOtpSent) {
+      toast.success("OTP for verification sent successfully");
       navigate("/verification", { state: { email: userEmail ,password:userPassword } });
     }
   }, [isLoginOtpSent,response]);

@@ -357,7 +357,7 @@ export const routes = [
   {
     title: "Files and Folders",
     component: FilesFolders,
-    path: "/clientFiles/files-folders",
+    path: "/files-folders",
   },
   {
     title: "Schedule management",

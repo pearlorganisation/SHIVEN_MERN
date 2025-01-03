@@ -40,6 +40,10 @@ const Profile = () => {
      { dispatch(getParticularCustomerProfile(loggedInUserData?._id));}
     }, [isDeleted]);
 
+    useEffect(() => {
+    dispatch(getParticularCustomerProfile(loggedInUserData?._id));
+    }, []);
+
 
   return (
     <div className="userContainer p-10 ">

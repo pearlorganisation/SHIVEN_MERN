@@ -26,14 +26,17 @@ app.use(
             "http://localhost:5174",
             "http://localhost:5175",
             "https://shiven-mern.vercel.app",
-            "https://assetmanagment.in"
+            "https://assetmanagment.in",
+            "https://app.assetmanagment.in"
           ]
         : [
             "http://localhost:5173",
             "http://localhost:5174",
             "http://localhost:5175",
             "https://shiven-mern.vercel.app",
-            "https://assetmanagment.in"
+            "https://assetmanagment.in",
+            "https://app.assetmanagment.in"
+            
           ],
     credentials: false,
     allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token"],

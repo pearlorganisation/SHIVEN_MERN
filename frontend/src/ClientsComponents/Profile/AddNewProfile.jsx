@@ -28,9 +28,9 @@ const AddNewProfile = () => {
   
     let finalData = { ...data }; // Initialize with full form data.
   
-    if (showBankDetails && showCreditCard) {
-      // Include both details
-      console.log("Both bank and credit card details shown:", showBankDetails, showCreditCard);
+    if (!showBankDetails && !showCreditCard) {
+      const { bankDetails,creditCardDetails, ...rest } = finalData;
+      finalData = rest;
     } else {
       // Remove unnecessary data based on the flags
       if (!showBankDetails) {

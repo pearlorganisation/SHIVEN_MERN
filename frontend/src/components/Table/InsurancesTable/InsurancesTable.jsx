@@ -1,9 +1,7 @@
 // -------------------------------------------------Imports---------------------------------------------
 import React, { memo, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getUsers } from "../../../features/actions/Auth/userActions";
 import { useSelector } from "react-redux";
-import { reverseRoleChecker } from "../../../utils";
 import { CiEdit } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import { getInsurances } from "../../../features/actions/Insurance/insuranceActions";

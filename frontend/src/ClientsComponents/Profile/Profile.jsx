@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Stack, Skeleton } from "@mui/material";
 import ViewProfileModal from "../../components/Modal/ViewProfileModal";
@@ -45,16 +45,12 @@ const Profile = () => {
       }
     }, [isDeleted]);
 
-    useEffect(() => {
-    dispatch(getParticularCustomerProfile(loggedInUserData?._id));
-    }, []);
-
 
   return (
     <div className="userContainer p-10 ">
       <div className="title ">
         <h4 className="font-bold text-blue-500 text-sm sm:text-md md:text-lg">
-      Your Profiles
+        { loggedInUserData?.role === "2" ? "Your Profiles" : "Customer Profiles"}
         </h4>
         <div className="createEmployeeBtn flex justify-end ">
       { loggedInUserData?.role === "2" &&   <button
@@ -113,7 +109,7 @@ const Profile = () => {
                       {item?.address}
                     </td>
 
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td  className="px-6 py-4 space-x-6 whitespace-nowrap">
                       <button
                         onClick={() => {
                           handleViewModal(item);
@@ -122,12 +118,21 @@ const Profile = () => {
                       >
                         View
                       </button>
+                      {  loggedInUserData?.role === "1" &&
 
+                                <Link
+                                  to={`/files-folders/${item?._id}`}
+                                  className="py-2 bg-blue-600 leading-none px-3 font-semibold text-white hover:text-yellow-600 duration-150 hover:bg-gray-50 rounded-lg"
+                                >
+                                  Files & Folders
+                                </Link>
+          
+                              } 
                 {  loggedInUserData?.role === "2" &&       <button
                         onClick={() => {
                           handleDeleteModal(item?._id);
                         }}
-                        className="py-2 leading-none px-3 font-semibold text-red-500 hover:text-red-600 duration-150 hover:bg-gray-50 rounded-lg"
+                        className="py-2 leading-none  font-semibold text-red-500 hover:text-red-600 duration-150 hover:bg-gray-50 rounded-lg"
                       >
                         Delete
                       </button>}

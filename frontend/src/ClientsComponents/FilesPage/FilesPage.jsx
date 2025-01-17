@@ -97,7 +97,7 @@ const FilesPage = () => {
 
                     <td className="px-6 py-4 whitespace-nowrap">
                       <Link
-                        to={"/files-folders"}
+                        to={`/files-folders/${item?._id}`}
                         className="py-2 bg-blue-600 leading-none px-3 font-semibold text-white hover:text-yellow-600 duration-150 hover:bg-gray-50 rounded-lg"
                       >
                         Files & Folders

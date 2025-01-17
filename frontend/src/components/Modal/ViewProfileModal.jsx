@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 
 export default function ViewProfileModal({ viewData, setModal }) {
-  console.log("view", viewData);
   const [showBankDetails, setShowBankDetails] = useState(false);
   const [showCreditCard, setShowCreditCard] = useState(false);
   const handleCheckboxchange = () => {
     setShowBankDetails(!showBankDetails);
-
+    setShowCreditCard(false)
   };
 
   const handleCreditCardcheckbox=()=>{
     setShowCreditCard(!showCreditCard);
+    setShowBankDetails(false)
   }
   return (
     <div
@@ -76,17 +76,17 @@ export default function ViewProfileModal({ viewData, setModal }) {
                 </td>
               </tr>
               <tr>
-                <td className="py-2 px-4 border border-gray-300">Mobile</td>
+                <td className="py-2 px-4 border border-gray-300">Mobile 1</td>
 
                 <td className="py-2 px-4 border border-gray-300">
                   {viewData?.mobile1}
                 </td>
               </tr>
               <tr>
-                <td className="py-2 px-4 border border-gray-300">Mobile</td>
+                <td className="py-2 px-4 border border-gray-300">Mobile 2</td>
 
                 <td className="py-2 px-4 border border-gray-300">
-                  {viewData?.mobile2}
+                  {viewData?.mobile2 || <span className="text-xs text-blue-500">No Data Found</span>}
                 </td>
               </tr>
               <tr>
@@ -141,7 +141,7 @@ export default function ViewProfileModal({ viewData, setModal }) {
               </tr>
               <tr>
                 <td className="py-2 px-4 border border-gray-300">
-                  AadhaarNumber
+                  Aadhaar Number
                 </td>
                 <td className="py-2 px-4 border border-b-1 border-gray-300">
                   {viewData?.aadhaarNumber}
@@ -149,14 +149,14 @@ export default function ViewProfileModal({ viewData, setModal }) {
               </tr>
 
               <tr>
-                <td className="py-2 px-4 border border-gray-300">PanNumber</td>
+                <td className="py-2 px-4 border border-gray-300">Pan Number</td>
                 <td className="py-2 px-4 border border-b-1 border-gray-300">
                   {viewData?.panNumber}
                 </td>
               </tr>
               <tr>
                 <td className="py-2 px-4 border border-gray-300">
-                  DrivingLicenseNumber
+                  Driving License Number
                 </td>
                 <td className="py-2 px-4 border border-b-1 border-gray-300">
                   {viewData?.drivingLicenseNumber}
@@ -164,7 +164,7 @@ export default function ViewProfileModal({ viewData, setModal }) {
               </tr>
               <tr>
                 <td className="py-2 px-4 border border-gray-300">
-                  PassportNumber
+                  Passport Number
                 </td>
                 <td className="py-2 px-4 border border-b-1 border-gray-300">
                   {viewData?.passportNumber}
@@ -173,7 +173,7 @@ export default function ViewProfileModal({ viewData, setModal }) {
 
               <tr>
                 <td className="py-2 px-4 border border-gray-300">
-                  PassportNumber
+                  Passport Number
                 </td>
                 <td className="py-2 px-4 border border-b-1 border-gray-300">
                   {viewData?.passportNumber}
@@ -183,7 +183,7 @@ export default function ViewProfileModal({ viewData, setModal }) {
           </table>
         </div>
         {/* bank details */}
-        <div className="p-4">
+
           <div className="flex items-center gap-2 mb-2">
             <input
               type="checkbox"
@@ -194,178 +194,178 @@ export default function ViewProfileModal({ viewData, setModal }) {
             />
             <label htmlFor="toggleBankDetails" className="cursur-pointer">
               {" "}
-              show bankDetails
+              Show Bank Details
             </label>
           </div>
-        </div>
-        {showBankDetails ? (
+     
+        {showBankDetails && viewData?.bankDetails ? (
           <>
             {" "}
             <div id="content-3a" className="flex-1 overflow-auto space-y-10">
-              <table className="w-full table-auto text-sm">
-                <tbody className="text-gray-600">
-                  <tr>
-                    <td className="py-2 px-4 border border-gray-300">Name</td>
-                    <td className="py-2 px-4 border border-gray-300">
-                      {viewData?.bankDetails?.name}
-                    </td>
-                  </tr>
+                <table  className="w-full table-auto text-sm">
+                  <tbody  className="text-gray-600">
+                    <tr>
+                      <td className="py-2 px-4 border border-gray-300">Name</td>
+                      <td className="py-2 px-4 border border-gray-300">
+                        {viewData?.bankDetails?.name}
+                      </td>
+                    </tr>
 
-                  <tr>
-                    <td className="py-2 px-4 border border-gray-300">
-                      Bank Name
-                    </td>
-                    <td className="py-2 px-4 border border-gray-300">
-                      {viewData?.bankDetails?.bank}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 px-4 border border-b-1 border-gray-300">
-                      Savings/Current
-                    </td>
-                    <td className="py-2 px-4 border border-gray-300">
-                      {viewData?.bankDetails?.savingsCurrent}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 px-4 border border-gray-300">
-                      AccountNumber
-                    </td>
-                    <td className="py-2 px-4 border border-gray-300">
-                      {viewData?.bankDetails?.accountNumber}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 px-4 border border-b-1 border-gray-300">
-                      Url
-                    </td>
-                    <td className="py-2 px-4 border border-gray-300">
-                      {viewData?.bankDetails?.url}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 px-4 border border-b-1 border-gray-300">
-                      CIF
-                    </td>
-                    <td className="py-2 px-4 border border-gray-300">
-                      {viewData?.bankDetails?.cif}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 px-4 border border-b-1 border-gray-300">
-                      UserId
-                    </td>
-                    <td className="py-2 px-4 border border-gray-300">
-                      {viewData?.bankDetails?.userId}
-                    </td>
-                  </tr>
+                    <tr>
+                      <td className="py-2 px-4 border border-gray-300">
+                        Bank Name
+                      </td>
+                      <td className="py-2 px-4 border border-gray-300">
+                        {viewData?.bankDetails?.bank}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-4 border border-b-1 border-gray-300">
+                        Savings/Current
+                      </td>
+                      <td className="py-2 px-4 border border-gray-300">
+                        {viewData?.bankDetails?.savingsCurrent}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-4 border border-gray-300">
+                        Account Number
+                      </td>
+                      <td className="py-2 px-4 border border-gray-300">
+                        {viewData?.bankDetails?.accountNumber}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-4 border border-b-1 border-gray-300">
+                        Url
+                      </td>
+                      <td className="py-2 px-4 border border-gray-300">
+                        {viewData?.bankDetails?.url}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-4 border border-b-1 border-gray-300">
+                        CIF
+                      </td>
+                      <td className="py-2 px-4 border border-gray-300">
+                        {viewData?.bankDetails?.cif}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-4 border border-b-1 border-gray-300">
+                        UserId
+                      </td>
+                      <td className="py-2 px-4 border border-gray-300">
+                        {viewData?.bankDetails?.userId}
+                      </td>
+                    </tr>
 
-                  <tr>
-                    <td className="py-2 px-4 border border-b-1 border-gray-300">
-                      Password
-                    </td>
-                    <td className="py-2 px-4 border border-gray-300">
-                      {viewData?.bankDetails?.password}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 px-4 border border-b-1 border-gray-300">
-                      TransactionPassword
-                    </td>
-                    <td className="py-2 px-4 border border-gray-300">
-                      {viewData?.bankDetails?.transactionPassword}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 px-4 border border-b-1 border-gray-300">
-                      DebitCardNo
-                    </td>
-                    <td className="py-2 px-4 border border-gray-300">
-                      {viewData?.bankDetails?.debitCardNo}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 px-4 border border-b-1 border-gray-300">
-                      DebitCardPin
-                    </td>
-                    <td className="py-2 px-4 border border-gray-300">
-                      {viewData?.bankDetails?.debitCardPin}
-                    </td>
-                  </tr>
+                    <tr>
+                      <td className="py-2 px-4 border border-b-1 border-gray-300">
+                        Password
+                      </td>
+                      <td className="py-2 px-4 border border-gray-300">
+                        {viewData?.bankDetails?.password}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-4 border border-b-1 border-gray-300">
+                        Transaction Password
+                      </td>
+                      <td className="py-2 px-4 border border-gray-300">
+                        {viewData?.bankDetails?.transactionPassword}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-4 border border-b-1 border-gray-300">
+                        DebitCardNo
+                      </td>
+                      <td className="py-2 px-4 border border-gray-300">
+                        {viewData?.bankDetails?.debitCardNo}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-4 border border-b-1 border-gray-300">
+                        Debit Card Pin
+                      </td>
+                      <td className="py-2 px-4 border border-gray-300">
+                        {viewData?.bankDetails?.debitCardPin}
+                      </td>
+                    </tr>
 
-                  <tr>
-                    <td className="py-2 px-4 border border-b-1 border-gray-300">
-                      IFSC
-                    </td>
-                    <td className="py-2 px-4 border border-gray-300">
-                      {viewData?.bankDetails?.ifsc}
-                    </td>
-                  </tr>
+                    <tr>
+                      <td className="py-2 px-4 border border-b-1 border-gray-300">
+                        IFSC
+                      </td>
+                      <td className="py-2 px-4 border border-gray-300">
+                        {viewData?.bankDetails?.ifsc}
+                      </td>
+                    </tr>
 
-                  <tr>
-                    <td className="py-2 px-4 border border-b-1 border-gray-300">
-                      CIF
-                    </td>
-                    <td className="py-2 px-4 border border-gray-300">
-                      {viewData?.bankDetails?.cif}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 px-4 border border-b-1 border-gray-300">
-                      Nominee
-                    </td>
-                    <td className="py-2 px-4 border border-gray-300">
-                      {viewData?.bankDetails?.nominee}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 px-4 border border-b-1 border-gray-300">
-                      CIF
-                    </td>
-                    <td className="py-2 px-4 border border-gray-300">
-                      {viewData?.bankDetails?.cif}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 px-4 border border-b-1 border-gray-300">
-                      BankEmail
-                    </td>
-                    <td className="py-2 px-4 border border-gray-300">
-                      {viewData?.bankDetails?.bankEmail}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 px-4 border border-b-1 border-gray-300">
-                      bankMobile
-                    </td>
-                    <td className="py-2 px-4 border border-gray-300">
-                      {viewData?.bankDetails?.bankMobile}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 px-4 border border-b-1 border-gray-300">
-                      BankAddress
-                    </td>
-                    <td className="py-2 px-4 border border-gray-300">
-                      {viewData?.bankDetails?.bankAddress}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                    <tr>
+                      <td className="py-2 px-4 border border-b-1 border-gray-300">
+                        CIF
+                      </td>
+                      <td className="py-2 px-4 border border-gray-300">
+                        {viewData?.bankDetails?.cif}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-4 border border-b-1 border-gray-300">
+                        Nominee
+                      </td>
+                      <td className="py-2 px-4 border border-gray-300">
+                        {viewData?.bankDetails?.nominee}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-4 border border-b-1 border-gray-300">
+                        CIF
+                      </td>
+                      <td className="py-2 px-4 border border-gray-300">
+                        {viewData?.bankDetails?.cif}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-4 border border-b-1 border-gray-300">
+                        Bank Email
+                      </td>
+                      <td className="py-2 px-4 border border-gray-300">
+                        {viewData?.bankDetails?.bankEmail}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-4 border border-b-1 border-gray-300">
+                        Bank Mobile
+                      </td>
+                      <td className="py-2 px-4 border border-gray-300">
+                        {viewData?.bankDetails?.bankMobile}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-4 border border-b-1 border-gray-300">
+                        Bank Address
+                      </td>
+                      <td className="py-2 px-4 border border-gray-300">
+                        {viewData?.bankDetails?.bankAddress}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
             </div>
           </>
-        ) : (
-          <></>
-        )}
+        ) : showBankDetails && !viewData?.bankDetails  ? (
+          <span className="text-sm text-blue-500"> No Bank Details Data </span>
+        ): <> </>}
  <div className="flex items-center gap-2 mb-2">
-      <input type="checkbox" id="toggleBankDetails" checked={showBankDetails} onChange={handleCreditCardcheckbox} className="cursor-pointer"/>
+      <input type="checkbox" id="toggleBankDetails" checked={showCreditCard} onChange={handleCreditCardcheckbox} className="cursor-pointer"/>
       <label  htmlFor="toggleBankDetails" className="cursur-pointer">
-show creditCardDetails
+Show Credit Card Details
       </label>
 
      </div>
 
-        {  showCreditCard?(<>
+        {  showCreditCard && viewData?.creditCardDetails ?(<>
         <div id="content-3a" className="flex-1 overflow-auto space-y-10 ">
         <table className="w-full table-auto text-sm">
         <tbody className="text-gray-600">
@@ -399,19 +399,19 @@ show creditCardDetails
   </td>  
 </tr>  
 <tr>
-<td className="py-2 px-4 border border-b-1 border-gray=-300">Bank MobileNo </td>
+<td className="py-2 px-4 border border-b-1 border-gray=-300">Bank Mobile No. </td>
   <td className="py-2 px-4 border border-b-1 border-gray=-300">    
 {viewData?.creditCardDetails?.bankMobile}
   </td>  
 </tr> 
 <tr>
-<td className="py-2 px-4 border border-b-1 border-gray=-300">CreditCardNo</td>
+<td className="py-2 px-4 border border-b-1 border-gray=-300">Credit Card No.</td>
   <td className="py-2 px-4 border border-b-1 border-gray=-300">    
 {viewData?.creditCardDetails?.creditCardNo}
   </td>  
 </tr> 
 <tr>
-<td className="py-2 px-4 border border-b-1 border-gray=-300">CreditCardPin</td>
+<td className="py-2 px-4 border border-b-1 border-gray=-300">Credit Card Pin</td>
   <td className="py-2 px-4 border border-b-1 border-gray=-300">    
 {viewData?.creditCardDetails?.creditCardPin}
   </td>  
@@ -424,13 +424,13 @@ show creditCardDetails
   </td>  
 </tr> 
 <tr>
-<td className="py-2 px-4 border border-b-1 border-gray=-300">savings/Current</td>
+<td className="py-2 px-4 border border-b-1 border-gray=-300">Savings/Current</td>
   <td className="py-2 px-4 border border-b-1 border-gray=-300">    
 {viewData?.creditCardDetails?.savingsCurrent}
   </td>  
 </tr> 
 <tr>
-<td className="py-2 px-4 border border-b-1 border-gray=-300">TransactionPassword</td>
+<td className="py-2 px-4 border border-b-1 border-gray=-300">Transaction Password</td>
   <td className="py-2 px-4 border border-b-1 border-gray=-300">    
 {viewData?.creditCardDetails?.transactionPassword}
   </td>  
@@ -448,7 +448,9 @@ show creditCardDetails
         </div>
     
           
-          </>):(<></>)
+          </>): showCreditCard && !viewData?.creditCardDetails  ? (
+          <span className="text-sm text-blue-500"> No Credit Card Details Data </span>
+        ): <> </>
         }
       </div>
     </div>

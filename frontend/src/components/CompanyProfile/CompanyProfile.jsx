@@ -340,7 +340,7 @@ MSME is a required field
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="text"
                   disabled={isDisabled}
-                  {...register("bankDetails?.name", {
+                  {...register("bankDetails.name", {
                     required: {
                       value: true
                     },
@@ -365,7 +365,7 @@ Name is a required field
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="text"
                   disabled={isDisabled}
-                  {...register("bankDetails?.bank", {
+                  {...register("bankDetails.bank", {
                     required: {
                       value: true
                     },
@@ -440,7 +440,7 @@ Account Number is a required field
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="text"
                   disabled={isDisabled}
-                  {...register("ifsc", {
+                  {...register("bankDetails.ifsc", {
                     required: {
                       value: true
                     },
@@ -465,7 +465,7 @@ IFSC is a required field
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="text"
                   disabled={isDisabled}
-                  {...register("cif", {
+                  {...register("bankDetails.cif", {
                     required: {
                       value: true
                     },

@@ -87,6 +87,7 @@ import { ViewConsultants } from "../pages/Service/admin/ViewConsultants";
 import ManageConsultant from "../pages/Service/admin/ManageConsultant";
 import { ConsultantServiceProviders } from "../pages/Service/consultant/serviceProvider/ViewServiceProviders";
 import AddServicePlan from "../pages/ServicePlans/AddServicePlan";
+import ConsultantFilesAndFolder from "../ClientsComponents/FilesPage/FilesFolders/ConsultantFilesAndFolder";
 
 // --------------------------------------------------Imports--------------------------------------------------
 const Dashboard = lazy(() => {
@@ -357,7 +358,12 @@ export const routes = [
   {
     title: "Files and Folders",
     component: FilesFolders,
-    path: "/clientFiles/files-folders",
+    path: "/files-folders/:id",
+  },
+  {
+    title: "Files and Folders",
+    component: ConsultantFilesAndFolder,
+    path: "/consultant-files-folders/:id",
   },
   {
     title: "Schedule management",

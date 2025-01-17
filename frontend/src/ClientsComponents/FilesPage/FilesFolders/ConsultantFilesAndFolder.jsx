@@ -7,14 +7,12 @@ import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/zoom.css";
 import { HiDotsVertical } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
-import { addFilesAndFolders, deleteFile, deleteFolder, getAllFilesAndFolders, getAllPublicFilesAndFolders, renameFile, renameFolder, togglePrivacyFolder } from "../../../features/actions/filesAndFolders";
+import { addFilesAndFolders, deleteFile, deleteFolder, getAllFilesAndFolders, renameFile, renameFolder, togglePrivacyFolder } from "../../../features/actions/filesAndFolders";
 import { useParams } from "react-router-dom";
-import { HiLockClosed } from "react-icons/hi2";
 
 
-const FilesFolders = () => {
+const ConsultantFilesAndFolder = () => {
   const {id}=useParams()
-  const { loggedInUserData } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const { filesAndFoldersData, isCreated,isLoading } = useSelector((state) => state.filesAndFolders);
   const [editingIndex, setEditingIndex] = useState(null);
@@ -48,11 +46,6 @@ const FilesFolders = () => {
   const handleDeleteFile = (folderName,fileName) => {
     setEditingIndex(null);
     dispatch(deleteFile({folderName,fileName,userId: id}))
-  };
-
-  const handleFolderPrivacy = (folderName,isPrivate) => {
-    setEditingIndex(null);
-    dispatch(togglePrivacyFolder({folderName,isPrivate,userId: id}))
   };
 
   const handleFileChange = (e) => {
@@ -95,17 +88,13 @@ const FilesFolders = () => {
   };
 
   useEffect(() => {
-    if (isCreated && loggedInUserData?.role==="2") {
+    if (isCreated) {
       dispatch(getAllFilesAndFolders(id));
-    }
-    if (isCreated && loggedInUserData?.role==="1") {
-      dispatch(getAllPublicFilesAndFolders(id));
     }
   }, [isCreated]);
 
   useEffect(() => {
-   if(loggedInUserData?.role==="2") {dispatch(getAllFilesAndFolders(id));}
-   if(loggedInUserData?.role==="1") {dispatch(getAllPublicFilesAndFolders(id));}
+    dispatch(getAllFilesAndFolders(id));
   }, []);
 
   useEffect(() => {
@@ -115,7 +104,7 @@ const FilesFolders = () => {
   return (
     <div className="w-full min-h-[100dvh]">
       <div className="w-full h-16 border justify-between border-neutral-300 flex items-center ps-6 pr-10">
-        <h1 className="text-3xl text-gray-800 font-semibold">Files and Folders</h1>
+        <h1 className="text-3xl text-gray-800 font-semibold">Consultant Files and Folders</h1>
         <div className="px-20">
           {routes.trim() !== "" ? (
             <div
@@ -127,7 +116,7 @@ const FilesFolders = () => {
             >
               Back
             </div>
-          ) : loggedInUserData?.role==="2" && (
+          ) : (
             <FaFolderPlus onClick={folderCreate} className="cursor-pointer text-4xl" />
           )}
         </div>
@@ -148,7 +137,7 @@ const FilesFolders = () => {
               }}
               className="cursor-pointer relative flex flex-col gap-2 items-center justify-center w-36 h-36 border border-neutral-300 rounded-xl"
             >
-             {item.isPrivate && loggedInUserData?.role === "2" && <HiLockClosed className="absolute left-2 text-blue-950 top-3"/>}
+
               <FcOpenedFolder className="text-6xl" />
               {editingIndex === index ? (
                 <input
@@ -160,7 +149,7 @@ const FilesFolders = () => {
               ) : (
                 <p className="text-center">{item.name}</p>
               )}
-          {  loggedInUserData?.role === "2" &&     <div
+              <div
                 className="absolute right-2 text-black top-1"
                 onClick={(e) => e.stopPropagation()}
               >
@@ -173,18 +162,15 @@ const FilesFolders = () => {
                     }
                     transition
                   >
-                <MenuItem onClick={() => handleFolderPrivacy(item.name,!item.isPrivate)}>{item.isPrivate ? "Make it public" :"Make it private"}</MenuItem>
                     <MenuItem onClick={() => handleRename(index)}>Rename</MenuItem>
                     <MenuItem onClick={() => handleDeleteFolder(item.name)}>Delete</MenuItem>
                   </Menu>
                 )}
-              </div>}
+              </div>
             </div>
-          )) : loggedInUserData?.role === "2" ? <div className="w-full col-span-full text-neutral-400 ">Ready to organize? Add a folder now!</div> :
-          <div className="w-full col-span-full text-neutral-400 ">No Folders Found</div> 
+          )): <div className="w-full col-span-full text-neutral-400 ">Ready to organize? Add a folder now!</div>
         ) : 
-        !isLoading ? 
-          (
+        !isLoading ?   (
           filesAndFoldersData
             .find((selectedFolder) => routes.trim() === selectedFolder.name)
             ?.files?.map((file, index2) => (
@@ -213,7 +199,7 @@ const FilesFolders = () => {
                 <p className="text-blue-600 font-semibold">{file.fileName}</p>
               )}
  
-{ loggedInUserData?.role === "2" &&  <div
+    <div
       className="absolute right-2 text-black top-1 menu-container" // Add a unique class for menu-related events
     >
       <Menu
@@ -227,15 +213,13 @@ const FilesFolders = () => {
          <MenuItem onClick={() => handleRename(index2)}>Rename</MenuItem>
         <MenuItem onClick={() =>handleDeleteFile(routes,file.fileName)}>Delete</MenuItem>
       </Menu>
-    </div>}
+    </div>
   </a>
 </>
 
             ))
-        ) : 
-        <div className="w-full col-span-full">Uploading a new file...</div>}
-{ loggedInUserData?.role === "2" &&   <div>
-         {fileData && !isLoading (
+        ) : <div className="w-full col-span-full">Uploading a new file...</div>}
+        {fileData && !isLoading && (
           <a
             className="cursor-pointer relative flex flex-col gap-2 items-center justify-center w-36 h-36  border border-neutral-300 shadow-md rounded-xl"
           >
@@ -262,14 +246,12 @@ const FilesFolders = () => {
             onChange={handleFileChange}
           />
         </label>}
-      </div>}
-
       </div>
     </div>
   );
 };
 
-export default FilesFolders;
+export default ConsultantFilesAndFolder;
 
 const BreadCrumb = ({ routes, setRoutes ,setFileData}) => (
   <div className="w-full h-10 flex items-center px-7">

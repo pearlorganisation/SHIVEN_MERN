@@ -17,6 +17,9 @@ import brochure from "./slices/brochure";
 import customisedForm from "./slices/customisedForm";
 import { customerReducer } from "./slices/Auth/customer";
 import customerProfile from "./slices/customerProfile";
+import filesAndFolders from "./slices/filesAndFolders";
+import consultantProfile from "./slices/consultantProfile";
+import companyProfile from "./slices/companyProfile";
 
 // ------------------------------------------------------------------------------------------------------------
 
@@ -49,7 +52,10 @@ const reducers = combineReducers({
   motorenquiry: motorenquiryReducer,
   brochure,
   customisedForm,
-  customerProfile
+  customerProfile,
+  consultantProfile,
+  companyProfile,
+  filesAndFolders
 });
 
 const rootReducer = (state, action) => {

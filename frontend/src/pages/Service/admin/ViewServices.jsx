@@ -11,13 +11,7 @@ const ViewServices = () => {
   const { loggedInUserData } = useSelector((state) => state.auth);
   const {serviceData,isLoading } = useSelector(state => state.service)
   
-  // const serviceData = [ 
-  //   {name:"Motor Insurance", path:"/servicePlan/bike-insurance",logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnVBWBvkb4oy5Vg3-nwkyM9PeDfxKakeb7Wg&s",serviceDescription:"lorem ispum ipsum lorem ipsi for"},
-  //   {name:"Whole Life Insurance", path:"/servicePlan/whole-life-insurance",logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnVBWBvkb4oy5Vg3-nwkyM9PeDfxKakeb7Wg&s",serviceDescription:"lorem ispum ipsum lorem ipsi for"},
-  //   {name:"Home Loan", path:"/servicePlan/home-loan",logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnVBWBvkb4oy5Vg3-nwkyM9PeDfxKakeb7Wg&s",serviceDescription:"lorem ispum ipsum lorem ipsi for"},
-  //   {name:"Vehicle Loan", path:"/servicePlan/vehicle-loan",logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnVBWBvkb4oy5Vg3-nwkyM9PeDfxKakeb7Wg&s",serviceDescription:"lorem ispum ipsum lorem ipsi for"},
-  //   {name:"Mutual Fund", path:"/servicePlan/mutual-fund",logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnVBWBvkb4oy5Vg3-nwkyM9PeDfxKakeb7Wg&s",serviceDescription:"lorem ispum ipsum lorem ipsi for"},
-  // ]
+
 
   useEffect(()=>{
     dispatch(getAllServices())
@@ -30,16 +24,7 @@ const ViewServices = () => {
         <h4 className="font-bold text-blue-500 text-sm sm:text-md md:text-lg">
           Service Listing
         </h4>
-       {/* { loggedInUserData.role === "0" && <div className="createEmployeeBtn flex justify-end p-4 ">
-          <button
-            className=" p-2 rounded-lg bg-indigo-600 text-white font-bold tracking-widest"
-            onClick={() => {
-              navigate("/admin/addService");
-            }}
-          >
-            Add New Service
-          </button>
-        </div>} */}
+
       </div>
       <div className="mt-6 shadow-xl rounded-lg overflow-x-auto">
             <table className="w-full table-auto text-sm text-left">

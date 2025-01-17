@@ -8,46 +8,55 @@ import { useEffect } from "react";
 
 const AddNewProfile = () => {
   const { loggedInUserData } = useSelector((state) => state.auth);
-  const { customerProfileData, isLoading } = useSelector((state) => state.customerProfile);
+  const { customerProfileData, isLoading } = useSelector(
+    (state) => state.customerProfile
+  );
   const [showBankDetails, setShowBankDetails] = useState(false);
   const [showCreditCard, setShowCreditCard] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const {
     register,
     handleSubmit,
     formState: { errors },
     control,
   } = useForm();
-  const onSubmit = (data) => {
-    let finalData  ;
-
-    if(!showBankDetails && !showCreditCard){
-      let {creditCardDetails,bankDetails,...rest} = data;
-     finalData = rest
-    }else
-{    if(!showBankDetails){
-     let {bankDetails,...rest} = data;
-     finalData = rest
-    }
-    if(!showCreditCard){
-     let {creditCardDetails,...rest} = data;
-     finalData = rest
-    }
-  }
-
-    dispatch(addCustomerProfile({customerId:loggedInUserData?._id ,...finalData}))
-  };
-
-useEffect(()=>{
-  if(customerProfileData?.status){
-    navigate("/profile")
-  }
-},[customerProfileData])
   
-
+  const onSubmit = (data) => {
+    console.log("Form submitted with data:", data);
+  
+    let finalData = { ...data }; // Initialize with full form data.
+  
+    if (!showBankDetails && !showCreditCard) {
+      const { bankDetails,creditCardDetails, ...rest } = finalData;
+      finalData = rest;
+    } else {
+      // Remove unnecessary data based on the flags
+      if (!showBankDetails) {
+        const { bankDetails, ...rest } = finalData;
+        finalData = rest;
+      }
+      if (!showCreditCard) {
+        const { creditCardDetails, ...rest } = finalData;
+        finalData = rest;
+      }
+    }
+  
+    console.log("Final data to dispatch:", finalData);
+  
+    dispatch(
+      addCustomerProfile({ customerId: loggedInUserData?._id, ...finalData })
+    );
+  };
+  
+  useEffect(() => {
+    if (customerProfileData?.status) {
+      console.log("Profile updated, navigating to /profile...");
+      navigate("/profile");
+    }
+  }, [customerProfileData, navigate]);
+  
   return (
     <div className="max-w-4xl mx-auto my-5 overflow-hidden rounded-2xl bg-white shadow-lg ">
       <div className="bg-blue-600 px-10 py-4 text-center text-white font-semibold">
@@ -80,14 +89,14 @@ useEffect(()=>{
             <input
               className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
               type="text"
-               maxLength={10}
+              maxLength={10}
               placeholder="Mobile No."
               {...register("mobile1", {
                 required: {
                   value: true,
                   message: "Mobile No. is a required field",
                 },
-                 pattern: {
+                pattern: {
                   value: /^[0-9]{10}$/,
                   message: "Must be a number",
                 },
@@ -103,18 +112,18 @@ useEffect(()=>{
             <input
               className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
               type="text"
-               maxLength={10}
+              maxLength={10}
               placeholder="Mobile No. 2"
               {...register("mobile2", {
-                 pattern: {
+                pattern: {
                   value: /^[0-9]{10}$/,
                   message: "Must be a number",
                 },
               })}
             />
-           {errors.mobile2 && (
+            {errors.mobile2 && (
               <p className="text-red-500 mt-1 text-xs">
-                {errors?.mobile2?.message }
+                {errors?.mobile2?.message}
               </p>
             )}
           </div>
@@ -139,41 +148,55 @@ useEffect(()=>{
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 col-span-2 gap-2">
             <div className="col-span-1 space-y-5">
-            <div class="relative">
-    <input id="floating_outlined" class="block px-2.5 pb-2.5 pt-4 mt-5 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
-    type="date"
-    placeholder="DOB"
-    {...register("dob", {
-      required: {
-        value: true,
-        message: "DOB is a required field",
-      },
-    })} />
+              <div class="relative">
+                <input
+                  id="floating_outlined"
+                  class="block px-2.5 pb-2.5 pt-4 mt-5 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  type="date"
+                  placeholder="DOB"
+                  {...register("dob", {
+                    required: {
+                      value: true,
+                      message: "DOB is a required field",
+                    },
+                  })}
+                />
 
-    <label for="floating_outlined" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Date of Birth</label>
-</div>
-         
-                {errors.dob && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.dob?.message || "DOB is a required field"}
-                  </p>
-                )}
-            <div class="relative">
-    <input id="floating_outlined" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
-    type="date"
-    placeholder="Marriage Anniversary"
-    {...register("anniversary")} />
+                <label
+                  for="floating_outlined"
+                  class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                >
+                  Date of Birth
+                </label>
+              </div>
 
-    <label for="floating_outlined" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Date of Marriage Anniversary</label>
-</div>
-         
-                {errors.anniversary && (
-                  <p className="text-red-500 mt-1 text-xs">
-                    {errors?.anniversary?.message || "DOB is a required field"}
-                  </p>
-                )}
-     
-     
+              {errors.dob && (
+                <p className="text-red-500 mt-1 text-xs">
+                  {errors?.dob?.message || "DOB is a required field"}
+                </p>
+              )}
+              <div class="relative">
+                <input
+                  id="floating_outlined"
+                  class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  type="date"
+                  placeholder="Marriage Anniversary"
+                  {...register("anniversary")}
+                />
+
+                <label
+                  for="floating_outlined"
+                  class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                >
+                  Date of Marriage Anniversary
+                </label>
+              </div>
+
+              {errors.anniversary && (
+                <p className="text-red-500 mt-1 text-xs">
+                  {errors?.anniversary?.message || "DOB is a required field"}
+                </p>
+              )}
             </div>
             <div className="flex flex-col gap-2 col-span-1 h-full">
               <textarea
@@ -238,11 +261,11 @@ useEffect(()=>{
               className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
               type="text"
               placeholder="PIN Code"
-               maxLength={6}
+              maxLength={6}
               {...register("pincode", {
                 required: {
                   value: true,
-                  message: "PIN Code is a required field",   
+                  message: "PIN Code is a required field",
                 },
                 pattern: {
                   value: /^[0-9]{6}$/,
@@ -261,7 +284,7 @@ useEffect(()=>{
             <input
               className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
               type="text"
-              maxLength={12} 
+              maxLength={12}
               placeholder="Aadhaar No."
               {...register("aadhaarNumber", {
                 required: {
@@ -276,48 +299,49 @@ useEffect(()=>{
             />
             {errors.aadhaarNumber && (
               <p className="text-red-500 mt-1 text-xs">
-                {errors?.aadhaarNumber?.message }
+                {errors?.aadhaarNumber?.message}
               </p>
             )}
           </div>
 
           <div className="flex flex-col gap-2">
-          <input
-  className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-  type="text"
-  placeholder="PAN No."
-  maxLength={10}
-  {...register("panNumber", {
-    pattern: {
-      value: /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/,
-      message: "PAN No. must be in the format: ABCDE1234F",
-    },
-  })}
-  onInput={(e) => {
-    e.target.value = e.target.value.toUpperCase();
-  }}
-/>
+            <input
+              className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+              type="text"
+              placeholder="PAN No."
+              maxLength={10}
+              {...register("panNumber", {
+                pattern: {
+                  value: /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/,
+                  message: "PAN No. must be in the format: ABCDE1234F",
+                },
+              })}
+              onInput={(e) => {
+                e.target.value = e.target.value.toUpperCase();
+              }}
+            />
 
             {errors.panNumber && (
               <p className="text-red-500 mt-1 text-xs">
-                {errors?.panNumber?.message }
+                {errors?.panNumber?.message}
               </p>
             )}
           </div>
           <div className="flex flex-col gap-2">
             <input
-             onInput={(e) => {
-              e.target.value = e.target.value.toUpperCase();
-            }}
+              onInput={(e) => {
+                e.target.value = e.target.value.toUpperCase();
+              }}
               className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
               type="text"
               placeholder="Driving License No."
-               maxLength={16}
+              maxLength={16}
               {...register("drivingLicenseNumber", {
-                 pattern: {
-      value: /^[A-Z0-9]{16}$/,
-      message: "Driving License No. must be exactly 16 alphanumeric characters",
-    },
+                pattern: {
+                  value: /^[A-Z0-9]{16}$/,
+                  message:
+                    "Driving License No. must be exactly 16 alphanumeric characters",
+                },
               })}
             />
             {errors.drivingLicenseNumber && (
@@ -327,21 +351,22 @@ useEffect(()=>{
             )}
           </div>
           <div className="flex flex-col gap-2">
-          <input
-  onInput={(e) => {
-    e.target.value = e.target.value.toUpperCase();
-  }}
-  className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-  type="text"
-  placeholder="Passport No."
-  maxLength={9}
-  {...register("passportNumber", {
-    pattern: {
-      value: /^[A-Z0-9]{8,9}$/,
-      message: "Passport No. must be 8 to 9 alphanumeric uppercase characters",
-    },
-  })}
-/>
+            <input
+              onInput={(e) => {
+                e.target.value = e.target.value.toUpperCase();
+              }}
+              className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+              type="text"
+              placeholder="Passport No."
+              maxLength={9}
+              {...register("passportNumber", {
+                pattern: {
+                  value: /^[A-Z0-9]{8,9}$/,
+                  message:
+                    "Passport No. must be 8 to 9 alphanumeric uppercase characters",
+                },
+              })}
+            />
 
             {errors.passportNumber && (
               <p className="text-red-500 mt-1 text-xs">
@@ -379,7 +404,6 @@ useEffect(()=>{
                   placeholder="Name"
                   {...register("bankDetails.name")}
                 />
-
               </div>
 
               <div className="flex flex-col gap-2">
@@ -389,7 +413,6 @@ useEffect(()=>{
                   placeholder="Bank"
                   {...register("bankDetails.bank")}
                 />
-               
               </div>
 
               <div className="flex flex-col gap-2">
@@ -399,7 +422,6 @@ useEffect(()=>{
                   placeholder="Savings / Current"
                   {...register("bankDetails.savingsCurrent")}
                 />
-               
               </div>
 
               <div className="flex flex-col gap-2">
@@ -409,7 +431,6 @@ useEffect(()=>{
                   placeholder="Account Number"
                   {...register("bankDetails.accountNumber")}
                 />
-
               </div>
 
               <div className="flex flex-col gap-2">
@@ -419,7 +440,6 @@ useEffect(()=>{
                   placeholder="URL"
                   {...register("bankDetails.url")}
                 />
-                
               </div>
 
               <div className="flex flex-col gap-2">
@@ -429,7 +449,6 @@ useEffect(()=>{
                   placeholder="User ID"
                   {...register("bankDetails.userId")}
                 />
-               
               </div>
 
               <div className="flex flex-col gap-2">
@@ -439,7 +458,6 @@ useEffect(()=>{
                   placeholder="Password"
                   {...register("bankDetails.password")}
                 />
-            
               </div>
 
               <div className="flex flex-col gap-2">
@@ -449,7 +467,6 @@ useEffect(()=>{
                   placeholder="Transaction Password"
                   {...register("bankDetails.transactionPassword")}
                 />
-              
               </div>
               <div className="flex flex-col gap-2">
                 <input
@@ -458,7 +475,6 @@ useEffect(()=>{
                   placeholder="Debit Card No."
                   {...register("bankDetails.debitCardNo")}
                 />
-               
               </div>
 
               <div className="flex flex-col gap-2">
@@ -468,7 +484,6 @@ useEffect(()=>{
                   placeholder="Debit Card PIN"
                   {...register("bankDetails.debitCardPin")}
                 />
-                
               </div>
               <div className="flex flex-col gap-2">
                 <input
@@ -477,7 +492,6 @@ useEffect(()=>{
                   placeholder="IFSC"
                   {...register("bankDetails.ifsc")}
                 />
-               
               </div>
               <div className="flex flex-col gap-2">
                 <input
@@ -486,7 +500,6 @@ useEffect(()=>{
                   placeholder="CIF"
                   {...register("bankDetails.cif")}
                 />
-                
               </div>
               <div className="flex flex-col gap-2">
                 <input
@@ -495,7 +508,6 @@ useEffect(()=>{
                   placeholder="Nominee"
                   {...register("bankDetails.nominee")}
                 />
-                
               </div>
               <div className="flex flex-col gap-2">
                 <input
@@ -504,7 +516,6 @@ useEffect(()=>{
                   placeholder="E-Mail"
                   {...register("bankDetails.bankEmail")}
                 />
-               
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 col-span-2 gap-2">
@@ -516,7 +527,6 @@ useEffect(()=>{
                       placeholder="Mobile No"
                       {...register("bankDetails.bankMobile")}
                     />
-                  
                   </div>
 
                   <div className="flex flex-col gap-2">
@@ -526,7 +536,6 @@ useEffect(()=>{
                       placeholder="Debit Card No."
                       {...register("bankDetails.debitCardNo")}
                     />
-                    
                   </div>
                 </div>
                 <div className="flex flex-col gap-2 col-span-1 h-full">
@@ -536,7 +545,6 @@ useEffect(()=>{
                     placeholder="Bank Address"
                     {...register("bankDetails.bankAddress")}
                   />
-                
                 </div>
               </div>
             </div>
@@ -566,7 +574,6 @@ useEffect(()=>{
               Credit Card Details:
             </div>
             <div className="grid grid-cols-2 gap-2">
-
               <div className="flex flex-col gap-2">
                 <input
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
@@ -574,7 +581,6 @@ useEffect(()=>{
                   placeholder="Bank"
                   {...register("creditCardDetails.bank")}
                 />
-        
               </div>
 
               <div className="flex flex-col gap-2">
@@ -584,7 +590,6 @@ useEffect(()=>{
                   placeholder="Savings / Current"
                   {...register("creditCardDetails.savingsCurrent")}
                 />
-      
               </div>
 
               <div className="flex flex-col gap-2">
@@ -594,7 +599,6 @@ useEffect(()=>{
                   placeholder="Account Number"
                   {...register("creditCardDetails.accountNumber")}
                 />
-    
               </div>
 
               <div className="flex flex-col gap-2">
@@ -604,7 +608,6 @@ useEffect(()=>{
                   placeholder="URL"
                   {...register("creditCardDetails.url")}
                 />
-          
               </div>
 
               <div className="flex flex-col gap-2">
@@ -614,7 +617,6 @@ useEffect(()=>{
                   placeholder="User ID"
                   {...register("creditCardDetails.userId")}
                 />
-     
               </div>
 
               <div className="flex flex-col gap-2">
@@ -624,7 +626,6 @@ useEffect(()=>{
                   placeholder="Password"
                   {...register("creditCardDetails.password")}
                 />
-      
               </div>
 
               <div className="flex flex-col gap-2">
@@ -634,7 +635,6 @@ useEffect(()=>{
                   placeholder="Transaction Password"
                   {...register("creditCardDetails.transactionPassword")}
                 />
-      
               </div>
               <div className="flex flex-col gap-2">
                 <input
@@ -643,7 +643,6 @@ useEffect(()=>{
                   placeholder="Credit Card No."
                   {...register("creditCardDetails.creditCardNo")}
                 />
-       
               </div>
 
               <div className="flex flex-col gap-2">
@@ -653,7 +652,6 @@ useEffect(()=>{
                   placeholder="Credit Card PIN"
                   {...register("creditCardDetails.creditCardPin")}
                 />
-         
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 col-span-2 gap-2">
@@ -665,7 +663,6 @@ useEffect(()=>{
                       placeholder="E-Mail"
                       {...register("creditCardDetails.bankEmail")}
                     />
-                 
                   </div>
                   <div className="flex flex-col gap-2">
                     <input
@@ -674,7 +671,6 @@ useEffect(()=>{
                       placeholder="Mobile No"
                       {...register("creditCardDetails.bankMobile")}
                     />
-            
                   </div>
                 </div>
                 <div className="flex flex-col gap-2 col-span-1 h-full">
@@ -684,7 +680,6 @@ useEffect(()=>{
                     placeholder="Bank Address"
                     {...register("creditCardDetails.bankAddress")}
                   />
-    
                 </div>
               </div>
             </div>

@@ -4,15 +4,10 @@ import insuranceBg from "../../../assets/Images/Insurance/Insurance.jpg";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import {
-  createUser,
-  getUsers,
-} from "../../../features/actions/Auth/userActions";
 import { useDispatch } from "react-redux";
 import CircleLoader from "../../../components/Loader/ButtonLoaders/CircleLoader";
 import { useSelector } from "react-redux";
 import { roleChecker } from "../../../utils";
-import { resetUserState } from "../../../features/slices/Auth/userSlice";
 import {
   createInsurance,
   getInsurances,

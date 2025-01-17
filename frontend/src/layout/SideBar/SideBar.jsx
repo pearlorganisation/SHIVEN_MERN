@@ -299,7 +299,7 @@ if(loggedInUserData.role === "1")
     {
       title: "Files / Folder Management",
       subMenu: false,
-      path: "/consultant-filesManagement",
+      path: `/consultant-files-folders/${loggedInUserData._id}`,
       show: loggedInUserData.role === "1",
     },
     {

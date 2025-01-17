@@ -61,10 +61,11 @@ const ClientTable = () => {
                  
                         <td class=" py-4">
                           <Link
-                            to="/consultant-filesManagement"
+                            to={`/profile`}
+                            state={user?._id}
                             className="hover:bg-blue-500 bg-blue-600 rounded-md py-1 text-white px-2"
                           >
-                            View Customers
+                            View Profiles
                           </Link>
                         </td>
           

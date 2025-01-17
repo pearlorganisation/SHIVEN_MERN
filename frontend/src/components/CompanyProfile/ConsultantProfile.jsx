@@ -1,35 +1,49 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 import { CircleLoader } from "react-spinners";
+import { createOrUpdateConsultantProfile, getParticularConsultantProfile } from "../../features/actions/consultantProfile";
 
 const CompanyProfile = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const { consultantProfileData, isCreated ,isLoading} = useSelector((state) => state.consultantProfile);
   const [isDisabled, setIsDisabled] = useState(true);
+  const { loggedInUserData } = useSelector((state) => state.auth);
+
+  const dispatch =useDispatch()
 
   const {
     register,
     formState: { errors },
     handleSubmit,
-    reset,
     setFocus,
-  } = useForm();
+  } = useForm({
+    defaultValues:consultantProfileData
+  });
 
   const onSubmit = (data) => {
-    setIsLoading(true); // Simulate loading
-    setTimeout(() => {
-      console.log(data);
-      setIsLoading(false); // Stop loading after submission
-    }, 2000); // Simulate form processing delay
+
+    const newData= {...data,consultantId:loggedInUserData?._id}
+dispatch(createOrUpdateConsultantProfile(newData))
+
   };
 
   const handleEditClick = () => {
     setIsDisabled(false); // Enable the input fields
     setTimeout(() => {
-      setFocus("companyName"); // Focus on the first field after enabling
+      setFocus("consultantName"); // Focus on the first field after enabling
     }, 10); // Delay to allow the re-render to complete
   };
 
-  return (
+  useEffect(()=>{
+    if(isCreated)
+      dispatch(getParticularConsultantProfile(loggedInUserData?._id))
+    setIsDisabled(true);
+  },[isCreated])
+
+  useEffect(()=>{
+dispatch(getParticularConsultantProfile(loggedInUserData?._id))
+  },[])
+ return (
     <div className="min-h-screen text-gray-900 flex justify-center">
       <div className="w-full p-4 m-0 sm:m-5 bg-white shadow sm:rounded-lg">
         <div className="w-full flex justify-between">
@@ -51,70 +65,98 @@ const CompanyProfile = () => {
             className="flex flex-col gap-5"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className="grid grid-cols-2 gap-2">
-              <div className="flex flex-col gap-2">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="relative border-t-2 border-x-2 rounded-xl">
                 <input
+                id="floating_outlined"
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="text"
-                  placeholder="Consultant Name"
                   disabled={isDisabled}
-                  {...register("companyName", {
+                  {...register("consultantName", {
                     required: {
                       value: true,
                       message: "Consultant Name is a required field",
                     },
                   })}
                 />
-                {errors.companyName && (
+                     <label
+                  for="floating_outlined"
+                  class="absolute text-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                >
+                  Consultant Name
+                </label>
+                {errors.consultantName && (
                   <p className="text-red-500 mt-1 text-xs">
-                    {errors?.companyName?.message ||
+                    {errors?.consultantName?.message ||
                       "Consultant Name is a required field"}
                   </p>
                 )}
-              </div>
-              <div className="flex flex-col gap-2">
+                </div>
+
+                <div className="relative border-t-2 border-x-2 rounded-xl">
                 <input
+                id="floating_outlined"
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="text"
-                  placeholder="Mobile No."
                   disabled={isDisabled}
-                  {...register("mobile", {
+                  {...register("mobileNumber", {
                     required: {
                       value: true,
-                      message: "Mobile No. is a required field",
+                      message: "Mobile Number is a required field",
                     },
                   })}
                 />
-                {errors.mobile && (
+                     <label
+                  for="floating_outlined"
+                  class="absolute text-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                >
+                  Mobile Number
+                </label>
+                {errors.mobileNumber && (
                   <p className="text-red-500 mt-1 text-xs">
-                    {errors?.mobile?.message || "Mobile is a required field"}
+                    {errors?.mobileNumber?.message ||
+                      "Mobile Number is a required field"}
                   </p>
                 )}
-              </div>
-              <div className="flex flex-col gap-2">
-                <input
+                </div>
+              <div className="relative border-t-2 border-x-2 rounded-xl">
+              <select
+  id="floating_outlined"
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                  type="text"
-                  placeholder="Gender"
-                  disabled={isDisabled}
-                  {...register("website", {
-                    required: {
-                      value: true,
-                      message: "Gender is a required field",
-                    },
-                  })}
-                />
-                {errors.website && (
+  disabled={isDisabled}
+  {...register("gender", {
+    required: {
+      value: true,
+      message: "Gender is a required field",
+    },
+  })}
+>
+  <option value="" disabled selected hidden>
+    Select Gender
+  </option>
+  <option value="Male">Male</option>
+  <option value="Female">Female</option>
+  <option value="Others">Others</option>
+</select>
+<label
+                  for="floating_outlined"
+                  class="absolute text-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                >
+                  Gender
+                </label>
+                {errors.gender && (
                   <p className="text-red-500 mt-1 text-xs">
-                    {errors?.website?.message || "Gender is a required field"}
+                    {errors?.gender?.message || "Gender is a required field"}
                   </p>
                 )}
               </div>
-              <div className="flex flex-col gap-2">
+              
+         
+              <div className="relative border-t-2 border-x-2 rounded-xl">
                 <input
+                id="floating_outlined"
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="email"
-                  placeholder="Email"
                   disabled={isDisabled}
                   {...register("email", {
                     required: {
@@ -123,76 +165,94 @@ const CompanyProfile = () => {
                     },
                   })}
                 />
+                     <label
+                  for="floating_outlined"
+                  class="absolute text-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                >
+                  Email
+                </label>
                 {errors.email && (
                   <p className="text-red-500 mt-1 text-xs">
-                    {errors?.email?.message || "Email is a required field"}
+                    {errors?.email?.message ||
+                      "Email is a required field"}
                   </p>
                 )}
-              </div>
+                </div>
               <div className="grid grid-cols-1 md:grid-cols-2 col-span-2 gap-2">
-                <div className="flex flex-col gap-2 col-span-1 h-full">
-                  <textarea
-                    className="w-full h-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5 resize-none"
-                    type="text"
-                    placeholder="Address"
-                    disabled={isDisabled}
-                    {...register("address", {
-                      required: {
-                        value: true,
-                        message: "Address is a required field",
-                      },
-                    })}
-                  />
-                  {errors.address && (
-                    <p className="text-red-500 mt-1 text-xs">
-                      {errors?.address?.message ||
-                        "Address is a required field"}
-                    </p>
-                  )}
-                </div>
 
-                <div className="col-span-1">
-                  <div className="flex flex-col gap-2">
-                    <input
-                      className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                      type="text"
-                      placeholder="Company ID"
-                      disabled={isDisabled}
-                      {...register("gstNo", {
-                        required: {
-                          value: true,
-                          message: "GST No is a required field",
-                        },
-                      })}
-                    />
-                    {errors.gstNo && (
-                      <p className="text-red-500 mt-1 text-xs">
-                        {errors?.gstNo?.message || "GST No is a required field"}
-                      </p>
-                    )}
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <input
-                      className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                      type="text"
-                      placeholder="Company PAN"
-                      disabled={isDisabled}
-                      {...register("companyPan", {
-                        required: {
-                          value: true,
-                          message: "Company PAN is a required field",
-                        },
-                      })}
-                    />
-                    {errors.companyPan && (
-                      <p className="text-red-500 mt-1 text-xs">
-                        {errors?.companyPan?.message ||
-                          "Company PAN is a required field"}
-                      </p>
-                    )}
-                  </div>
+                <div className="relative border-t-2 border-x-2 rounded-xl">
+                <textarea
+                id="floating_outlined"
+                  className="w-full h-[90%] px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                  type="text"
+                  disabled={isDisabled}
+                  {...register("address")}
+                />
+                     <label
+                  for="floating_outlined"
+                  class="absolute text-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                >
+                  Address
+                </label>
+
                 </div>
+                <div className="col-span-1 space-y-4">
+                  
+                <div className="relative border-t-2 border-x-2 rounded-xl">
+                <input
+                id="floating_outlined"
+                  className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                  type="text"
+                  disabled={isDisabled}
+                  {...register("companyId", {
+                    required: {
+                      value: true,
+                      message: "Company ID is a required field",
+                    },
+                  })}
+                />
+                     <label
+                  for="floating_outlined"
+                  class="absolute text-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                >
+                Company ID
+                </label>
+                {errors.companyId && (
+                  <p className="text-red-500 mt-1 text-xs">
+                    {errors?.companyId?.message ||
+                      "Company ID is a required field"}
+                  </p>
+                )}
+                </div>
+                <div className="relative border-t-2 border-x-2 rounded-xl">
+                <input
+                id="floating_outlined"
+                  className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                  type="text"
+                  disabled={isDisabled}
+                  {...register("companyPan", {
+                    required: {
+                      value: true,
+                      message: "Company PAN is a required field",
+                    },
+                  })}
+                />
+                     <label
+                  for="floating_outlined"
+                  class="absolute text-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                >
+                CompanyPan
+                </label>
+                {errors.companyPan && (
+                  <p className="text-red-500 mt-1 text-xs">
+                    {errors?.companyPan?.message ||
+                      " CompanyPan is a required field"}
+                  </p>
+                )}
+                </div>
+                  </div>
               </div>
+              
 
 
         
@@ -202,7 +262,7 @@ const CompanyProfile = () => {
             <button
               className="mt-5 tracking-wide text-base font-semibold bg-green-400 text-white w-full md:w-[200px] py-3 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
               type="submit"
-              disabled={isLoading}
+              disabled={isLoading ||isDisabled}
             >
               {isLoading ? (
                 <CircleLoader />

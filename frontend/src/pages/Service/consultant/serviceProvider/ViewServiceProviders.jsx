@@ -65,7 +65,7 @@ export const ConsultantServiceProviders = () => {
                 </tr>
               </thead>
               <tbody className="text-gray-600 divide-y">
-              {             Array.isArray(allServiceProviders) && allServiceProviders.length > 0 && allServiceProviders?.map((item, idx) => (
+              {             Array.isArray(allServiceProviders) && allServiceProviders.length > 0 ? allServiceProviders?.map((item, idx) => (
                     <tr key={idx}>
                       <td className="px-6 py-4 whitespace-nowrap">{idx+1}</td>
                       <td className="px-6 py-4 whitespace-nowrap ">
@@ -86,7 +86,7 @@ export const ConsultantServiceProviders = () => {
                      
                
                     </tr>
-                  ))
+                  )) : <div className="text-center py-2 font-semibold">No Data Found</div>
                    }
               </tbody>
             </table>

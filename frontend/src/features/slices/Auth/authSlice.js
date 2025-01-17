@@ -48,7 +48,7 @@ const authSlice = createSlice({
         state.loggedInUserData = action?.payload?.data;
         state.response = action?.payload;
         state.isLoginOtpSent = true;
-        toast.success("OTP for verification sent successfully");
+ 
      
       })
       .addCase(login.rejected, (state, action) => {
@@ -81,6 +81,7 @@ const authSlice = createSlice({
       // logout lifecycle actions
       .addCase(logout.pending, (state, action) => {
         state.isLoading = true;
+        state.isLoginOtpSent = false
         state.errorMessage = "";
         state.isUserLoggedIn = false;
         state.response ={}
@@ -88,12 +89,14 @@ const authSlice = createSlice({
       .addCase(logout.fulfilled, (state, action) => {
         state.isLoading = false;
         state.errorMessage = "";
+        state.isLoginOtpSent = false
         state.isUserLoggedIn = false;
         state.response ={}
         toast.success("Logout successfully");
       })
       .addCase(logout.rejected, (state, action) => {
         state.isLoading = false;
+        state.isLoginOtpSent = false
         state.errorMessage = action?.payload;
         toast.error(action?.payload?.response?.data?.message || "Error!");
         state.response ={}

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { forgotPassword } from "../../../features/actions/Auth/authActions";
 import CircleLoader from "../../../components/Loader/ButtonLoaders/CircleLoader";
+import { toast } from "sonner";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ dispatch(forgotPassword(data))
 
   useEffect(()=>{
     if (isForgotPasswordOtpSent) {
+      toast.success("OTP for verification sent successfully");
       navigate("/verification", { state: { email: userEmail } });
     }
   },[isForgotPasswordOtpSent])

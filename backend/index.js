@@ -62,7 +62,10 @@ import consultantRouter from "./src/Routes/Auth/consultantRoutes.js";
 import brochureRouter from "./src/Routes/brochure.js";
 import customisedFormRouter from "./src/Routes/customisedForm.js";
 import customerProfileRouter from "./src/Routes/customerProfile.js";
+import consultantProfileRouter from "./src/Routes/consultantProfile.js"
+import companyProfileRouter from "./src/Routes/companyProfile.js"
 import { customerRouter } from "./src/Routes/Auth/customer.js";
+import filesAndFoldersRouter from "./src/Routes/filesAndFolders.js";
 
 // Route Middlewares
 
@@ -76,6 +79,9 @@ app.use("/api/v1/serviceProvider", serviceProviderRouter);
 app.use("/api/v1/brochure", brochureRouter);
 app.use("/api/v1/customisedForm", customisedFormRouter);
 app.use("/api/v1/customerProfile", customerProfileRouter);
+app.use("/api/v1/consultantProfile", consultantProfileRouter);
+app.use("/api/v1/companyProfile", companyProfileRouter);
+app.use("/api/v1/filesAndFolders", filesAndFoldersRouter);
 
 
 app.all(["/", "/api", "/api/v1"], (req, res, next) => {

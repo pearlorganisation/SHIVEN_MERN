@@ -42,14 +42,7 @@ if( consultants?.servicePlan && Array.isArray(consultants.servicePlan) && logged
           Service Listing
         </h4>
         <div className="createEmployeeBtn flex justify-end p-4 ">
-          {/* <button
-            className=" p-2 rounded-lg bg-indigo-600 text-white font-bold tracking-widest"
-            onClick={() => {
-              navigate("/service/createService");
-            }}
-          >
-            Add Service Plan
-          </button> */}
+
         </div>
       </div>
       <div className="mt-6 shadow-xl rounded-lg overflow-x-auto">
@@ -66,7 +59,7 @@ if( consultants?.servicePlan && Array.isArray(consultants.servicePlan) && logged
           <tbody className="text-gray-600 divide-y">
             {
               Array.isArray(getAllOptedServices) &&
-              getAllOptedServices.length > 0 &&
+              getAllOptedServices.length > 0 ?
               getAllOptedServices?.map((item, idx) => (
                 <tr key={idx}>
                   <td className="px-6 py-4 whitespace-nowrap">{idx + 1}</td>
@@ -92,7 +85,7 @@ if( consultants?.servicePlan && Array.isArray(consultants.servicePlan) && logged
                     </button>
                   </td>
                 </tr>
-              ))
+              )): <div className="text-center py-2 font-semibold">No Data Found</div>
             }
           </tbody>
         </table>

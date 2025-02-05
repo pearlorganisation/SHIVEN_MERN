@@ -7,6 +7,7 @@ import CircleLoader from "../../../components/Loader/ButtonLoaders/CircleLoader"
 import { useSelector } from "react-redux";
 import { instance } from "../../../services/Axios/axiosInterceptor";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import {toast} from "sonner"
 // -------------------------------------------------------------------------------------------------
 
 export const CreateConsultant = () => {
@@ -39,7 +40,9 @@ export const CreateConsultant = () => {
     try {
       const {
         data: { consultantId, order },
-      } = await instance.post(`/consultant`, data);
+      } = await instance.post(`/consultant`, data).catch((e)=>
+        toast.error(e.response.data.message))
+
       const options = {
         key: import.meta.env.VITE_APP_RAZORPAY_KEY,
         amount: order.amount,
@@ -51,7 +54,7 @@ export const CreateConsultant = () => {
         handler: async function (response) {
           const body = {
             ...response,
-            servicePlan: selectedPlans.map((plan) => plan.value),
+            servicePlan: [],
           };
           try {
             const validateResponse = await instance.post(
@@ -95,7 +98,7 @@ export const CreateConsultant = () => {
         <div class="max-w-screen-xl m-0 sm:m-5 bg-white shadow sm:rounded-lg flex justify-center flex-1">
           <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
             <h1 className="text-center font-bold text-blue-600 text-sm sm:text-lg md:text-xl">
-              Consultant Registeration
+              Consultant Registration
             </h1>
 
             <div class="mt-12 flex flex-col items-center">

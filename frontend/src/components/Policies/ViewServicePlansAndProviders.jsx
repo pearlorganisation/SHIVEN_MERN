@@ -1,32 +1,19 @@
 // ------------------------------------------Imports-----------------------------------------------------
 import React, { useEffect } from "react";
-import Whychoosshiven from "../commonininsurance/Whychoosshiven";
-
 import { Link, useNavigate } from "react-router-dom";
-import Company from "../../Company/Company";
-import CreateProfile from "../../CreateProfile/CreateProfile";
-import HealthInsuranceReview from "./HealthInsuranceReview";
-import HealthFaq from "./HealthFaq";
+import Company from "../Company/Company";
+import HealthInsuranceReview from "../insurance/Health_insurance/HealthInsuranceReview";
+import HealthFaq from "../insurance/Health_insurance/HealthFaq";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllServicePlans } from "../../../features/actions/Service/servicePlan";
+// import { getAllServicePlans } from "../../../features/actions/Service/servicePlan";
 // -----------------------------------------------------------------------------------------------------
 
-const Healthinsurance = () => {
-  // ------------------------------------------States-----------------------------------------------------
-  // -----------------------------------------------------------------------------------------------------
-  // ------------------------------------------Hooks-----------------------------------------------------
-  // -----------------------------------------------------------------------------------------------------
-  // ----------------------------------------Functions-----------------------------------------------------
-  // -----------------------------------------------------------------------------------------------------
-  // ----------------------------------------useEffect-----------------------------------------------------
+const ViewServicePlansAndProviders = () => {
+
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
   // -----------------------------------------------------------------------------------------------------
-  const navigate = useNavigate();
-  const handelNavigate = () => {
-    navigate("/enquiry");
-  };
 
 
   const { servicePlanData } = useSelector((state) => state?.servicePlan);
@@ -34,75 +21,16 @@ const Healthinsurance = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllServicePlans());
+    // dispatch(getAllServicePlans());
   }, []);
 
-  console.log(servicePlanData, "plan data");
 
   return (
     <>
       <div className="mx-auto ">
         <section>
           <Company />
-          <div className="max-w-7xl mx-auto px-4  sm:px-6 lg:px-8 py-10">
-            <h2 className="text-4xl font-semibold text-center mb-10">
-              Choose your plans
-            </h2>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {servicePlanData.map((el, id) => {
-                return (
-                  <div className="bg-white p-4 shadow rounded-lg flex flex-col">
-                    <div className="flex items-center space-x-2 mb-4">
-                      <img
-                        alt="Company Logo"
-                        className="h-10 w-10"
-                        height="40"
-                        src={el?.serviceProvider?.logo}
-                        style={{
-                          aspectRatio: "40/40",
-                          objectFit: "cover",
-                        }}
-                        width="40"
-                      />
-
-                      <div>
-                        <h3 className="text-lg font-semibold">
-                          {el.serviceName}
-                        </h3>
-                        <p className="text-sm text-gray-600">
-                          No room rent limit | 33% no claim bonus | 100%
-                          restoration benefits
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex justify-between items-center mb-4">
-                      <div>
-                        <p className="text-sm text-gray-600">Cover</p>
-                        <p className="font-semibold">
-                          ₹<span>{el.coverAmount}</span>
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-600">Starting at</p>
-                        <p className="font-semibold">
-                          ₹ {el.premiumPerMonth}/month*
-                        </p>
-                      </div>
-                    </div>
-                    <button
-                      type="button"
-                      className="bg-red-500 p-3 rounded-md text-white"
-                      onClick={handelNavigate}
-                    >
-                      Check Premium
-                    </button>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+      
         </section>
 
         <div className="p-5 md:p-8 conatiner mx-auto max-w-7xl">
@@ -196,4 +124,4 @@ const Healthinsurance = () => {
   );
 };
 
-export default Healthinsurance;
+export default ViewServicePlansAndProviders

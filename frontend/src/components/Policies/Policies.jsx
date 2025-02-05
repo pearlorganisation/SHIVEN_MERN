@@ -1,50 +1,49 @@
-import React from "react";
-import { AiOutlineMedicineBox } from "react-icons/ai";
-import { RiUmbrellaFill } from "react-icons/ri";
-import { IoMdCar } from "react-icons/io";
-import { FiArrowUpCircle } from "react-icons/fi";
-import { FaHandshake, FaShieldAlt } from "react-icons/fa";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { RiFundsLine } from "react-icons/ri";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllServices } from "../../features/actions/Service/service";
+import { getConsultantWithPopulated } from "../../features/actions/Auth/userActions";
+
 const Policies = () => {
-  const faqsList = [
-    {
-      q: "Health Insurance",
-      icon: <AiOutlineMedicineBox size={40} className="text-blue-500 px-2" />,
-      desc: "That's exactly the reason we created this random question generator. There are hundreds of random questions to choose from so you're able to find the perfect random question.",
-      path: `/health-insurance`,
-    },
-    {
-      q: "Motor Insurance",
-      icon: <RiUmbrellaFill size={40} className="text-pink-400 px-2" />,
-      desc: "This generator doesn't include most common questions. The thought is that you can come up with common questions on your own so most of the questions in this generator.",
-      path: "/motor-insurance",
-    },
-    {
-      q: "Travel Insurance",
-      icon: <IoMdCar size={40} className="text-[#cfac72] px-2" />,
-      desc: "Yes! there are two ways that you can use this question generator depending on what you're after. You can indicate that you want 21 questions generated.",
-      path: "javascript:void(0)",
-    },
-    {
-      q: "Business Insurance",
-      icon: <FiArrowUpCircle size={40} className="text-green-400 px-2" />,
-      desc: "The questions in this generator are gender neutral and can be used to ask either male of females (or any other gender the person identifies with).",
-      path: "javascript:void(0)",
-    },
-    {
-      q: "Loans",
-      icon: <FaHandshake size={40} className="text-[#81e6d6] px-2" />,
-      desc: "If you've been searching for a way to get random questions, you've landed on the correct webpage. We created the Random Question Generator to ask you as many random questions as your heart desires.",
-      path: "javascript:void(0)",
-    },
-    {
-      q: "Mutual Fund",
-      icon: <RiFundsLine size={40} className="text-[#50db63] px-2" />,
-      desc: "If you've been searching for a way to get random questions, you've landed on the correct webpage. We created the Random Question Generator to ask you as many random questions as your heart desires.",
-      path: "/mutualfund",
-    },
-  ];
+  const { loggedInUserData } = useSelector((state) => state.auth);
+  const { serviceData } = useSelector((state) => state.service);
+  const  dispatch = useDispatch()
+  const { consultants } = useSelector(
+    (state) => state?.user
+  );
+
+  let getAllOptedServices = []
+ if( consultants?.servicePlan && Array.isArray(consultants.servicePlan))
+      {  
+        const seenServiceNames = new Set(); // To track unique serviceProviderName
+        getAllOptedServices = consultants.servicePlan
+        .filter((item) => {
+          const serviceName = item?.serviceType?.serviceType;
+          if (serviceName && !seenServiceNames.has(serviceName)) {
+            seenServiceNames.add(serviceName); // Add to set if not already present
+            return true;
+          }
+          return false;
+        })
+
+        .map((item) => ({
+   ...item?.serviceType
+        }));
+    }
+
+  const data = loggedInUserData?.role==="2" ? getAllOptedServices : serviceData
+
+  
+  useEffect(()=>{
+    if(loggedInUserData?.role ==="2")
+      {
+      dispatch(getConsultantWithPopulated(loggedInUserData?.consultantId));
+    }
+    else{
+      dispatch(getAllServices())
+    }
+  },[])
+
   return (
     <section className="py-14">
       <div className="max-w-screen-3xl mx-auto px-4 md:px-8">
@@ -59,7 +58,7 @@ const Policies = () => {
               className="text-indigo-600 font-semibold whitespace-nowrap"
               href="javascript:void(0)"
             >
-              contact us
+              Contact us
             </a>
             .
           </p>
@@ -67,24 +66,26 @@ const Policies = () => {
 
         <div className="mt-12">
           <ul className="space-y-8 gap-12 grid-cols-2 sm:grid sm:space-y-0 lg:grid-cols-3">
-            {faqsList.map((item, idx) => (
-              <a href={item?.path}>
-                <li
+            {Array.isArray(data) && data.map((item, idx) => (
+
+                <Link
+                to={`/servicePlansAndProviders/${item?._id}`}
+                state={loggedInUserData?.role==="2" && consultants?.servicePlan}
                   key={idx}
                   className="space-y-3 border bg-white p-4 rounded-xl cursor-pointer shadow-md"
                 >
                   <summary className="flex items-center justify-between font-semibold text ">
-                    <div className="flex justify-center items-center ">
+                    <div className="flex justify-center items-center gap-4 ">
                       <div className="text-xl italic text-yellow-700 font-bold">
-                        {item.q}
+                        {item.serviceType}
                       </div>
-                      <div>{item.icon}</div>
+                      <img className="h-6 w-10" src={item.logo?.secure_url} />
                     </div>
                   </summary>
 
-                  <p className="text-black leading-relaxed">{item?.desc}</p>
-                  <Link
-                    to={item?.path}
+                  <p className="text-black leading-relaxed line-clamp-4">{item?.serviceDescription}</p>
+                  <div
+              
                     className="flex items-center gap-x-1 text-sm text-indigo-600 hover:text-indigo-400 duration-150 font-medium"
                   >
                     Read more
@@ -100,9 +101,8 @@ const Policies = () => {
                         clipRule="evenodd"
                       />
                     </svg>
-                  </Link>
-                </li>
-              </a>
+                  </div>
+                </Link>
             ))}
           </ul>
         </div>

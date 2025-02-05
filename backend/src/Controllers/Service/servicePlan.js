@@ -15,8 +15,6 @@ export const createServicePlan = asyncErrorHandler(async (req, res, next) => {
 });
 
 export const getAllServicePlan = asyncErrorHandler(async (req, res, next) => {
-  console.log(req.query.sort, "---- ");
-
   const data = await servicePlan
     .find()
     .sort(req.query?.sort)
@@ -26,6 +24,18 @@ export const getAllServicePlan = asyncErrorHandler(async (req, res, next) => {
   return res.status(200).json({
     success: true,
     message: "All Service Plans Found Successfully",
+    data,
+  });
+});
+export const getServicePlanByServiceType = asyncErrorHandler(async (req, res, next) => {
+  const data = await servicePlan
+    .find({serviceType:req?.params?.id})
+    .populate("serviceProvider")
+    .populate("serviceType");
+
+  return res.status(200).json({
+    success: true,
+    message: "All Service Plans Found Successfully for this service type",
     data,
   });
 });

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { toast } from "sonner";
-import { createServicePlan, getAllServicePlans } from "../../actions/Service/servicePlan";
+import { createServicePlan, getAllServicePlans, getServicePlansByServices } from "../../actions/Service/servicePlan";
 
 const initialState = {
   isLoading: false,
@@ -53,6 +53,25 @@ export const servicePlanSlice = createSlice({
         state.servicePlanData = action.payload.data;
       })
       .addCase(getAllServicePlans.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.errorMessage = action.payload;
+        toast.error(action?.payload || "Something went wrong", {
+          position: "top-center",
+        });
+      })
+      .addCase(getServicePlansByServices.pending, (state, action) => {
+        state.isLoading = true;
+        state.isSuccess = false;
+        state.errorMessage = "";
+      })
+      .addCase(getServicePlansByServices.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.errorMessage = "";
+        state.servicePlanData = action.payload.data;
+      })
+      .addCase(getServicePlansByServices.rejected, (state, action) => {
         state.isLoading = false;
         state.isSuccess = false;
         state.errorMessage = action.payload;

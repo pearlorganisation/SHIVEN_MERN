@@ -1,123 +1,149 @@
 import React, { useEffect } from "react";
-import { IoMdArrowDropright } from "react-icons/io";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import "swiper/css";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllServiceProviders } from "../../features/actions/Service/serviceProvider";
+import { getServicePlansByServices } from "../../features/actions/Service/servicePlan";
+
 
 const Company = () => {
-  // ------------------------------------------------State----------------------------------------------
 
-
-  // ------------------------------------------------Hooks----------------------------------------------
+  const {id} = useParams();
+  const {state} = useLocation();
   const navigate = useNavigate();
-  // ---------------------------------------------------------------------------------------------------
-  const { serviceProviderData } = useSelector(
-    (state) => state?.serviceProvider
-  );
+  const handelNavigate = () => {
+    navigate("/enquiry");
+  };
 
+  const { loggedInUserData } = useSelector((state) => state.auth);
+  const { servicePlanData } = useSelector((state) => state.servicePlan);
+
+  let servicePlan=[];
+  if(loggedInUserData?.role==="2"){
+    servicePlan= state
+  }
+  else{
+    servicePlan=servicePlanData
+  }
+  
   const dispatch = useDispatch();
+
+  let getAllOptedServicePlans = []
+  if( state && Array.isArray(state))
+    {  
+      getAllOptedServicePlans = state
+      .filter((item) =>  item?.serviceType?._id === id )
+  }
+
+  let getAllOptedServiceProviders = []
+
+  if( state && Array.isArray(state))
+       {  
+         const seenServiceProviderNames = new Set();
+         getAllOptedServiceProviders = getAllOptedServicePlans
+         .filter((item) => {
+           const serviceProviderName = item?.serviceProvider?.serviceProviderName;
+           if (serviceProviderName && !seenServiceProviderNames.has(serviceProviderName)) {
+            seenServiceProviderNames.add(serviceProviderName); // Add to set if not already present
+             return true;
+           }
+           return false;
+         })
+ 
+         .map((item) => ({
+    ...item?.serviceProvider
+         }));
+     }else{
+      const seenServiceProviderNames = new Set();
+      getAllOptedServiceProviders = servicePlanData
+      .filter((item) => {
+        const serviceProviderName = item?.serviceProvider?.serviceProviderName;
+        if (serviceProviderName && !seenServiceProviderNames.has(serviceProviderName)) {
+         seenServiceProviderNames.add(serviceProviderName); // Add to set if not already present
+          return true;
+        }
+        return false;
+      })
+
+      .map((item) => ({
+ ...item?.serviceProvider
+      }));
+     }
+
   useEffect(() => {
-    dispatch(getAllServiceProviders());
+    if(!loggedInUserData?.role){
+dispatch(getServicePlansByServices(id))
+    }
   }, []);
 
-  console.log(serviceProviderData.data, "new data");
+
 
   return (
     <>
-      {/* <div className="bg-gradient-to-r from-blue-200 to-blue-600 rounded py-10">
-        <Swiper
-          spaceBetween={10}
-          slidesPerView={3}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
-        >
-          {insuranceProviderArray.map((provider) => {
-            return (
-              <>
-                <SwiperSlide>
-                  <div
-                    className="max-w-sm rounded overflow-hidden shadow-lg bg-white mx-auto mt-8 cursor-pointer"
-                    onClick={() => {
-                      navigate(`${provider?.path}`);
-                    }}
-                  >
-                    <div className="px-6 py-4">
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center">
-                          <img
-                            className="w-24 h-16 mr-4"
-                            src="https://static.pbcdn.in/term-cdn/images/images/insurer/SBI_logo.png"
-                            alt="Insurance Company Logo"
-                          />
-                          <div>
-                            <div className="font-bold text-xl text-gray-800">
-                              {provider?.title}
-                            </div>
-                            <div className="text-sm text-gray-600">
-                              Providing reliable insurance solutions
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <ul className="list-none">
-                        <li className="flex items-center text-gray-700 mb-2">
-                          <IoMdArrowDropright size={24} className="mr-2" />
-                          <span>
-                            Competitive rates and customizable coverage options
-                          </span>
-                        </li>
-                        <li className="flex items-center text-gray-700 mb-2">
-                          <IoMdArrowDropright size={24} className="mr-2" />
-                          <span>
-                            24/7 customer support for your peace of mind
-                          </span>
-                        </li>
-                        <li className="flex items-center text-gray-700">
-                          <IoMdArrowDropright size={24} className="mr-2" />
-                          <span>Quick and hassle-free claim process</span>
-                        </li>
-                      </ul>
-
-                      <div className="flex justify-start py-5">
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                          <div className="flex items-center">
-                            <div>Explore</div>
-                            <div>
-                              <IoMdArrowDropright size={25} />
-                            </div>
-                          </div>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              </>
-            );
-          })}
-        </Swiper>
-      </div> */}
+  
 
       <section class="text-center py-8 container max-w-6xl mx-auto">
         <h2 class="text-2xl font-bold mb-4">Our service provider</h2>
         <p class="text-gray-600 mb-8">
-          Leading insurers for your financial freedom
+          Leading providers for your financial freedom
         </p>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6  gap-3">
-          {serviceProviderData.map((el, id) => {
+          {getAllOptedServiceProviders.map((el, id) => {
             return (
               <div class="p-4 bg-white rounded shadow">
                 <img
-                  src={el.logo}
-                  alt="Partner 1"
-                  className="mx-auto w-[4rem] md:w-[5rem]"
+                  src={el.logo?.secure_url}
+                  alt={el?.serviceProviderName}
+                  className="mx-auto rounded-lg w-[4rem] md:w-[5rem]"
                 />
               </div>
             );
           })}
         </div>
+        <div className="max-w-7xl mx-auto px-4  sm:px-6 lg:px-8 py-10">
+            <h2 className="text-4xl font-semibold text-center mb-10">
+              Choose your plans
+            </h2>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {servicePlan.map((el, id) => {
+                return (
+                  <div className="bg-white p-4 shadow rounded-lg flex flex-col">
+                    <div className="flex items-center space-x-2 mb-4">
+                      <img
+                        alt="Company Logo"
+                        className="h-10 w-10 rounded-lg"
+                        height="40"
+                        src={el?.serviceProvider?.logo?.secure_url}
+                        style={{
+                          aspectRatio: "40/40",
+                          objectFit: "cover",
+                        }}
+                        width="40"
+                      />
+
+                      <div>
+                        <h3 className="text-lg font-semibold">
+                          {el.planName}
+                        </h3>
+                        <p className="text-sm text-gray-600">
+                  
+                        </p>
+                      </div>
+                    </div>
+
+
+                    <button
+                      type="button"
+                      className="bg-red-500 p-3 rounded-md text-white"
+                      onClick={handelNavigate}
+                    >
+                      Check Premium
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
       </section>
     </>
   );

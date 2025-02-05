@@ -99,7 +99,7 @@ const userSlice = createSlice({
       .addCase(updateConsultantPlans.rejected, (state, action) => {
         state.isUserLoading = false;
         state.errorMessage = action?.payload;
-        toast.error(action.payload.message);
+        toast.error(action.payload.response.data.message);
       });
   },
 });

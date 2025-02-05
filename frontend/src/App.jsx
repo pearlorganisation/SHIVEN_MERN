@@ -8,7 +8,6 @@ import Login from "./pages/auth/Login/Login";
 import Verification from "./pages/auth/verification/Verification";
 import NewPassword from "./pages/NewPassword/NewPassword";
 
-import Healthinsurance from "./components/insurance/Health_insurance/Healthinsurance";
 import Single_HealthPage from "./components/insurance/Health_insurance/Single_HealthPage";
 
 import SideBar from "./layout/SideBar/SideBar";
@@ -26,7 +25,6 @@ import { routes } from "./routes/routes";
 import { useSelector } from "react-redux";
 import FileFolder from "./components/Dashboard/FileFolder";
 import ConsultantDashboard from "./components/Dashboard/ConsultantDashboard";
-import DesiredPlan from "./components/Dashboard/DesiredPlan";
 import ScheduleMeeting from "./components/Dashboard/ScheduleMeeting";
 import Accounting from "./components/Dashboard/Accounting";
 import FillForm from "./components/Dashboard/FillForm";
@@ -53,6 +51,7 @@ import MotorEnquiry from "./components/insurance/MotorInsurance/MotorEnquiry";
 import MutualfundDetails from "./components/MutualFund/MutualfundProvider/MutualfundDetails";
 import { CreateConsultant } from "./pages/auth/Consultant/CreateConsultant";
 import ForgotPassword from "./pages/auth/ForgotPassword/ForgotPassword";
+import ViewServicePlansAndProviders from "./components/Policies/ViewServicePlansAndProviders";
 
 
 
@@ -93,7 +92,6 @@ function App() {
           <Route path="/plan" element={<Plans />} />
           <Route path="/file&folder" element={<FileFolder />} />
           <Route path="/consultdashboard" element={<ConsultantDashboard />} />
-          <Route path="/desiredplan" element={<DesiredPlan />} />
           <Route path="/schedulemeeting" element={<ScheduleMeeting />} />
           <Route path="/accounting" element={<Accounting />} />
           <Route path="/fillform" element={<FillForm />} />
@@ -102,7 +100,7 @@ function App() {
           {/* -----------------------------------Insurance Routes----------------------------------------- */}
 
           <Route path="/motor-insurance" element={<MotorInsurance />} />
-          <Route path="/health-insurance" element={<Healthinsurance />} />
+          <Route path="/servicePlansAndProviders/:id" element={<ViewServicePlansAndProviders />} />
           <Route
             path="/health-insurance/:insuranceProvider"
             element={<InsuranceProvider />}

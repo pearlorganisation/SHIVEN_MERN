@@ -85,7 +85,7 @@ if( consultants?.servicePlan && Array.isArray(consultants.servicePlan) && logged
                     </button>
                   </td>
                 </tr>
-              )): <div className="text-center py-2 font-semibold">No Data Found</div>
+              )): <div className="text-center py-2 font-semibold">No Service Added</div>
             }
           </tbody>
         </table>

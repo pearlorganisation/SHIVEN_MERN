@@ -25,6 +25,18 @@ export const getAllServicePlans = createAsyncThunk("getServicePlan",
   }
 }
 );
+export const getServicePlansByServices = createAsyncThunk("getServicePlanByServices",    
+  async (id, { rejectWithValue }) => {
+  try {
+    const {data} = await instance.get(`/servicePlan/${id}`);
+    return data;
+
+  } catch (e) {
+    return rejectWithValue(e);
+  }
+}
+);
+
 
 //   //updateServicePlan api
 //   export const updateServicePlan = createAsyncThunk(

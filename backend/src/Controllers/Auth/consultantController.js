@@ -5,6 +5,7 @@ import bcrypt from "bcrypt"
 import { razorpayInstance } from "../../Configs/razorPay.js";
 import { sendAccountVerified, sendConsultantAccountCreated } from "../../Utils/Mail/consultant/consultantEmail.js";
 import { userModel } from "../../Models/Auth/User/userModel.js";
+import mongoose from "mongoose";
 
 export const createConsultant = asyncErrorHandler(async (req, res) => {
   const newConsultant = await Consultant.create(req?.body);
@@ -49,7 +50,7 @@ export const verifyConsultant = asyncErrorHandler(async (req, res) => {
 
   const isAuthentic = expectedSignature === razorpay_signature;
   if (!isAuthentic) {
-    await Consultant.findByIdAndDelete(req?.params?.id);
+    // await Consultant.findByIdAndDelete(req?.params?.id);
     return res.status(400).json({
       status: false,
       message: `Signature Authentication Failed expected ${expectedSignature} but got ${razorpay_signature}`,
@@ -167,25 +168,44 @@ export const updateConsultant = asyncErrorHandler(async (req, res) => {
 
 export const updateConsultantPlans = asyncErrorHandler(async (req, res) => {
   const { id } = req.params;
-  console.log(req?.body)
+  const { servicePlan: newServicePlans } = req.body; // Extract new service plans
 
+  const existingServicePlan = await Consultant.findById(id).lean();
 
-  const updateConsultant = await Consultant.findByIdAndUpdate(id, {
-    servicePlan:req?.body?.servicePlan
-    },
-  {new:true}).lean();
-
-
-  if (!updateConsultant) {
+  if (!existingServicePlan) {
     return res.status(400).json({
       status: false,
       message: "Consultant not found!!",
     });
-  }  
+  }
+
+  // Extract existing plans
+  const existingPlans = existingServicePlan.servicePlan || [];
+
+
+  // Filter new plans (remove duplicates)
+  const uniquePlans = newServicePlans.filter(
+    (plan) =>
+      !existingPlans.some((existingPlan) =>
+        existingPlan.equals(new mongoose.Types.ObjectId(plan))
+      )
+  );
+
+  if (uniquePlans.length === 0) {
+    return res.status(400).json({
+      status: false,
+      message: "Service plans already added!",
+    });
+  }
+
+  // Update consultant with unique service plans
+  await Consultant.updateOne(
+    { _id: id },
+    { $push: { servicePlan: { $each: uniquePlans.map(plan => new mongoose.Types.ObjectId(plan)) } } }
+  );
 
   res.status(200).json({
     status: true,
     message: "Consultant Plans Updated successfully!!",
-    data: updateConsultant,
   });
 });

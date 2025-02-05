@@ -25,6 +25,7 @@ const SideBar = () => {
       dispatch(logout());
     } catch (error) {
       console.error(error.message);
+      
     }
   };
 

@@ -92,6 +92,7 @@ const authSlice = createSlice({
         state.isLoginOtpSent = false
         state.isUserLoggedIn = false;
         state.response ={}
+        state.loggedInUserData= {}
         toast.success("Logout successfully");
       })
       .addCase(logout.rejected, (state, action) => {
